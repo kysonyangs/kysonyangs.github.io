@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Monaco:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'YRSQCB2W7K',
+      apiKey: '02bdd077b8d372a10bf55e8a6fdd31d4',
+      indexName: 'hexoindex',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="GCD理解（一）GCD理解（二）代码下载 ####Queue  main queue: 主线程队列，串行队列。一般用于刷新UI。 global queue: 全局队列，并行队列。 custom queue: 自定义队列。*">
+<meta name="keywords" content="GCD">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GCD理解-一">
+<meta property="og:url" content="https://kysonyangs.github.io/iOS/16-03 GCD理解-一/index.html">
+<meta property="og:site_name" content="kysonyangs">
+<meta property="og:description" content="GCD理解（一）GCD理解（二）代码下载 ####Queue  main queue: 主线程队列，串行队列。一般用于刷新UI。 global queue: 全局队列，并行队列。 custom queue: 自定义队列。*">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-06-20T02:19:21.940Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GCD理解-一">
+<meta name="twitter:description" content="GCD理解（一）GCD理解（二）代码下载 ####Queue  main queue: 主线程队列，串行队列。一般用于刷新UI。 global queue: 全局队列，并行队列。 custom queue: 自定义队列。*">
+
+
+
+
+
+
+  <link rel="canonical" href="https://kysonyangs.github.io/iOS/16-03 GCD理解-一/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>GCD理解-一 | kysonyangs</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f00e2272f3df937b3553d379c23ceb2f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">kysonyangs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Stay Hungry, Stay Foolish</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/iOS/16-03 GCD理解-一/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kysonyangs">
+      <meta itemprop="description" content="kysonyangs个人站，备忘">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kysonyangs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">GCD理解-一
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-03-22 15:10:53" itemprop="dateCreated datePublished" datetime="2016-03-22T15:10:53+08:00">2016-03-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-06-20 10:19:21" itemprop="dateModified" datetime="2018-06-20T10:19:21+08:00">2018-06-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/iOS/16-03 GCD理解-一/" class="leancloud_visitors" data-flag-title="GCD理解-一">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://kellenyangs.github.io/iOS/GCD理解-一/" target="_blank" rel="noopener">GCD理解（一）</a><br><a href="http://kellenyangs.github.io/iOS/GCD理解-二/" target="_blank" rel="noopener">GCD理解（二）</a><br><a href="https://github.com/KellenYangs/KLBlogDemo/tree/master/GCD%E7%90%86%E8%A7%A31" target="_blank" rel="noopener">代码下载</a></p>
+<p>####Queue</p>
+<ul>
+<li><strong>main queue</strong>: 主线程队列，串行队列。一般用于刷新UI。</li>
+<li><strong>global queue</strong>: 全局队列，并行队列。</li>
+<li><strong>custom queue</strong>: 自定义队列。<br>*<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 一般用法</span><br><span class="line">dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</span><br><span class="line">        for (int i = 0; i &lt; 100000; i++) &#123;</span><br><span class="line">            NSLog(@&quot;%zd&quot;, i);</span><br><span class="line">        &#125;</span><br><span class="line">        dispatch_async(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">            NSLog(@&quot;刷新UI&quot;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="自定义队列"><a href="#自定义队列" class="headerlink" title="自定义队列"></a>自定义队列</h4><ul>
+<li><p>串行队列</p>
+<ul>
+<li><p>同步运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t serialQueue = dispatch_queue_create(&quot;kl.serialQueue&quot;, DISPATCH_QUEUE_SERIAL);</span><br><span class="line">for (int j = 0; j &lt; 3; j++) &#123;</span><br><span class="line">    dispatch_sync(serialQueue, ^&#123;</span><br><span class="line">        for (int i = 0 ; i &lt; 3; i++) &#123;</span><br><span class="line">            NSLog(@&quot;current Thread %@ --  concurrentQueue %zd --  dispatch_async %zd&quot;,[NSThread currentThread] ,j, i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    NSLog(@&quot;run in mainQueue&quot;);</span><br><span class="line">&#125;</span><br><span class="line">// 运行结果分析: 线程指针地址相同，是同一个线程；输出结果按序输出，串行队列先进先出。</span><br><span class="line">// `run in mainQueue` 出现在for循环之后即dispatch_sync任务执行完之后，因为串行队列同步运行，阻塞主线程。</span><br><span class="line">// 在这里发现创建的线程和主线程地址相同，说明串行队列同步运行是直接在主线程中运行的！</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>异步运行 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t serialQueue = dispatch_queue_create(&quot;kl.serialQueue&quot;, DISPATCH_QUEUE_SERIAL);</span><br><span class="line">for (int j = 0; j &lt; 3; j++) &#123;</span><br><span class="line">    dispatch_async(serialQueue, ^&#123;</span><br><span class="line">        for (int i = 0 ; i &lt; 3; i++) &#123;</span><br><span class="line">            NSLog(@&quot;current Thread %@ --  concurrentQueue %zd --  dispatch_async %zd&quot;,[NSThread currentThread] ,j, i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    NSLog(@&quot;run in mainQueue&quot;);</span><br><span class="line">&#125;</span><br><span class="line">// 运行结果分析: 线程指针地址相同，是同一个线程；输出结果按序输出，串行队列先进先出。</span><br><span class="line">// `run in mainQueue` 出现随机，因为是异步运行，不阻塞主线程。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>并行队列</p>
+<ul>
+<li><p>同步运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t concurrentQueue = dispatch_queue_create(&quot;kl.concurrentQueue&quot;, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">for (int j = 0; j &lt; 3; j++) &#123;</span><br><span class="line">    dispatch_sync(concurrentQueue, ^&#123;</span><br><span class="line">        for (int i = 0 ; i &lt; 3; i++) &#123;</span><br><span class="line">            NSLog(@&quot;current Thread %@ --  concurrentQueue %zd --  dispatch_async %zd&quot;,[NSThread currentThread] ,j, i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;run in mainQueue current Thread %@&quot;, [NSThread currentThread]);</span><br><span class="line">&#125;</span><br><span class="line">// 运行结果分析: 线程地址相同，且与主线程队列地址相同，</span><br><span class="line">// 结合串行队列同步运行与串行队列异步运行结果来看，同步运行时线程都是在主线程上运行，不开辟新的线程。</span><br><span class="line">// 运行结果与串行队列同步运行相同</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>异步运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t concurrentQueue = dispatch_queue_create(&quot;kl.concurrentQueue&quot;, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">for (int j = 0; j &lt; 3; j++) &#123;</span><br><span class="line">    dispatch_async(concurrentQueue, ^&#123;</span><br><span class="line">        for (int i = 0 ; i &lt; 3; i++) &#123;</span><br><span class="line">            NSLog(@&quot;current Thread %@ --  concurrentQueue %zd --  dispatch_async %zd&quot;,[NSThread currentThread] ,j, i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;run in mainQueue current Thread %@&quot;, [NSThread currentThread]);</span><br><span class="line">&#125;</span><br><span class="line">// 运行结果分析: 输出结构乱序，因为是并行的异步执行，</span><br><span class="line">// 不能决定谁先谁后，且发现线程地址不同，说明开了多条线程执行队列，</span><br><span class="line">// `run in mainQueue` 出现随机，因为是异步运行，不阻塞主线程。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>总结: </p>
+<ol>
+<li>dispatch_sync 并不会开辟新的线程执行任务，所以不管是串行队列还是并行队列其实都在一个线程(mainQueue也在主线程)中运行，且它是同步的，所以阻塞主线程，一定得队列任务完成之后才会执行之后的任务！</li>
+<li>dispatch_async 会异步的运行队列任务，但是串行队列只在一个线程中，所以只是不阻塞主线程，但是还是遵行串行队列FIFO(先进先出)执行任务， 而并行队列会开多条线程进行异步执行任务，效率更高！</li>
+</ol>
+<h4 id="dispatch-barrier"><a href="#dispatch-barrier" class="headerlink" title="dispatch_barrier"></a>dispatch_barrier</h4><p>在 <code>dispatch_barrier</code> 之后的任务总是会在 <code>dispatch_barrier</code> 之前的任务执行完之后在执行</p>
+<ul>
+<li><p>dispatch_barrier_sync</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">for (int i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">    dispatch_async(self.concurrentQueue, ^&#123;</span><br><span class="line">        NSLog(@&quot;current Thread %@ --  dispatch_async_1 %zd&quot;,[NSThread currentThread], i);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line">NSLog(@&quot;dispatch_async_1_main&quot;);</span><br><span class="line">for (int i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">    dispatch_barrier_sync(self.concurrentQueue, ^&#123;</span><br><span class="line">        NSLog(@&quot;current Thread %@ --  dispatch_barrier_sync %zd&quot;,[NSThread currentThread], i);</span><br><span class="line">        if (i == 4) &#123;</span><br><span class="line">            NSLog(@&quot;dispatch_barrier_sync finished&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line">NSLog(@&quot;dispatch_barrier_sync_main&quot;);</span><br><span class="line">for (int i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">    dispatch_async(self.concurrentQueue, ^&#123;</span><br><span class="line">        NSLog(@&quot;current Thread %@ --  dispatch_async_2 %zd&quot;,[NSThread currentThread], i);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line">NSLog(@&quot;dispatch_async_2_main&quot;);</span><br><span class="line">// 结果分析 先并发异步执行 dispatch_async_1, </span><br><span class="line">// 在执行 dispatch_barrier_sync ,最后并发异步执行 dispatch_async_2, dispatch_barrier_sync 会阻塞主线程</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>dispatch_barrier_async</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">for (int i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">        dispatch_async(self.concurrentQueue, ^&#123;</span><br><span class="line">            NSLog(@&quot;current Thread %@ --  dispatch_async_1 %zd&quot;,[NSThread currentThread], i);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    NSLog(@&quot;dispatch_async_1_main&quot;);</span><br><span class="line">    for (int i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">        dispatch_barrier_async(self.concurrentQueue, ^&#123;</span><br><span class="line">            NSLog(@&quot;current Thread %@ --  dispatch_barrier_async %zd&quot;,[NSThread currentThread], i);</span><br><span class="line">            if (i == 2) &#123;</span><br><span class="line">                NSLog(@&quot;dispatch_barrier_sync finished&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    NSLog(@&quot;dispatch_barrier_sync_main&quot;);</span><br><span class="line">    for (int i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">        dispatch_async(self.concurrentQueue, ^&#123;</span><br><span class="line">            NSLog(@&quot;current Thread %@ --  dispatch_async_2 %zd&quot;,[NSThread currentThread], i);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    NSLog(@&quot;dispatch_async_2_main&quot;);</span><br><span class="line">    // 结果分析: 首先它仍然会阻拦 dispatch_barrier_async 之后的任务等之前任务执行完之后再执行，</span><br><span class="line">    // 其次他由于是异步的所以不阻塞主线程，</span><br><span class="line">    // 但是我发现 `dispatch_barrier_async`里面执行的认为在一条线程中执行，且按顺序执行的！</span><br><span class="line">    // 所以我们做耗时操作的时候尽量不要放在`dispatch_barrier_async`中执行，因为虽然他不阻塞主线程队列，但是会阻塞我们自创的队列啊！</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注意：</p>
+<ol>
+<li><code>dispatch_barrier</code> 不要用在<code>global queue</code> 中，因为 <code>dispatch_barrier</code> 只使用在一条并行队列中，而<code>global queue</code> 是每次系统分配一个并行队列(可能是不同的)，所以没有意义！</li>
+<li><code>dispatch_barrier_async</code>里面执行的认为在一条线程中执行，且按顺序执行的！所以我们做耗时操作的时候尽量不要放在<code>dispatch_barrier_async</code>中执行，因为虽然他不阻塞主线程队列，但是会阻塞我们自创的队列！</li>
+<li>NSDictionary: 线程安全, 但是NSMutableDictionary: 不是线程安全的，所以我们可以使用 dispatch_barrier_async 来保证 NSMutableDictionary 线程安全!(Get&amp;&amp;Set)</li>
+</ol>
+<h4 id="dispatch-semaphone-信号量-用于并发控制"><a href="#dispatch-semaphone-信号量-用于并发控制" class="headerlink" title="dispatch_semaphone: 信号量(用于并发控制)"></a>dispatch_semaphone: 信号量(用于并发控制)</h4><ul>
+<li>dispatch_semaphore_create(3)<br>  创建信号量，传入一个大于等于0的long型整数(比作停车位，有了停车位才能停车)</li>
+<li>dispatch_semaphore_signal(semaphone)<ol>
+<li>传入一个信号量，执行一次，增加一次semaphone计数(可以这么理解: 一辆车开走了，然后这个停车位就空出来了，算作增加一个停车位);</li>
+<li>返回值为0时表示当前并没有线程等待其处理的信号量;</li>
+<li>返回值不为0时，表示其当前有（一个或多个）线程等待其处理的信号量，并且该函数唤醒了一个等待的线程(优先级高的先被唤醒，否则随机)</li>
+</ol>
+</li>
+<li>dispatch_semaphore_wait(semaphone, dispatch_time(DISPATCH_TIME_NOW, 5));<ol>
+<li>每运行一次，semaphone计数-1，如果semaphone计数为0，那么根据传入的等待时间等待，如果等待时间设置为DISPATCH_TIME_FOREVER,那么就永远等待，永远不会执行之后的了， 除非信号量计数&gt;1了!</li>
+<li>(可以这么理解: 在这里判断是否有停车位剩余，如果有就停车，没有的话就等待车位空出再停车，如果超出等待时间，这个人就等不下去了，开车走了);</li>
+<li>如果等待期间没有获取到信号量或者信号量的值一直为0，那么等到timeout时，其所处线程自动执行其后语句</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// sample1:</span><br><span class="line">dispatch_semaphore_t semaphone = dispatch_semaphore_create(2);</span><br><span class="line">    for (int i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">        if(dispatch_semaphore_wait(semaphone, dispatch_time(DISPATCH_TIME_NOW, 2 *NSEC_PER_SEC)) == 0) &#123;</span><br><span class="line">            dispatch_async(self.concurrentQueue, ^&#123;</span><br><span class="line">                NSLog(@&quot;i will sleep 3 second %zd&quot;, i);</span><br><span class="line">                sleep(3);</span><br><span class="line">                NSLog(@&quot;i am wake up %zd&quot;, i);</span><br><span class="line">                NSLog(@&quot;%zd signal %ld&quot;,i,  dispatch_semaphore_signal(semaphone)); </span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            NSLog(@&quot;等不下去了，走人&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// sample2:</span><br><span class="line">dispatch_semaphore_t semaphone = dispatch_semaphore_create(0);</span><br><span class="line">NSLog(@&quot;Boss: Kellen, wake up! working&quot;);</span><br><span class="line">dispatch_async(self.concurrentQueue, ^&#123;</span><br><span class="line">        NSLog(@&quot;Kellen: I am sleep!&quot;);</span><br><span class="line">        sleep(5);</span><br><span class="line">        NSLog(@&quot;Kellen: I am wake up!&quot;);</span><br><span class="line">        dispatch_semaphore_signal(semaphone);</span><br><span class="line">&#125;);   </span><br><span class="line">dispatch_semaphore_wait(semaphone, DISPATCH_TIME_FOREVER);</span><br><span class="line">NSLog(@&quot;Kellen: I am working...&quot;);</span><br><span class="line">// 等待执行 NSLog(@&quot;Kellen: I am working...&quot;);</span><br></pre></td></tr></table></figure>
+<p>以上两种方案的话 看你情况使用！(信号量设为0 ,!0)</p>
+<hr>
+<p>貌似写的有点多了，另起一篇吧！！！</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <br/>
+        <br/>
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+      
+    </div>
+
+    <div>
+          
+            
+          
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/GCD/" rel="tag"><i class="fa fa-tag"></i> GCD</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/iOS/16-03 CoreAnimation四/" rel="next" title="CoreAniamtion学习四">
+                <i class="fa fa-chevron-left"></i> CoreAniamtion学习四
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/iOS/16-03 GCD理解-二/" rel="prev" title="GCD理解-二">
+                GCD理解-二 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzQ0NC8xMzk3Ng=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">kysonyangs</p>
+              <p class="site-description motion-element" itemprop="description">kysonyangs个人站，备忘</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">35</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/kysonyangs" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义队列"><span class="nav-number">1.</span> <span class="nav-text">自定义队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dispatch-barrier"><span class="nav-number">2.</span> <span class="nav-text">dispatch_barrier</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dispatch-semaphone-信号量-用于并发控制"><span class="nav-number">3.</span> <span class="nav-text">dispatch_semaphone: 信号量(用于并发控制)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kysonyangs</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("98nkii2hdktsmUfe1Og3R4V3-gzGzoHsz", "1zGSD9yxI1uo7HIj7IVa8CHx");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
