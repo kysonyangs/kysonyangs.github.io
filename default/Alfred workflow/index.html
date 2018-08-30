@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Monaco:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'YRSQCB2W7K',
+      apiKey: '02bdd077b8d372a10bf55e8a6fdd31d4',
+      indexName: 'hexoindex',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Alfred设置Alfred 启动后，点击帽子图标，选择 Preferences... 打开设置面板">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Alfred 神器使用">
+<meta property="og:url" content="https://kysonyangs.github.io/default/Alfred workflow/index.html">
+<meta property="og:site_name" content="kysonyangs">
+<meta property="og:description" content="Alfred设置Alfred 启动后，点击帽子图标，选择 Preferences... 打开设置面板">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1291453-71e028cb0f1cc940.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/700">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1291453-7c1e790879155ad8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/700">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1291453-086f63885207c156.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/700">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1291453-f3b997e817a78370.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1291453-02e2d07f215a178e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/405">
+<meta property="og:image" content="http://static.zybuluo.com/dailybird/0votfl6sjwxr4gycb9c8hi8o/image_1bdhhs7s88mb12vlamo17qh19knm.png">
+<meta property="og:updated_time" content="2018-08-30T03:26:17.853Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Alfred 神器使用">
+<meta name="twitter:description" content="Alfred设置Alfred 启动后，点击帽子图标，选择 Preferences... 打开设置面板">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1291453-71e028cb0f1cc940.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/700">
+
+
+
+
+
+
+  <link rel="canonical" href="https://kysonyangs.github.io/Alfred workflow/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Alfred 神器使用 | kysonyangs</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f00e2272f3df937b3553d379c23ceb2f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">kysonyangs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Stay Hungry, Stay Foolish</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/Alfred workflow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kysonyangs">
+      <meta itemprop="description" content="kysonyangs个人站，备忘">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kysonyangs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Alfred 神器使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-06-10 00:00:00" itemprop="dateCreated datePublished" datetime="2017-06-10T00:00:00+08:00">2017-06-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-08-30 11:26:17" itemprop="dateModified" datetime="2018-08-30T11:26:17+08:00">2018-08-30</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/default/Alfred workflow/" class="leancloud_visitors" data-flag-title="Alfred 神器使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Alfred"><a href="#Alfred" class="headerlink" title="Alfred"></a>Alfred</h2><h3 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h3><p>Alfred 启动后，点击帽子图标，选择 <code>Preferences...</code> 打开设置面板</p>
+<a id="more"></a>
+<h4 id="General-通用设置"><a href="#General-通用设置" class="headerlink" title="General: 通用设置"></a><code>General</code>: 通用设置</h4><ul>
+<li><code>Startup</code>: 是否在系统启动时自启动Alfred。神器，默认勾上，不解释。</li>
+<li><code>Alfred Hotkey</code>: 调出Alfred操作界面的热键。默认为 <code>Alt + 空格</code>。</li>
+<li><code>Where are you</code>: 你在哪个国家。Alfred内置了常用网站搜索功能，在搜索时打开对应国家的网站。</li>
+</ul>
+<h4 id="Features-特性界面"><a href="#Features-特性界面" class="headerlink" title="Features: 特性界面"></a><code>Features</code>: 特性界面</h4><ul>
+<li>Alfred几乎所有搜索功能都在这个界面设置。免费用户(没有购买Powerpack开启Workflows)重点关注的地方了。</li>
+<li>Features包含的所有功能，本文不打算讲解所有的功能，只讲解最常用的。如：Default Results、File Search、Web Search、Calculator等。</li>
+</ul>
+<ol>
+<li><code>Default Results</code>: 默认结果</li>
+</ol>
+<ul>
+<li><code>Essentials</code>: 可设置搜索“应用程序”、“联系人”、“设置”、“Safari书签”。</li>
+<li><code>Extras</code>: 可设置搜索“文件夹”、“文本文件”、“压缩文件”、“个人文档目录”、“图片”、“AppleScript”等其他文件。</li>
+<li><code>Unintelligent</code>: <code>Search all file types</code> 搜索所有文件类型。若勾选此项不但影响巡查速度，还混淆默认搜索结果。Alfred建议用户使用 <code>Find+空格+文件名</code> 来查询文件或文件夹；使用 <code>Open+空格+文件名</code> 也可以。</li>
+<li><code>Search Scope</code>: 设置Alfred查询时 <code>会搜索的文件夹范围</code>，可自己添加和删除。</li>
+<li><code>Fallbacks</code>: 若上面的查询搜索不到结果时，就会调用这里设置的网站或搜索引擎来进行进一步的查询。 默认反馈结果为 <code>Google</code> 、<code>Amazon</code>、<code>Wikipedia</code> 网页搜索。 可以自己添加搜索引擎。</li>
+</ul>
+<ol start="2">
+<li><code>Web Search</code>: 网页搜索<br><img src="https://upload-images.jianshu.io/upload_images/1291453-71e028cb0f1cc940.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt=""></li>
+</ol>
+<ul>
+<li><code>Keyword</code> 为 <code>Alfred命令/关键字</code>；<code>DisplayText</code> 为此搜索功能的标题；<code>Custom</code> 有图标表示这个为用户自定义；<code>Enabled</code> 为是否启用。</li>
+<li>Alfred网站搜索的设置，这是本人使用最频繁的功能。在图中可看到Alfred默认设置了很多搜索网站，但几乎都是国外网站，因为天朝特色，很多都是我们用不上，因此需要添加自定义的搜索设置。<ul>
+<li>点击右下角的 <code>Add Custom Search</code>。</li>
+<li>根据下面的示意图在弹出界面中输入对应信息，其中网站图标可忽略，然后保存即可。<br><img src="https://upload-images.jianshu.io/upload_images/1291453-7c1e790879155ad8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt=""></li>
+<li>比如我自定义的百度搜索，信息如下：<br><img src="https://upload-images.jianshu.io/upload_images/1291453-086f63885207c156.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt=""><ul>
+<li><code>Search URL</code>: <code>https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;rsv_bp=1&amp;ch=&amp;tn=baiduerr&amp;bar=&amp;wd={query}</code></li>
+<li><code>Title</code>: <code>baidu</code>。</li>
+<li><code>Keyword</code>: <code>bd</code>。</li>
+<li><code>Validation</code>: 为热爱祖国，此项可随意。</li>
+<li>Alfred 输入 <code>bd+空格+查询内容</code>, 回车即自动打开百度进行搜索。</li>
+<li>只要在对应的网站上搜索一次，记下当时的网址，并把具体的搜索内容改为 <code>{query}</code> 就可以找到我们自定义搜索设置中所需要的 <code>Search URL</code> 信息了。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li><code>Calculator</code>: 计算器</li>
+</ol>
+<ul>
+<li>直接在Alfred 输入 <code>1+1</code> 可以立即得到结果</li>
+<li>输入 <code>=</code> 来进行复杂运算，Alfred支持很多高级的数学函数。<code>eg: =sin(1)</code></li>
+</ul>
+<ol start="4">
+<li><code>Clipboard</code>: 剪切板</li>
+</ol>
+<ul>
+<li>开启Alfred的剪切板功能。<br><img src="https://upload-images.jianshu.io/upload_images/1291453-f3b997e817a78370.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt=""></li>
+<li>查看Alfred剪切板历史记录。默认热键为 <code>Command + Alt + C</code>。</li>
+<li>清空Alfred剪切板。在Alfred操作界面中输入 <code>clear</code>。</li>
+</ul>
+<h4 id="Advanced-高级设置"><a href="#Advanced-高级设置" class="headerlink" title="Advanced: 高级设置"></a>Advanced: 高级设置</h4><ol>
+<li>配置同步<br><img src="https://upload-images.jianshu.io/upload_images/1291453-02e2d07f215a178e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/405" alt=""></li>
+</ol>
+<ul>
+<li>点击 <code>Set sync folder...</code> 设置Alfred配置导出的目录。点击 <code>Reveal in Finder</code> 查看Alfred配置所在的目录。</li>
+<li>只要将Alfred配置导出的目录设置为 <code>Dropbox</code> 同步目录，就可以实现云同步。</li>
+</ul>
+<h4 id="Workflow-神器啊-这里收藏自己使用的Workflow。"><a href="#Workflow-神器啊-这里收藏自己使用的Workflow。" class="headerlink" title="Workflow: 神器啊, 这里收藏自己使用的Workflow。"></a>Workflow: 神器啊, 这里收藏自己使用的Workflow。</h4><p><a href="http://alfredworkflow.com/" target="_blank" rel="noopener">Workflow List</a><br><a href="https://github.com/willfarrell/alfred-workflows" target="_blank" rel="noopener">Workflow List</a><br><a href="http://www.packal.org/" target="_blank" rel="noopener">Workflow packal</a></p>
+<ul>
+<li><p><a href="https://github.com/gharlan/alfred-github-workflow" target="_blank" rel="noopener"><code>Github</code></a>: 更便捷地使用Github</p>
+</li>
+<li><p><a href="https://github.com/pawelgrzybek/Alfred-github-search" target="_blank" rel="noopener"><code>Github Search</code></a>: 在Alfred上列出Github的搜索结果</p>
+<ul>
+<li>使用：<code>github 要搜索的库名</code> eg: <code>github YYKit</code></li>
+<li>对搜索结果按回车，打开Github网页。</li>
+<li>对搜索结果按Cmd + c，复制链接。</li>
+<li>按住Cmd再点击搜索结果，打开pull请求。</li>
+<li>按住Alt再点击搜索结果，打开issues页面。</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/deanishe/alfred-stackoverflow" target="_blank" rel="noopener"><code>Stackoverflow</code></a>: Stackoverflow 的查询结果</p>
+<ul>
+<li>使用：<code>.so 要查询的问题</code> eg: <code>.so ios</code></li>
+</ul>
+</li>
+<li><p><a href="https://github.com/BigLuck/alfred2-hash" target="_blank" rel="noopener"><code>Hash</code></a>: 哈希工具，对字符串和文件进行MD5、SHA1等常用哈希，另外支持Base64等。</p>
+<ul>
+<li>对字符串进行SHA1：<code>sha1 kyson</code></li>
+</ul>
+</li>
+<li><p><a href="https://github.com/hzlzh/Alfred-Workflows" target="_blank" rel="noopener"><code>Copy Path</code></a>: 将Finder中文件的路径复制到剪切板中。(该网址下包含众多workflow)</p>
+<ul>
+<li>点击 <code>workflow -&gt; copy path -&gt; hotkey</code> 修改此Workflow的热键为 <code>Ctrl + Command + C</code>。</li>
+<li>在Finder中选中文件后执行此热键即可复制该文件的路径。</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/xudaolong/CodeVar" target="_blank" rel="noopener"><code>CodeVar</code></a>: 生成可用的代码变量</p>
+<ul>
+<li>小驼峰命名法: xt</li>
+<li>大驼峰命名法: dt</li>
+<li>下划线命名法: xh</li>
+<li>常量命名法: cl</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/kaiye/workflows-youdao/" target="_blank" rel="noopener">有道词典</a>: 有道词典 并同步到单词本</p>
+</li>
+<li><p>改变默认终端为 iTerm</p>
+<ul>
+<li>首先将 Terminal 的 Application 改变为 Custom：<br><img src="http://static.zybuluo.com/dailybird/0votfl6sjwxr4gycb9c8hi8o/image_1bdhhs7s88mb12vlamo17qh19knm.png" alt=""></li>
+<li>然后在输入栏中输入：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">on write_to_file(this_data, target_file, append_data)</span><br><span class="line">    try</span><br><span class="line">        set the target_file to the target_file as string</span><br><span class="line">        set the open_target_file to open for access file target_file with write permission</span><br><span class="line">        if append_data is false then set eof of the open_target_file to 0</span><br><span class="line">        write this_data to the open_target_file starting at eof</span><br><span class="line">        close access the open_target_file</span><br><span class="line">        return true</span><br><span class="line">    on error</span><br><span class="line">        try</span><br><span class="line">            close access file target_file</span><br><span class="line">        end try</span><br><span class="line">        return false</span><br><span class="line">    end try</span><br><span class="line">end write_to_file</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">on alfred_script(q)</span><br><span class="line"></span><br><span class="line">    -- Write the command to run to a file. This is done because Applescript quoting is impossible to get right, esp. for backslashes.</span><br><span class="line">    set tmp_dir to path to temporary items as string from user domain</span><br><span class="line">    set applescript_alfred_file to tmp_dir &amp; &quot;alfredscript&quot;</span><br><span class="line">    set alfred_file to POSIX path of applescript_alfred_file</span><br><span class="line">    write_to_file(q &amp; return, applescript_alfred_file, false)</span><br><span class="line"></span><br><span class="line">    -- Create this file, which prevents iTerm2 from restoring a saved window arrangement.</span><br><span class="line">    do shell script &quot;touch ~/Library/Application&apos; Support/iTerm/quiet&apos;&quot;</span><br><span class="line"></span><br><span class="line">    -- Test cases:</span><br><span class="line">    -- 1. iTerm2 running, has windows open. Should open a new window for Alfred command.</span><br><span class="line">    -- 2. iTerm2 running, no windows open. Should open a new window for Alfred command.</span><br><span class="line">    -- 3. iTerm2 not running, set to restores arrangement. Should not restore arrangement but open a new window for the Afred command.</span><br><span class="line">    -- 4. iTerm2 not running. No windows to restore. Should open a single window for the Alfred command.</span><br><span class="line">    -- 5. iTerm2 not running. Has windows to restore. Restores windows and then opens a new window for the Alfred command.</span><br><span class="line"></span><br><span class="line">    -- Compose a script. This is necessary because compiling in a &apos;tell application&apos; command causes the app to be launched, which would happen prior to the creation of the quiet file.</span><br><span class="line">    set theScript to &quot;tell application \&quot;iTerm2.app\&quot;</span><br><span class="line">    if (exists current window) then</span><br><span class="line">        tell current window to create tab with default profile</span><br><span class="line">        tell current session of current window</span><br><span class="line">            write contents of file \&quot;&quot; &amp; alfred_file &amp; &quot;\&quot;</span><br><span class="line">        end tell</span><br><span class="line">    else</span><br><span class="line">        create window with default profile</span><br><span class="line">        tell current session of current window</span><br><span class="line">            write contents of file \&quot;&quot; &amp; alfred_file &amp; &quot;\&quot;</span><br><span class="line">        end tell</span><br><span class="line">    end if</span><br><span class="line">    activate</span><br><span class="line">end tell&quot;</span><br><span class="line"></span><br><span class="line">    -- Invoke the script.</span><br><span class="line">    run script theScript</span><br><span class="line"></span><br><span class="line">    -- Clean up</span><br><span class="line">--    do shell script &quot;rm -f ~/Library/Application&apos; Support/iTerm/quiet&apos; /tmp/alfredscript&quot;</span><br><span class="line">end alfred_script</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <br/>
+        <br/>
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+      
+    </div>
+
+    <div>
+          
+            
+          
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Xcode/16-07 插件-injectionforxcode/" rel="next" title="神一般的插件 injectionforxcode">
+                <i class="fa fa-chevron-left"></i> 神一般的插件 injectionforxcode
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/default/Info.plist 属性介绍/" rel="prev" title="Info.plist 属性介绍">
+                Info.plist 属性介绍 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzQ0NC8xMzk3Ng=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">kysonyangs</p>
+              <p class="site-description motion-element" itemprop="description">kysonyangs个人站，备忘</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/kysonyangs" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Alfred"><span class="nav-number">1.</span> <span class="nav-text">Alfred</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置"><span class="nav-number">1.1.</span> <span class="nav-text">设置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#General-通用设置"><span class="nav-number">1.1.1.</span> <span class="nav-text">General: 通用设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Features-特性界面"><span class="nav-number">1.1.2.</span> <span class="nav-text">Features: 特性界面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Advanced-高级设置"><span class="nav-number">1.1.3.</span> <span class="nav-text">Advanced: 高级设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Workflow-神器啊-这里收藏自己使用的Workflow。"><span class="nav-number">1.1.4.</span> <span class="nav-text">Workflow: 神器啊, 这里收藏自己使用的Workflow。</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kysonyangs</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("98nkii2hdktsmUfe1Og3R4V3-gzGzoHsz", "1zGSD9yxI1uo7HIj7IVa8CHx");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

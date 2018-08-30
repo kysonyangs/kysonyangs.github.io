@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Monaco:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'YRSQCB2W7K',
+      apiKey: '02bdd077b8d372a10bf55e8a6fdd31d4',
+      indexName: 'hexoindex',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Swift中lazy作惰性求值函数式编程中有惰性求值的概念，即一次计算在真正需要时才执行，尽可能推迟求解表达式。假如我们有一个数组，我们对每个元素作 element*2 的 map 操作，获取其中某一个元素，我们会如下代码处理:123let array = [1, 2, 4, 5, 3, 7]let element = array.map&amp;#123; $0 * 2 &amp;#125;[3]print(e">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift-Tips">
+<meta property="og:url" content="https://kysonyangs.github.io/default/Swift-Tips/index.html">
+<meta property="og:site_name" content="kysonyangs">
+<meta property="og:description" content="Swift中lazy作惰性求值函数式编程中有惰性求值的概念，即一次计算在真正需要时才执行，尽可能推迟求解表达式。假如我们有一个数组，我们对每个元素作 element*2 的 map 操作，获取其中某一个元素，我们会如下代码处理:123let array = [1, 2, 4, 5, 3, 7]let element = array.map&amp;#123; $0 * 2 &amp;#125;[3]print(e">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-30T03:25:36.676Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift-Tips">
+<meta name="twitter:description" content="Swift中lazy作惰性求值函数式编程中有惰性求值的概念，即一次计算在真正需要时才执行，尽可能推迟求解表达式。假如我们有一个数组，我们对每个元素作 element*2 的 map 操作，获取其中某一个元素，我们会如下代码处理:123let array = [1, 2, 4, 5, 3, 7]let element = array.map&amp;#123; $0 * 2 &amp;#125;[3]print(e">
+
+
+
+
+
+
+  <link rel="canonical" href="https://kysonyangs.github.io/Swift-Tips/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Swift-Tips | kysonyangs</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f00e2272f3df937b3553d379c23ceb2f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">kysonyangs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Stay Hungry, Stay Foolish</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/Swift-Tips/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kysonyangs">
+      <meta itemprop="description" content="kysonyangs个人站，备忘">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kysonyangs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swift-Tips
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-06-10 00:00:00" itemprop="dateCreated datePublished" datetime="2018-06-10T00:00:00+08:00">2018-06-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-08-30 11:25:36" itemprop="dateModified" datetime="2018-08-30T11:25:36+08:00">2018-08-30</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/default/Swift-Tips/" class="leancloud_visitors" data-flag-title="Swift-Tips">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="Swift中lazy作惰性求值"><a href="#Swift中lazy作惰性求值" class="headerlink" title="Swift中lazy作惰性求值"></a>Swift中lazy作惰性求值</h4><p>函数式编程中有惰性求值的概念，即一次计算在真正需要时才执行，尽可能推迟求解表达式。<br>假如我们有一个数组，我们对每个元素作 <code>element*2</code> 的 map 操作，获取其中某一个元素，我们会如下代码处理:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let array = [1, 2, 4, 5, 3, 7]</span><br><span class="line">let element = array.map&#123; $0 * 2 &#125;[3]</span><br><span class="line">print(element)</span><br></pre></td></tr></table></figure></p>
+<p>这个计算对每个元素都<code>*</code>2，最后我们只取了其中一个值，也就是说在这个场景中另外5次计算是无意义的。</p>
+<p>这时使用惰性求值就可以避免这算浪费。我们知道Swift中有个lazy关键字，如果用来修饰属性之类的，可以实现属性的惰性求值。同样，Swift扩展了LazySequenceProtocol协议，提供了一个lazy属性，用于处理map，filter等操作的惰性求值，定义如下代码所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">extension LazySequenceProtocol &#123;</span><br><span class="line">    /// Identical to `self`.</span><br><span class="line">    public var lazy: Self &#123; get &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>所以，上面这个例子如果要实现惰性求值，则可以如下代码处理：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let array = [1, 2, 4, 5, 3, 7]</span><br><span class="line">let element = array.lazy.map&#123; $0 * 2 &#125;[3]</span><br><span class="line">print(element)</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h4 id="Swift的stride操作"><a href="#Swift的stride操作" class="headerlink" title="Swift的stride操作"></a>Swift的stride操作</h4><p>创建一个一定步长的数组, Swift提供了一个便捷函数：stride，可以在某个区间内创建一个任意可变步长的序列，这个步长可以是任意值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let array = stride(from: 0, to: 3, by: 0.3).map &#123;</span><br><span class="line">    $0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>stride有两个变种：</p>
+<ol>
+<li>stride(from:to:by)，开区间处理，最后一个值严格小于最大值；</li>
+<li>stride(from:through:by)，闭区间处理，最后一个值小于或等于最大值</li>
+</ol>
+<h4 id="static方法与class方法的区别"><a href="#static方法与class方法的区别" class="headerlink" title="static方法与class方法的区别"></a>static方法与class方法的区别</h4><p>static和class这两个关键字都可以修饰类的方法，以表明这个方法是一个类方法。不过这两者稍微有一些区别：class修饰的类方法可以被子类重写，而static修饰的类方法则不能。</p>
+<h4 id="Swift中的函数值"><a href="#Swift中的函数值" class="headerlink" title="Swift中的函数值"></a>Swift中的函数值</h4><p>在Swift中，函数是一等公民，即函数也是一种类型，可充当参数、返回值等角色，当然也可以定义函数类型的常量/变量。利用这个特性，在某些场景下可以简化我们的代码，如下代码所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let setInt: (Int, String) -&gt; Void = UserDefaults.standard.set</span><br><span class="line">let getInt: (String) -&gt; Int = UserDefaults.standard.integer</span><br><span class="line"></span><br><span class="line">setInt(10, &quot;key&quot;)</span><br><span class="line">print(getInt(&quot;key&quot;))</span><br></pre></td></tr></table></figure></p>
+<h4 id="Array-contains操作"><a href="#Array-contains操作" class="headerlink" title="Array.contains操作"></a>Array.contains操作</h4><p>Swift中判断一个Array中是否包含某个元素，我们可以使用contains方法，如下代码所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let array = [2, 5, 6, 7, 19, 40]</span><br><span class="line">array.contains(10)              // false</span><br></pre></td></tr></table></figure></p>
+<p>不过这个方法要求数组中的元素类型实现了Equatable协议，否则无法使用，如下代码所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">enum Animal &#123;</span><br><span class="line">    case dog</span><br><span class="line">    case cat(Int)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let animals: [Animal] = [.dog, .dog]</span><br><span class="line">let hasCat = animals.contains(.cat(100))    // 编译器错误</span><br></pre></td></tr></table></figure></p>
+<p>还好Swift为我们提供了另一个contains方法，可以自定义谓词条件作为判断依据，其定义如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public func contains(where predicate: (Element) throws -&gt; Bool) rethrows -&gt; Bool</span><br></pre></td></tr></table></figure></p>
+<p>这个方法会查看数组是否包含满足给定的谓词条件的元素。可以看到这个方法是一个高阶函数，其参数是一个尾随闭包，在闭包内我们可以根据实际需要来实现我们自己的判断。所以上面的判断可以如下代码实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">enum Animal &#123;</span><br><span class="line">    case dog</span><br><span class="line">    case cat(Int)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let animals: [Animal] = [.dog, .dog]</span><br><span class="line">let hasCat = animals.contains &#123; animal in</span><br><span class="line"></span><br><span class="line">    if case .cat = animal &#123;</span><br><span class="line">        return true</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return false</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当然，对于元素类型实现了Equatable协议的数组，也可以使用这个方法。可以自定义谓词条件，查看数组是否有满足此条件的元素，如下代码所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let array = [2, 5, 6, 7, 19, 40]</span><br><span class="line"></span><br><span class="line">array.contains &#123; (element) -&gt; Bool in</span><br><span class="line">    element % 7 == 0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="filter与flatMap过滤nil"><a href="#filter与flatMap过滤nil" class="headerlink" title="filter与flatMap过滤nil"></a>filter与flatMap过滤nil</h4><p>使用高阶函数过滤一个数组中的nil可以有两种方法：filter和flatMap。<br>filter方法如下代码所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let array: [Int?] = [1, 2, 3, 5, nil, 9]</span><br><span class="line"></span><br><span class="line">let result = array.filter &#123; element in</span><br><span class="line">    element != nil</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">print(result)       // [Optional(1), Optional(2), Optional(3), Optional(5), Optional(9)]</span><br></pre></td></tr></table></figure></p>
+<p>flatMap方法如下代码所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let array: [Int?] = [1, 2, 3, 5, nil, 9]</span><br><span class="line">let result: [Int] = array.flatMap &#123;</span><br><span class="line">    $0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">print(result)       // [1, 2, 3, 5, 9]</span><br></pre></td></tr></table></figure></p>
+<p>从输出可以看出，filter返回的仍然是一个Optional数组，而flatMap返回的是一个非Optional数组。一般推荐使用第二种方法。</p>
+<h4 id="Extension-Selector"><a href="#Extension-Selector" class="headerlink" title="Extension-Selector"></a>Extension-Selector</h4><p>在Swift中，我们可以使用#selector设置target-action模式中的action操作，如下代码所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)</span><br></pre></td></tr></table></figure></p>
+<p>如果你有代码洁癖，想把#selector集中起来管理，则可以定义一个结构体，来统一归集这样的代码，如下图所示。这样看着是不是会更整洁一些？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fileprivate struct Action &#123;</span><br><span class="line">    static let buttonTapped = #selector(ViewController.buttonTapped)</span><br><span class="line">&#125;</span><br><span class="line">button.addTarget(self, action: Action.buttonTapped, for: .touchUpInside)</span><br></pre></td></tr></table></figure></p>
+<p>不过，还有种更好的方式，就是直接扩展Selector结构体，如下代码所示，这样可以在使用时直接用.buttonTapped这种方式来引用，就像我们使用.red这样的UIColor属性一样简洁。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">extension Selector &#123;</span><br><span class="line">    static let buttonTapped = #selector(ViewController.buttonTapped)</span><br><span class="line">&#125;</span><br><span class="line">button.addTarget(self, action: .buttonTapped, for: .touchUpInside)</span><br></pre></td></tr></table></figure></p>
+<h4 id="typealias泛型闭包"><a href="#typealias泛型闭包" class="headerlink" title="typealias泛型闭包"></a>typealias泛型闭包</h4><p>在 Swift 中我们可以用 typealias 来为已经存在的类型重新定义名字的,通过命名可以使代码变得更加清晰。当然也可以给闭包类型定义一个新名字，给带有泛型的闭包重新定义名字的方式如下代码所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">typealias Block&lt;U&gt; = (U, U) -&gt; Bool</span><br><span class="line"></span><br><span class="line">func compare&lt;T: Comparable&gt;(number1: T, number2: T, algorithm: Block&lt;T&gt;) -&gt; Bool &#123;</span><br><span class="line">    return algorithm(number1, number2)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">compare(number1: 10, number2: 20) &#123;</span><br><span class="line">    $0 &lt; $1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="Swift自定义操作符"><a href="#Swift自定义操作符" class="headerlink" title="Swift自定义操作符"></a>Swift自定义操作符</h4><p>在Swift中，自定义操作符就是简单的二步：首先在全局使用operator关键字来声明操作符，同时用prefix、infix或postfix来声明操作符的位置；然后在所需要的类/结构体中实现操作符。如下代码所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">postfix operator &gt;?</span><br><span class="line">postfix operator &gt;!</span><br><span class="line"></span><br><span class="line">extension MIType &#123;</span><br><span class="line">    public static postfix func &gt;?(type: MIType) -&gt; MIType &#123;</span><br><span class="line">        return MIType(&quot;Optional&lt;\(type.name)&gt;&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static postfix func &gt;!(type: MIType) -&gt; MIType &#123;</span><br><span class="line">        return MIType(&quot;ImplicitlyUnwrappedOptional&lt;\(type.name)&gt;&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>自定义操作符需要以两类字符开头：</p>
+<ul>
+<li>ASCII字符中的 <code>/, =, -, +, !, *, %, &lt;, &gt;, &amp;, |, ^, ?, ~</code></li>
+<li>Unicode 中的 Mathematical Operators, Miscellaneous Symbols和Dingbats Unicode blocks这些字符中的字符</li>
+</ul>
+<p>然后后面允许使用组合的Unicode字符。如下代码是以一个Miscellaneous Symbols开头的实现向量加法的操作符。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">infix operator ★+</span><br><span class="line"></span><br><span class="line">struct Vector2D &#123;</span><br><span class="line">    var x: CGFloat</span><br><span class="line">    var y: CGFloat</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">extension Vector2D &#123;</span><br><span class="line">    static func ★+ (left: Vector2D, right: Vector2D) -&gt; Vector2D &#123;</span><br><span class="line">        return Vector2D(x: left.x + right.x, y: left.y + right.y)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let vector1 = Vector2D(x: 10, y: 20)</span><br><span class="line">let vector2 = Vector2D(x: 30, y: 10)</span><br><span class="line"></span><br><span class="line">let vector = vector1 ★+ vector2</span><br><span class="line"></span><br><span class="line">vector.x        // 40.0</span><br><span class="line">vector.y        // 30.0</span><br></pre></td></tr></table></figure></p>
+<h4 id="自定义操作符中的"><a href="#自定义操作符中的" class="headerlink" title="自定义操作符中的."></a>自定义操作符中的<code>.</code></h4><p>在自定义操作符时，可以以dot(.)开头，这种情况下，操作符后面还可以包含其它的dot(.)，如下代码所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">infix operator .+.</span><br><span class="line"></span><br><span class="line">struct Vector2D &#123;</span><br><span class="line">    var x: CGFloat</span><br><span class="line">    var y: CGFloat</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">extension Vector2D &#123;</span><br><span class="line">    static func .+.(left: Vector2D, right: Vector2D) -&gt; Vector2D &#123;</span><br><span class="line">        return Vector2D(x: left.x + right.x, y: left.y + right.y)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let vector1 = Vector2D(x: 10, y: 20)</span><br><span class="line">let vector2 = Vector2D(x: 30, y: 10)</span><br><span class="line"></span><br><span class="line">let vector = vector1 .+. vector2</span><br><span class="line"></span><br><span class="line">vector.x</span><br><span class="line">vector.y</span><br></pre></td></tr></table></figure></p>
+<p>但如果操作符不是以dot开头，则后面不能再包含dot，如operator +.+这个声明会被看成是”+”操作符后面跟了个”.+”操作符。编译器会给出如下错误提示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">infix operator +.+      // error: operator with postfix spacing cannot start a subexpression</span><br></pre></td></tr></table></figure></p>
+<h4 id="Swift中操作符优先级"><a href="#Swift中操作符优先级" class="headerlink" title="Swift中操作符优先级"></a>Swift中操作符优先级</h4><p>Swift 3中改进了操作符的优先级及结合性的声明方式。<br>在Swift 3之前，是使用magic numbers(魔数)的方式来声明操作符的优先级，如下代码所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">infix operator &lt;~ &#123;</span><br><span class="line">    associativity left</span><br><span class="line">    precedence 125</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>magic numbers总归是一个不好的东西，所以Swift 3改用precedence groups(优先级组)的方式来声明操作符的优先级，如下代码所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">precedencegroup Equivalence &#123;</span><br><span class="line">    associativity: left</span><br><span class="line">    higherThan: LogicalConjunctionPrecedence</span><br><span class="line">    lowerThan: ComparisonPrecedence</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">infix operator ~ : Equivalence</span><br></pre></td></tr></table></figure></p>
+<p>系统为我们提供了一些默认的precedence groups，如下代码所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">precedencegroup AssignmentPrecedence &#123;</span><br><span class="line">  assignment: true</span><br><span class="line">  associativity: right</span><br><span class="line">&#125;</span><br><span class="line">precedencegroup TernaryPrecedence &#123;</span><br><span class="line">  associativity: right</span><br><span class="line">  higherThan: AssignmentPrecedence</span><br><span class="line">&#125;</span><br><span class="line">precedencegroup DefaultPrecedence &#123;</span><br><span class="line">  higherThan: TernaryPrecedence</span><br><span class="line">&#125;</span><br><span class="line">precedencegroup LogicalDisjunctionPrecedence &#123;</span><br><span class="line">  associativity: left</span><br><span class="line">  higherThan: TernaryPrecedence</span><br><span class="line">&#125;</span><br><span class="line">precedencegroup LogicalConjunctionPrecedence &#123;</span><br><span class="line">  associativity: left</span><br><span class="line">  higherThan: LogicalDisjunctionPrecedence</span><br><span class="line">&#125;</span><br><span class="line">precedencegroup ComparisonPrecedence &#123;</span><br><span class="line">  higherThan: LogicalConjunctionPrecedence</span><br><span class="line">&#125;</span><br><span class="line">precedencegroup NilCoalescingPrecedence &#123;</span><br><span class="line">  associativity: right</span><br><span class="line">  higherThan: ComparisonPrecedence</span><br><span class="line">&#125;</span><br><span class="line">precedencegroup CastingPrecedence &#123;</span><br><span class="line">  higherThan: NilCoalescingPrecedence</span><br><span class="line">&#125;</span><br><span class="line">precedencegroup RangeFormationPrecedence &#123;</span><br><span class="line">  higherThan: CastingPrecedence</span><br><span class="line">&#125;</span><br><span class="line">precedencegroup AdditionPrecedence &#123;</span><br><span class="line">  associativity: left</span><br><span class="line">  higherThan: RangeFormationPrecedence</span><br><span class="line">&#125;</span><br><span class="line">precedencegroup MultiplicationPrecedence &#123;</span><br><span class="line">  associativity: left</span><br><span class="line">  higherThan: AdditionPrecedence</span><br><span class="line">&#125;</span><br><span class="line">precedencegroup BitwiseShiftPrecedence &#123;</span><br><span class="line">  higherThan: MultiplicationPrecedence</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="wift打印对象的地址"><a href="#wift打印对象的地址" class="headerlink" title="wift打印对象的地址"></a>wift打印对象的地址</h4><p>在Swift中，我们可以使用 <code>withUnsafePointer(to:_:)</code> 函数来获取一个变量的指针，如下代码所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var x = 42</span><br><span class="line">var y = 3.14</span><br><span class="line">var z = &quot;foo&quot;</span><br><span class="line">var obj = NSObject()</span><br><span class="line"></span><br><span class="line">withUnsafePointer(to: &amp;x) &#123;ptr in print(ptr)&#125;</span><br><span class="line">withUnsafePointer(to: &amp;y) &#123;ptr in print(ptr)&#125;</span><br><span class="line">withUnsafePointer(to: &amp;z) &#123;ptr in print(ptr)&#125;</span><br><span class="line">withUnsafePointer(to: &amp;obj) &#123;ptr in print(ptr)&#125;</span><br><span class="line"></span><br><span class="line">// 输出</span><br><span class="line">// 0x000000011a145660</span><br><span class="line">// 0x000000011a145668</span><br><span class="line">// 0x000000011a145670</span><br><span class="line">// 0x000000011a145688</span><br></pre></td></tr></table></figure></p>
+<p><code>withUnsafePointer(to:_:)</code> 将第一个参数转换为指针，然后将这个指针作为参数去调用第二个参数指定的闭包。如果闭包有返回值，它将作为函数的返回值。<br>需要注意的是，�生成的指针的生命周期限定于闭包内部，不能将其指定给外部的变量。</p>
+<p>第二种打印变量的指针的方式如下代码所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">var x = 42</span><br><span class="line">var y = 3.14</span><br><span class="line">var z = &quot;foo&quot;</span><br><span class="line">var obj = NSObject()</span><br><span class="line"></span><br><span class="line">func printPointer&lt;T&gt;(ptr: UnsafePointer&lt;T&gt;) &#123;</span><br><span class="line">    print(ptr)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">printPointer(ptr: &amp;x)</span><br><span class="line">printPointer(ptr: &amp;y)</span><br><span class="line">printPointer(ptr: &amp;z)</span><br><span class="line">printPointer(ptr: &amp;obj)</span><br><span class="line"></span><br><span class="line">// 输出</span><br><span class="line">// 0x000000011a145660</span><br><span class="line">// 0x000000011a145668</span><br><span class="line">// 0x000000011a145670</span><br><span class="line">// 0x000000011a145688</span><br></pre></td></tr></table></figure></p>
+<h4 id="ArraySlice的用途"><a href="#ArraySlice的用途" class="headerlink" title="ArraySlice的用途"></a>ArraySlice的用途</h4><p>Swift提供了ArraySlice来执行数组的切片操作。类似于其它语言中的切片(如Python)，ArraySlice对象复用了原始数组的存储结构，而不是新开辟一块内存区域来将数组片断的元素拷贝过来。因此，它能让我们快速高效地对大数组的片段执行操作。如下代码所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var array: [Int] = []</span><br><span class="line"></span><br><span class="line">for i in 0..&lt;1000 &#123;</span><br><span class="line">    array.append(i)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let slice = array[100..&lt;300]</span><br><span class="line">let result = slice.map &#123;</span><br><span class="line">    $0 * 2</span><br><span class="line">&#125;.reduce(0) &#123;</span><br><span class="line">        $0 + $1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">print(result)       // 79800</span><br></pre></td></tr></table></figure></p>
+<p>ArraySlice与Array有相同的接口，所以通常可以在切片数组上执行与原始数组相同的操作。<br><strong>注意</strong></p>
+<ol>
+<li>ArraySlice会维持对原始数组的一个强引用，而不仅仅是它所表示的片断。这样即使原始数组对象的生命周期结束了，也可能无法释放。所以不建议长期存储ArraySlice对象，仅用于临时操作。</li>
+<li>与Array不同的是，ArraySlice起始索引不一定是0，而是取决于其创建方式。一般是采用共享索引的方式，即ArraySlice对象的起始索引就是切片的开始位置，如代码清单8-2-2所示，切片是从100开始，所以slice[100]是OK的，而slice[99]会报越界错误。通常建议使用startIndex和endIndex来取代指定的索引值.</li>
+</ol>
+<p>####</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <br/>
+        <br/>
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+      
+    </div>
+
+    <div>
+          
+            
+          
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/default/Playground 使用/" rel="next" title="Playground 使用">
+                <i class="fa fa-chevron-left"></i> Playground 使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/default/YYModel 使用/" rel="prev" title="YYModel 使用">
+                YYModel 使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzQ0NC8xMzk3Ng=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">kysonyangs</p>
+              <p class="site-description motion-element" itemprop="description">kysonyangs个人站，备忘</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/kysonyangs" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Swift中lazy作惰性求值"><span class="nav-number">1.</span> <span class="nav-text">Swift中lazy作惰性求值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Swift的stride操作"><span class="nav-number">2.</span> <span class="nav-text">Swift的stride操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#static方法与class方法的区别"><span class="nav-number">3.</span> <span class="nav-text">static方法与class方法的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Swift中的函数值"><span class="nav-number">4.</span> <span class="nav-text">Swift中的函数值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Array-contains操作"><span class="nav-number">5.</span> <span class="nav-text">Array.contains操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#filter与flatMap过滤nil"><span class="nav-number">6.</span> <span class="nav-text">filter与flatMap过滤nil</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Extension-Selector"><span class="nav-number">7.</span> <span class="nav-text">Extension-Selector</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#typealias泛型闭包"><span class="nav-number">8.</span> <span class="nav-text">typealias泛型闭包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Swift自定义操作符"><span class="nav-number">9.</span> <span class="nav-text">Swift自定义操作符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义操作符中的"><span class="nav-number">10.</span> <span class="nav-text">自定义操作符中的.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Swift中操作符优先级"><span class="nav-number">11.</span> <span class="nav-text">Swift中操作符优先级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#wift打印对象的地址"><span class="nav-number">12.</span> <span class="nav-text">wift打印对象的地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ArraySlice的用途"><span class="nav-number">13.</span> <span class="nav-text">ArraySlice的用途</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kysonyangs</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("98nkii2hdktsmUfe1Og3R4V3-gzGzoHsz", "1zGSD9yxI1uo7HIj7IVa8CHx");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

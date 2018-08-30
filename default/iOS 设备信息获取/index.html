@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Monaco:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'YRSQCB2W7K',
+      apiKey: '02bdd077b8d372a10bf55e8a6fdd31d4',
+      indexName: 'hexoindex',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="iOS 设备信息获取为了统计用户信息、下发广告，服务器端往往需要手机用户设备及app的各种信息，整理一下各种信息的获取方式：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS 设备信息获取">
+<meta property="og:url" content="https://kysonyangs.github.io/default/iOS 设备信息获取/index.html">
+<meta property="og:site_name" content="kysonyangs">
+<meta property="og:description" content="iOS 设备信息获取为了统计用户信息、下发广告，服务器端往往需要手机用户设备及app的各种信息，整理一下各种信息的获取方式：">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-30T03:25:56.401Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS 设备信息获取">
+<meta name="twitter:description" content="iOS 设备信息获取为了统计用户信息、下发广告，服务器端往往需要手机用户设备及app的各种信息，整理一下各种信息的获取方式：">
+
+
+
+
+
+
+  <link rel="canonical" href="https://kysonyangs.github.io/iOS 设备信息获取/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>iOS 设备信息获取 | kysonyangs</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f00e2272f3df937b3553d379c23ceb2f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">kysonyangs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Stay Hungry, Stay Foolish</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/iOS 设备信息获取/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kysonyangs">
+      <meta itemprop="description" content="kysonyangs个人站，备忘">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kysonyangs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS 设备信息获取
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-06-10 00:00:00" itemprop="dateCreated datePublished" datetime="2018-06-10T00:00:00+08:00">2018-06-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-08-30 11:25:56" itemprop="dateModified" datetime="2018-08-30T11:25:56+08:00">2018-08-30</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/default/iOS 设备信息获取/" class="leancloud_visitors" data-flag-title="iOS 设备信息获取">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="iOS-设备信息获取"><a href="#iOS-设备信息获取" class="headerlink" title="iOS 设备信息获取"></a>iOS 设备信息获取</h2><p>为了统计用户信息、下发广告，服务器端往往需要手机用户设备及app的各种信息，整理一下各种信息的获取方式：</p>
+<a id="more"></a>
+<ol>
+<li><p>设备型号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">// 获取设备型号然后手动转化为对应名称</span><br><span class="line">- (NSString *)getDeviceName</span><br><span class="line">&#123;</span><br><span class="line">    // 需要#import &quot;sys/utsname.h&quot;</span><br><span class="line">    #warning 题主呕心沥血总结！！最全面！亲测！全网独此一份！！</span><br><span class="line">    struct utsname systemInfo;</span><br><span class="line">    uname(&amp;systemInfo);</span><br><span class="line">    NSString *deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];</span><br><span class="line"></span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPhone3,1&quot;])    return @&quot;iPhone 4&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPhone3,2&quot;])    return @&quot;iPhone 4&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPhone3,3&quot;])    return @&quot;iPhone 4&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPhone4,1&quot;])    return @&quot;iPhone 4S&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPhone5,1&quot;])    return @&quot;iPhone 5&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPhone5,2&quot;])    return @&quot;iPhone 5 (GSM+CDMA)&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPhone5,3&quot;])    return @&quot;iPhone 5c (GSM)&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPhone5,4&quot;])    return @&quot;iPhone 5c (GSM+CDMA)&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPhone6,1&quot;])    return @&quot;iPhone 5s (GSM)&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPhone6,2&quot;])    return @&quot;iPhone 5s (GSM+CDMA)&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPhone7,1&quot;])    return @&quot;iPhone 6 Plus&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPhone7,2&quot;])    return @&quot;iPhone 6&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPhone8,1&quot;])    return @&quot;iPhone 6s&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPhone8,2&quot;])    return @&quot;iPhone 6s Plus&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPhone8,4&quot;])    return @&quot;iPhone SE&quot;;</span><br><span class="line">    // 日行两款手机型号均为日本独占，可能使用索尼FeliCa支付方案而不是苹果支付</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPhone9,1&quot;])    return @&quot;国行、日版、港行iPhone 7&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPhone9,2&quot;])    return @&quot;港行、国行iPhone 7 Plus&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPhone9,3&quot;])    return @&quot;美版、台版iPhone 7&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPhone9,4&quot;])    return @&quot;美版、台版iPhone 7 Plus&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPhone10,1&quot;])   return @&quot;国行(A1863)、日行(A1906)iPhone 8&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPhone10,4&quot;])   return @&quot;美版(Global/A1905)iPhone 8&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPhone10,2&quot;])   return @&quot;国行(A1864)、日行(A1898)iPhone 8 Plus&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPhone10,5&quot;])   return @&quot;美版(Global/A1897)iPhone 8 Plus&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPhone10,3&quot;])   return @&quot;国行(A1865)、日行(A1902)iPhone X&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPhone10,6&quot;])   return @&quot;美版(Global/A1901)iPhone X&quot;;</span><br><span class="line"></span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPod1,1&quot;])      return @&quot;iPod Touch 1G&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPod2,1&quot;])      return @&quot;iPod Touch 2G&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPod3,1&quot;])      return @&quot;iPod Touch 3G&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPod4,1&quot;])      return @&quot;iPod Touch 4G&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPod5,1&quot;])      return @&quot;iPod Touch (5 Gen)&quot;;</span><br><span class="line"></span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad1,1&quot;])      return @&quot;iPad&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad1,2&quot;])      return @&quot;iPad 3G&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad2,1&quot;])      return @&quot;iPad 2 (WiFi)&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad2,2&quot;])      return @&quot;iPad 2&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad2,3&quot;])      return @&quot;iPad 2 (CDMA)&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad2,4&quot;])      return @&quot;iPad 2&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad2,5&quot;])      return @&quot;iPad Mini (WiFi)&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad2,6&quot;])      return @&quot;iPad Mini&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad2,7&quot;])      return @&quot;iPad Mini (GSM+CDMA)&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad3,1&quot;])      return @&quot;iPad 3 (WiFi)&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad3,2&quot;])      return @&quot;iPad 3 (GSM+CDMA)&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad3,3&quot;])      return @&quot;iPad 3&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad3,4&quot;])      return @&quot;iPad 4 (WiFi)&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad3,5&quot;])      return @&quot;iPad 4&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad3,6&quot;])      return @&quot;iPad 4 (GSM+CDMA)&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad4,1&quot;])      return @&quot;iPad Air (WiFi)&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad4,2&quot;])      return @&quot;iPad Air (Cellular)&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad4,4&quot;])      return @&quot;iPad Mini 2 (WiFi)&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad4,5&quot;])      return @&quot;iPad Mini 2 (Cellular)&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad4,6&quot;])      return @&quot;iPad Mini 2&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad4,7&quot;])      return @&quot;iPad Mini 3&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad4,8&quot;])      return @&quot;iPad Mini 3&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad4,9&quot;])      return @&quot;iPad Mini 3&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad5,1&quot;])      return @&quot;iPad Mini 4 (WiFi)&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad5,2&quot;])      return @&quot;iPad Mini 4 (LTE)&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad5,3&quot;])      return @&quot;iPad Air 2&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad5,4&quot;])      return @&quot;iPad Air 2&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad6,3&quot;])      return @&quot;iPad Pro 9.7&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad6,4&quot;])      return @&quot;iPad Pro 9.7&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad6,7&quot;])      return @&quot;iPad Pro 12.9&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;iPad6,8&quot;])      return @&quot;iPad Pro 12.9&quot;;</span><br><span class="line">    if ([machineString isEqualToString:@&quot;iPad6,11&quot;])    return @&quot;iPad 5 (WiFi)&quot;;</span><br><span class="line">    if ([machineString isEqualToString:@&quot;iPad6,12&quot;])    return @&quot;iPad 5 (Cellular)&quot;;</span><br><span class="line">    if ([machineString isEqualToString:@&quot;iPad7,1&quot;])     return @&quot;iPad Pro 12.9 inch 2nd gen (WiFi)&quot;;</span><br><span class="line">    if ([machineString isEqualToString:@&quot;iPad7,2&quot;])     return @&quot;iPad Pro 12.9 inch 2nd gen (Cellular)&quot;;</span><br><span class="line">    if ([machineString isEqualToString:@&quot;iPad7,3&quot;])     return @&quot;iPad Pro 10.5 inch (WiFi)&quot;;</span><br><span class="line">    if ([machineString isEqualToString:@&quot;iPad7,4&quot;])     return @&quot;iPad Pro 10.5 inch (Cellular)&quot;;</span><br><span class="line"></span><br><span class="line">   if ([deviceString isEqualToString:@&quot;AppleTV2,1&quot;])    return @&quot;Apple TV 2&quot;;</span><br><span class="line">   if ([deviceString isEqualToString:@&quot;AppleTV3,1&quot;])    return @&quot;Apple TV 3&quot;;</span><br><span class="line">   if ([deviceString isEqualToString:@&quot;AppleTV3,2&quot;])    return @&quot;Apple TV 3&quot;;</span><br><span class="line">   if ([deviceString isEqualToString:@&quot;AppleTV5,3&quot;])    return @&quot;Apple TV 4&quot;;</span><br><span class="line"></span><br><span class="line">    if ([deviceString isEqualToString:@&quot;i386&quot;])         return @&quot;Simulator&quot;;</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;x86_64&quot;])       return @&quot;Simulator&quot;;</span><br><span class="line"></span><br><span class="line">    return deviceString;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>iPhone名称</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[UIDevice currentDevice].name;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>app版本号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[[NSBundle mainBundle] infoDictionary] objectForKey:@&quot;CFBundleShortVersionString&quot;];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>电池电量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[UIDevice currentDevice] batteryLevel];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>localizedModel</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[UIDevice currentDevice].localizedModel;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当前系统名称</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[UIDevice currentDevice].systemName;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当前系统版本号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[UIDevice currentDevice].systemVersion;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>device_model</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">struct utsname systemInfo;</span><br><span class="line">uname(&amp;systemInfo);</span><br><span class="line">NSString *device_model = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>mac 地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">- (NSString *)getMacAddress &#123;</span><br><span class="line">    int mib[6];</span><br><span class="line">    size_t len;</span><br><span class="line">    char *buf;</span><br><span class="line">    unsigned char *ptr;</span><br><span class="line">    struct if_msghdr *ifm;</span><br><span class="line">    struct sockaddr_dl *sdl;</span><br><span class="line"></span><br><span class="line">    mib[0] = CTL_NET;</span><br><span class="line">    mib[1] = AF_ROUTE;</span><br><span class="line">    mib[2] = 0;</span><br><span class="line">    mib[3] = AF_LINK;</span><br><span class="line">    mib[4] = NET_RT_IFLIST;</span><br><span class="line"></span><br><span class="line">    if ((mib[5] = if_nametoindex(&quot;en0&quot;)) == 0) &#123;</span><br><span class="line">        printf(&quot;Error: if_nametoindex error/n&quot;);</span><br><span class="line">        return NULL;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (sysctl(mib, 6, NULL, &amp;len, NULL, 0) &lt; 0) &#123;</span><br><span class="line">        printf(&quot;Error: sysctl, take 1/n&quot;);</span><br><span class="line">        return NULL;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if ((buf = malloc(len)) == NULL) &#123;</span><br><span class="line">        printf(&quot;Could not allocate memory. error!/n&quot;);</span><br><span class="line">        return NULL;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (sysctl(mib, 6, buf, &amp;len, NULL, 0) &lt; 0) &#123;</span><br><span class="line">        printf(&quot;Error: sysctl, take 2&quot;);</span><br><span class="line">        return NULL;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ifm = (struct if_msghdr *)buf;</span><br><span class="line">    sdl = (struct sockaddr_dl *)(ifm + 1);</span><br><span class="line">    ptr = (unsigned char *)LLADDR(sdl);</span><br><span class="line"></span><br><span class="line">    NSString *outstring = [NSString stringWithFormat:@&quot;%02x%02x%02x%02x%02x%02x&quot;, *ptr, *(ptr+1), *(ptr+2), *(ptr+3), *(ptr+4), *(ptr+5)];</span><br><span class="line">    free(buf);</span><br><span class="line"></span><br><span class="line">    return [outstring uppercaseString];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>IP 地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">- (NSString *)getDeviceIPAddresses &#123;</span><br><span class="line"></span><br><span class="line">    int sockfd = socket(AF_INET, SOCK_DGRAM, 0);</span><br><span class="line"></span><br><span class="line">    NSMutableArray *ips = [NSMutableArray array];</span><br><span class="line"></span><br><span class="line">    int BUFFERSIZE = 4096;</span><br><span class="line"></span><br><span class="line">    struct ifconf ifc;</span><br><span class="line"></span><br><span class="line">    char buffer[BUFFERSIZE], *ptr, lastname[IFNAMSIZ], *cptr;</span><br><span class="line"></span><br><span class="line">    struct ifreq *ifr, ifrcopy;</span><br><span class="line"></span><br><span class="line">    ifc.ifc_len = BUFFERSIZE;</span><br><span class="line">    ifc.ifc_buf = buffer;</span><br><span class="line"></span><br><span class="line">    if (ioctl(sockfd, SIOCGIFCONF, &amp;ifc) &gt;= 0)&#123;</span><br><span class="line"></span><br><span class="line">        for (ptr = buffer; ptr &lt; buffer + ifc.ifc_len; )&#123;</span><br><span class="line"></span><br><span class="line">            ifr = (struct ifreq *)ptr;</span><br><span class="line">            int len = sizeof(struct sockaddr);</span><br><span class="line"></span><br><span class="line">            if (ifr-&gt;ifr_addr.sa_len &gt; len) &#123;</span><br><span class="line">                len = ifr-&gt;ifr_addr.sa_len;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            ptr += sizeof(ifr-&gt;ifr_name) + len;</span><br><span class="line">            if (ifr-&gt;ifr_addr.sa_family != AF_INET) continue;</span><br><span class="line">            if ((cptr = (char *)strchr(ifr-&gt;ifr_name, &apos;:&apos;)) != NULL) *cptr = 0;</span><br><span class="line">            if (strncmp(lastname, ifr-&gt;ifr_name, IFNAMSIZ) == 0) continue;</span><br><span class="line"></span><br><span class="line">            memcpy(lastname, ifr-&gt;ifr_name, IFNAMSIZ);</span><br><span class="line">            ifrcopy = *ifr;</span><br><span class="line">            ioctl(sockfd, SIOCGIFFLAGS, &amp;ifrcopy);</span><br><span class="line"></span><br><span class="line">            if ((ifrcopy.ifr_flags &amp; IFF_UP) == 0) continue;</span><br><span class="line"></span><br><span class="line">            NSString *ip = [NSString  stringWithFormat:@&quot;%s&quot;, inet_ntoa(((struct sockaddr_in *)&amp;ifr-&gt;ifr_addr)-&gt;sin_addr)];</span><br><span class="line">            [ips addObject:ip];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    close(sockfd);</span><br><span class="line">    NSString *deviceIP = @&quot;&quot;;</span><br><span class="line"></span><br><span class="line">    for (int i=0; i &lt; ips.count; i++) &#123;</span><br><span class="line">        if (ips.count &gt; 0) &#123;</span><br><span class="line">            deviceIP = [NSString stringWithFormat:@&quot;%@&quot;,ips.lastObject];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return deviceIP;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设备上次重启的时间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSTimeInterval time = [[NSProcessInfo processInfo] systemUptime];</span><br><span class="line">NSDate *lastRestartDate = [[NSDate alloc] initWithTimeIntervalSinceNow:(0 - time)];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>广告位标识符<br>在同一个设备上的所有App都会取到相同的值，是苹果专门给各广告提供商用来追踪用户而设的，用户可以在 设置|隐私|广告追踪里重置此id的值，或限制此id的使用，故此id有可能会取不到值，但好在Apple默认是允许追踪的，而且一般用户都不知道有这么个设置，所以基本上用来监测推广效果，是戳戳有余了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>UUID<br>通用唯一识别码。它是让分布式系统中的所有元素，都能有唯一的辨识资讯，而不需要透过中央控制端来做辨识资讯的指 定。这样，每个人都可以建立不与其它人冲突的 UUID。在此情况下，就不需考虑数据库建立时的名称重复问题。苹果公司建议使用UUID为应用生成唯一标识字符串。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSString *uuid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];</span><br><span class="line">NSLog(@&quot;唯一识别码uuid--&gt;%@&quot;, uuid);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>CPU</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">// CPU总数目</span><br><span class="line">- (NSUInteger)getCPUCount &#123;</span><br><span class="line">    return [NSProcessInfo processInfo].activeProcessorCount;</span><br><span class="line">&#125;</span><br><span class="line">// 已使用的CPU比例</span><br><span class="line">- (float)getCPUUsage &#123;</span><br><span class="line">    float cpu = 0;</span><br><span class="line">    NSArray *cpus = [self getPerCPUUsage];</span><br><span class="line">    if (cpus.count == 0) return -1;</span><br><span class="line">    for (NSNumber *n in cpus) &#123;</span><br><span class="line">        cpu += n.floatValue;</span><br><span class="line">    &#125;</span><br><span class="line">    return cpu;</span><br><span class="line">&#125;</span><br><span class="line">// 获取每个cpu的使用比例</span><br><span class="line">- (NSArray *)getPerCPUUsage &#123;</span><br><span class="line">    processor_info_array_t _cpuInfo, _prevCPUInfo = nil;</span><br><span class="line">    mach_msg_type_number_t _numCPUInfo, _numPrevCPUInfo = 0;</span><br><span class="line">    unsigned _numCPUs;</span><br><span class="line">    NSLock *_cpuUsageLock;</span><br><span class="line"></span><br><span class="line">    int _mib[2U] = &#123; CTL_HW, HW_NCPU &#125;;</span><br><span class="line">    size_t _sizeOfNumCPUs = sizeof(_numCPUs);</span><br><span class="line">    int _status = sysctl(_mib, 2U, &amp;_numCPUs, &amp;_sizeOfNumCPUs, NULL, 0U);</span><br><span class="line">    if (_status)</span><br><span class="line">        _numCPUs = 1;</span><br><span class="line"></span><br><span class="line">    _cpuUsageLock = [[NSLock alloc] init];</span><br><span class="line"></span><br><span class="line">    natural_t _numCPUsU = 0U;</span><br><span class="line">    kern_return_t err = host_processor_info(mach_host_self(), PROCESSOR_CPU_LOAD_INFO, &amp;_numCPUsU, &amp;_cpuInfo, &amp;_numCPUInfo);</span><br><span class="line">    if (err == KERN_SUCCESS) &#123;</span><br><span class="line">        [_cpuUsageLock lock];</span><br><span class="line"></span><br><span class="line">        NSMutableArray *cpus = [NSMutableArray new];</span><br><span class="line">        for (unsigned i = 0U; i &lt; _numCPUs; ++i) &#123;</span><br><span class="line">            Float32 _inUse, _total;</span><br><span class="line">            if (_prevCPUInfo) &#123;</span><br><span class="line">                _inUse = (</span><br><span class="line">                          (_cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_USER]   - _prevCPUInfo[(CPU_STATE_MAX * i) + CPU_STATE_USER])</span><br><span class="line">                          + (_cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_SYSTEM] - _prevCPUInfo[(CPU_STATE_MAX * i) + CPU_STATE_SYSTEM])</span><br><span class="line">                          + (_cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_NICE]   - _prevCPUInfo[(CPU_STATE_MAX * i) + CPU_STATE_NICE])</span><br><span class="line">                          );</span><br><span class="line">                _total = _inUse + (_cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_IDLE] - _prevCPUInfo[(CPU_STATE_MAX * i) + CPU_STATE_IDLE]);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                _inUse = _cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_USER] + _cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_SYSTEM] + _cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_NICE];</span><br><span class="line">                _total = _inUse + _cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_IDLE];</span><br><span class="line">            &#125;</span><br><span class="line">            [cpus addObject:@(_inUse / _total)];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        [_cpuUsageLock unlock];</span><br><span class="line">        if (_prevCPUInfo) &#123;</span><br><span class="line">            size_t prevCpuInfoSize = sizeof(integer_t) * _numPrevCPUInfo;</span><br><span class="line">            vm_deallocate(mach_task_self(), (vm_address_t)_prevCPUInfo, prevCpuInfoSize);</span><br><span class="line">        &#125;</span><br><span class="line">        return cpus;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return nil;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Disk 磁盘</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">// 获取磁盘总空间</span><br><span class="line">- (int64_t)getTotalDiskSpace &#123;</span><br><span class="line">    NSError *error = nil;</span><br><span class="line">    NSDictionary *attrs = [[NSFileManager defaultManager] attributesOfFileSystemForPath:NSHomeDirectory() error:&amp;error];</span><br><span class="line">    if (error) return -1;</span><br><span class="line">    int64_t space =  [[attrs objectForKey:NSFileSystemSize] longLongValue];</span><br><span class="line">    if (space &lt; 0) space = -1;</span><br><span class="line">    return space;</span><br><span class="line">&#125;</span><br><span class="line">// 获取未使用的磁盘空间</span><br><span class="line">- (int64_t)getFreeDiskSpace &#123;</span><br><span class="line">    NSError *error = nil;</span><br><span class="line">    NSDictionary *attrs = [[NSFileManager defaultManager] attributesOfFileSystemForPath:NSHomeDirectory() error:&amp;error];</span><br><span class="line">    if (error) return -1;</span><br><span class="line">    int64_t space =  [[attrs objectForKey:NSFileSystemFreeSize] longLongValue];</span><br><span class="line">    if (space &lt; 0) space = -1;</span><br><span class="line">    return space;</span><br><span class="line">&#125;</span><br><span class="line">// 获取已使用的磁盘空间</span><br><span class="line">- (int64_t)getUsedDiskSpace &#123;</span><br><span class="line">    int64_t totalDisk = [self getTotalDiskSpace];</span><br><span class="line">    int64_t freeDisk = [self getFreeDiskSpace];</span><br><span class="line">    if (totalDisk &lt; 0 || freeDisk &lt; 0) return -1;</span><br><span class="line">    int64_t usedDisk = totalDisk - freeDisk;</span><br><span class="line">    if (usedDisk &lt; 0) usedDisk = -1;</span><br><span class="line">    return usedDisk;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>内存</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">// 系统总内存空间</span><br><span class="line">- (int64_t)getTotalMemory &#123;</span><br><span class="line">    int64_t totalMemory = [[NSProcessInfo processInfo] physicalMemory];</span><br><span class="line">    if (totalMemory &lt; -1) totalMemory = -1;</span><br><span class="line">    return totalMemory;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 活跃的内存,正在使用或者很短时间内被使用过</span><br><span class="line">- (int64_t)getActiveMemory &#123;</span><br><span class="line">    mach_port_t host_port = mach_host_self();</span><br><span class="line">    mach_msg_type_number_t host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);</span><br><span class="line">    vm_size_t page_size;</span><br><span class="line">    vm_statistics_data_t vm_stat;</span><br><span class="line">    kern_return_t kern;</span><br><span class="line"></span><br><span class="line">    kern = host_page_size(host_port, &amp;page_size);</span><br><span class="line">    if (kern != KERN_SUCCESS) return -1;</span><br><span class="line">    kern = host_statistics(host_port, HOST_VM_INFO, (host_info_t)&amp;vm_stat, &amp;host_size);</span><br><span class="line">    if (kern != KERN_SUCCESS) return -1;</span><br><span class="line">    return vm_stat.active_count * page_size;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 最近使用过,但是目前处于不活跃状态的内存</span><br><span class="line">- (int64_t)getInActiveMemory &#123;</span><br><span class="line">    mach_port_t host_port = mach_host_self();</span><br><span class="line">    mach_msg_type_number_t host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);</span><br><span class="line">    vm_size_t page_size;</span><br><span class="line">    vm_statistics_data_t vm_stat;</span><br><span class="line">    kern_return_t kern;</span><br><span class="line"></span><br><span class="line">    kern = host_page_size(host_port, &amp;page_size);</span><br><span class="line">    if (kern != KERN_SUCCESS) return -1;</span><br><span class="line">    kern = host_statistics(host_port, HOST_VM_INFO, (host_info_t)&amp;vm_stat, &amp;host_size);</span><br><span class="line">    if (kern != KERN_SUCCESS) return -1;</span><br><span class="line">    return vm_stat.inactive_count * page_size;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 空闲的内存空间</span><br><span class="line">- (int64_t)getFreeMemory &#123;</span><br><span class="line">    mach_port_t host_port = mach_host_self();</span><br><span class="line">    mach_msg_type_number_t host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);</span><br><span class="line">    vm_size_t page_size;</span><br><span class="line">    vm_statistics_data_t vm_stat;</span><br><span class="line">    kern_return_t kern;</span><br><span class="line"></span><br><span class="line">    kern = host_page_size(host_port, &amp;page_size);</span><br><span class="line">    if (kern != KERN_SUCCESS) return -1;</span><br><span class="line">    kern = host_statistics(host_port, HOST_VM_INFO, (host_info_t)&amp;vm_stat, &amp;host_size);</span><br><span class="line">    if (kern != KERN_SUCCESS) return -1;</span><br><span class="line">    return vm_stat.free_count * page_size;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 已使用的内存空间</span><br><span class="line">- (int64_t)getUsedMemory &#123;</span><br><span class="line">    mach_port_t host_port = mach_host_self();</span><br><span class="line">    mach_msg_type_number_t host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);</span><br><span class="line">    vm_size_t page_size;</span><br><span class="line">    vm_statistics_data_t vm_stat;</span><br><span class="line">    kern_return_t kern;</span><br><span class="line"></span><br><span class="line">    kern = host_page_size(host_port, &amp;page_size);</span><br><span class="line">    if (kern != KERN_SUCCESS) return -1;</span><br><span class="line">    kern = host_statistics(host_port, HOST_VM_INFO, (host_info_t)&amp;vm_stat, &amp;host_size);</span><br><span class="line">    if (kern != KERN_SUCCESS) return -1;</span><br><span class="line">    return page_size * (vm_stat.active_count + vm_stat.inactive_count + vm_stat.wire_count);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 用来存放内核和数据结构的内存,framework、用户级别的应用无法分配</span><br><span class="line">- (int64_t)getWiredMemory &#123;</span><br><span class="line">    mach_port_t host_port = mach_host_self();</span><br><span class="line">    mach_msg_type_number_t host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);</span><br><span class="line">    vm_size_t page_size;</span><br><span class="line">    vm_statistics_data_t vm_stat;</span><br><span class="line">    kern_return_t kern;</span><br><span class="line"></span><br><span class="line">    kern = host_page_size(host_port, &amp;page_size);</span><br><span class="line">    if (kern != KERN_SUCCESS) return -1;</span><br><span class="line">    kern = host_statistics(host_port, HOST_VM_INFO, (host_info_t)&amp;vm_stat, &amp;host_size);</span><br><span class="line">    if (kern != KERN_SUCCESS) return -1;</span><br><span class="line">    return vm_stat.wire_count * page_size;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 可释放的内存空间：内存吃紧自动释放，针对大对象存放所需的大块内存空间</span><br><span class="line">- (int64_t)getPurgableMemory &#123;</span><br><span class="line">    mach_port_t host_port = mach_host_self();</span><br><span class="line">    mach_msg_type_number_t host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);</span><br><span class="line">    vm_size_t page_size;</span><br><span class="line">    vm_statistics_data_t vm_stat;</span><br><span class="line">    kern_return_t kern;</span><br><span class="line"></span><br><span class="line">    kern = host_page_size(host_port, &amp;page_size);</span><br><span class="line">    if (kern != KERN_SUCCESS) return -1;</span><br><span class="line">    kern = host_statistics(host_port, HOST_VM_INFO, (host_info_t)&amp;vm_stat, &amp;host_size);</span><br><span class="line">    if (kern != KERN_SUCCESS) return -1;</span><br><span class="line">    return vm_stat.purgeable_count * page_size;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <br/>
+        <br/>
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+      
+    </div>
+
+    <div>
+          
+            
+          
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/default/iOS 线程安全、锁/" rel="next" title="iOS 线程安全、锁">
+                <i class="fa fa-chevron-left"></i> iOS 线程安全、锁
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/default/LLDB调试/" rel="prev" title="LLDB调试">
+                LLDB调试 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzQ0NC8xMzk3Ng=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">kysonyangs</p>
+              <p class="site-description motion-element" itemprop="description">kysonyangs个人站，备忘</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/kysonyangs" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-设备信息获取"><span class="nav-number">1.</span> <span class="nav-text">iOS 设备信息获取</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kysonyangs</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("98nkii2hdktsmUfe1Og3R4V3-gzGzoHsz", "1zGSD9yxI1uo7HIj7IVa8CHx");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

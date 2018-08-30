@@ -171,7 +171,7 @@
 <meta property="og:site_name" content="kysonyangs">
 <meta property="og:description" content="GCD理解（一）GCD理解（二） 代码下载 dispatch_group dispatch_group_notify监听dispatch_queue中所有的任务执行完成，执行某些操作">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-20T02:19:26.228Z">
+<meta property="og:updated_time" content="2018-08-30T03:12:07.401Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GCD理解-二">
 <meta name="twitter:description" content="GCD理解（一）GCD理解（二） 代码下载 dispatch_group dispatch_group_notify监听dispatch_queue中所有的任务执行完成，执行某些操作">
@@ -468,7 +468,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-06-20 10:19:26" itemprop="dateModified" datetime="2018-06-20T10:19:26+08:00">2018-06-20</time>
+                <time title="修改时间：2018-08-30 11:12:07" itemprop="dateModified" datetime="2018-08-30T11:12:07+08:00">2018-08-30</time>
               
             
           </span>
@@ -546,6 +546,34 @@
 </ul>
 </li>
 </ol>
+<h3 id="GCD-信号量-dispatch-semaphore"><a href="#GCD-信号量-dispatch-semaphore" class="headerlink" title="GCD-信号量 dispatch_semaphore"></a>GCD-信号量 dispatch_semaphore</h3><ul>
+<li>dispatch_semaphore_create()</li>
+<li>dispatch_semaphore_signal()</li>
+<li>dispatch_semaphore_wait()</li>
+</ul>
+<ol>
+<li><code>dispatch_semaphore_create(long value)</code><br>传入的参数为 <code>long</code> 类型，输出一个 <code>dispatch_semaphore_t</code> 类型且值为 <code>value</code> 的信号量。值得注意的是，这里的传入的参数 <code>value</code> 必须大于或等于 <code>0</code>，否则 <code>dispatch_semaphore_create</code> 会返回 <code>NULL</code>。</li>
+<li><code>dispatch_semaphore_signal(dispatch_semaphore_t dsema)</code><br>这个函数会使传入的信号量 <code>dsema</code> 的值加1, 返回值为 <code>long</code> 类型</li>
+</ol>
+<ul>
+<li>当返回值为 <code>0</code> 时表示当前并没有线程等待其处理的信号量，其处理的信号量的值加 <code>1</code> 即可。</li>
+<li>当返回值 <code>不为0</code> 时，表示其当前有（一个或多个）线程等待其处理的信号量，并且该函数唤醒了一个等待的线程（当线程有优先级时，唤醒优先级最高的线程；否则随机唤醒）。</li>
+</ul>
+<ol start="3">
+<li><code>dispatch_semaphore_wait(dispatch_semaphore_t dsema, dispatch_time_t timeout)</code><br>这个函数会使传入的信号量 <code>dsema</code> 的值减 <code>1</code>；</li>
+</ol>
+<ul>
+<li>如果 <code>dsema</code> 信号量的值大于 <code>0</code>，该函数所处线程就继续执行下面的语句，并且将信号量的值减 <code>1</code></li>
+<li>如果 <code>desema</code> 的值为 <code>0</code>，那么这个函数就阻塞当前线程等待 <code>timeout</code>（注意 <code>timeout</code> 的类型为 <code>dispatch_time_t</code>，不能直接传入整形或 <code>float</code> 型数），如果等待的期间 <code>desema</code> 的值被 <code>dispatch_semaphore_signal</code> 函数加 <code>1</code> 了，且该函数（即 <code>dispatch_semaphore_wait</code>）所处线程获得了信号量，那么就继续向下执行并将信号量减1。如果等待期间没有获取到信号量或者信号量的值一直为 <code>0</code>，那么等到 <code>timeout</code> 时，其所处线程自动执行其后语句。</li>
+</ul>
+<ol start="4">
+<li>在设置 <code>timeout</code> 时，比较有用的两个宏：<code>DISPATCH_TIME_NOW</code> 和 <code>DISPATCH_TIME_FOREVER</code>。</li>
+</ol>
+<ul>
+<li>DISPATCH_TIME_NOW表示当前；</li>
+<li>DISPATCH_TIME_FOREVER表示遥远的未来；一般可以直接设置 <code>timeout</code> 为这两个宏其中的一个，</li>
+<li>创建一个 <code>dispatch_time_t</code>类型的变量。创建 <code>dispatch_time_t</code> 类型的变量有两种方法，<code>dispatch_time</code> 和 <code>dispatch_walltime</code>。利用创建 <code>dispatch_time</code> 创建 <code>dispatch_time_t</code> 类型变量的时候一般也会用到这两个变量 <code>dispatch_time</code> 的声明如下：<code>dispatch_time_t dispatch_time(dispatch_time_t when, int64_t delta)</code>；其参数 <code>when</code> 需传入一个 <code>dispatch_time_t</code> 类型的变量，和一个 <code>delta</code> 值。表示 <code>when加delta</code> 时间就是 <code>timeout</code> 的时间。例如：<code>dispatch_time_t t = dispatch_time(DISPATCH_TIME_NOW, 1*1000*1000*1000);</code> 表示当前时间向后延时一秒为 <code>timeout</code> 的时间。</li>
+</ul>
 
       
     </div>
@@ -688,7 +716,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">35</span>
+                    <span class="site-state-item-count">39</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -707,7 +735,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -752,7 +782,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -797,7 +827,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#dispatch-group"><span class="nav-number">1.</span> <span class="nav-text">dispatch_group</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#dispatch-group"><span class="nav-number">1.</span> <span class="nav-text">dispatch_group</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GCD-信号量-dispatch-semaphore"><span class="nav-number"></span> <span class="nav-text">GCD-信号量 dispatch_semaphore</span></a></div>
             
 
           </div>
