@@ -172,7 +172,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1829339-77757288cc139f44.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700/format/webp">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1829339-b2ed87dd5cd13ea4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/780/format/webp">
-<meta property="og:updated_time" content="2018-09-04T08:11:06.137Z">
+<meta property="og:updated_time" content="2018-09-05T02:57:14.747Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Runtime相关">
 <meta name="twitter:description" content="KVO 实现原理简单理解 KVO是基于runtime机制实现的 当某个类的属性对象第一次被观察时，系统就会在运行期动态地创建该类的一个派生类，在这个派生类中重写基类中任何被观察属性的 setter 方法。派生类在被重写的 setter 方法内实现真正的通知机制 如果原类为Person，那么生成的派生类名为 NSKVONotifying_Person 每个类对象中都有一个 isa 指针指向当前类，当">
@@ -470,7 +470,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-09-04 16:11:06" itemprop="dateModified" datetime="2018-09-04T16:11:06+08:00">2018-09-04</time>
+                <time title="Modified: 2018-09-05 10:57:14" itemprop="dateModified" datetime="2018-09-05T10:57:14+08:00">2018-09-05</time>
               
             
           </span>
@@ -519,7 +519,10 @@
 <li>当某个类的属性对象第一次被观察时，系统就会在运行期动态地创建该类的一个派生类，在这个派生类中重写基类中任何被观察属性的 setter 方法。派生类在被重写的 setter 方法内实现真正的通知机制</li>
 <li>如果原类为Person，那么生成的派生类名为 NSKVONotifying_Person</li>
 <li>每个类对象中都有一个 isa 指针指向当前类，当一个类对象的第一次被观察，那么系统会偷偷将 isa 指针指向动态生成的派生类，从而在给被监控属性赋值时执行的是派生类的 setter 方法</li>
-<li>键值观察通知依赖于NSObject 的两个方法: willChangeValueForKey: 和 didChangevlueForKey:；在一个被观察属性发生改变之前， willChangeValueForKey:一定会被调用，这就 会记录旧的值。而当改变发生后，didChangeValueForKey:会被调用，继而 observeValueForKey:ofObject:change:context: 也会被调用。<h4 id="深入理解"><a href="#深入理解" class="headerlink" title="深入理解"></a>深入理解</h4></li>
+<li>键值观察通知依赖于NSObject 的两个方法: willChangeValueForKey: 和 didChangevlueForKey:；在一个被观察属性发生改变之前， willChangeValueForKey:一定会被调用，这就 会记录旧的值。而当改变发生后，didChangeValueForKey:会被调用，继而 observeValueForKey:ofObject:change:context: 也会被调用。</li>
+</ol>
+<a id="more"></a>
+<h4 id="深入理解"><a href="#深入理解" class="headerlink" title="深入理解"></a>深入理解</h4><ol>
 <li>Apple 使用了 isa 混写（isa-swizzling）来实现 KVO 。当观察对象A时，KVO机制动态创建一个新的名为： NSKVONotifying_A的新类，该类继承自对象A的本类，且KVO为NSKVONotifying_A重写观察属性的setter 方法，setter 方法会负责在调用原 setter 方法之前和之后，通知所有观察对象属性值的更改情况。</li>
 <li>NSKVONotifying_A类剖析：在这个过程，被观察对象的 isa 指针从指向原来的A类，被KVO机制修改为指向系统新创建的子类 NSKVONotifying_A类，来实现当前类属性值改变的监听；</li>
 <li>所以当我们从应用层面上看来，完全没有意识到有新的类出现，这是系统“隐瞒”了对KVO的底层实现过程，让我们误以为还是原来的类。但是此时如果我们创建一个新的名为“NSKVONotifying_A”的类()，就会发现系统运行到注册KVO的那段代码时程序就崩溃，因为系统在注册监听的时候动态创建了名为NSKVONotifying_A的中间类，并指向这个中间类了。</li>
@@ -614,8 +617,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/default/Playground 使用/" rel="next" title="Playground 使用">
-                <i class="fa fa-chevron-left"></i> Playground 使用
+              <a href="/default/iOS 线程安全、锁/" rel="next" title="iOS 线程安全、锁">
+                <i class="fa fa-chevron-left"></i> iOS 线程安全、锁
               </a>
             
           </div>
