@@ -163,24 +163,27 @@
 
 
 
-  <meta name="description" content="个人简介： KysonYangs iOSer 来自江西 现居上海 Email: kysonyangs@gmail.com">
-<meta property="og:type" content="website">
-<meta property="og:title" content="kysonyangs">
-<meta property="og:url" content="https://kysonyangs.github.io/about/index.html">
+  <meta name="description" content="终端命令设置别名： 首先，你的别名得不存在，在终端输入你想要设置的别名，提示不能找到命令，则别名不存在，我们可以放心使用。 alias可以查看当前已设置的所有的别名 永久化的别名设置123456vim ~/.bash_profile// 在最下面添加你想要设置的别名，比如alias cdg=&amp;quot;cd ~/Desktop/GG&amp;quot;// 然后 wq保存退出，在终端输入source ~/">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="终端&#x2F;git一些配置(一)">
+<meta property="og:url" content="https://kysonyangs.github.io/default/终端操作/index.html">
 <meta property="og:site_name" content="kysonyangs">
-<meta property="og:description" content="个人简介： KysonYangs iOSer 来自江西 现居上海 Email: kysonyangs@gmail.com">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-20T02:06:23.137Z">
+<meta property="og:description" content="终端命令设置别名： 首先，你的别名得不存在，在终端输入你想要设置的别名，提示不能找到命令，则别名不存在，我们可以放心使用。 alias可以查看当前已设置的所有的别名 永久化的别名设置123456vim ~/.bash_profile// 在最下面添加你想要设置的别名，比如alias cdg=&amp;quot;cd ~/Desktop/GG&amp;quot;// 然后 wq保存退出，在终端输入source ~/">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://7xsuaf.com1.z0.glb.clouddn.com/2016-04-11/zhongduan.png">
+<meta property="og:updated_time" content="2018-09-10T07:50:03.144Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="kysonyangs">
-<meta name="twitter:description" content="个人简介： KysonYangs iOSer 来自江西 现居上海 Email: kysonyangs@gmail.com">
+<meta name="twitter:title" content="终端&#x2F;git一些配置(一)">
+<meta name="twitter:description" content="终端命令设置别名： 首先，你的别名得不存在，在终端输入你想要设置的别名，提示不能找到命令，则别名不存在，我们可以放心使用。 alias可以查看当前已设置的所有的别名 永久化的别名设置123456vim ~/.bash_profile// 在最下面添加你想要设置的别名，比如alias cdg=&amp;quot;cd ~/Desktop/GG&amp;quot;// 然后 wq保存退出，在终端输入source ~/">
+<meta name="twitter:image" content="http://7xsuaf.com1.z0.glb.clouddn.com/2016-04-11/zhongduan.png">
 
 
 
 
 
 
-  <link rel="canonical" href="https://kysonyangs.github.io/about/"/>
+  <link rel="canonical" href="https://kysonyangs.github.io/终端操作/"/>
 
 
 
@@ -190,7 +193,7 @@
   };
 </script>
 
-  <title> | kysonyangs</title>
+  <title>终端/git一些配置(一) | kysonyangs</title>
   
 
 
@@ -240,7 +243,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
   
   
@@ -290,7 +293,7 @@
           
           <li class="menu-item menu-item-home">
     <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
   </li>
         
         
@@ -298,7 +301,7 @@
           
           <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
   </li>
         
         
@@ -306,7 +309,7 @@
           
           <li class="menu-item menu-item-categories">
     <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
   </li>
         
         
@@ -314,15 +317,15 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
   </li>
         
         
         
           
-          <li class="menu-item menu-item-about menu-item-active">
+          <li class="menu-item menu-item-about">
     <a href="/about/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
   </li>
 
       
@@ -332,7 +335,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
         </li>
       
     </ul>
@@ -340,28 +343,6 @@
 
   
     
-
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
 
   
 
@@ -416,54 +397,233 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/终端操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kysonyangs">
+      <meta itemprop="description" content="kysonyangs个人站，备忘">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kysonyangs">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline"></h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <h3 id="个人简介："><a href="#个人简介：" class="headerlink" title="个人简介："></a>个人简介：</h3><ul>
-<li>KysonYangs</li>
-<li>iOSer</li>
-<li>来自江西 现居上海</li>
-<li>Email: <a href="mailto:kysonyangs@gmail.com" target="_blank" rel="noopener">kysonyangs@gmail.com</a></li>
-</ul>
-
+          <h1 class="post-title" itemprop="name headline">终端/git一些配置(一)
+              
+            
+          </h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-04-11 14:13:48" itemprop="dateCreated datePublished" datetime="2016-04-11T14:13:48+08:00">2016-04-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-09-10 15:50:03" itemprop="dateModified" datetime="2018-09-10T15:50:03+08:00">2018-09-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/default/终端操作/" class="leancloud_visitors" data-flag-title="终端/git一些配置(一)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h4 id="终端命令设置别名："><a href="#终端命令设置别名：" class="headerlink" title="终端命令设置别名："></a>终端命令设置别名：</h4><ol>
+<li>首先，你的别名得不存在，在终端输入你想要设置的别名，提示不能找到命令，则别名不存在，我们可以放心使用。 <code>alias</code>可以查看当前已设置的所有的别名</li>
+<li>永久化的别名设置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bash_profile</span><br><span class="line">// 在最下面添加你想要设置的别名，比如</span><br><span class="line">alias cdg=&quot;cd ~/Desktop/GG&quot;</span><br><span class="line">// 然后 wq保存退出，在终端输入</span><br><span class="line">source ~/.bash_profile</span><br><span class="line">// 现在，你可以使用你设置的别名了</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="修改终端前面的显示（太长不好看）"><a href="#修改终端前面的显示（太长不好看）" class="headerlink" title="修改终端前面的显示（太长不好看）"></a>修改终端前面的显示（太长不好看）</h4><ol>
+<li>修改终端的显示成 省略前面的电脑名<br><img src="http://7xsuaf.com1.z0.glb.clouddn.com/2016-04-11/zhongduan.png" alt=""></li>
+<li>终端输入open /etc</li>
+<li>找到bashrc-&gt;显示简介-&gt;将只读改成读与写，配置完成后改回去</li>
+<li>终端输入sudo vim /etc/bashrc</li>
+<li>找到PS1=’\h:\W \u\$ ‘，将其注释掉（为了备份）</li>
+<li>换行添加PS1=’ \W \u\$’，OK！！！</li>
+</ol>
+
       
     </div>
+
     
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <br/>
+        <br/>
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+      
+    </div>
+
+    <div>
+          
+            
+          
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag"><i class="fa fa-tag"></i> git</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/iOS/16-04 iOS数据库操作的常用SQL语句/" rel="next" title="iOS数据库操作的常用SQL语句">
+                <i class="fa fa-chevron-left"></i> iOS数据库操作的常用SQL语句
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Xcode/16-04 Xcode插件备忘/" rel="prev" title="Xcode插件备忘">
+                Xcode插件备忘 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
 
 
 
-    
-    
-    
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzQ0NC8xMzk3Ng=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -486,10 +646,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
+            Overview
           </li>
         </ul>
       
@@ -510,7 +670,7 @@
                   <a href="/archives/">
                 
                     <span class="site-state-item-count">36</span>
-                    <span class="site-state-item-name">日志</span>
+                    <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
               
@@ -531,7 +691,7 @@
                       
                     
                     <span class="site-state-item-count">4</span>
-                    <span class="site-state-item-name">分类</span>
+                    <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
               
@@ -566,7 +726,7 @@
                       
                     
                     <span class="site-state-item-count">11</span>
-                    <span class="site-state-item-name">标签</span>
+                    <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
               
@@ -610,7 +770,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#个人简介："><span class="nav-number">1.</span> <span class="nav-text">个人简介：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#终端命令设置别名："><span class="nav-number">1.</span> <span class="nav-text">终端命令设置别名：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改终端前面的显示（太长不好看）"><span class="nav-number">2.</span> <span class="nav-text">修改终端前面的显示（太长不好看）</span></a></li></ol></div>
             
 
           </div>
@@ -778,6 +938,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

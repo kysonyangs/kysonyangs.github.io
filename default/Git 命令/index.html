@@ -163,24 +163,25 @@
 
 
 
-  <meta name="description" content="个人简介： KysonYangs iOSer 来自江西 现居上海 Email: kysonyangs@gmail.com">
-<meta property="og:type" content="website">
-<meta property="og:title" content="kysonyangs">
-<meta property="og:url" content="https://kysonyangs.github.io/about/index.html">
+  <meta name="description" content="git多账号的使用/体验 生成 ssh key 12ssh-keygen -t rsa -C &amp;quot;your-email-address1&amp;quot;ssh-keygen -t rsa -C &amp;quot;your-email-address2&amp;quot;  将key添加到ssh agent上 1ssh-add ~/.ssh/id_rsa ssh-add ~/.ssh/id_rsa_2">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git 操作">
+<meta property="og:url" content="https://kysonyangs.github.io/default/Git 命令/index.html">
 <meta property="og:site_name" content="kysonyangs">
-<meta property="og:description" content="个人简介： KysonYangs iOSer 来自江西 现居上海 Email: kysonyangs@gmail.com">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-20T02:06:23.137Z">
+<meta property="og:description" content="git多账号的使用/体验 生成 ssh key 12ssh-keygen -t rsa -C &amp;quot;your-email-address1&amp;quot;ssh-keygen -t rsa -C &amp;quot;your-email-address2&amp;quot;  将key添加到ssh agent上 1ssh-add ~/.ssh/id_rsa ssh-add ~/.ssh/id_rsa_2">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-10T07:49:57.988Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="kysonyangs">
-<meta name="twitter:description" content="个人简介： KysonYangs iOSer 来自江西 现居上海 Email: kysonyangs@gmail.com">
+<meta name="twitter:title" content="Git 操作">
+<meta name="twitter:description" content="git多账号的使用/体验 生成 ssh key 12ssh-keygen -t rsa -C &amp;quot;your-email-address1&amp;quot;ssh-keygen -t rsa -C &amp;quot;your-email-address2&amp;quot;  将key添加到ssh agent上 1ssh-add ~/.ssh/id_rsa ssh-add ~/.ssh/id_rsa_2">
 
 
 
 
 
 
-  <link rel="canonical" href="https://kysonyangs.github.io/about/"/>
+  <link rel="canonical" href="https://kysonyangs.github.io/Git 命令/"/>
 
 
 
@@ -190,7 +191,7 @@
   };
 </script>
 
-  <title> | kysonyangs</title>
+  <title>Git 操作 | kysonyangs</title>
   
 
 
@@ -240,7 +241,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
   
   
@@ -290,7 +291,7 @@
           
           <li class="menu-item menu-item-home">
     <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
   </li>
         
         
@@ -298,7 +299,7 @@
           
           <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
   </li>
         
         
@@ -306,7 +307,7 @@
           
           <li class="menu-item menu-item-categories">
     <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
   </li>
         
         
@@ -314,15 +315,15 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
   </li>
         
         
         
           
-          <li class="menu-item menu-item-about menu-item-active">
+          <li class="menu-item menu-item-about">
     <a href="/about/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
   </li>
 
       
@@ -332,7 +333,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
         </li>
       
     </ul>
@@ -340,28 +341,6 @@
 
   
     
-
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
 
   
 
@@ -416,54 +395,242 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/Git 命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kysonyangs">
+      <meta itemprop="description" content="kysonyangs个人站，备忘">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kysonyangs">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline"></h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <h3 id="个人简介："><a href="#个人简介：" class="headerlink" title="个人简介："></a>个人简介：</h3><ul>
-<li>KysonYangs</li>
-<li>iOSer</li>
-<li>来自江西 现居上海</li>
-<li>Email: <a href="mailto:kysonyangs@gmail.com" target="_blank" rel="noopener">kysonyangs@gmail.com</a></li>
-</ul>
-
+          <h1 class="post-title" itemprop="name headline">Git 操作
+              
+            
+          </h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-06-06 22:23:17" itemprop="dateCreated datePublished" datetime="2016-06-06T22:23:17+08:00">2016-06-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-09-10 15:49:57" itemprop="dateModified" datetime="2018-09-10T15:49:57+08:00">2018-09-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/default/Git 命令/" class="leancloud_visitors" data-flag-title="Git 操作">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h3 id="git多账号的使用-体验"><a href="#git多账号的使用-体验" class="headerlink" title="git多账号的使用/体验"></a>git多账号的使用/体验</h3><ol>
+<li><p>生成 ssh key</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;your-email-address1&quot;</span><br><span class="line">ssh-keygen -t rsa -C &quot;your-email-address2&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将key添加到ssh agent上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add ~/.ssh/id_rsa ssh-add ~/.ssh/id_rsa_2</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<a id="more"></a>
+<ol start="3">
+<li><p>配置.ssh/config</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">vi .ssh/config</span><br><span class="line"># 加上以下内容</span><br><span class="line"># github</span><br><span class="line"># first.github (first@gmail.com)</span><br><span class="line">Host github.com</span><br><span class="line">HostName github.com</span><br><span class="line">IdentityFile ~/.ssh/id_rsa</span><br><span class="line"></span><br><span class="line"># second (second@gmail.com)</span><br><span class="line">Host second</span><br><span class="line">HostName github.com</span><br><span class="line">IdentityFile ~/.ssh/id_rsa_second</span><br><span class="line"></span><br><span class="line"># gitOSc</span><br><span class="line"># default git@osc</span><br><span class="line">Host git.oschina.net</span><br><span class="line">  HostName git.oschina.net</span><br><span class="line">  IdentityFile ~/.ssh/id_rsa</span><br><span class="line">Host second</span><br><span class="line">  HostName git.oschina.net</span><br><span class="line">  IdentityFile ~/.ssh/id_rsa_work</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将 id_rsa.pub id_rsa_2.pub添加到对应账号上</p>
+</li>
+<li><p>验证是否成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//1. Github验证</span><br><span class="line">ssh -T git@github.com</span><br><span class="line">ssh -T git@second</span><br><span class="line">//2. Git Osc验证</span><br><span class="line">ssh -T git@git.oschina.net</span><br><span class="line">ssh -T git@git.second.net(貌似是这个吧，有点忘了)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用账号2clone push</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git clone... 下来后 修改</span><br><span class="line">// 方法1</span><br><span class="line">git remote rm origin</span><br><span class="line">git remote add origin git@onemaybe:OneMaybe/OneMaybe.github.io.git</span><br><span class="line">// 方法2</span><br><span class="line">vi .git/config</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
       
     </div>
+
     
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <br/>
+        <br/>
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+      
+    </div>
+
+    <div>
+          
+            
+          
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag"><i class="fa fa-tag"></i> git</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/iOS/16-05 iOS中JavaScript和OC交互/" rel="next" title="iOS中JavaScript和OC交互">
+                <i class="fa fa-chevron-left"></i> iOS中JavaScript和OC交互
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/iOS/16-06 iOS警告/" rel="prev" title="iOS警告">
+                iOS警告 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
 
 
 
-    
-    
-    
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzQ0NC8xMzk3Ng=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -486,10 +653,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
+            Overview
           </li>
         </ul>
       
@@ -510,7 +677,7 @@
                   <a href="/archives/">
                 
                     <span class="site-state-item-count">36</span>
-                    <span class="site-state-item-name">日志</span>
+                    <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
               
@@ -531,7 +698,7 @@
                       
                     
                     <span class="site-state-item-count">4</span>
-                    <span class="site-state-item-name">分类</span>
+                    <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
               
@@ -566,7 +733,7 @@
                       
                     
                     <span class="site-state-item-count">11</span>
-                    <span class="site-state-item-name">标签</span>
+                    <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
               
@@ -610,7 +777,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#个人简介："><span class="nav-number">1.</span> <span class="nav-text">个人简介：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#git多账号的使用-体验"><span class="nav-number">1.</span> <span class="nav-text">git多账号的使用/体验</span></a></li></ol></div>
             
 
           </div>
@@ -778,6 +945,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

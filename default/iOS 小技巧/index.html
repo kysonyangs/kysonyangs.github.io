@@ -163,17 +163,17 @@
 
 
 
-  <meta name="description" content="方法不确定的参数 va_arg 宏的使用当我们方法需要传入多个不确定的参数时(如：[NSArray arrayWithObjects]), 我们可以使用 ,… 的形式表示,当要取传入的参数的值时就需要用到 va_arg 宏去取。例如：1234567891011121314151617- (void)viewDidLoad &amp;#123;    [super viewDidLoad];    [sel">
+  <meta name="description" content="XIB 可见属性设置（eg: 圆角） OC: IB_DESIGNABLE  和 IBInspectable 12345678910111213// .h@property (nonatomic, assign) IBInspectable CGFloat cornerRadius;// .mIB_DESIGNABLE @implementation KLButton- (void)setCorne">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS小技巧">
 <meta property="og:url" content="https://kysonyangs.github.io/default/iOS 小技巧/index.html">
 <meta property="og:site_name" content="kysonyangs">
-<meta property="og:description" content="方法不确定的参数 va_arg 宏的使用当我们方法需要传入多个不确定的参数时(如：[NSArray arrayWithObjects]), 我们可以使用 ,… 的形式表示,当要取传入的参数的值时就需要用到 va_arg 宏去取。例如：1234567891011121314151617- (void)viewDidLoad &amp;#123;    [super viewDidLoad];    [sel">
+<meta property="og:description" content="XIB 可见属性设置（eg: 圆角） OC: IB_DESIGNABLE  和 IBInspectable 12345678910111213// .h@property (nonatomic, assign) IBInspectable CGFloat cornerRadius;// .mIB_DESIGNABLE @implementation KLButton- (void)setCorne">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-03T09:38:49.945Z">
+<meta property="og:updated_time" content="2018-09-10T07:35:23.864Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS小技巧">
-<meta name="twitter:description" content="方法不确定的参数 va_arg 宏的使用当我们方法需要传入多个不确定的参数时(如：[NSArray arrayWithObjects]), 我们可以使用 ,… 的形式表示,当要取传入的参数的值时就需要用到 va_arg 宏去取。例如：1234567891011121314151617- (void)viewDidLoad &amp;#123;    [super viewDidLoad];    [sel">
+<meta name="twitter:description" content="XIB 可见属性设置（eg: 圆角） OC: IB_DESIGNABLE  和 IBInspectable 12345678910111213// .h@property (nonatomic, assign) IBInspectable CGFloat cornerRadius;// .mIB_DESIGNABLE @implementation KLButton- (void)setCorne">
 
 
 
@@ -467,7 +467,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-09-03 17:38:49" itemprop="dateModified" datetime="2018-09-03T17:38:49+08:00">2018-09-03</time>
+                <time title="Modified: 2018-09-10 15:35:23" itemprop="dateModified" datetime="2018-09-10T15:35:23+08:00">2018-09-10</time>
               
             
           </span>
@@ -511,7 +511,14 @@
       
 
       
-        <h4 id="方法不确定的参数-va-arg-宏的使用"><a href="#方法不确定的参数-va-arg-宏的使用" class="headerlink" title="方法不确定的参数 va_arg 宏的使用"></a>方法不确定的参数 va_arg 宏的使用</h4><p>当我们方法需要传入多个不确定的参数时(如：[NSArray arrayWithObjects]), 我们可以使用 ,… 的形式表示,当要取传入的参数的值时就需要用到 va_arg 宏去取。<br>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    [self testMethod:@&quot;123&quot;,@&quot;456&quot;,@&quot;789&quot;，nil];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (void)testMethod:(NSString *)test,.. NS_REQUIRES_NIL_TERMINATION &#123;</span><br><span class="line">    va_list argList;</span><br><span class="line">    va_start(argList, test);</span><br><span class="line">    &#123;</span><br><span class="line">        for (id params = test; params != nil; params = va_arg(argList, id))&#123;</span><br><span class="line"></span><br><span class="line">            NSLog(@&quot;id = %@---class = %@&quot;,params,NSStringFromClass([params class]));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    va_end(argList);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <h4 id="XIB-可见属性设置（eg-圆角）"><a href="#XIB-可见属性设置（eg-圆角）" class="headerlink" title="XIB 可见属性设置（eg: 圆角）"></a>XIB 可见属性设置（eg: 圆角）</h4><ol>
+<li><p><code>OC</code>: <code>IB_DESIGNABLE</code>  和 <code>IBInspectable</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// .h</span><br><span class="line">@property (nonatomic, assign) IBInspectable CGFloat cornerRadius;</span><br><span class="line"></span><br><span class="line">// .m</span><br><span class="line">IB_DESIGNABLE @implementation KLButton</span><br><span class="line">- (void)setCornerRadius:(CGFloat)cornerRadius &#123;</span><br><span class="line">    self.layer.cornerRadius = cornerRadius;</span><br><span class="line">    self.layer.masksToBounds = (cornerRadius &gt; 0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (CGFloat)cornerRadius &#123;</span><br><span class="line">    return self.layer.cornerRadius;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>Swift</code>: <code>IBInspectable</code> 和 <code>IBDesignable</code></p>
+</li>
+</ol>
+<h4 id="方法不确定的参数-va-arg-宏的使用"><a href="#方法不确定的参数-va-arg-宏的使用" class="headerlink" title="方法不确定的参数 va_arg 宏的使用"></a>方法不确定的参数 va_arg 宏的使用</h4><p>当我们方法需要传入多个不确定的参数时(如：[NSArray arrayWithObjects]), 我们可以使用 ,… 的形式表示,当要取传入的参数的值时就需要用到 va_arg 宏去取。<br>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    [self testMethod:@&quot;123&quot;,@&quot;456&quot;,@&quot;789&quot;，nil];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (void)testMethod:(NSString *)test,.. NS_REQUIRES_NIL_TERMINATION &#123;</span><br><span class="line">    va_list argList;</span><br><span class="line">    va_start(argList, test);</span><br><span class="line">    &#123;</span><br><span class="line">        for (id params = test; params != nil; params = va_arg(argList, id))&#123;</span><br><span class="line"></span><br><span class="line">            NSLog(@&quot;id = %@---class = %@&quot;,params,NSStringFromClass([params class]));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    va_end(argList);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h4 id="去除数组中重复的对象"><a href="#去除数组中重复的对象" class="headerlink" title="去除数组中重复的对象"></a>去除数组中重复的对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSArray *newArr = [oldArr valueForKeyPath:@&quot;@distinctUnionOfObjects.self&quot;];</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <h4 id="删除NSUserDefaults所有记录"><a href="#删除NSUserDefaults所有记录" class="headerlink" title="删除NSUserDefaults所有记录"></a>删除NSUserDefaults所有记录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//方法一</span><br><span class="line">NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];</span><br><span class="line">[[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];</span><br><span class="line">//方法二</span><br><span class="line">- (void)resetDefaults &#123;</span><br><span class="line">  NSUserDefaults * defs = [NSUserDefaults standardUserDefaults];</span><br><span class="line">    NSDictionary * dict = [defs dictionaryRepresentation];</span><br><span class="line">    for (id key in dict) &#123;</span><br><span class="line">        [defs removeObjectForKey:key];</span><br><span class="line">    &#125;</span><br><span class="line">    [defs synchronize];</span><br><span class="line"> &#125;</span><br><span class="line">// 方法三</span><br><span class="line">[[NSUserDefaults standardUserDefaults] setPersistentDomain:[NSDictionary dictionary] forName:[[NSBundle mainBundle] bundleIdentifier]];</span><br></pre></td></tr></table></figure>
@@ -569,8 +576,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/default/Info.plist 属性介绍/" rel="next" title="Info.plist 属性介绍">
-                <i class="fa fa-chevron-left"></i> Info.plist 属性介绍
+              <a href="/default/YYModel 使用/" rel="next" title="YYModel 使用">
+                <i class="fa fa-chevron-left"></i> YYModel 使用
               </a>
             
           </div>
@@ -579,8 +586,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/default/iOS 线程安全、锁/" rel="prev" title="iOS 线程安全、锁">
-                iOS 线程安全、锁 <i class="fa fa-chevron-right"></i>
+              <a href="/default/Swift-Tips/" rel="prev" title="Swift-Tips">
+                Swift-Tips <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -660,7 +667,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">40</span>
+                    <span class="site-state-item-count">36</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -672,8 +679,6 @@
                 <div class="site-state-item site-state-categories">
                   <a href="/categories/index.html">
                     
-                    
-                      
                     
                       
                     
@@ -718,11 +723,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -767,7 +768,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法不确定的参数-va-arg-宏的使用"><span class="nav-number">1.</span> <span class="nav-text">方法不确定的参数 va_arg 宏的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#去除数组中重复的对象"><span class="nav-number">2.</span> <span class="nav-text">去除数组中重复的对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除NSUserDefaults所有记录"><span class="nav-number">3.</span> <span class="nav-text">删除NSUserDefaults所有记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UITableViewCell-分割线置顶"><span class="nav-number">4.</span> <span class="nav-text">UITableViewCell 分割线置顶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置UIViewController的view的top在navigationBar下面-amp-bottom位置在Tabbar的上面"><span class="nav-number">5.</span> <span class="nav-text">设置UIViewController的view的top在navigationBar下面 &amp; bottom位置在Tabbar的上面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#禁用button高亮-点击变灰的效果"><span class="nav-number">6.</span> <span class="nav-text">禁用button高亮,点击变灰的效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义cell选中背景颜色"><span class="nav-number">7.</span> <span class="nav-text">自定义cell选中背景颜色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UILabel设置内边距"><span class="nav-number">8.</span> <span class="nav-text">UILabel设置内边距</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UILabel设置文字描边"><span class="nav-number">9.</span> <span class="nav-text">UILabel设置文字描边</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#改变UISlider的进度条高度"><span class="nav-number">10.</span> <span class="nav-text">改变UISlider的进度条高度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iOS-11中隐藏section头尾的实现"><span class="nav-number">11.</span> <span class="nav-text">iOS 11中隐藏section头尾的实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更改UITabBar-amp-amp-UINavigationBar背景颜色"><span class="nav-number">12.</span> <span class="nav-text">更改UITabBar &amp;&amp; UINavigationBar背景颜色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更改UITabBar-amp-amp-UINavigationBar字体颜色"><span class="nav-number">13.</span> <span class="nav-text">更改UITabBar &amp;&amp; UINavigationBar字体颜色</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#XIB-可见属性设置（eg-圆角）"><span class="nav-number">1.</span> <span class="nav-text">XIB 可见属性设置（eg: 圆角）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法不确定的参数-va-arg-宏的使用"><span class="nav-number">2.</span> <span class="nav-text">方法不确定的参数 va_arg 宏的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#去除数组中重复的对象"><span class="nav-number">3.</span> <span class="nav-text">去除数组中重复的对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除NSUserDefaults所有记录"><span class="nav-number">4.</span> <span class="nav-text">删除NSUserDefaults所有记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UITableViewCell-分割线置顶"><span class="nav-number">5.</span> <span class="nav-text">UITableViewCell 分割线置顶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置UIViewController的view的top在navigationBar下面-amp-bottom位置在Tabbar的上面"><span class="nav-number">6.</span> <span class="nav-text">设置UIViewController的view的top在navigationBar下面 &amp; bottom位置在Tabbar的上面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#禁用button高亮-点击变灰的效果"><span class="nav-number">7.</span> <span class="nav-text">禁用button高亮,点击变灰的效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义cell选中背景颜色"><span class="nav-number">8.</span> <span class="nav-text">自定义cell选中背景颜色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UILabel设置内边距"><span class="nav-number">9.</span> <span class="nav-text">UILabel设置内边距</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UILabel设置文字描边"><span class="nav-number">10.</span> <span class="nav-text">UILabel设置文字描边</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#改变UISlider的进度条高度"><span class="nav-number">11.</span> <span class="nav-text">改变UISlider的进度条高度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iOS-11中隐藏section头尾的实现"><span class="nav-number">12.</span> <span class="nav-text">iOS 11中隐藏section头尾的实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更改UITabBar-amp-amp-UINavigationBar背景颜色"><span class="nav-number">13.</span> <span class="nav-text">更改UITabBar &amp;&amp; UINavigationBar背景颜色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更改UITabBar-amp-amp-UINavigationBar字体颜色"><span class="nav-number">14.</span> <span class="nav-text">更改UITabBar &amp;&amp; UINavigationBar字体颜色</span></a></li></ol></div>
             
 
           </div>
