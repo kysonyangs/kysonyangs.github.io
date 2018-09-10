@@ -163,20 +163,20 @@
 
 
 
-  <meta name="description" content="内存的几大区域栈区（Stack）由编译器自动分配并释放，存放函数的参数值，局部变量等。栈是系统数据结构，对应线程/进程是唯一的。优点是快速高效，缺点时有限制，数据不灵活。［先进后出］ 栈空间分 静态分配 和 动态分配两种。  静态分配是编译器完成的，比如自动变量（auto）的分配 动态变量是由 alloc 函数完成的 栈的动态分配无需释放（是自动的），也就没有释放函数。 为可移植的程序起见，栈的动">
+  <meta name="description" content="应用沙盒 Documents: 保存应用运行时生成的需要持久化的数据，iTunes同步设备时会备份该目录。例如，游戏应用可将游戏存档保存在该目录. Library: Caches: 保存应用运行时生成的需要持久化的数据，一般存储体积大、不需要备份的非重要数据,缓存文件存储地. - Preferences: 保存应用的所有偏好设置，iOS的Settings(设置)应用会在该目录中查找应用的设置信息,">
 <meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基础知识">
 <meta property="og:url" content="https://kysonyangs.github.io/default/基础知识/index.html">
 <meta property="og:site_name" content="kysonyangs">
-<meta property="og:description" content="内存的几大区域栈区（Stack）由编译器自动分配并释放，存放函数的参数值，局部变量等。栈是系统数据结构，对应线程/进程是唯一的。优点是快速高效，缺点时有限制，数据不灵活。［先进后出］ 栈空间分 静态分配 和 动态分配两种。  静态分配是编译器完成的，比如自动变量（auto）的分配 动态变量是由 alloc 函数完成的 栈的动态分配无需释放（是自动的），也就没有释放函数。 为可移植的程序起见，栈的动">
+<meta property="og:description" content="应用沙盒 Documents: 保存应用运行时生成的需要持久化的数据，iTunes同步设备时会备份该目录。例如，游戏应用可将游戏存档保存在该目录. Library: Caches: 保存应用运行时生成的需要持久化的数据，一般存储体积大、不需要备份的非重要数据,缓存文件存储地. - Preferences: 保存应用的所有偏好设置，iOS的Settings(设置)应用会在该目录中查找应用的设置信息,">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1829339-c1783643e7c18ce7?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp">
 <meta property="og:image" content="https://camo.githubusercontent.com/6ea2fb065c49dd902e98207429e65f7a28ea6997/687474703a2f2f6f6b68716d746438712e626b742e636c6f7564646e2e636f6d2f696d6167652f6a70672f566965772545372539342539462545352539312542442545352539312541382545362539432539462e706e67">
-<meta property="og:updated_time" content="2018-09-10T08:21:33.285Z">
+<meta property="og:updated_time" content="2018-09-10T09:08:58.636Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基础知识">
-<meta name="twitter:description" content="内存的几大区域栈区（Stack）由编译器自动分配并释放，存放函数的参数值，局部变量等。栈是系统数据结构，对应线程/进程是唯一的。优点是快速高效，缺点时有限制，数据不灵活。［先进后出］ 栈空间分 静态分配 和 动态分配两种。  静态分配是编译器完成的，比如自动变量（auto）的分配 动态变量是由 alloc 函数完成的 栈的动态分配无需释放（是自动的），也就没有释放函数。 为可移植的程序起见，栈的动">
+<meta name="twitter:description" content="应用沙盒 Documents: 保存应用运行时生成的需要持久化的数据，iTunes同步设备时会备份该目录。例如，游戏应用可将游戏存档保存在该目录. Library: Caches: 保存应用运行时生成的需要持久化的数据，一般存储体积大、不需要备份的非重要数据,缓存文件存储地. - Preferences: 保存应用的所有偏好设置，iOS的Settings(设置)应用会在该目录中查找应用的设置信息,">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1829339-c1783643e7c18ce7?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp">
 
 
@@ -471,7 +471,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-09-10 16:21:33" itemprop="dateModified" datetime="2018-09-10T16:21:33+08:00">2018-09-10</time>
+                <time title="Modified: 2018-09-10 17:08:58" itemprop="dateModified" datetime="2018-09-10T17:08:58+08:00">2018-09-10</time>
               
             
           </span>
@@ -515,7 +515,25 @@
       
 
       
-        <h4 id="内存的几大区域"><a href="#内存的几大区域" class="headerlink" title="内存的几大区域"></a>内存的几大区域</h4><h5 id="栈区（Stack）"><a href="#栈区（Stack）" class="headerlink" title="栈区（Stack）"></a>栈区（Stack）</h5><p>由编译器自动分配并释放，存放函数的参数值，局部变量等。栈是系统数据结构，对应线程/进程是唯一的。优点是快速高效，缺点时有限制，数据不灵活。［先进后出］</p>
+        <h4 id="应用沙盒"><a href="#应用沙盒" class="headerlink" title="应用沙盒"></a>应用沙盒</h4><ul>
+<li>Documents: 保存应用运行时生成的需要持久化的数据，iTunes同步设备时会备份该目录。例如，游戏应用可将游戏存档保存在该目录.</li>
+<li>Library:<ul>
+<li>Caches: 保存应用运行时生成的需要持久化的数据，一般存储体积大、不需要备份的非重要数据,缓存文件存储地. - Preferences: 保存应用的所有偏好设置，iOS的Settings(设置)应用会在该目录中查找应用的设置信息,iTunes同步设备时会备份该目录.</li>
+</ul>
+</li>
+<li>tmp: 保存应用运行时所需的临时数据，使用完毕后再将相应的文件从该目录删除;应用没有运行时，系统也可能会清除该目录下的文件;iTunes同步设备时不会备份该目录.</li>
+</ul>
+<p>路径获取：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 沙盒根目录</span><br><span class="line">NSLog(@&quot;%@&quot;, NSHomeDirectory());</span><br><span class="line"></span><br><span class="line">// Documents</span><br><span class="line">NSLog(@&quot;%@&quot;, [NSHomeDirectory() stringByAppendingPathComponent:@&quot;Documents&quot;]);</span><br><span class="line">// OR</span><br><span class="line">NSLog(@&quot;%@&quot;, [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]);</span><br><span class="line">// Library - Caches</span><br><span class="line">NSLog(@&quot;%@&quot;, [[NSHomeDirectory() stringByAppendingPathComponent:@&quot;Library&quot;] stringByAppendingPathComponent:@&quot;Caches&quot;]);</span><br><span class="line">// OR</span><br><span class="line">NSLog(@&quot;%@&quot;, [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject]);</span><br><span class="line">Preference</span><br><span class="line">[NSUserDefaults standardUserDefaults] ...</span><br><span class="line"></span><br><span class="line">// tmp</span><br><span class="line">NSLog(@&quot;t - %@&quot;, NSTemporaryDirectory());</span><br></pre></td></tr></table></figure></p>
+<h4 id="content-Hugging-／-content-Compression-Resistance"><a href="#content-Hugging-／-content-Compression-Resistance" class="headerlink" title="content Hugging ／ content Compression Resistance"></a><code>content Hugging</code> ／ <code>content Compression Resistance</code></h4><p>不想变大/不想变小约束 灰常有用哦</p>
+<h4 id="layoutSubviews方法调用"><a href="#layoutSubviews方法调用" class="headerlink" title="layoutSubviews方法调用"></a>layoutSubviews方法调用</h4><ol>
+<li>init方法不会调用</li>
+<li>addSubview方法等时候会调用</li>
+<li>bounds改变的时候调用</li>
+<li>scrollView滚动的时候会调用scrollView的layoutSubviews方法(所以不建议在scrollView的layoutSubviews方法中做复杂逻辑)</li>
+<li>旋转设备的时候调用</li>
+<li>子视图被移除的时候调用</li>
+</ol>
+<h4 id="内存的几大区域"><a href="#内存的几大区域" class="headerlink" title="内存的几大区域"></a>内存的几大区域</h4><h5 id="栈区（Stack）"><a href="#栈区（Stack）" class="headerlink" title="栈区（Stack）"></a>栈区（Stack）</h5><p>由编译器自动分配并释放，存放函数的参数值，局部变量等。栈是系统数据结构，对应线程/进程是唯一的。优点是快速高效，缺点时有限制，数据不灵活。［先进后出］</p>
 <p>栈空间分 静态分配 和 动态分配两种。</p>
 <ul>
 <li>静态分配是编译器完成的，比如自动变量（auto）的分配</li>
@@ -664,8 +682,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/iOS/16-05 iOS中JavaScript和OC交互/" rel="next" title="iOS中JavaScript和OC交互">
-                <i class="fa fa-chevron-left"></i> iOS中JavaScript和OC交互
+              <a href="/default/深拷贝与浅拷贝/" rel="next" title="深拷贝与浅拷贝">
+                <i class="fa fa-chevron-left"></i> 深拷贝与浅拷贝
               </a>
             
           </div>
@@ -674,8 +692,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/default/深拷贝与浅拷贝/" rel="prev" title="深拷贝与浅拷贝">
-                深拷贝与浅拷贝 <i class="fa fa-chevron-right"></i>
+              <a href="/default/Git 命令/" rel="prev" title="Git 操作">
+                Git 操作 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -858,7 +876,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#内存的几大区域"><span class="nav-number">1.</span> <span class="nav-text">内存的几大区域</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#栈区（Stack）"><span class="nav-number">1.1.</span> <span class="nav-text">栈区（Stack）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#堆区（heap）"><span class="nav-number">1.2.</span> <span class="nav-text">堆区（heap）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#全局区-静态区-static"><span class="nav-number">1.3.</span> <span class="nav-text">全局区(静态区) (static)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#文字常量区"><span class="nav-number">1.4.</span> <span class="nav-text">文字常量区</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码区"><span class="nav-number">1.5.</span> <span class="nav-text">代码区</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CGRectInset-与-CGRectOffset"><span class="nav-number">2.</span> <span class="nav-text">CGRectInset 与 CGRectOffset</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#断言-NSAssert-和-NSParameterAssert-区别和用处"><span class="nav-number">3.</span> <span class="nav-text">断言 NSAssert() 和 NSParameterAssert 区别和用处</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iOS模拟器的Debug菜单"><span class="nav-number">4.</span> <span class="nav-text">iOS模拟器的Debug菜单</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nil、NIL、NULL、-NSNull-的区别"><span class="nav-number">5.</span> <span class="nav-text">nil、NIL、NULL、 NSNull 的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#property-属性的关键字"><span class="nav-number">6.</span> <span class="nav-text">property 属性的关键字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#id-和-instanceType"><span class="nav-number">7.</span> <span class="nav-text">id 和 instanceType</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#synthesize-和-dynamic"><span class="nav-number">8.</span> <span class="nav-text">@synthesize 和 @dynamic</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UIView-和-CALayer"><span class="nav-number">9.</span> <span class="nav-text">UIView 和 CALayer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Bounds-和-Frame"><span class="nav-number">10.</span> <span class="nav-text">Bounds 和 Frame</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UIViewController-生命周期"><span class="nav-number">11.</span> <span class="nav-text">UIViewController 生命周期</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#应用沙盒"><span class="nav-number">1.</span> <span class="nav-text">应用沙盒</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#content-Hugging-／-content-Compression-Resistance"><span class="nav-number">2.</span> <span class="nav-text">content Hugging ／ content Compression Resistance</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#layoutSubviews方法调用"><span class="nav-number">3.</span> <span class="nav-text">layoutSubviews方法调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存的几大区域"><span class="nav-number">4.</span> <span class="nav-text">内存的几大区域</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#栈区（Stack）"><span class="nav-number">4.1.</span> <span class="nav-text">栈区（Stack）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#堆区（heap）"><span class="nav-number">4.2.</span> <span class="nav-text">堆区（heap）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#全局区-静态区-static"><span class="nav-number">4.3.</span> <span class="nav-text">全局区(静态区) (static)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#文字常量区"><span class="nav-number">4.4.</span> <span class="nav-text">文字常量区</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码区"><span class="nav-number">4.5.</span> <span class="nav-text">代码区</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CGRectInset-与-CGRectOffset"><span class="nav-number">5.</span> <span class="nav-text">CGRectInset 与 CGRectOffset</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#断言-NSAssert-和-NSParameterAssert-区别和用处"><span class="nav-number">6.</span> <span class="nav-text">断言 NSAssert() 和 NSParameterAssert 区别和用处</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iOS模拟器的Debug菜单"><span class="nav-number">7.</span> <span class="nav-text">iOS模拟器的Debug菜单</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nil、NIL、NULL、-NSNull-的区别"><span class="nav-number">8.</span> <span class="nav-text">nil、NIL、NULL、 NSNull 的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#property-属性的关键字"><span class="nav-number">9.</span> <span class="nav-text">property 属性的关键字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#id-和-instanceType"><span class="nav-number">10.</span> <span class="nav-text">id 和 instanceType</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#synthesize-和-dynamic"><span class="nav-number">11.</span> <span class="nav-text">@synthesize 和 @dynamic</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UIView-和-CALayer"><span class="nav-number">12.</span> <span class="nav-text">UIView 和 CALayer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Bounds-和-Frame"><span class="nav-number">13.</span> <span class="nav-text">Bounds 和 Frame</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UIViewController-生命周期"><span class="nav-number">14.</span> <span class="nav-text">UIViewController 生命周期</span></a></li></ol></div>
             
 
           </div>
