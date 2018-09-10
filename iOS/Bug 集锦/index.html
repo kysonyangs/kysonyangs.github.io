@@ -163,18 +163,18 @@
 
 
 
-  <meta name="description" content="-[__NSArray0 addObject:]: unrecognized selector sent to instance 0x7f8a40d039a0造成原因是你使用[NSArray addObject],而不是[NSMutabeArray addObject];">
+  <meta name="description" content="Xcode Bug项目打不开 Failed to load project at ‘’ “,incompatible project version打开 project.pbxproj 文件，修改 objectVersion = 48; 不知道填什么往低了填，或者在自己想买找 Xcode 不高亮123cd Library/Developer/Xcode/DerivedDatarm -rf ./*重">
 <meta name="keywords" content="Bug">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bug集锦">
 <meta property="og:url" content="https://kysonyangs.github.io/iOS/Bug 集锦/index.html">
 <meta property="og:site_name" content="kysonyangs">
-<meta property="og:description" content="-[__NSArray0 addObject:]: unrecognized selector sent to instance 0x7f8a40d039a0造成原因是你使用[NSArray addObject],而不是[NSMutabeArray addObject];">
+<meta property="og:description" content="Xcode Bug项目打不开 Failed to load project at ‘’ “,incompatible project version打开 project.pbxproj 文件，修改 objectVersion = 48; 不知道填什么往低了填，或者在自己想买找 Xcode 不高亮123cd Library/Developer/Xcode/DerivedDatarm -rf ./*重">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-10T07:32:47.645Z">
+<meta property="og:updated_time" content="2018-09-10T08:14:48.524Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bug集锦">
-<meta name="twitter:description" content="-[__NSArray0 addObject:]: unrecognized selector sent to instance 0x7f8a40d039a0造成原因是你使用[NSArray addObject],而不是[NSMutabeArray addObject];">
+<meta name="twitter:description" content="Xcode Bug项目打不开 Failed to load project at ‘’ “,incompatible project version打开 project.pbxproj 文件，修改 objectVersion = 48; 不知道填什么往低了填，或者在自己想买找 Xcode 不高亮123cd Library/Developer/Xcode/DerivedDatarm -rf ./*重">
 
 
 
@@ -468,7 +468,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-10 15:32:47" itemprop="dateModified" datetime="2018-09-10T15:32:47+08:00">2018-09-10</time>
+                <time title="修改时间：2018-09-10 16:14:48" itemprop="dateModified" datetime="2018-09-10T16:14:48+08:00">2018-09-10</time>
               
             
           </span>
@@ -530,29 +530,21 @@
       
 
       
-        <ol>
-<li><code>-[__NSArray0 addObject:]: unrecognized selector sent to instance 0x7f8a40d039a0</code>造成原因是你使用<code>[NSArray addObject]</code>,而不是<code>[NSMutabeArray addObject]</code>;</li>
-</ol>
+        <h3 id="Xcode-Bug"><a href="#Xcode-Bug" class="headerlink" title="Xcode Bug"></a>Xcode Bug</h3><h4 id="项目打不开-Failed-to-load-project-at-‘’-“-incompatible-project-version"><a href="#项目打不开-Failed-to-load-project-at-‘’-“-incompatible-project-version" class="headerlink" title="项目打不开 Failed to load project at ‘’ “,incompatible project version"></a>项目打不开 Failed to load project at ‘’ “,incompatible project version</h4><p>打开 <code>project.pbxproj</code> 文件，修改 <code>objectVersion = 48;</code> 不知道填什么往低了填，或者在自己想买找</p>
+<h4 id="Xcode-不高亮"><a href="#Xcode-不高亮" class="headerlink" title="Xcode 不高亮"></a>Xcode 不高亮</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd Library/Developer/Xcode/DerivedData</span><br><span class="line">rm -rf ./*</span><br><span class="line">重新打开XCODE</span><br></pre></td></tr></table></figure>
+<h4 id="打开Playground提示打开失败，找不到合适的devices"><a href="#打开Playground提示打开失败，找不到合适的devices" class="headerlink" title="打开Playground提示打开失败，找不到合适的devices"></a>打开Playground提示打开失败，找不到合适的devices</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. Quit Xcode</span><br><span class="line">2. Delete the folder /Users/&lt;username&gt;/Library/Developer/CoreSimulator/Devices. For example, in Terminal: rm -rf ~/Library/Developer/CoreSimulator/Devices</span><br><span class="line">3. In Terminal: killall -9 com.apple.CoreSimulator.CoreSimulatorService (or just reboot). OR Add a iOS8.0Device</span><br></pre></td></tr></table></figure>
+<h3 id="程序报错"><a href="#程序报错" class="headerlink" title="程序报错"></a>程序报错</h3><h4 id="Swift-创建控制器时自带xib加载在iOS8崩溃的问题"><a href="#Swift-创建控制器时自带xib加载在iOS8崩溃的问题" class="headerlink" title="Swift 创建控制器时自带xib加载在iOS8崩溃的问题"></a>Swift 创建控制器时自带xib加载在iOS8崩溃的问题</h4><p>项目中有部分跟随控制器一起创建出来的xib，在iOS8之外的系统运行正常，在iOS8下崩溃，找不到对应关系，一番网上搜索，终于找到解决办法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) &#123;</span><br><span class="line">    super.init(nibName: &quot;AddressViewController&quot;, bundle: nil)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">required init?(coder aDecoder: NSCoder) &#123;</span><br><span class="line">    fatalError(&quot;init(coder:) has not been implemented&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>原来在iOS8下，也需要给控制器的xib重写一下init 方法，只记得在自定义view的是时候用过，没想到这里也需要，特意加上，算是兼容手机系统</p>
+<h4 id="ios开发中，xib加载view，loadNibNamed方法奔溃原因之一"><a href="#ios开发中，xib加载view，loadNibNamed方法奔溃原因之一" class="headerlink" title="ios开发中，xib加载view，loadNibNamed方法奔溃原因之一"></a>ios开发中，xib加载view，loadNibNamed方法奔溃原因之一</h4><p>xib中某一属性在代码中已删除，但在xib中没有解除关联</p>
+<h4 id="NSArray0-addObject-unrecognized-selector-sent-to-instance-0x7f8a40d039a0"><a href="#NSArray0-addObject-unrecognized-selector-sent-to-instance-0x7f8a40d039a0" class="headerlink" title="-[__NSArray0 addObject:]: unrecognized selector sent to instance 0x7f8a40d039a0"></a><code>-[__NSArray0 addObject:]: unrecognized selector sent to instance 0x7f8a40d039a0</code></h4><p>造成原因是你使用<code>[NSArray addObject]</code>,而不是<code>[NSMutabeArray addObject]</code>;</p>
 <a id="more"></a>
-<ol start="2">
-<li><p>添加了一个All Exceptions 出现停在线程队列的情况，点继续运行仍然可以运行，将该断点删除或者将里面的All改成Object-C也可以！</p>
-</li>
-<li><p>解决“Two-stage rotation animation is deprecated. This application should use the smoother single-stage animation.”警告。<br>原因：不应该将UITabBarControllier嵌入到UINavigationController中作为rootViewController，但是，我们的确想要这样做，只需要在将tabbar作为rootviewcontroller之前先设置<code>tabBarController.selectedIndex= 0</code>。</p>
-</li>
-<li><p>ios7下面用autolayout报错类似  *** Assertion failure in -[XXX layoutSublayersOfLayer:], /SourceCache/UIKit/UIKit-2935.138/UIView. 这样的错误<br>解决方案是 在布局之后 加上【super layoutsubviews】【self lauoutifneed】 这两个方法。</p>
-</li>
-<li><p>友盟如果碰到一堆Bug，可以试试添加SystemConfig.framework，也许可以帮助解决一下问题哟，碰运气。。。</p>
-</li>
-<li><p>当我使用<code>UITableView+FDTemplateLayoutCell.h</code>进行cell动态布局时，总是报错，提示我应该给cell一个服用标志，可是已经给了！你可以尝试把footView给干掉！</p>
-</li>
-<li><p>有的时候在Mac上经常复制粘贴无效，你可是使用以下方法看看是否解决问题：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">launchctl list | grep com.apple.pboard</span><br><span class="line"></span><br><span class="line">launchctl stop com.apple.pboard</span><br><span class="line">launchctl start com.apple.pboard</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>there was an internal api error “—- xcode7，然后解决办法：bulid settings  -&gt;    packaging  -&gt; product name  不要写中文。。。。</p>
-</li>
-<li><p>打开Playground提示打开失败，找不到合适的devices</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. Quit Xcode</span><br><span class="line">2. Delete the folder /Users/&lt;username&gt;/Library/Developer/CoreSimulator/Devices. For example, in Terminal: rm -rf ~/Library/Developer/CoreSimulator/Devices</span><br><span class="line">3. In Terminal: killall -9 com.apple.CoreSimulator.CoreSimulatorService (or just reboot).</span><br><span class="line">OR</span><br><span class="line">Add a iOS8.0Device</span><br></pre></td></tr></table></figure>
-</li>
+<h4 id="添加了一个All-Exceptions-出现停在线程队列的情况，点继续运行仍然可以运行，将该断点删除或者将里面的All改成Object-C也可以！"><a href="#添加了一个All-Exceptions-出现停在线程队列的情况，点继续运行仍然可以运行，将该断点删除或者将里面的All改成Object-C也可以！" class="headerlink" title="添加了一个All Exceptions 出现停在线程队列的情况，点继续运行仍然可以运行，将该断点删除或者将里面的All改成Object-C也可以！"></a>添加了一个All Exceptions 出现停在线程队列的情况，点继续运行仍然可以运行，将该断点删除或者将里面的All改成Object-C也可以！</h4><h4 id="ios7下面用autolayout报错类似-Assertion-failure-in-XXX-layoutSublayersOfLayer-SourceCache-UIKit-UIKit-2935-138-UIView"><a href="#ios7下面用autolayout报错类似-Assertion-failure-in-XXX-layoutSublayersOfLayer-SourceCache-UIKit-UIKit-2935-138-UIView" class="headerlink" title="ios7下面用autolayout报错类似  *** Assertion failure in -[XXX layoutSublayersOfLayer:], /SourceCache/UIKit/UIKit-2935.138/UIView."></a>ios7下面用autolayout报错类似  *** Assertion failure in -[XXX layoutSublayersOfLayer:], /SourceCache/UIKit/UIKit-2935.138/UIView.</h4><p>解决方案：在布局之后 加上 <code>[super layoutsubviews]</code> <code>[self lauoutifneed]</code> 这两个方法。</p>
+<h4 id="there-was-an-internal-api-error-“—-xcode7，"><a href="#there-was-an-internal-api-error-“—-xcode7，" class="headerlink" title="there was an internal api error “—- xcode7，"></a>there was an internal api error “—- xcode7，</h4><p>解决: <code>bulid settings -&gt; packaging -&gt; product name</code>  不要写中文。。。。</p>
+<h4 id="linker-command-failed-with-exit-code-1-use-v-to-see-invocation"><a href="#linker-command-failed-with-exit-code-1-use-v-to-see-invocation" class="headerlink" title="linker command failed with exit code 1 (use -v to see invocation)"></a>linker command failed with exit code 1 (use -v to see invocation)</h4><ol>
+<li>检查是否重复引用，或者依赖引用.h</li>
+<li>检查某个属性是否重复定义</li>
+<li>检查是否 import 错误，把 <code>.m</code> 引入了  555</li>
+<li>查看报错信息详情，一般都会提示，观察一下重复引用的两个文件名，分析即可</li>
 </ol>
 
       
@@ -671,8 +663,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -687,7 +688,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">35</span>
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -743,7 +744,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">11</span>
+                      
+                    
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -778,6 +781,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Xcode-Bug"><span class="nav-number">1.</span> <span class="nav-text">Xcode Bug</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#项目打不开-Failed-to-load-project-at-‘’-“-incompatible-project-version"><span class="nav-number">1.1.</span> <span class="nav-text">项目打不开 Failed to load project at ‘’ “,incompatible project version</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Xcode-不高亮"><span class="nav-number">1.2.</span> <span class="nav-text">Xcode 不高亮</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打开Playground提示打开失败，找不到合适的devices"><span class="nav-number">1.3.</span> <span class="nav-text">打开Playground提示打开失败，找不到合适的devices</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序报错"><span class="nav-number">2.</span> <span class="nav-text">程序报错</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Swift-创建控制器时自带xib加载在iOS8崩溃的问题"><span class="nav-number">2.1.</span> <span class="nav-text">Swift 创建控制器时自带xib加载在iOS8崩溃的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ios开发中，xib加载view，loadNibNamed方法奔溃原因之一"><span class="nav-number">2.2.</span> <span class="nav-text">ios开发中，xib加载view，loadNibNamed方法奔溃原因之一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NSArray0-addObject-unrecognized-selector-sent-to-instance-0x7f8a40d039a0"><span class="nav-number">2.3.</span> <span class="nav-text">-[__NSArray0 addObject:]: unrecognized selector sent to instance 0x7f8a40d039a0</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加了一个All-Exceptions-出现停在线程队列的情况，点继续运行仍然可以运行，将该断点删除或者将里面的All改成Object-C也可以！"><span class="nav-number">2.4.</span> <span class="nav-text">添加了一个All Exceptions 出现停在线程队列的情况，点继续运行仍然可以运行，将该断点删除或者将里面的All改成Object-C也可以！</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ios7下面用autolayout报错类似-Assertion-failure-in-XXX-layoutSublayersOfLayer-SourceCache-UIKit-UIKit-2935-138-UIView"><span class="nav-number">2.5.</span> <span class="nav-text">ios7下面用autolayout报错类似  *** Assertion failure in -[XXX layoutSublayersOfLayer:], /SourceCache/UIKit/UIKit-2935.138/UIView.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#there-was-an-internal-api-error-“—-xcode7，"><span class="nav-number">2.6.</span> <span class="nav-text">there was an internal api error “—- xcode7，</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#linker-command-failed-with-exit-code-1-use-v-to-see-invocation"><span class="nav-number">2.7.</span> <span class="nav-text">linker command failed with exit code 1 (use -v to see invocation)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

@@ -163,25 +163,31 @@
 
 
 
-  <meta name="description" content="UIView vs CALayer 每个 UIView 内部都有一个 CALayer 在背后提供内容的绘制和显示，两者都有树状层级结构，layer 内部有 SubLayers，View 内部有 SubViews; 在 View显示的时候，UIView 做为 Layer 的 CALayerDelegate,View 的显示内容由内部的 CALayer 的 display; View 可以接受事件，而">
-<meta name="keywords" content="Aniamtion">
+  <meta name="description" content="一、消除警告 使用cocoapods管理的第三方库的警告，直接在podfile文件里面加入 inhibit_all_warnings! 加入预编译指令：12345#pragma clang diagnostic push#pragma clang diagnostic ignored &amp;quot;-Wdeprecated-declarations&amp;quot;    //这里是会报警告的代码">
+<meta name="keywords" content="警告">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CoreAniamtion学习一">
-<meta property="og:url" content="https://kysonyangs.github.io/iOS/16-03 CoreAnimation一/index.html">
+<meta property="og:title" content="iOS警告">
+<meta property="og:url" content="https://kysonyangs.github.io/iOS/iOS 警告/index.html">
 <meta property="og:site_name" content="kysonyangs">
-<meta property="og:description" content="UIView vs CALayer 每个 UIView 内部都有一个 CALayer 在背后提供内容的绘制和显示，两者都有树状层级结构，layer 内部有 SubLayers，View 内部有 SubViews; 在 View显示的时候，UIView 做为 Layer 的 CALayerDelegate,View 的显示内容由内部的 CALayer 的 display; View 可以接受事件，而">
+<meta property="og:description" content="一、消除警告 使用cocoapods管理的第三方库的警告，直接在podfile文件里面加入 inhibit_all_warnings! 加入预编译指令：12345#pragma clang diagnostic push#pragma clang diagnostic ignored &amp;quot;-Wdeprecated-declarations&amp;quot;    //这里是会报警告的代码">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-30T05:39:33.522Z">
+<meta property="og:image" content="http://7xsuaf.com1.z0.glb.clouddn.com/2016-06-20/1.png">
+<meta property="og:image" content="http://7xsuaf.com1.z0.glb.clouddn.com/2016-06-20/2.png">
+<meta property="og:image" content="http://7xsuaf.com1.z0.glb.clouddn.com/2016-06-20/3.png">
+<meta property="og:image" content="http://7xsuaf.com1.z0.glb.clouddn.com/2016-06-20/4.png">
+<meta property="og:image" content="http://7xsuaf.com1.z0.glb.clouddn.com/2016-06-20/5.png">
+<meta property="og:updated_time" content="2018-09-10T08:13:19.914Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CoreAniamtion学习一">
-<meta name="twitter:description" content="UIView vs CALayer 每个 UIView 内部都有一个 CALayer 在背后提供内容的绘制和显示，两者都有树状层级结构，layer 内部有 SubLayers，View 内部有 SubViews; 在 View显示的时候，UIView 做为 Layer 的 CALayerDelegate,View 的显示内容由内部的 CALayer 的 display; View 可以接受事件，而">
+<meta name="twitter:title" content="iOS警告">
+<meta name="twitter:description" content="一、消除警告 使用cocoapods管理的第三方库的警告，直接在podfile文件里面加入 inhibit_all_warnings! 加入预编译指令：12345#pragma clang diagnostic push#pragma clang diagnostic ignored &amp;quot;-Wdeprecated-declarations&amp;quot;    //这里是会报警告的代码">
+<meta name="twitter:image" content="http://7xsuaf.com1.z0.glb.clouddn.com/2016-06-20/1.png">
 
 
 
 
 
 
-  <link rel="canonical" href="https://kysonyangs.github.io/iOS/16-03 CoreAnimation一/"/>
+  <link rel="canonical" href="https://kysonyangs.github.io/iOS/iOS 警告/"/>
 
 
 
@@ -191,7 +197,7 @@
   };
 </script>
 
-  <title>CoreAniamtion学习一 | kysonyangs</title>
+  <title>iOS警告 | kysonyangs</title>
   
 
 
@@ -409,7 +415,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/iOS/16-03 CoreAnimation一/">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/iOS/iOS 警告/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="kysonyangs">
@@ -426,7 +432,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CoreAniamtion学习一
+          <h1 class="post-title" itemprop="name headline">iOS警告
               
             
           </h1>
@@ -451,7 +457,7 @@
                 
               
 
-              <time title="创建时间：2016-03-08 19:10:53" itemprop="dateCreated datePublished" datetime="2016-03-08T19:10:53+08:00">2016-03-08</time>
+              <time title="创建时间：2016-06-20 18:28:05" itemprop="dateCreated datePublished" datetime="2016-06-20T18:28:05+08:00">2016-06-20</time>
             
 
             
@@ -468,7 +474,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-30 13:39:33" itemprop="dateModified" datetime="2018-08-30T13:39:33+08:00">2018-08-30</time>
+                <time title="修改时间：2018-09-10 16:13:19" itemprop="dateModified" datetime="2018-09-10T16:13:19+08:00">2018-09-10</time>
               
             
           </span>
@@ -499,7 +505,7 @@
 
           
           
-             <span id="/iOS/16-03 CoreAnimation一/" class="leancloud_visitors" data-flag-title="CoreAniamtion学习一">
+             <span id="/iOS/iOS 警告/" class="leancloud_visitors" data-flag-title="iOS警告">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -530,57 +536,36 @@
       
 
       
-        <h3 id="UIView-vs-CALayer"><a href="#UIView-vs-CALayer" class="headerlink" title="UIView vs CALayer"></a>UIView vs CALayer</h3><ol>
-<li>每个 UIView 内部都有一个 CALayer 在背后提供内容的绘制和显示，两者都有树状层级结构，layer 内部有 SubLayers，View 内部有 SubViews;</li>
-<li>在 View显示的时候，UIView 做为 Layer 的 CALayerDelegate,View 的显示内容由内部的 CALayer 的 display;</li>
-<li>View 可以接受事件，而 Layer 不行</li>
+        <h4 id="一、消除警告"><a href="#一、消除警告" class="headerlink" title="一、消除警告"></a>一、消除警告</h4><ol>
+<li>使用cocoapods管理的第三方库的警告，直接在podfile文件里面加入 <code>inhibit_all_warnings!</code></li>
+<li>加入预编译指令：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#pragma clang diagnostic push</span><br><span class="line">#pragma clang diagnostic ignored &quot;-Wdeprecated-declarations&quot;</span><br><span class="line">    //这里是会报警告的代码</span><br><span class="line">    UIAlertView *alert = [[UIAlertView alloc] initWithFrame:self.view.bounds];</span><br><span class="line">#pragma clang diagnostic pop</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<h5 id="属性说明"><a href="#属性说明" class="headerlink" title="属性说明"></a>属性说明</h5><ul>
-<li>@property(nullable, strong) id contents; : 可以将CGImage赋值给他，显示成为一张图片<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">layerView.layer.contents = (__bridge id _Nullable)(image.CGImage);</span><br></pre></td></tr></table></figure>
+<p>其中：<code>-Wdeprecated-declarations</code> 表示这里有废除，不支持的代码（UIAlertView在2.0-9.0,9.0以上弃用，所以会有警告）<br><a id="more"></a><br>那么，如何得到类似 <code>-Wdeprecated-declarations</code> 的标识符呢？<br>如果下图的 <code>Reveal in log</code>有效，那么点击即可<br><img src="http://7xsuaf.com1.z0.glb.clouddn.com/2016-06-20/1.png" alt=""><br>无效的话也别急，你可以如下图操作查看，如果没有就先编译/运行一下<br><img src="http://7xsuaf.com1.z0.glb.clouddn.com/2016-06-20/2.png" alt=""><br>然后在下图红框位置找到警告的标识符<br><img src="http://7xsuaf.com1.z0.glb.clouddn.com/2016-06-20/3.png" alt=""></p>
+<ol start="3">
+<li>如果要删除一个.m里面的所有弃用的警告，如下图操作：<br><img src="http://7xsuaf.com1.z0.glb.clouddn.com/2016-06-20/4.png" alt=""></li>
+<li>如果要删除项目中所有弃用的警告，如下图操作：<br><img src="http://7xsuaf.com1.z0.glb.clouddn.com/2016-06-20/5.png" alt=""><br>当然，你也可以填入别的标识符~</li>
+<li>有的警告编译器会教你如何消除，而你只需要点一下即可！！！</li>
+</ol>
+<h4 id="二、添加警告"><a href="#二、添加警告" class="headerlink" title="二、添加警告"></a>二、添加警告</h4><ol>
+<li>直接 <code>#warning &lt;#message#&gt;</code></li>
+<li><p>在自己写的三方库提供的接口下写上适用范围</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (void)test NS_DEPRECATED_IOS(2_0, 4_0);</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<a id="more"></a>
-<ul>
-<li><p><code>@property(copy) NSString *contentsGravity; : 类似于UIView的contentMode</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">kCAGravityCenter</span><br><span class="line">kCAGravityTop</span><br><span class="line">kCAGravityBottom</span><br><span class="line">kCAGravityLeft</span><br><span class="line">kCAGravityRight</span><br><span class="line">kCAGravityTopLeft</span><br><span class="line">kCAGravityTopRight</span><br><span class="line">kCAGravityBottomLeft</span><br><span class="line">kCAGravityBottomRight</span><br><span class="line">kCAGravityResize</span><br><span class="line">kCAGravityResizeAspect</span><br><span class="line">kCAGravityResizeAspectFill</span><br></pre></td></tr></table></figure>
+<li><p>也可以加点信息提示该方法弃用了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (void)test __attribute((deprecated(&quot;这个接口已弃用，请使用xxx！&quot;));</span><br><span class="line">或者</span><br><span class="line">- (void)test NS_DEPRECATED(2_0, 2_0, 2_0, 2_0, &quot;这个接口已弃用，请使用xxx！&quot;);</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>@property BOOL masksToBounds; : 超出位置是否裁切</p>
-</li>
-<li>@property CGRect contentsRect;<br>这个属性决定图片的显示位置，默认是{0，0，1，1}从左上角到左下角显示，你也可以设为其他的,前两个是起点比例，后两个分别对应宽度和高度比例<br>(该属性一般用于给你一张有许多小图的大图，然后你根据自己的需要去拿你需要的图片)</li>
-<li>@property CGRect contentsCenter; : 类似于UIImage resizableImageWithCapInsets 属性！</li>
-</ul>
-<hr>
-<ul>
-<li>@property CGPoint position; : 类似于UIView的Center， 但是它作用的也是UIView的Center而不是Layer的Center哦</li>
-<li>@property CGPoint anchorPoint; : 我的理解是layer中心点的位置，默认为{0.5，0.5}，所以居中显示，但是将它设置为{0，0}，那么layer会以{0，0}为中心点显示哦！这时position没变哦！</li>
-<li>@property CGFloat zPosition;</li>
-<li>@property CGFloat anchorPointZ;<br>由于CALayer是存在于3维空间中的，所以我们可以改变他的z轴(你可以理解为Z轴就是垂直严你的屏幕的轴)</li>
-</ul>
-<hr>
-<ul>
-<li>@property CGFloat cornerRadius; : 圆角半径(我们一般给视图做圆角的时候，如果界面不是太多，可以使用该方法，但是如果是对Cell里面的视图进行圆角设置或者太多视图需要进行圆角设置，就别用这个属性了，因为layer的渲染会耗资源)</li>
-<li>@property CGFloat borderWidth;</li>
-<li>@property(nullable) CGColorRef borderColor;<br>边框的Width和颜色，不必多说</li>
-<li>@property CGFloat shadowRadius;  阴影模糊度<br>关于阴影的一些属性，建议如<code>cornerRadius</code>一样，使用阴影的时候别用maskToBounds哦！因为阴影在范围外，使用了会被裁剪掉哦！shadowPath</li>
-<li>@property(nullable) CGColorRef shadowColor; 阴影颜色</li>
-<li>@property float shadowOpacity;  阴影透明度</li>
-<li>@property CGSize shadowOffset;  阴影偏移量</li>
-<li>@property(nullable) CGPathRef shadowPath; 感觉该属性就是为了解决使用上述属性设置阴影好资源诞生的，推荐使用这个属性设置阴影哦！<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">layerView.layer.shadowOpacity = 0.5;</span><br><span class="line">layerView.layer.shadowColor = [UIColor redColor].CGColor;</span><br><span class="line">layerView.layer.shadowOffset = CGSizeMake(10, 10);</span><br><span class="line">//    layerView.layer.shadowPath = CGPathCreateWithRect(layerView.layer.bounds, NULL);</span><br><span class="line"></span><br><span class="line">//    layerView.layer.shadowPath = CGPathCreateWithRoundedRect(layerView.layer.bounds, layerView.layer.bounds.size.width * 0.5, layerView.layer.bounds.size.width * 0.5, NULL);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<ul>
-<li><ul>
-<li>(void)setAffineTransform:(CGAffineTransform)m; 这个就是UIView的<code>transform</code>实现<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">CGAffineTransform 方法</span><br><span class="line">CGAffineTransformMakeTranslation(CGFloat tx, CGFloat ty) // 移动</span><br><span class="line">CGAffineTransformMakeScale(CGFloat sx, CGFloat sy) // 放缩</span><br><span class="line">CGAffineTransformMakeRotation(CGFloat angle) // 旋转</span><br><span class="line">CGAffineTransformIdentity  // 复位，初始状态</span><br><span class="line">混合变换</span><br><span class="line">CGAffineTransformTranslate(CGAffineTransform t, CGFloat tx, CGFloat ty) // 在t的基础上移动</span><br><span class="line">CGAffineTransformScale(CGAffineTransform t, CGFloat sx, CGFloat sy) // 在t的基础上放缩</span><br><span class="line">CGAffineTransformRotate(CGAffineTransform t, CGFloat angle) // 在t的基础上旋转</span><br><span class="line">注意： 旋转时使用的是弧度而不是角度，你可以利用下列公式转换角度到弧度</span><br><span class="line">#define RADIANS_TO_DEGREES(x) ((x)/M_PI*180.0)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>@property CATransform3D transform; 仿射变换  3D动画</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CATransform3DMakeRotation(CGFloat angle, CGFloat x, CGFloat y, CGFloat z)</span><br><span class="line">CATransform3DMakeScale(CGFloat sx, CGFloat sy, CGFloat sz)</span><br><span class="line">CATransform3DMakeTranslation(Gloat tx, CGFloat ty, CGFloat tz)</span><br><span class="line"></span><br><span class="line">CATransform3D的 m34 元素, 用来做透视,m34用于按比例缩放X和Y的值来计算到底要离视角多远。</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>现在我想我们可以用他们来做一些动画了…</p>
-
+</ol>
+<h4 id="三、碰到过的警告"><a href="#三、碰到过的警告" class="headerlink" title="三、碰到过的警告"></a>三、碰到过的警告</h4><ol>
+<li><code>Unused variable &#39;xxx&#39;</code> - 没有使用</li>
+<li><code>Deprecated: Push segues are deprecated in iOS 8.0 and later</code> - iOS8之后呢，不要再用push拖线了，统一用show，他会自己根据你是否有导航栏来判断走push还是走modal</li>
+<li><code>Unsupported Configuration: Scene is unreachable due to lack of entry points and does not have an identifier for runtime access via -instantiateViewControllerWithIdentifier:.</code> - 一般是storyboard报的警告，简而言之就是你有的页面没有和箭头所指的控制器连起来，导致最终改页面可能无法显示</li>
+<li><code>&#39;sizeWithFont:constrainedToSize:lineBreakMode:&#39; is deprecated: first deprecated in iOS 7.0 - Use -boundingRectWithSize:options:attributes:context:</code> - 方法废除，旧的方法sizeWithFontToSize在iOS7后就废除了取而代之是boundingRectWithSize方法</li>
+<li><code>Undeclared selector &#39;historyAction&#39;</code> - 使用未声明的方法，一般出现在@selector() 括号里写了个不存在的方法或方法名写错了</li>
+<li><code>Code will never be executed</code> - 代码永远也不会执行，检查代码吧</li>
+<li><code>&quot;Two-stage rotation animation is deprecated. This application should use the smoother single-stage animation.&quot;</code><br>原因：不应该将UITabBarControllier嵌入到UINavigationController中作为rootViewController，但是，我们的确想要这样做，只需要在将tabbar作为rootviewcontroller之前先设置<code>tabBarController.selectedIndex= 0</code>。</li>
+</ol>
+<h4 id="警告类型"><a href="#警告类型" class="headerlink" title="警告类型"></a><a href="http://fuckingclangwarnings.com/" target="_blank" rel="noopener">警告类型</a></h4>
       
     </div>
 
@@ -618,7 +603,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Aniamtion/" rel="tag"><i class="fa fa-tag"></i> Aniamtion</a>
+            <a href="/tags/警告/" rel="tag"><i class="fa fa-tag"></i> 警告</a>
           
         </div>
       
@@ -631,8 +616,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/iOS/16-01 利用pod-trunk发布程序/" rel="next" title="利用pod trunk发布程序">
-                <i class="fa fa-chevron-left"></i> 利用pod trunk发布程序
+              <a href="/default/Git 命令/" rel="next" title="Git 操作">
+                <i class="fa fa-chevron-left"></i> Git 操作
               </a>
             
           </div>
@@ -641,8 +626,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/iOS/16-03 CoreAnimation二/" rel="prev" title="CoreAniamtion学习二">
-                CoreAniamtion学习二 <i class="fa fa-chevron-right"></i>
+              <a href="/default/Alfred workflow/" rel="prev" title="Alfred 神器使用">
+                Alfred 神器使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -825,7 +810,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#UIView-vs-CALayer"><span class="nav-number">1.</span> <span class="nav-text">UIView vs CALayer</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#属性说明"><span class="nav-number">1.0.1.</span> <span class="nav-text">属性说明</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、消除警告"><span class="nav-number">1.</span> <span class="nav-text">一、消除警告</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、添加警告"><span class="nav-number">2.</span> <span class="nav-text">二、添加警告</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、碰到过的警告"><span class="nav-number">3.</span> <span class="nav-text">三、碰到过的警告</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#警告类型"><span class="nav-number">4.</span> <span class="nav-text">警告类型</span></a></li></ol></div>
             
 
           </div>

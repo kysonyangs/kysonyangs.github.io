@@ -163,19 +163,19 @@
 
 
 
-  <meta name="description" content="终端命令设置别名： 首先，你的别名得不存在，在终端输入你想要设置的别名，提示不能找到命令，则别名不存在，我们可以放心使用。 alias可以查看当前已设置的所有的别名 永久化的别名设置123456vim ~/.bash_profile// 在最下面添加你想要设置的别名，比如alias cdg=&amp;quot;cd ~/Desktop/GG&amp;quot;// 然后 wq保存退出，在终端输入source ~/">
+  <meta name="description" content="Mac复制粘贴无效解决1234launchctl list | grep com.apple.pboardlaunchctl stop com.apple.pboardlaunchctl start com.apple.pboard 解决Alfred每次开机后，都会提示“是否允许访问通讯录”1sudo codesign -f -d -s - /Applications/Alfred\ 3.app/">
 <meta name="keywords" content="git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="终端操作">
 <meta property="og:url" content="https://kysonyangs.github.io/default/终端操作/index.html">
 <meta property="og:site_name" content="kysonyangs">
-<meta property="og:description" content="终端命令设置别名： 首先，你的别名得不存在，在终端输入你想要设置的别名，提示不能找到命令，则别名不存在，我们可以放心使用。 alias可以查看当前已设置的所有的别名 永久化的别名设置123456vim ~/.bash_profile// 在最下面添加你想要设置的别名，比如alias cdg=&amp;quot;cd ~/Desktop/GG&amp;quot;// 然后 wq保存退出，在终端输入source ~/">
+<meta property="og:description" content="Mac复制粘贴无效解决1234launchctl list | grep com.apple.pboardlaunchctl stop com.apple.pboardlaunchctl start com.apple.pboard 解决Alfred每次开机后，都会提示“是否允许访问通讯录”1sudo codesign -f -d -s - /Applications/Alfred\ 3.app/">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://7xsuaf.com1.z0.glb.clouddn.com/2016-04-11/zhongduan.png">
-<meta property="og:updated_time" content="2018-09-10T07:55:21.636Z">
+<meta property="og:updated_time" content="2018-09-10T08:06:51.741Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="终端操作">
-<meta name="twitter:description" content="终端命令设置别名： 首先，你的别名得不存在，在终端输入你想要设置的别名，提示不能找到命令，则别名不存在，我们可以放心使用。 alias可以查看当前已设置的所有的别名 永久化的别名设置123456vim ~/.bash_profile// 在最下面添加你想要设置的别名，比如alias cdg=&amp;quot;cd ~/Desktop/GG&amp;quot;// 然后 wq保存退出，在终端输入source ~/">
+<meta name="twitter:description" content="Mac复制粘贴无效解决1234launchctl list | grep com.apple.pboardlaunchctl stop com.apple.pboardlaunchctl start com.apple.pboard 解决Alfred每次开机后，都会提示“是否允许访问通讯录”1sudo codesign -f -d -s - /Applications/Alfred\ 3.app/">
 <meta name="twitter:image" content="http://7xsuaf.com1.z0.glb.clouddn.com/2016-04-11/zhongduan.png">
 
 
@@ -470,7 +470,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-09-10 15:55:21" itemprop="dateModified" datetime="2018-09-10T15:55:21+08:00">2018-09-10</time>
+                <time title="Modified: 2018-09-10 16:06:51" itemprop="dateModified" datetime="2018-09-10T16:06:51+08:00">2018-09-10</time>
               
             
           </span>
@@ -514,12 +514,14 @@
       
 
       
-        <h4 id="终端命令设置别名："><a href="#终端命令设置别名：" class="headerlink" title="终端命令设置别名："></a>终端命令设置别名：</h4><ol>
+        <h3 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h3><h4 id="复制粘贴无效解决"><a href="#复制粘贴无效解决" class="headerlink" title="复制粘贴无效解决"></a>复制粘贴无效解决</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">launchctl list | grep com.apple.pboard</span><br><span class="line"></span><br><span class="line">launchctl stop com.apple.pboard</span><br><span class="line">launchctl start com.apple.pboard</span><br></pre></td></tr></table></figure>
+<h4 id="解决Alfred每次开机后，都会提示“是否允许访问通讯录”"><a href="#解决Alfred每次开机后，都会提示“是否允许访问通讯录”" class="headerlink" title="解决Alfred每次开机后，都会提示“是否允许访问通讯录”"></a>解决Alfred每次开机后，都会提示“是否允许访问通讯录”</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo codesign -f -d -s - /Applications/Alfred\ 3.app/Contents/Frameworks/Alfred\ Framework.framework/Versions/A/Alfred\ Framework</span><br></pre></td></tr></table></figure>
+<h3 id="终端"><a href="#终端" class="headerlink" title="终端"></a>终端</h3><h4 id="设置别名"><a href="#设置别名" class="headerlink" title="设置别名"></a>设置别名</h4><ol>
 <li>首先，你的别名得不存在，在终端输入你想要设置的别名，提示不能找到命令，则别名不存在，我们可以放心使用。 <code>alias</code>可以查看当前已设置的所有的别名</li>
 <li>永久化的别名设置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bash_profile</span><br><span class="line">// 在最下面添加你想要设置的别名，比如</span><br><span class="line">alias cdg=&quot;cd ~/Desktop/GG&quot;</span><br><span class="line">// 然后 wq保存退出，在终端输入</span><br><span class="line">source ~/.bash_profile</span><br><span class="line">// 现在，你可以使用你设置的别名了</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h4 id="修改终端前面的显示（太长不好看）"><a href="#修改终端前面的显示（太长不好看）" class="headerlink" title="修改终端前面的显示（太长不好看）"></a>修改终端前面的显示（太长不好看）</h4><ol>
+<h4 id="修改终端前面的显示"><a href="#修改终端前面的显示" class="headerlink" title="修改终端前面的显示"></a>修改终端前面的显示</h4><ol>
 <li>修改终端的显示成 省略前面的电脑名<br><img src="http://7xsuaf.com1.z0.glb.clouddn.com/2016-04-11/zhongduan.png" alt=""></li>
 <li>终端输入open /etc</li>
 <li>找到bashrc-&gt;显示简介-&gt;将只读改成读与写，配置完成后改回去</li>
@@ -669,7 +671,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">35</span>
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -725,7 +727,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">11</span>
+                      
+                    
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -770,7 +774,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#终端命令设置别名："><span class="nav-number">1.</span> <span class="nav-text">终端命令设置别名：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改终端前面的显示（太长不好看）"><span class="nav-number">2.</span> <span class="nav-text">修改终端前面的显示（太长不好看）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mac"><span class="nav-number">1.</span> <span class="nav-text">Mac</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#复制粘贴无效解决"><span class="nav-number">1.1.</span> <span class="nav-text">复制粘贴无效解决</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决Alfred每次开机后，都会提示“是否允许访问通讯录”"><span class="nav-number">1.2.</span> <span class="nav-text">解决Alfred每次开机后，都会提示“是否允许访问通讯录”</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#终端"><span class="nav-number">2.</span> <span class="nav-text">终端</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#设置别名"><span class="nav-number">2.1.</span> <span class="nav-text">设置别名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改终端前面的显示"><span class="nav-number">2.2.</span> <span class="nav-text">修改终端前面的显示</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -163,25 +163,25 @@
 
 
 
-  <meta name="description" content="UIView vs CALayer 每个 UIView 内部都有一个 CALayer 在背后提供内容的绘制和显示，两者都有树状层级结构，layer 内部有 SubLayers，View 内部有 SubViews; 在 View显示的时候，UIView 做为 Layer 的 CALayerDelegate,View 的显示内容由内部的 CALayer 的 display; View 可以接受事件，而">
-<meta name="keywords" content="Aniamtion">
+  <meta name="description" content="浅拷贝指只是将对象内存地址多了一个引用，也就是说，拷贝结束之后，两个对象的值不仅相同，而且对象所指的内存地址都是一样的。 单层深拷贝 对于不可变的容器类对象(如 NSArray、NSSet、NSDictionary)进行 mutableCopy 操作，内存地址发生了变化，但是其中的元素内存地址并没有发生变化，属于单层深拷贝。 对于可变集合类对象(如 NSMutableArray、NSMutable">
+<meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CoreAniamtion学习一">
-<meta property="og:url" content="https://kysonyangs.github.io/iOS/16-03 CoreAnimation一/index.html">
+<meta property="og:title" content="深拷贝与浅拷贝">
+<meta property="og:url" content="https://kysonyangs.github.io/default/深拷贝与浅拷贝/index.html">
 <meta property="og:site_name" content="kysonyangs">
-<meta property="og:description" content="UIView vs CALayer 每个 UIView 内部都有一个 CALayer 在背后提供内容的绘制和显示，两者都有树状层级结构，layer 内部有 SubLayers，View 内部有 SubViews; 在 View显示的时候，UIView 做为 Layer 的 CALayerDelegate,View 的显示内容由内部的 CALayer 的 display; View 可以接受事件，而">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-30T05:39:33.522Z">
+<meta property="og:description" content="浅拷贝指只是将对象内存地址多了一个引用，也就是说，拷贝结束之后，两个对象的值不仅相同，而且对象所指的内存地址都是一样的。 单层深拷贝 对于不可变的容器类对象(如 NSArray、NSSet、NSDictionary)进行 mutableCopy 操作，内存地址发生了变化，但是其中的元素内存地址并没有发生变化，属于单层深拷贝。 对于可变集合类对象(如 NSMutableArray、NSMutable">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-10T08:12:22.202Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CoreAniamtion学习一">
-<meta name="twitter:description" content="UIView vs CALayer 每个 UIView 内部都有一个 CALayer 在背后提供内容的绘制和显示，两者都有树状层级结构，layer 内部有 SubLayers，View 内部有 SubViews; 在 View显示的时候，UIView 做为 Layer 的 CALayerDelegate,View 的显示内容由内部的 CALayer 的 display; View 可以接受事件，而">
+<meta name="twitter:title" content="深拷贝与浅拷贝">
+<meta name="twitter:description" content="浅拷贝指只是将对象内存地址多了一个引用，也就是说，拷贝结束之后，两个对象的值不仅相同，而且对象所指的内存地址都是一样的。 单层深拷贝 对于不可变的容器类对象(如 NSArray、NSSet、NSDictionary)进行 mutableCopy 操作，内存地址发生了变化，但是其中的元素内存地址并没有发生变化，属于单层深拷贝。 对于可变集合类对象(如 NSMutableArray、NSMutable">
 
 
 
 
 
 
-  <link rel="canonical" href="https://kysonyangs.github.io/iOS/16-03 CoreAnimation一/"/>
+  <link rel="canonical" href="https://kysonyangs.github.io/深拷贝与浅拷贝/"/>
 
 
 
@@ -191,7 +191,7 @@
   };
 </script>
 
-  <title>CoreAniamtion学习一 | kysonyangs</title>
+  <title>深拷贝与浅拷贝 | kysonyangs</title>
   
 
 
@@ -241,7 +241,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
   
   
@@ -291,7 +291,7 @@
           
           <li class="menu-item menu-item-home">
     <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
   </li>
         
         
@@ -299,7 +299,7 @@
           
           <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
   </li>
         
         
@@ -307,7 +307,7 @@
           
           <li class="menu-item menu-item-categories">
     <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
   </li>
         
         
@@ -315,7 +315,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
   </li>
         
         
@@ -323,7 +323,7 @@
           
           <li class="menu-item menu-item-about">
     <a href="/about/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
   </li>
 
       
@@ -333,7 +333,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
         </li>
       
     </ul>
@@ -409,7 +409,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/iOS/16-03 CoreAnimation一/">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/深拷贝与浅拷贝/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="kysonyangs">
@@ -426,7 +426,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CoreAniamtion学习一
+          <h1 class="post-title" itemprop="name headline">深拷贝与浅拷贝
               
             
           </h1>
@@ -444,14 +444,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="创建时间：2016-03-08 19:10:53" itemprop="dateCreated datePublished" datetime="2016-03-08T19:10:53+08:00">2016-03-08</time>
+              <time title="Created: 2016-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2016-06-06T00:00:00+08:00">2016-06-06</time>
             
 
             
@@ -466,32 +466,14 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">更新于</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="修改时间：2018-08-30 13:39:33" itemprop="dateModified" datetime="2018-08-30T13:39:33+08:00">2018-08-30</time>
+                <time title="Modified: 2018-09-10 16:12:22" itemprop="dateModified" datetime="2018-09-10T16:12:22+08:00">2018-09-10</time>
               
             
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -499,13 +481,13 @@
 
           
           
-             <span id="/iOS/16-03 CoreAnimation一/" class="leancloud_visitors" data-flag-title="CoreAniamtion学习一">
+             <span id="/default/深拷贝与浅拷贝/" class="leancloud_visitors" data-flag-title="深拷贝与浅拷贝">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">阅读次数：</span>
+                 <span class="post-meta-item-text">Views: </span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -530,56 +512,52 @@
       
 
       
-        <h3 id="UIView-vs-CALayer"><a href="#UIView-vs-CALayer" class="headerlink" title="UIView vs CALayer"></a>UIView vs CALayer</h3><ol>
-<li>每个 UIView 内部都有一个 CALayer 在背后提供内容的绘制和显示，两者都有树状层级结构，layer 内部有 SubLayers，View 内部有 SubViews;</li>
-<li>在 View显示的时候，UIView 做为 Layer 的 CALayerDelegate,View 的显示内容由内部的 CALayer 的 display;</li>
-<li>View 可以接受事件，而 Layer 不行</li>
+        <h3 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h3><p>指只是将对象内存地址多了一个引用，也就是说，拷贝结束之后，两个对象的值不仅相同，而且对象所指的内存地址都是一样的。</p>
+<h3 id="单层深拷贝"><a href="#单层深拷贝" class="headerlink" title="单层深拷贝"></a>单层深拷贝</h3><ol>
+<li>对于不可变的容器类对象(如 <code>NSArray</code>、<code>NSSet</code>、<code>NSDictionary</code>)进行 <code>mutableCopy</code> 操作，内存地址发生了变化，但是其中的元素内存地址并没有发生变化，属于单层深拷贝。</li>
+<li>对于可变集合类对象(如 <code>NSMutableArray</code>、<code>NSMutableSet</code>、<code>NSMutableDictionary</code>)，不管是进行 <code>copy</code> 操作还是 <code>mutableCopy</code>操作，其内存地址都发生了变化，但是其中的元素内存地址都没有发生变化，属于单层深拷贝。</li>
 </ol>
-<h5 id="属性说明"><a href="#属性说明" class="headerlink" title="属性说明"></a>属性说明</h5><ul>
-<li>@property(nullable, strong) id contents; : 可以将CGImage赋值给他，显示成为一张图片<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">layerView.layer.contents = (__bridge id _Nullable)(image.CGImage);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<a id="more"></a>
+<h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><p>指拷贝一个对象的具体内容，拷贝结束之后，两个对象的值虽然是相同的，但是指向的内存地址是不同的。两个对象之间也互不影响，互不干扰。</p>
+<ol>
+<li><p>非集合类型的 <code>copy</code> 与 <code>mutableCopy</code></p>
 <ul>
-<li><p><code>@property(copy) NSString *contentsGravity; : 类似于UIView的contentMode</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">kCAGravityCenter</span><br><span class="line">kCAGravityTop</span><br><span class="line">kCAGravityBottom</span><br><span class="line">kCAGravityLeft</span><br><span class="line">kCAGravityRight</span><br><span class="line">kCAGravityTopLeft</span><br><span class="line">kCAGravityTopRight</span><br><span class="line">kCAGravityBottomLeft</span><br><span class="line">kCAGravityBottomRight</span><br><span class="line">kCAGravityResize</span><br><span class="line">kCAGravityResizeAspect</span><br><span class="line">kCAGravityResizeAspectFill</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>@property BOOL masksToBounds; : 超出位置是否裁切</p>
-</li>
-<li>@property CGRect contentsRect;<br>这个属性决定图片的显示位置，默认是{0，0，1，1}从左上角到左下角显示，你也可以设为其他的,前两个是起点比例，后两个分别对应宽度和高度比例<br>(该属性一般用于给你一张有许多小图的大图，然后你根据自己的需要去拿你需要的图片)</li>
-<li>@property CGRect contentsCenter; : 类似于UIImage resizableImageWithCapInsets 属性！</li>
+<li><code>NSString</code><ul>
+<li><code>copy</code> 内存地址不变，浅拷贝</li>
+<li><code>mutableCopy</code> 内存地址改变，深拷贝</li>
 </ul>
-<hr>
+</li>
+<li><code>NSMutableString</code><ul>
+<li><code>copy</code> 内存地址改变，深拷贝</li>
+<li><code>mutableCopy</code> 内存地址改变，深拷贝</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>集合类型的 <code>copy</code> 与 <code>mutableCopy</code></p>
 <ul>
-<li>@property CGPoint position; : 类似于UIView的Center， 但是它作用的也是UIView的Center而不是Layer的Center哦</li>
-<li>@property CGPoint anchorPoint; : 我的理解是layer中心点的位置，默认为{0.5，0.5}，所以居中显示，但是将它设置为{0，0}，那么layer会以{0，0}为中心点显示哦！这时position没变哦！</li>
-<li>@property CGFloat zPosition;</li>
-<li>@property CGFloat anchorPointZ;<br>由于CALayer是存在于3维空间中的，所以我们可以改变他的z轴(你可以理解为Z轴就是垂直严你的屏幕的轴)</li>
+<li><code>NSArray</code><ul>
+<li><code>copy</code> 内存地址不变，内部元素地址不变，浅拷贝</li>
+<li><code>mutableCopy</code> 内存地址改变，但是内部元素地址不变，单层深拷贝</li>
 </ul>
-<hr>
+</li>
+<li><code>NSMutableArray</code><ul>
+<li><code>copy</code> 内存地址改变，但是内部元素地址不变，单层深拷贝</li>
+<li><code>mutableCopy</code> 内存地址改变，但是内部元素地址不变，单层深拷贝</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>实现集合类型的深拷贝</li>
+</ol>
 <ul>
-<li>@property CGFloat cornerRadius; : 圆角半径(我们一般给视图做圆角的时候，如果界面不是太多，可以使用该方法，但是如果是对Cell里面的视图进行圆角设置或者太多视图需要进行圆角设置，就别用这个属性了，因为layer的渲染会耗资源)</li>
-<li>@property CGFloat borderWidth;</li>
-<li>@property(nullable) CGColorRef borderColor;<br>边框的Width和颜色，不必多说</li>
-<li>@property CGFloat shadowRadius;  阴影模糊度<br>关于阴影的一些属性，建议如<code>cornerRadius</code>一样，使用阴影的时候别用maskToBounds哦！因为阴影在范围外，使用了会被裁剪掉哦！shadowPath</li>
-<li>@property(nullable) CGColorRef shadowColor; 阴影颜色</li>
-<li>@property float shadowOpacity;  阴影透明度</li>
-<li>@property CGSize shadowOffset;  阴影偏移量</li>
-<li>@property(nullable) CGPathRef shadowPath; 感觉该属性就是为了解决使用上述属性设置阴影好资源诞生的，推荐使用这个属性设置阴影哦！<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">layerView.layer.shadowOpacity = 0.5;</span><br><span class="line">layerView.layer.shadowColor = [UIColor redColor].CGColor;</span><br><span class="line">layerView.layer.shadowOffset = CGSizeMake(10, 10);</span><br><span class="line">//    layerView.layer.shadowPath = CGPathCreateWithRect(layerView.layer.bounds, NULL);</span><br><span class="line"></span><br><span class="line">//    layerView.layer.shadowPath = CGPathCreateWithRoundedRect(layerView.layer.bounds, layerView.layer.bounds.size.width * 0.5, layerView.layer.bounds.size.width * 0.5, NULL);</span><br></pre></td></tr></table></figure>
+<li><p>通过归解档生成两份完全独立的对象，但是前提是<code>对象</code>(<code>子对象</code>)<strong>必须全部支持 <code>NSCoding</code> 协议</strong>。<strong>推荐使用 <code>YYModel + NSCopying</code> 这样就不用自己写逻辑代码了 😁</strong></p>
+</li>
+<li><p>自己实现一个深拷贝协议</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@protocol YSDeepCopy &lt;NSObject&gt;</span><br><span class="line">- (id)ys_deepCopy;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<hr>
-<ul>
-<li><ul>
-<li>(void)setAffineTransform:(CGAffineTransform)m; 这个就是UIView的<code>transform</code>实现<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">CGAffineTransform 方法</span><br><span class="line">CGAffineTransformMakeTranslation(CGFloat tx, CGFloat ty) // 移动</span><br><span class="line">CGAffineTransformMakeScale(CGFloat sx, CGFloat sy) // 放缩</span><br><span class="line">CGAffineTransformMakeRotation(CGFloat angle) // 旋转</span><br><span class="line">CGAffineTransformIdentity  // 复位，初始状态</span><br><span class="line">混合变换</span><br><span class="line">CGAffineTransformTranslate(CGAffineTransform t, CGFloat tx, CGFloat ty) // 在t的基础上移动</span><br><span class="line">CGAffineTransformScale(CGAffineTransform t, CGFloat sx, CGFloat sy) // 在t的基础上放缩</span><br><span class="line">CGAffineTransformRotate(CGAffineTransform t, CGFloat angle) // 在t的基础上旋转</span><br><span class="line">注意： 旋转时使用的是弧度而不是角度，你可以利用下列公式转换角度到弧度</span><br><span class="line">#define RADIANS_TO_DEGREES(x) ((x)/M_PI*180.0)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>@property CATransform3D transform; 仿射变换  3D动画</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CATransform3DMakeRotation(CGFloat angle, CGFloat x, CGFloat y, CGFloat z)</span><br><span class="line">CATransform3DMakeScale(CGFloat sx, CGFloat sy, CGFloat sz)</span><br><span class="line">CATransform3DMakeTranslation(Gloat tx, CGFloat ty, CGFloat tz)</span><br><span class="line"></span><br><span class="line">CATransform3D的 m34 元素, 用来做透视,m34用于按比例缩放X和Y的值来计算到底要离视角多远。</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>现在我想我们可以用他们来做一些动画了…</p>
+<p>@interface NSArray (YSDeepCopy) <ysdeepcopy><br>@end<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- (instancetype)ys_deepCopy &#123;</span><br><span class="line">    NSMutableArray *mArray = [NSMutableArray arrayWithCapacity:self.count];</span><br><span class="line"></span><br><span class="line">    for (id subObject in self) &#123;</span><br><span class="line">        id deepCopySubObject = nil;</span><br><span class="line">        if ([subObject respondsToSelector:@selector(ys_deepCopy)]) &#123;</span><br><span class="line">            deepCopySubObject = [subObject ys_deepCopy];</span><br><span class="line">        &#125; else if ([subObject conformsToProtocol:@protocol(NSCopying)]) &#123;</span><br><span class="line">            deepCopySubObject = [subObject copy];</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            NSAssert1(NO, @&quot;Class \&quot;%s\&quot; not support YSDeepCopy&quot;, object_getClassName(subObject));</span><br><span class="line">            deepCopySubObject = subObject;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        [mArray addObject:deepCopySubObject ?: subObject];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if ([self isKindOfClass:[NSMutableArray class]]) &#123;</span><br><span class="line">        return mArray;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return [NSArray arrayWithArray:mArray];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></ysdeepcopy></p>
+<p>但是如果 数组里面 添加的是自己定义的Model， 则应该实现 <code>Model</code> 的 <code>NSCopying</code> 协议， 或者 <code>YSDeepCopy</code> 协议<br><strong>推荐使用 <code>YYModel + NSCopying</code> 这样就不用自己写逻辑代码了 😁</strong></p>
 
       
     </div>
@@ -618,7 +596,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Aniamtion/" rel="tag"><i class="fa fa-tag"></i> Aniamtion</a>
+            <a href="/tags/iOS/" rel="tag"><i class="fa fa-tag"></i> iOS</a>
           
         </div>
       
@@ -631,8 +609,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/iOS/16-01 利用pod-trunk发布程序/" rel="next" title="利用pod trunk发布程序">
-                <i class="fa fa-chevron-left"></i> 利用pod trunk发布程序
+              <a href="/default/基础知识/" rel="next" title="基础知识">
+                <i class="fa fa-chevron-left"></i> 基础知识
               </a>
             
           </div>
@@ -641,8 +619,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/iOS/16-03 CoreAnimation二/" rel="prev" title="CoreAniamtion学习二">
-                CoreAniamtion学习二 <i class="fa fa-chevron-right"></i>
+              <a href="/default/Git 命令/" rel="prev" title="Git 操作">
+                Git 操作 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -699,10 +677,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
+            Overview
           </li>
         </ul>
       
@@ -723,7 +701,7 @@
                   <a href="/archives/">
                 
                     <span class="site-state-item-count">37</span>
-                    <span class="site-state-item-name">日志</span>
+                    <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
               
@@ -744,7 +722,7 @@
                       
                     
                     <span class="site-state-item-count">4</span>
-                    <span class="site-state-item-name">分类</span>
+                    <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
               
@@ -781,7 +759,7 @@
                       
                     
                     <span class="site-state-item-count">12</span>
-                    <span class="site-state-item-name">标签</span>
+                    <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
               
@@ -825,7 +803,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#UIView-vs-CALayer"><span class="nav-number">1.</span> <span class="nav-text">UIView vs CALayer</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#属性说明"><span class="nav-number">1.0.1.</span> <span class="nav-text">属性说明</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#浅拷贝"><span class="nav-number">1.</span> <span class="nav-text">浅拷贝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单层深拷贝"><span class="nav-number">2.</span> <span class="nav-text">单层深拷贝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深拷贝"><span class="nav-number">3.</span> <span class="nav-text">深拷贝</span></a></li></ol></div>
             
 
           </div>
