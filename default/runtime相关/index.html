@@ -172,7 +172,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1829339-77757288cc139f44.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700/format/webp">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1829339-b2ed87dd5cd13ea4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/780/format/webp">
-<meta property="og:updated_time" content="2018-09-11T07:54:04.553Z">
+<meta property="og:updated_time" content="2018-09-21T07:59:37.687Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Runtime相关">
 <meta name="twitter:description" content="RuntimeRuntime 又叫运行时，是一套底层的 C 语言 API，其为 iOS 内部的核心之一，我们平时编写的 OC 代码，底层都是基于它来实现的。 Objective-C 是一门动态语言，它会将一些工作放在代码运行时才处理而并非编译时。也就是说，有很多类和成员变量在我们编译的时是不知道的，而在运行时，我们所编写的代码会转换成完整的确定的代码运行。 因此，编译器是不够的，我们还需要一个运行">
@@ -470,7 +470,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-09-11 15:54:04" itemprop="dateModified" datetime="2018-09-11T15:54:04+08:00">2018-09-11</time>
+                <time title="Modified: 2018-09-21 15:59:37" itemprop="dateModified" datetime="2018-09-21T15:59:37+08:00">2018-09-21</time>
               
             
           </span>
@@ -565,16 +565,16 @@
 </ol>
 <p>附加：</p>
 <ol>
-<li><p>实现weak后，为什么对象释放后会自动为nil？<br> runtime 对注册的类， 会进行布局，对于 weak 对象会放入一个 hash 表中。 用 weak 指向的对象内存地址作为 key，当此对象的引用计数为 0 的时候会 dealloc，假如 weak 指向的对象内存地址是 a ，那么就会以 a 为键， 在这个 weak 表中搜索，找到所有以 a 为键的 weak 对象，从而设置为 nil 。</p>
-</li>
-<li><p>当weak引用指向的对象被释放时，又是如何去处理weak指针的呢？</p>
-</li>
+<li>实现weak后，为什么对象释放后会自动为nil？<br> runtime 对注册的类， 会进行布局，对于 weak 对象会放入一个 hash 表中。 用 weak 指向的对象内存地址作为 key，当此对象的引用计数为 0 的时候会 dealloc，假如 weak 指向的对象内存地址是 a ，那么就会以 a 为键， 在这个 weak 表中搜索，找到所有以 a 为键的 weak 对象，从而设置为 nil 。</li>
+<li>当weak引用指向的对象被释放时，又是如何去处理weak指针的呢？<ol>
 <li>调用objc_release</li>
 <li>因为对象的引用计数为0，所以执行dealloc</li>
 <li>在dealloc中，调用了_objc_rootDealloc函数</li>
 <li>在_objc_rootDealloc中，调用了object_dispose函数</li>
 <li>调用objc_destructInstance</li>
 <li>最后调用objc_clear_deallocating,详细过程如下：<br> a. 从weak表中获取废弃对象的地址为键值的记录<br> b. 将包含在记录中的所有附有 weak修饰符变量的地址，赋值为 nil<br> c. 将weak表中该记录删除<br> d. 从引用计数表中删除废弃对象的地址为键值的记录</li>
+</ol>
+</li>
 </ol>
 
       
@@ -621,8 +621,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/default/iOS 线程安全、锁/" rel="next" title="iOS 线程安全、锁">
-                <i class="fa fa-chevron-left"></i> iOS 线程安全、锁
+              <a href="/default/iOS 设备信息获取/" rel="next" title="iOS 设备信息获取">
+                <i class="fa fa-chevron-left"></i> iOS 设备信息获取
               </a>
             
           </div>
