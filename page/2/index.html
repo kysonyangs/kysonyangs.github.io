@@ -669,7 +669,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-27 14:04:02" itemprop="dateModified" datetime="2018-09-27T14:04:02+08:00">2018-09-27</time>
+                <time title="修改时间：2018-09-28 11:13:28" itemprop="dateModified" datetime="2018-09-28T11:13:28+08:00">2018-09-28</time>
               
             
           </span>
@@ -754,6 +754,11 @@
 <li><code>git branch -r</code>: 查看远程分支</li>
 <li><code>git branch -a</code>: 查看所有分支（会显示本地分支和远程分支）</li>
 </ol>
+<h4 id="标签-tag"><a href="#标签-tag" class="headerlink" title="标签 tag"></a>标签 tag</h4><ol>
+<li><code>git tag</code>: 列出所有 tag</li>
+<li><code>git add tag xxxx</code>: 新建一个tag</li>
+<li><code>git push --tags</code>: 推送tag到远程</li>
+</ol>
 <h3 id="git多账号的使用-体验"><a href="#git多账号的使用-体验" class="headerlink" title="git多账号的使用/体验"></a>git多账号的使用/体验</h3><ol>
 <li><p>生成 ssh key</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;your-email-address1&quot;</span><br><span class="line">ssh-keygen -t rsa -C &quot;your-email-address2&quot;</span><br></pre></td></tr></table></figure>
@@ -769,222 +774,6 @@
             </a>
           </div>
           <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    <div>
-          
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/深拷贝与浅拷贝/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="kysonyangs">
-      <meta itemprop="description" content="kysonyangs个人站，备忘">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="kysonyangs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/default/深拷贝与浅拷贝/" itemprop="url">
-                  深拷贝与浅拷贝
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2016-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2016-06-06T00:00:00+08:00">2016-06-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-09-10 16:12:22" itemprop="dateModified" datetime="2018-09-10T16:12:22+08:00">2018-09-10</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/default/深拷贝与浅拷贝/" class="leancloud_visitors" data-flag-title="深拷贝与浅拷贝">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h3><p>指只是将对象内存地址多了一个引用，也就是说，拷贝结束之后，两个对象的值不仅相同，而且对象所指的内存地址都是一样的。</p>
-<h3 id="单层深拷贝"><a href="#单层深拷贝" class="headerlink" title="单层深拷贝"></a>单层深拷贝</h3><ol>
-<li>对于不可变的容器类对象(如 <code>NSArray</code>、<code>NSSet</code>、<code>NSDictionary</code>)进行 <code>mutableCopy</code> 操作，内存地址发生了变化，但是其中的元素内存地址并没有发生变化，属于单层深拷贝。</li>
-<li>对于可变集合类对象(如 <code>NSMutableArray</code>、<code>NSMutableSet</code>、<code>NSMutableDictionary</code>)，不管是进行 <code>copy</code> 操作还是 <code>mutableCopy</code>操作，其内存地址都发生了变化，但是其中的元素内存地址都没有发生变化，属于单层深拷贝。</li>
-</ol>
-<h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><p>指拷贝一个对象的具体内容，拷贝结束之后，两个对象的值虽然是相同的，但是指向的内存地址是不同的。两个对象之间也互不影响，互不干扰。</p>
-<ol>
-<li><p>非集合类型的 <code>copy</code> 与 <code>mutableCopy</code></p>
-<ul>
-<li><code>NSString</code><ul>
-<li><code>copy</code> 内存地址不变，浅拷贝</li>
-<li><code>mutableCopy</code> 内存地址改变，深拷贝</li>
-</ul>
-</li>
-<li><code>NSMutableString</code><ul>
-<li><code>copy</code> 内存地址改变，深拷贝</li>
-<li><code>mutableCopy</code> 内存地址改变，深拷贝</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>集合类型的 <code>copy</code> 与 <code>mutableCopy</code></p>
-<ul>
-<li><code>NSArray</code><ul>
-<li><code>copy</code> 内存地址不变，内部元素地址不变，浅拷贝</li>
-<li><code>mutableCopy</code> 内存地址改变，但是内部元素地址不变，单层深拷贝</li>
-</ul>
-</li>
-<li><code>NSMutableArray</code><ul>
-<li><code>copy</code> 内存地址改变，但是内部元素地址不变，单层深拷贝</li>
-<li><code>mutableCopy</code> 内存地址改变，但是内部元素地址不变，单层深拷贝</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>实现集合类型的深拷贝</li>
-</ol>
-<ul>
-<li><p>通过归解档生成两份完全独立的对象，但是前提是<code>对象</code>(<code>子对象</code>)<strong>必须全部支持 <code>NSCoding</code> 协议</strong>。<strong>推荐使用 <code>YYModel + NSCopying</code> 这样就不用自己写逻辑代码了 😁</strong></p>
-</li>
-<li><p>自己实现一个深拷贝协议</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@protocol YSDeepCopy &lt;NSObject&gt;</span><br><span class="line">- (id)ys_deepCopy;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>@interface NSArray (YSDeepCopy) <ysdeepcopy><br>@end<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- (instancetype)ys_deepCopy &#123;</span><br><span class="line">    NSMutableArray *mArray = [NSMutableArray arrayWithCapacity:self.count];</span><br><span class="line"></span><br><span class="line">    for (id subObject in self) &#123;</span><br><span class="line">        id deepCopySubObject = nil;</span><br><span class="line">        if ([subObject respondsToSelector:@selector(ys_deepCopy)]) &#123;</span><br><span class="line">            deepCopySubObject = [subObject ys_deepCopy];</span><br><span class="line">        &#125; else if ([subObject conformsToProtocol:@protocol(NSCopying)]) &#123;</span><br><span class="line">            deepCopySubObject = [subObject copy];</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            NSAssert1(NO, @&quot;Class \&quot;%s\&quot; not support YSDeepCopy&quot;, object_getClassName(subObject));</span><br><span class="line">            deepCopySubObject = subObject;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        [mArray addObject:deepCopySubObject ?: subObject];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if ([self isKindOfClass:[NSMutableArray class]]) &#123;</span><br><span class="line">        return mArray;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return [NSArray arrayWithArray:mArray];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></ysdeepcopy></p>
-<p>但是如果 数组里面 添加的是自己定义的Model， 则应该实现 <code>Model</code> 的 <code>NSCopying</code> 协议， 或者 <code>YSDeepCopy</code> 协议<br><strong>推荐使用 <code>YYModel + NSCopying</code> 这样就不用自己写逻辑代码了 😁</strong></p>
-
-          
         
       
     </div>
@@ -1269,6 +1058,222 @@
 <li>Frame: 是相对于父控件来说的，是控件的外部尺寸。</li>
 </ul>
 <h4 id="UIViewController-生命周期"><a href="#UIViewController-生命周期" class="headerlink" title="UIViewController 生命周期"></a>UIViewController 生命周期</h4><p><img src="https://camo.githubusercontent.com/6ea2fb065c49dd902e98207429e65f7a28ea6997/687474703a2f2f6f6b68716d746438712e626b742e636c6f7564646e2e636f6d2f696d6167652f6a70672f566965772545372539342539462545352539312542442545352539312541382545362539432539462e706e67" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    <div>
+          
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/深拷贝与浅拷贝/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kysonyangs">
+      <meta itemprop="description" content="kysonyangs个人站，备忘">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kysonyangs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/default/深拷贝与浅拷贝/" itemprop="url">
+                  深拷贝与浅拷贝
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2016-06-06T00:00:00+08:00">2016-06-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-09-10 16:12:22" itemprop="dateModified" datetime="2018-09-10T16:12:22+08:00">2018-09-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/default/深拷贝与浅拷贝/" class="leancloud_visitors" data-flag-title="深拷贝与浅拷贝">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h3><p>指只是将对象内存地址多了一个引用，也就是说，拷贝结束之后，两个对象的值不仅相同，而且对象所指的内存地址都是一样的。</p>
+<h3 id="单层深拷贝"><a href="#单层深拷贝" class="headerlink" title="单层深拷贝"></a>单层深拷贝</h3><ol>
+<li>对于不可变的容器类对象(如 <code>NSArray</code>、<code>NSSet</code>、<code>NSDictionary</code>)进行 <code>mutableCopy</code> 操作，内存地址发生了变化，但是其中的元素内存地址并没有发生变化，属于单层深拷贝。</li>
+<li>对于可变集合类对象(如 <code>NSMutableArray</code>、<code>NSMutableSet</code>、<code>NSMutableDictionary</code>)，不管是进行 <code>copy</code> 操作还是 <code>mutableCopy</code>操作，其内存地址都发生了变化，但是其中的元素内存地址都没有发生变化，属于单层深拷贝。</li>
+</ol>
+<h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><p>指拷贝一个对象的具体内容，拷贝结束之后，两个对象的值虽然是相同的，但是指向的内存地址是不同的。两个对象之间也互不影响，互不干扰。</p>
+<ol>
+<li><p>非集合类型的 <code>copy</code> 与 <code>mutableCopy</code></p>
+<ul>
+<li><code>NSString</code><ul>
+<li><code>copy</code> 内存地址不变，浅拷贝</li>
+<li><code>mutableCopy</code> 内存地址改变，深拷贝</li>
+</ul>
+</li>
+<li><code>NSMutableString</code><ul>
+<li><code>copy</code> 内存地址改变，深拷贝</li>
+<li><code>mutableCopy</code> 内存地址改变，深拷贝</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>集合类型的 <code>copy</code> 与 <code>mutableCopy</code></p>
+<ul>
+<li><code>NSArray</code><ul>
+<li><code>copy</code> 内存地址不变，内部元素地址不变，浅拷贝</li>
+<li><code>mutableCopy</code> 内存地址改变，但是内部元素地址不变，单层深拷贝</li>
+</ul>
+</li>
+<li><code>NSMutableArray</code><ul>
+<li><code>copy</code> 内存地址改变，但是内部元素地址不变，单层深拷贝</li>
+<li><code>mutableCopy</code> 内存地址改变，但是内部元素地址不变，单层深拷贝</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>实现集合类型的深拷贝</li>
+</ol>
+<ul>
+<li><p>通过归解档生成两份完全独立的对象，但是前提是<code>对象</code>(<code>子对象</code>)<strong>必须全部支持 <code>NSCoding</code> 协议</strong>。<strong>推荐使用 <code>YYModel + NSCopying</code> 这样就不用自己写逻辑代码了 😁</strong></p>
+</li>
+<li><p>自己实现一个深拷贝协议</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@protocol YSDeepCopy &lt;NSObject&gt;</span><br><span class="line">- (id)ys_deepCopy;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>@interface NSArray (YSDeepCopy) <ysdeepcopy><br>@end<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- (instancetype)ys_deepCopy &#123;</span><br><span class="line">    NSMutableArray *mArray = [NSMutableArray arrayWithCapacity:self.count];</span><br><span class="line"></span><br><span class="line">    for (id subObject in self) &#123;</span><br><span class="line">        id deepCopySubObject = nil;</span><br><span class="line">        if ([subObject respondsToSelector:@selector(ys_deepCopy)]) &#123;</span><br><span class="line">            deepCopySubObject = [subObject ys_deepCopy];</span><br><span class="line">        &#125; else if ([subObject conformsToProtocol:@protocol(NSCopying)]) &#123;</span><br><span class="line">            deepCopySubObject = [subObject copy];</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            NSAssert1(NO, @&quot;Class \&quot;%s\&quot; not support YSDeepCopy&quot;, object_getClassName(subObject));</span><br><span class="line">            deepCopySubObject = subObject;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        [mArray addObject:deepCopySubObject ?: subObject];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if ([self isKindOfClass:[NSMutableArray class]]) &#123;</span><br><span class="line">        return mArray;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return [NSArray arrayWithArray:mArray];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></ysdeepcopy></p>
+<p>但是如果 数组里面 添加的是自己定义的Model， 则应该实现 <code>Model</code> 的 <code>NSCopying</code> 协议， 或者 <code>YSDeepCopy</code> 协议<br><strong>推荐使用 <code>YYModel + NSCopying</code> 这样就不用自己写逻辑代码了 😁</strong></p>
 
           
         
