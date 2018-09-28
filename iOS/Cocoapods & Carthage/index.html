@@ -163,25 +163,25 @@
 
 
 
-  <meta name="description" content="注册 pod trunk register  邮箱 &amp;#39;用户名&amp;#39; --description=&amp;#39;电脑描述&amp;#39; pod trunk register xxx@gmail.com &amp;#39;KL&amp;#39; --verbose">
+  <meta name="description" content="CocoaPods &amp;amp; Carthage CocoaPods (默认)自动建立和更新一个 Xcode workspace，用来管理你的项目和所有依赖。Carthage 使用 xcodebuild 来编译出二进制库，剩下的集成工作完全交给开发人员。 CocoaPods 使用起来方便， Carthage 更加灵活并且对现有项目没有太多的侵略性。 CocoaPods 希望建立一个生态系统，可以更">
 <meta name="keywords" content="git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用pod trunk发布程序">
-<meta property="og:url" content="https://kysonyangs.github.io/iOS/16-01 利用pod-trunk发布程序/index.html">
+<meta property="og:url" content="https://kysonyangs.github.io/iOS/Cocoapods & Carthage/index.html">
 <meta property="og:site_name" content="kysonyangs">
-<meta property="og:description" content="注册 pod trunk register  邮箱 &amp;#39;用户名&amp;#39; --description=&amp;#39;电脑描述&amp;#39; pod trunk register xxx@gmail.com &amp;#39;KL&amp;#39; --verbose">
+<meta property="og:description" content="CocoaPods &amp;amp; Carthage CocoaPods (默认)自动建立和更新一个 Xcode workspace，用来管理你的项目和所有依赖。Carthage 使用 xcodebuild 来编译出二进制库，剩下的集成工作完全交给开发人员。 CocoaPods 使用起来方便， Carthage 更加灵活并且对现有项目没有太多的侵略性。 CocoaPods 希望建立一个生态系统，可以更">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-28T03:11:33.160Z">
+<meta property="og:updated_time" content="2018-09-28T06:33:21.620Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用pod trunk发布程序">
-<meta name="twitter:description" content="注册 pod trunk register  邮箱 &amp;#39;用户名&amp;#39; --description=&amp;#39;电脑描述&amp;#39; pod trunk register xxx@gmail.com &amp;#39;KL&amp;#39; --verbose">
+<meta name="twitter:description" content="CocoaPods &amp;amp; Carthage CocoaPods (默认)自动建立和更新一个 Xcode workspace，用来管理你的项目和所有依赖。Carthage 使用 xcodebuild 来编译出二进制库，剩下的集成工作完全交给开发人员。 CocoaPods 使用起来方便， Carthage 更加灵活并且对现有项目没有太多的侵略性。 CocoaPods 希望建立一个生态系统，可以更">
 
 
 
 
 
 
-  <link rel="canonical" href="https://kysonyangs.github.io/iOS/16-01 利用pod-trunk发布程序/"/>
+  <link rel="canonical" href="https://kysonyangs.github.io/iOS/Cocoapods & Carthage/"/>
 
 
 
@@ -409,7 +409,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/iOS/16-01 利用pod-trunk发布程序/">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/iOS/Cocoapods & Carthage/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="kysonyangs">
@@ -451,7 +451,7 @@
                 
               
 
-              <time title="创建时间：2016-01-20 15:07:56" itemprop="dateCreated datePublished" datetime="2016-01-20T15:07:56+08:00">2016-01-20</time>
+              <time title="创建时间：2018-09-20 15:07:56" itemprop="dateCreated datePublished" datetime="2018-09-20T15:07:56+08:00">2018-09-20</time>
             
 
             
@@ -468,7 +468,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-28 11:11:33" itemprop="dateModified" datetime="2018-09-28T11:11:33+08:00">2018-09-28</time>
+                <time title="修改时间：2018-09-28 14:33:21" itemprop="dateModified" datetime="2018-09-28T14:33:21+08:00">2018-09-28</time>
               
             
           </span>
@@ -499,7 +499,7 @@
 
           
           
-             <span id="/iOS/16-01 利用pod-trunk发布程序/" class="leancloud_visitors" data-flag-title="利用pod trunk发布程序">
+             <span id="/iOS/Cocoapods & Carthage/" class="leancloud_visitors" data-flag-title="利用pod trunk发布程序">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -530,64 +530,53 @@
       
 
       
-        <h5 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h5><ul>
-<li><code>pod trunk register  邮箱 &#39;用户名&#39; --description=&#39;电脑描述&#39;</code></li>
-<li><code>pod trunk register xxx@gmail.com &#39;KL&#39; --verbose</code><a id="more"></a>
-<h5 id="查收邮件"><a href="#查收邮件" class="headerlink" title="查收邮件"></a>查收邮件</h5></li>
-<li>如果是QQ邮箱，可能会被放到“垃圾箱”中，并不一定是“收件箱”</li>
-<li>点击邮件中的链接：<br><a href="https://trunk.cocoapods.org/sessions/verify/xxxx" target="_blank" rel="noopener">https://trunk.cocoapods.org/sessions/verify/xxxx</a></li>
+        <h2 id="CocoaPods-amp-Carthage"><a href="#CocoaPods-amp-Carthage" class="headerlink" title="CocoaPods &amp; Carthage"></a>CocoaPods &amp; Carthage</h2><ul>
+<li><code>CocoaPods</code> (默认)自动建立和更新一个 <code>Xcode workspace</code>，用来管理你的项目和所有依赖。<code>Carthage</code> 使用 <code>xcodebuild</code> 来编译出二进制库，剩下的集成工作完全交给开发人员。</li>
+<li><code>CocoaPods</code> 使用起来方便， <code>Carthage</code> 更加灵活并且对现有项目没有太多的侵略性。</li>
+<li><code>CocoaPods</code> 希望建立一个生态系统，可以更加方便的发现和集成第三方代码库。 <code>Carthage</code> 希望变成一个去中心化的依赖管理系统，不提供中心化的项目列表，减少维护成本和单点失败的概率。不过这样给开发人员寻找项目带来不便。</li>
+<li><code>CocoaPods</code> 的项目需要配置 <code>podspec</code> 文件，包含了项目和第三方库的信息。 <code>Carthage</code> 并不使用类似的配置文件，第三方库的依赖关系是通过 Xcode 项目来配置的。</li>
 </ul>
-<h5 id="接下来查看个人信息"><a href="#接下来查看个人信息" class="headerlink" title="接下来查看个人信息"></a>接下来查看个人信息</h5><ul>
-<li><code>pod trunk me</code></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- Name:     xxx</span><br><span class="line">- Email:    xxxxxx@qq.com</span><br><span class="line">- Since:    January 28th, 03:53</span><br><span class="line">- Pods:     None</span><br><span class="line">- Sessions:</span><br><span class="line">  - January 28th, 04:28 - June 5th, 04:34. IP: xxx.xxx.xxx.xxx Description: Macbook Pro</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="CocoaPods-安装与使用"><a href="#CocoaPods-安装与使用" class="headerlink" title="CocoaPods 安装与使用"></a>CocoaPods 安装与使用</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><ol>
+<li>安装需要用到 Ruby，但是 Mac 自带了 Ruby，如果嫌弃版本过低，可以更新一下 ruby。<br> a. 安装 RVM，<code>curl -L https://get.rvm.io | bash -s stable</code><br> b. 查看 rvm 版本，<code>rvm -v</code><br> c. rvm 安装 ruby<pre><code>a. 列出已知的ruby版本，`rvm list known`
+b. 选择版本安装，`rvm install 2.0.0`
+c. 查询已经安装的 ruby，`rvm list`
+d. 卸载一个已安装版本，`rvm remove 1.9.2`
+</code></pre> d. 设置默认 ruby 版本，<code>rvm 2.0.0 --default</code></li>
+<li>安装 CocoaPods<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gem install cocoapods</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>然后你会发现无比的慢，但是我们可以通过换源来提高那么一点速度<br>a. <code>gem sources -l</code> 查看现有的源<br>b. <code>gem sources --remove https://rubygems.org/</code> 删除原来的源<br>c. <code>gem sources -a http://ruby.taobao.org/</code> 更换为淘宝的源</p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>example: 使用CocoaPods 导入 AFNetworking 库</p>
+<ol>
+<li><p>在项目(CocosPodsDemo)地址下，新建一个文件 podfile, 基本使用如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">source &apos;https://github.com/CocoaPods/Specs.git&apos;</span><br><span class="line">platform :ios, &apos;8.0&apos;</span><br><span class="line"></span><br><span class="line">target &quot;CocosPodsDemo&quot; do</span><br><span class="line"></span><br><span class="line">pod &apos;AFNetworking&apos;</span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>项目路径下使用 <code>pod install</code></p>
+</li>
+<li>完成后打开 <code>CocosPodsDemo.xcworkspace</code> 完成项目开发.</li>
+<li>更多使用方法自行<code>百度</code></li>
+</ol>
+<h3 id="Carthage-安装与使用"><a href="#Carthage-安装与使用" class="headerlink" title="Carthage 安装与使用"></a>Carthage 安装与使用</h3><h4 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew update</span><br><span class="line">brew install carthage</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong></p>
 <ul>
-<li>中间可能遇到这种错误</li>
+<li>如果报错提示需要安装 Xcode 插件，<code>xcode-select --install</code></li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NoMethodError - undefined method &apos;last&apos; for #&lt;Netrc::Entry:0x007fc59c246378&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>这时候需要尝试更新gem源或者pod<ul>
-<li><code>sudo gem update --system</code></li>
-<li><code>sudo gem install cocoapods</code></li>
-<li><code>sudo gem install cocospods-trunk</code></li>
-</ul>
+<p>查看版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">carthage version</span><br></pre></td></tr></table></figure></p>
+<h4 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h4><p>example: 使用 Carthage 导入 AFNetworking 库</p>
+<ol>
+<li><p>在项目(CarthageDemo)地址下，新建一个文件 Cartfile, 基本使用如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">github &quot;AFNetworking/AFNetworking&quot; ~&gt; 3.0</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<h5 id="创建podspec文件"><a href="#创建podspec文件" class="headerlink" title="创建podspec文件"></a>创建podspec文件</h5><ul>
-<li>接下来需要在项目根路径创建一个podspec文件来描述你的项目信息<ul>
-<li><code>pod spec cretae 文件名</code></li>
-<li>比如pod spec cretae KLTest 就会生成一个KLTest.podspec</li>
-</ul>
+<li><p>在项目(CarthageDemo)地址下，执行命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">carthage update --platform iOS</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<h5 id="填写podspec内容"><a href="#填写podspec内容" class="headerlink" title="填写podspec内容"></a>填写podspec内容</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Pod::Spec.new do |s|</span><br><span class="line">  s.name         = &quot;KLTest&quot;</span><br><span class="line">  s.version      = &quot;0.0.1&quot;</span><br><span class="line">  s.summary      = &quot;The fastest and most convenient conversion between JSON and model&quot;</span><br><span class="line">  s.homepage     = &quot;https://github.com/xxx/KLTest&quot;</span><br><span class="line">  s.license      = &quot;MIT&quot;</span><br><span class="line">  s.author             = &#123; &quot;KL&quot; =&gt; &quot;xxxxx@qq.com&quot; &#125;</span><br><span class="line">  s.social_media_url   = &quot;http://weibo.com/exceptions&quot;</span><br><span class="line">  s.source       = &#123; :git =&gt; &quot;https://github.com/xxx/KLTest.git&quot;, :tag =&gt; s.version &#125;</span><br><span class="line">  s.source_files  = &quot;KLTestExample/KLTestExample/KLTest&quot;</span><br><span class="line">  s.requires_arc = true</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<ul>
-<li>值得注意的是，现在的podspec必须有tag，所以最好先打个tag，传到github<ul>
-<li><code>git tag 0.0.1</code></li>
-<li><code>git push --tags</code></li>
-</ul>
+<li><p>打开 Carthage 查看生成的文件目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open Carthage</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<h5 id="检测podspec语法"><a href="#检测podspec语法" class="headerlink" title="检测podspec语法"></a>检测podspec语法</h5><ul>
-<li><code>pod spec lint KLTest.podspec</code></li>
-<li><code>pod spec lint KLTest.podspec —allow-warnings</code> 忽略所有警告</li>
-</ul>
-<h5 id="发布podspec"><a href="#发布podspec" class="headerlink" title="发布podspec"></a>发布podspec</h5><ul>
-<li><code>pod trunk push KLTest.podspec</code></li>
-<li>如果是第一次发布pod，需要去<a href="https://trunk.cocoapods.org/claims/new认领pod" target="_blank" rel="noopener">https://trunk.cocoapods.org/claims/new认领pod</a></li>
-</ul>
-<h5 id="检测"><a href="#检测" class="headerlink" title="检测"></a>检测</h5><ul>
-<li><code>pod setup</code> : 初始化</li>
-<li><code>pod repo update</code> : 更新仓库</li>
-<li><code>pod search MJExtension</code></li>
-</ul>
-<h5 id="仓库更新"><a href="#仓库更新" class="headerlink" title="仓库更新"></a>仓库更新</h5><ul>
-<li>如果仓库更新慢，可以考虑更换仓库镜像<ul>
-<li><code>pod repo remove master</code></li>
-<li><code>pod repo add master http://git.oschina.net/akuandev/Specs.git</code></li>
-</ul>
+<li><p>配置项目<br> a. 打开项目，点击 <code>Target -&gt; Build Phases -&gt; Link Library with Libraries</code> 选择 <code>Carthage/Build</code> 目录中的 <code>framework</code><br> b. 添加编译的脚本（该脚本文件保证在提交归档时会对相关文件和dSYMs进行复制），点击 <code>Target -&gt; Build Phases -&gt; + -&gt; New Run Script Phase</code><br> c. 添加脚本，<code>/usr/local/bin/carthage copy-frameworks</code><br> d. 添加 <code>&quot;Input Files&quot;</code> <code>$(SRCROOT)/Carthage/Build/iOS/AFNetworking.framework</code></p>
 </li>
-</ul>
+</ol>
 
       
     </div>
@@ -639,8 +628,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/iOS/15-10 iOS数组排序/" rel="next" title="iOS数组排序">
-                <i class="fa fa-chevron-left"></i> iOS数组排序
+              <a href="/default/runtime相关/" rel="next" title="Runtime相关">
+                <i class="fa fa-chevron-left"></i> Runtime相关
               </a>
             
           </div>
@@ -648,10 +637,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/iOS/16-03 CoreAnimation一/" rel="prev" title="CoreAniamtion学习一">
-                CoreAniamtion学习一 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -833,7 +818,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#注册"><span class="nav-number">1.</span> <span class="nav-text">注册</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查收邮件"><span class="nav-number">2.</span> <span class="nav-text">查收邮件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#接下来查看个人信息"><span class="nav-number">3.</span> <span class="nav-text">接下来查看个人信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#创建podspec文件"><span class="nav-number">4.</span> <span class="nav-text">创建podspec文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#填写podspec内容"><span class="nav-number">5.</span> <span class="nav-text">填写podspec内容</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#检测podspec语法"><span class="nav-number">6.</span> <span class="nav-text">检测podspec语法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#发布podspec"><span class="nav-number">7.</span> <span class="nav-text">发布podspec</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#检测"><span class="nav-number">8.</span> <span class="nav-text">检测</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#仓库更新"><span class="nav-number">9.</span> <span class="nav-text">仓库更新</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CocoaPods-amp-Carthage"><span class="nav-number">1.</span> <span class="nav-text">CocoaPods &amp; Carthage</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CocoaPods-安装与使用"><span class="nav-number">1.1.</span> <span class="nav-text">CocoaPods 安装与使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">1.1.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用"><span class="nav-number">1.1.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Carthage-安装与使用"><span class="nav-number">1.2.</span> <span class="nav-text">Carthage 安装与使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">使用</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
