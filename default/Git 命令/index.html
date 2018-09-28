@@ -163,18 +163,18 @@
 
 
 
-  <meta name="description" content="查看远程仓库地址1git remote -v 放弃修改，强制覆盖本地代码123git fetch --allgit reset --hard origin/mastergit pull git多账号的使用/体验 生成 ssh key 12ssh-keygen -t rsa -C &amp;quot;your-email-address1&amp;quot;ssh-keygen -t rsa -C &amp;quot;yo">
+  <meta name="description" content="查看远程仓库地址1git remote -v 放弃修改，强制覆盖本地代码123git fetch --allgit reset --hard origin/mastergit pull Git常用命令 git init: 初始化一个Git仓库：把某个目录变成Git可以管理的仓库 git add test.h: 把文件test.h添加到仓库 git commit -m &amp;quot;添加了test.h">
 <meta name="keywords" content="git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git 操作">
 <meta property="og:url" content="https://kysonyangs.github.io/default/Git 命令/index.html">
 <meta property="og:site_name" content="kysonyangs">
-<meta property="og:description" content="查看远程仓库地址1git remote -v 放弃修改，强制覆盖本地代码123git fetch --allgit reset --hard origin/mastergit pull git多账号的使用/体验 生成 ssh key 12ssh-keygen -t rsa -C &amp;quot;your-email-address1&amp;quot;ssh-keygen -t rsa -C &amp;quot;yo">
+<meta property="og:description" content="查看远程仓库地址1git remote -v 放弃修改，强制覆盖本地代码123git fetch --allgit reset --hard origin/mastergit pull Git常用命令 git init: 初始化一个Git仓库：把某个目录变成Git可以管理的仓库 git add test.h: 把文件test.h添加到仓库 git commit -m &amp;quot;添加了test.h">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-25T03:42:30.056Z">
+<meta property="og:updated_time" content="2018-09-27T06:04:02.833Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git 操作">
-<meta name="twitter:description" content="查看远程仓库地址1git remote -v 放弃修改，强制覆盖本地代码123git fetch --allgit reset --hard origin/mastergit pull git多账号的使用/体验 生成 ssh key 12ssh-keygen -t rsa -C &amp;quot;your-email-address1&amp;quot;ssh-keygen -t rsa -C &amp;quot;yo">
+<meta name="twitter:description" content="查看远程仓库地址1git remote -v 放弃修改，强制覆盖本地代码123git fetch --allgit reset --hard origin/mastergit pull Git常用命令 git init: 初始化一个Git仓库：把某个目录变成Git可以管理的仓库 git add test.h: 把文件test.h添加到仓库 git commit -m &amp;quot;添加了test.h">
 
 
 
@@ -468,7 +468,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-09-25 11:42:30" itemprop="dateModified" datetime="2018-09-25T11:42:30+08:00">2018-09-25</time>
+                <time title="Modified: 2018-09-27 14:04:02" itemprop="dateModified" datetime="2018-09-27T14:04:02+08:00">2018-09-27</time>
               
             
           </span>
@@ -514,6 +514,44 @@
       
         <h3 id="查看远程仓库地址"><a href="#查看远程仓库地址" class="headerlink" title="查看远程仓库地址"></a>查看远程仓库地址</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
 <h3 id="放弃修改，强制覆盖本地代码"><a href="#放弃修改，强制覆盖本地代码" class="headerlink" title="放弃修改，强制覆盖本地代码"></a>放弃修改，强制覆盖本地代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git fetch --all</span><br><span class="line">git reset --hard origin/master</span><br><span class="line">git pull</span><br></pre></td></tr></table></figure>
+<h3 id="Git常用命令"><a href="#Git常用命令" class="headerlink" title="Git常用命令"></a>Git常用命令</h3><ol>
+<li><code>git init</code>: 初始化一个Git仓库：把某个目录变成Git可以管理的仓库</li>
+<li><code>git add test.h</code>: 把文件test.h添加到仓库</li>
+<li><code>git commit -m &quot;添加了test.h文件&quot;</code>: 把文件提交到仓库。(git commit命令，-m后面输入的是本次提交的说明)</li>
+<li><code>git push (origin master(分支名称))</code>: 推送到远程仓库,其中（）里面是可选的</li>
+<li><code>git pull (origin master(分支名称))</code>: 拉取远程仓库最新,其中（）里面是可选的</li>
+<li><code>git status</code>: 查看工作区的状态</li>
+<li><code>git diff test.h</code>: 查看test.h文件修改了什么（diff—&gt;difference）</li>
+<li><code>git log</code>: 显示从最近到最远的提交日志。如果嫌输出信息太多，看得眼花缭乱的，可以试试加上–pretty=oneline参数</li>
+<li><code>git remote add origin git@...</code>: 关联一个远程库</li>
+<li><code>git push -u origin master</code>: 当远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。</li>
+<li><code>git clone git@...</code>: 克隆</li>
+<li><code>git remote</code>: 要查看远程库的名称</li>
+<li><code>git remote -v</code>: 显示更详细的远程库信息。显示可以抓取和推送的origin的地址。如果没有推送权限，就看不到push的地址</li>
+<li><code>git fetch</code>: 个人粗浅的理解为将远程所有的分支信息拉取到本地<br>1</li>
+</ol>
+<h4 id="回退与撤销"><a href="#回退与撤销" class="headerlink" title="回退与撤销"></a>回退与撤销</h4><ol>
+<li><code>git reset --hard HEAD^</code>: 回到上一个版本</li>
+<li><code>git reset --hard HEAD^^</code>: 回到上上个版本</li>
+<li><code>git reset --hard HEAD~100</code>: 回到上100个版本</li>
+<li><code>git reset --hard 791c95aa44cc5540d93a146d6d341e5d38936762</code>: 根据提交的版本号进行版本的回退</li>
+<li><code>git reflog</code>: 查看命令历史，以便确定要回到未来的哪个版本。</li>
+<li><code>git checkout -- readme.txt</code>: 让这个文件回到最近一次git commit或git add时的状态。这里是把readme.txt文件在工作区的修改全部撤销，这里有两种情况：<br> a. 一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；<br> b. 一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。</li>
+<li><code>git reset HEAD 文件(readme.txt)</code>:<br> a. 可以把暂存区的修改撤销掉（unstage），重新放回工作区。若要丢弃工作区的修改，还需要git checkout – readme.txt<br> b. git reset命令既可以回退版本，也可以把暂存区的修改回退到工作区。当我们用HEAD时，表示最新的版本。</li>
+</ol>
+<h4 id="分支与合并"><a href="#分支与合并" class="headerlink" title="分支与合并"></a>分支与合并</h4><ol>
+<li><code>git branch dev</code>: 创建一个名称叫dev的分支</li>
+<li><code>git checkout dev</code>: 当前的分支切换为dev分支</li>
+<li><code>git checkout -b dev</code>: 创建一个dev分支，并且切换到dev分支（相当于是是前面两句命令的合并）</li>
+<li><code>git branch</code>: 列出所有分支，当前分支前面会标一个<code>*</code>号</li>
+<li><code>git merge dev</code>: 把dev分支的工作成果合并到当前分支上, git merge命令用于合并指定分支到当前分支</li>
+<li><code>git branch -d dev</code>: 删除dev分支</li>
+<li><code>git branch -D dev</code>: 若dev分支还没合并到所切出来的分支，则git branch -d dev将不能删除dev分支，可以通过git branch -D dev强行删除dev分支</li>
+<li><code>git log --graph</code>: 查看分支合并图 <code>git log --graph --pretty=oneline --abbrev-commit</code></li>
+<li><code>git merge --no-ff -m &quot;备注的信息&quot; dev</code>: 将dev分支合并到当前分支的时候强制禁用Fast forward模式<br> a. 通常，合并分支时，如果可能，Git会用Fast forward模式，但这种模式下，删除分支后，会丢掉分支信息。如果要强制禁用Fast forward模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。<br> b. 合并分支时，加上–no-ff 参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而fast forward 合并就看不出来曾经做过合并。</li>
+<li><code>git branch -r</code>: 查看远程分支</li>
+<li><code>git branch -a</code>: 查看所有分支（会显示本地分支和远程分支）</li>
+</ol>
 <h3 id="git多账号的使用-体验"><a href="#git多账号的使用-体验" class="headerlink" title="git多账号的使用/体验"></a>git多账号的使用/体验</h3><ol>
 <li><p>生成 ssh key</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;your-email-address1&quot;</span><br><span class="line">ssh-keygen -t rsa -C &quot;your-email-address2&quot;</span><br></pre></td></tr></table></figure>
@@ -781,7 +819,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看远程仓库地址"><span class="nav-number">1.</span> <span class="nav-text">查看远程仓库地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#放弃修改，强制覆盖本地代码"><span class="nav-number">2.</span> <span class="nav-text">放弃修改，强制覆盖本地代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git多账号的使用-体验"><span class="nav-number">3.</span> <span class="nav-text">git多账号的使用/体验</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看远程仓库地址"><span class="nav-number">1.</span> <span class="nav-text">查看远程仓库地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#放弃修改，强制覆盖本地代码"><span class="nav-number">2.</span> <span class="nav-text">放弃修改，强制覆盖本地代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git常用命令"><span class="nav-number">3.</span> <span class="nav-text">Git常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#回退与撤销"><span class="nav-number">3.1.</span> <span class="nav-text">回退与撤销</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分支与合并"><span class="nav-number">3.2.</span> <span class="nav-text">分支与合并</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git多账号的使用-体验"><span class="nav-number">4.</span> <span class="nav-text">git多账号的使用/体验</span></a></li></ol></div>
             
 
           </div>
