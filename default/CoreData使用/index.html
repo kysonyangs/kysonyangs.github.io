@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Monaco:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'YRSQCB2W7K',
+      apiKey: '02bdd077b8d372a10bf55e8a6fdd31d4',
+      indexName: 'hexoindex',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="由于最近写了个 gank.io 客户端，鬼使神差的想添加一个收藏功能，并且秉着努力学习新知识的原则，所以我在该项目中试了一下水，感觉还不错，在此，分享出来，供新手参考参考。特别声明: 感谢干货集中营开源的接口。 干货集中营是一个不错的网站，希望越来越好。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CoreData使用">
+<meta property="og:url" content="https://kysonyangs.github.io/default/CoreData使用/index.html">
+<meta property="og:site_name" content="kysonyangs">
+<meta property="og:description" content="由于最近写了个 gank.io 客户端，鬼使神差的想添加一个收藏功能，并且秉着努力学习新知识的原则，所以我在该项目中试了一下水，感觉还不错，在此，分享出来，供新手参考参考。特别声明: 感谢干货集中营开源的接口。 干货集中营是一个不错的网站，希望越来越好。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://7xsuaf.com1.z0.glb.clouddn.com/2016-05-06/swift-coredata1.png">
+<meta property="og:image" content="http://7xsuaf.com1.z0.glb.clouddn.com/2016-05-06/swift-coredata3.png">
+<meta property="og:image" content="http://7xsuaf.com1.z0.glb.clouddn.com/2016-05-06/swift-coredata2.png">
+<meta property="og:image" content="http://7xsuaf.com1.z0.glb.clouddn.com/2016-05-06/swift-coredata4.png">
+<meta property="og:image" content="http://7xsuaf.com1.z0.glb.clouddn.com/2016-05-06/swift-coredata5.png">
+<meta property="og:image" content="http://7xsuaf.com1.z0.glb.clouddn.com/2016-05-06/swift-coredata6.png">
+<meta property="og:updated_time" content="2018-11-05T07:28:39.528Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CoreData使用">
+<meta name="twitter:description" content="由于最近写了个 gank.io 客户端，鬼使神差的想添加一个收藏功能，并且秉着努力学习新知识的原则，所以我在该项目中试了一下水，感觉还不错，在此，分享出来，供新手参考参考。特别声明: 感谢干货集中营开源的接口。 干货集中营是一个不错的网站，希望越来越好。">
+<meta name="twitter:image" content="http://7xsuaf.com1.z0.glb.clouddn.com/2016-05-06/swift-coredata1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://kysonyangs.github.io/CoreData使用/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>CoreData使用 | kysonyangs</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f00e2272f3df937b3553d379c23ceb2f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">kysonyangs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Stay Hungry, Stay Foolish</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/CoreData使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kysonyangs">
+      <meta itemprop="description" content="kysonyangs个人站，备忘">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kysonyangs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CoreData使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-08-02 15:28:11" itemprop="dateCreated datePublished" datetime="2016-08-02T15:28:11+08:00">2016-08-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-11-05 15:28:39" itemprop="dateModified" datetime="2018-11-05T15:28:39+08:00">2018-11-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/default/CoreData使用/" class="leancloud_visitors" data-flag-title="CoreData使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>由于最近写了个 <code>gank.io</code> 客户端，鬼使神差的想添加一个收藏功能，并且秉着努力学习新知识的原则，所以我在该项目中试了一下水，感觉还不错，在此，分享出来，供新手参考参考。<br>特别声明: 感谢<a href="http://gank.io/" target="_blank" rel="noopener">干货集中营</a>开源的接口。 <a href="http://gank.io/" target="_blank" rel="noopener">干货集中营</a>是一个不错的网站，希望越来越好。</p>
+<a id="more"></a>
+<ol>
+<li>创建一个新工程，在AppDelegate里面多了下面方法。<br><img src="http://7xsuaf.com1.z0.glb.clouddn.com/2016-05-06/swift-coredata1.png" alt=""></li>
+<li>如果你已经创建好工程，但是没勾选上面选项，没关系，新建一个CoreData文件<br><img src="http://7xsuaf.com1.z0.glb.clouddn.com/2016-05-06/swift-coredata3.png" alt=""><br>但是AppDelegate里面没东西，没关系，新建一个新项目，将里面的内容拷进你的项目，但是你得修改一个地方<br><img src="http://7xsuaf.com1.z0.glb.clouddn.com/2016-05-06/swift-coredata2.png" alt=""></li>
+<li>新建一个实体<br><img src="http://7xsuaf.com1.z0.glb.clouddn.com/2016-05-06/swift-coredata4.png" alt=""><br>双击修改名字</li>
+<li>添加属性<br><img src="http://7xsuaf.com1.z0.glb.clouddn.com/2016-05-06/swift-coredata5.png" alt=""></li>
+<li>新建NSManagedObject，通过Core Data从数据库取出的对象，默认情况下都是NSManagedObject对象<br><img src="http://7xsuaf.com1.z0.glb.clouddn.com/2016-05-06/swift-coredata6.png" alt=""><br>next -&gt; next -&gt; next  OK，多了两个文件</li>
+<li>KL_Test+CoreDataProperties.swift 不需要变</li>
+<li>KL_Test.swift 添加增删查改的方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line">import Foundation</span><br><span class="line">import CoreData</span><br><span class="line">import UIKit</span><br><span class="line"></span><br><span class="line">@objc(CollectGank)</span><br><span class="line">class KL_Test: NSManagedObject &#123;</span><br><span class="line">    static let app =  UIApplication.sharedApplication().delegate as! AppDelegate</span><br><span class="line">    static let context = app.managedObjectContext</span><br><span class="line"></span><br><span class="line">    // 插入</span><br><span class="line">    static func insert(model: KL_Test) &#123;</span><br><span class="line">        let collectGank = NSEntityDescription.insertNewObjectForEntityForName(&quot;KL_Test&quot;,inManagedObjectContext: context) as! KL_Test</span><br><span class="line">        collectGank.name = model.name</span><br><span class="line">        collectGank.age = model.age</span><br><span class="line">        do &#123;</span><br><span class="line">            try context.save()</span><br><span class="line">            print(&quot;成功&quot;)</span><br><span class="line">        &#125;catch &#123;</span><br><span class="line">            fatalError(&quot;不能保存\(error)&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 查询所有的数据并返回</span><br><span class="line">    static func fetch() -&gt; [KL_Test] &#123;</span><br><span class="line">        var array = [KL_Test]()</span><br><span class="line">        //声明数据的请求</span><br><span class="line">        let fetchRequest:NSFetchRequest = NSFetchRequest()</span><br><span class="line"></span><br><span class="line">        //声明一个实体结构</span><br><span class="line">        let entity:NSEntityDescription? = NSEntityDescription.entityForName(&quot;KL_Test&quot;,                  inManagedObjectContext: context)</span><br><span class="line">        //设置数据请求的实体结构</span><br><span class="line">        fetchRequest.entity = entity</span><br><span class="line">        //查询操作</span><br><span class="line">        do &#123;</span><br><span class="line">            let fetchedObjects:[AnyObject]? = try context.executeFetchRequest(fetchRequest)</span><br><span class="line"></span><br><span class="line">            //遍历查询的结果</span><br><span class="line">            print(fetchedObjects)</span><br><span class="line">            array = fetchedObjects as! [KL_Test]</span><br><span class="line"></span><br><span class="line">        &#125;catch &#123;</span><br><span class="line">            fatalError(&quot;不能保存：\(error)&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">        return array</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 修改</span><br><span class="line">    static func update(gank: KL_Test) &#123;</span><br><span class="line">        //声明数据的请求</span><br><span class="line">        let fetchRequest:NSFetchRequest = NSFetchRequest()</span><br><span class="line">        fetchRequest.fetchLimit = 1 //限定查询结果的数量</span><br><span class="line">        fetchRequest.fetchOffset = 0 //查询的偏移量</span><br><span class="line"></span><br><span class="line">        //声明一个实体结构</span><br><span class="line">        let entity:NSEntityDescription? = NSEntityDescription.entityForName(&quot;KL_Test&quot;,                  inManagedObjectContext: context)</span><br><span class="line">        //设置数据请求的实体结构</span><br><span class="line">        fetchRequest.entity = entity</span><br><span class="line"></span><br><span class="line">        //设置查询条件</span><br><span class="line">        let predicate = NSPredicate(format: &quot;name = &apos;kellen&apos; &quot;)</span><br><span class="line">        fetchRequest.predicate = predicate</span><br><span class="line"></span><br><span class="line">        //查询操作</span><br><span class="line">        do &#123;</span><br><span class="line">            let fetchedObjects:[AnyObject]? = try context.executeFetchRequest(fetchRequest)</span><br><span class="line"></span><br><span class="line">            //遍历查询的结果</span><br><span class="line">            print(fetchedObjects)</span><br><span class="line">            try context.save()</span><br><span class="line">        &#125;catch &#123;</span><br><span class="line">            fatalError(&quot;不能保存：\(error)&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 是否存在（查找）</span><br><span class="line">    static func exist(gank: KL_Test) -&gt; Bool &#123;</span><br><span class="line">        //声明数据的请求</span><br><span class="line">        let fetchRequest:NSFetchRequest = NSFetchRequest()</span><br><span class="line">        //声明一个实体结构</span><br><span class="line">        let entity:NSEntityDescription? = NSEntityDescription.entityForName(&quot;KL_Test&quot;,                  inManagedObjectContext: context)</span><br><span class="line">        //设置数据请求的实体结构</span><br><span class="line">        fetchRequest.entity = entity</span><br><span class="line">        //设置查询条件</span><br><span class="line">        let predicate = NSPredicate(format: &quot;name = &apos;\(gank.name)&apos; &quot;)</span><br><span class="line">        fetchRequest.predicate = predicate</span><br><span class="line">        //查询操作</span><br><span class="line">        do &#123;</span><br><span class="line">            let fetchedObjects:[AnyObject]? = try context.executeFetchRequest(fetchRequest)</span><br><span class="line">            //遍历查询的结果</span><br><span class="line">            guard (fetchedObjects != nil &amp;&amp; fetchedObjects!.count &gt; 0) else &#123;</span><br><span class="line">                return false</span><br><span class="line">            &#125;</span><br><span class="line">            return true</span><br><span class="line">        &#125;catch &#123;</span><br><span class="line">            fatalError(&quot;不能保存：\(error)&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 删除</span><br><span class="line">    static func deleted(gank: KL_Test) &#123;</span><br><span class="line">        //声明数据的请求</span><br><span class="line">        let fetchRequest:NSFetchRequest = NSFetchRequest()</span><br><span class="line">        //声明一个实体结构</span><br><span class="line">        let entity:NSEntityDescription? = NSEntityDescription.entityForName(&quot;CollectGank&quot;,                  inManagedObjectContext: context)</span><br><span class="line">        //设置数据请求的实体结构</span><br><span class="line">        fetchRequest.entity = entity</span><br><span class="line"></span><br><span class="line">        //设置查询条件</span><br><span class="line">        let predicate = NSPredicate(format: &quot;name = &apos;\(gank.name)&apos;&quot;)</span><br><span class="line">        fetchRequest.predicate = predicate</span><br><span class="line"></span><br><span class="line">        //查询操作</span><br><span class="line">        do &#123;</span><br><span class="line">            let fetchedObjects:[AnyObject]? = try context.executeFetchRequest(fetchRequest)</span><br><span class="line">            print(fetchedObjects)</span><br><span class="line">            //遍历查询的结果</span><br><span class="line">            for info:KL_Test in fetchedObjects as! [KL_Test]&#123;</span><br><span class="line">                //删除对象</span><br><span class="line">                context.deleteObject(info)</span><br><span class="line">            &#125;</span><br><span class="line">            //重新保存-更新到数据库</span><br><span class="line">            try context.save()</span><br><span class="line"></span><br><span class="line">        &#125;catch &#123;</span><br><span class="line">            fatalError(&quot;不能保存：\(error)&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <br/>
+        <br/>
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+      
+    </div>
+
+    <div>
+          
+            
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/default/CoreData使用/">CoreData使用</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 kysonyangs 的个人博客">kysonyangs</a></p>
+  <p><span>发布时间:</span>2016年08月02日 - 15:08</p>
+  <p><span>最后更新:</span>2018年11月05日 - 15:11</p>
+  <p><span>原始链接:</span><a href="/default/CoreData使用/" title="CoreData使用">https://kysonyangs.github.io/default/CoreData使用/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://kysonyangs.github.io/default/CoreData使用/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+          
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/default/Charles使用/" rel="next" title="Charles使用">
+                <i class="fa fa-chevron-left"></i> Charles使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/default/Git命令/" rel="prev" title="Git命令">
+                Git命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzQ0NC8xMzk3Ng=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">kysonyangs</p>
+              <p class="site-description motion-element" itemprop="description">kysonyangs个人站，备忘</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/kysonyangs" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kysonyangs</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("98nkii2hdktsmUfe1Og3R4V3-gzGzoHsz", "1zGSD9yxI1uo7HIj7IVa8CHx");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

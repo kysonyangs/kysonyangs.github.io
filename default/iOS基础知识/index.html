@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Monaco:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'YRSQCB2W7K',
+      apiKey: '02bdd077b8d372a10bf55e8a6fdd31d4',
+      indexName: 'hexoindex',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="应用沙盒 Documents: 保存应用运行时生成的需要持久化的数据，iTunes同步设备时会备份该目录。例如，游戏应用可将游戏存档保存在该目录. Library: Caches: 保存应用运行时生成的需要持久化的数据，一般存储体积大、不需要备份的非重要数据,缓存文件存储地. - Preferences: 保存应用的所有偏好设置，iOS的Settings(设置)应用会在该目录中查找应用的设置信息,">
+<meta name="keywords" content="iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS基础知识">
+<meta property="og:url" content="https://kysonyangs.github.io/default/iOS基础知识/index.html">
+<meta property="og:site_name" content="kysonyangs">
+<meta property="og:description" content="应用沙盒 Documents: 保存应用运行时生成的需要持久化的数据，iTunes同步设备时会备份该目录。例如，游戏应用可将游戏存档保存在该目录. Library: Caches: 保存应用运行时生成的需要持久化的数据，一般存储体积大、不需要备份的非重要数据,缓存文件存储地. - Preferences: 保存应用的所有偏好设置，iOS的Settings(设置)应用会在该目录中查找应用的设置信息,">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1829339-c1783643e7c18ce7?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp">
+<meta property="og:image" content="https://camo.githubusercontent.com/6ea2fb065c49dd902e98207429e65f7a28ea6997/687474703a2f2f6f6b68716d746438712e626b742e636c6f7564646e2e636f6d2f696d6167652f6a70672f566965772545372539342539462545352539312542442545352539312541382545362539432539462e706e67">
+<meta property="og:updated_time" content="2018-11-05T07:43:10.779Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS基础知识">
+<meta name="twitter:description" content="应用沙盒 Documents: 保存应用运行时生成的需要持久化的数据，iTunes同步设备时会备份该目录。例如，游戏应用可将游戏存档保存在该目录. Library: Caches: 保存应用运行时生成的需要持久化的数据，一般存储体积大、不需要备份的非重要数据,缓存文件存储地. - Preferences: 保存应用的所有偏好设置，iOS的Settings(设置)应用会在该目录中查找应用的设置信息,">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1829339-c1783643e7c18ce7?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp">
+
+
+
+
+
+
+  <link rel="canonical" href="https://kysonyangs.github.io/iOS基础知识/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>iOS基础知识 | kysonyangs</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f00e2272f3df937b3553d379c23ceb2f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">kysonyangs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Stay Hungry, Stay Foolish</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/iOS基础知识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kysonyangs">
+      <meta itemprop="description" content="kysonyangs个人站，备忘">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kysonyangs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS基础知识
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-02-05 19:05:07" itemprop="dateCreated datePublished" datetime="2016-02-05T19:05:07+08:00">2016-02-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-11-05 15:43:10" itemprop="dateModified" datetime="2018-11-05T15:43:10+08:00">2018-11-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/default/iOS基础知识/" class="leancloud_visitors" data-flag-title="iOS基础知识">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="应用沙盒"><a href="#应用沙盒" class="headerlink" title="应用沙盒"></a>应用沙盒</h3><ul>
+<li>Documents: 保存应用运行时生成的需要持久化的数据，iTunes同步设备时会备份该目录。例如，游戏应用可将游戏存档保存在该目录.</li>
+<li>Library:<ul>
+<li>Caches: 保存应用运行时生成的需要持久化的数据，一般存储体积大、不需要备份的非重要数据,缓存文件存储地. - Preferences: 保存应用的所有偏好设置，iOS的Settings(设置)应用会在该目录中查找应用的设置信息,iTunes同步设备时会备份该目录.</li>
+</ul>
+</li>
+<li>tmp: 保存应用运行时所需的临时数据，使用完毕后再将相应的文件从该目录删除;应用没有运行时，系统也可能会清除该目录下的文件;iTunes同步设备时不会备份该目录.</li>
+</ul>
+<a id="more"></a>
+<p>路径获取：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 沙盒根目录</span><br><span class="line">NSLog(@&quot;%@&quot;, NSHomeDirectory());</span><br><span class="line"></span><br><span class="line">// Documents</span><br><span class="line">NSLog(@&quot;%@&quot;, [NSHomeDirectory() stringByAppendingPathComponent:@&quot;Documents&quot;]);</span><br><span class="line">// OR</span><br><span class="line">NSLog(@&quot;%@&quot;, [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]);</span><br><span class="line">// Library - Caches</span><br><span class="line">NSLog(@&quot;%@&quot;, [[NSHomeDirectory() stringByAppendingPathComponent:@&quot;Library&quot;] stringByAppendingPathComponent:@&quot;Caches&quot;]);</span><br><span class="line">// OR</span><br><span class="line">NSLog(@&quot;%@&quot;, [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject]);</span><br><span class="line">Preference</span><br><span class="line">[NSUserDefaults standardUserDefaults] ...</span><br><span class="line"></span><br><span class="line">// tmp</span><br><span class="line">NSLog(@&quot;t - %@&quot;, NSTemporaryDirectory());</span><br></pre></td></tr></table></figure></p>
+<h3 id="content-Hugging-／-content-Compression-Resistance"><a href="#content-Hugging-／-content-Compression-Resistance" class="headerlink" title="content Hugging ／ content Compression Resistance"></a><code>content Hugging</code> ／ <code>content Compression Resistance</code></h3><p>不想变大/不想变小约束 灰常有用哦</p>
+<h3 id="layoutSubviews方法调用"><a href="#layoutSubviews方法调用" class="headerlink" title="layoutSubviews方法调用"></a>layoutSubviews方法调用</h3><ol>
+<li>init方法不会调用</li>
+<li>addSubview方法等时候会调用</li>
+<li>bounds改变的时候调用</li>
+<li>scrollView滚动的时候会调用scrollView的layoutSubviews方法(所以不建议在scrollView的layoutSubviews方法中做复杂逻辑)</li>
+<li>旋转设备的时候调用</li>
+<li>子视图被移除的时候调用</li>
+</ol>
+<h3 id="内存的几大区域"><a href="#内存的几大区域" class="headerlink" title="内存的几大区域"></a>内存的几大区域</h3><h4 id="栈区（Stack）"><a href="#栈区（Stack）" class="headerlink" title="栈区（Stack）"></a>栈区（Stack）</h4><p>由编译器自动分配并释放，存放函数的参数值，局部变量等。栈是系统数据结构，对应线程/进程是唯一的。优点是快速高效，缺点时有限制，数据不灵活。［先进后出］</p>
+<p>栈空间分 静态分配 和 动态分配两种。</p>
+<ul>
+<li>静态分配是编译器完成的，比如自动变量（auto）的分配</li>
+<li>动态变量是由 alloc 函数完成的</li>
+<li>栈的动态分配无需释放（是自动的），也就没有释放函数。</li>
+<li>为可移植的程序起见，栈的动态分配是不被鼓励的。</li>
+</ul>
+<h4 id="堆区（heap）"><a href="#堆区（heap）" class="headerlink" title="堆区（heap）"></a>堆区（heap）</h4><p>由程序员分配和释放，如果程序员不释放，程序结束时，可能会由操作系统回收 ，比如在 ios 中 alloc 都是存放在堆中。</p>
+<p>优点是灵活方便，数据适应面广泛，但是效率有一定降低。</p>
+<ul>
+<li>堆是函数库内部数据结构，不一定唯一。</li>
+<li>不同堆的分配的内存无法相互操作。</li>
+<li>堆空间的分配总是动态的</li>
+</ul>
+<p>虽然程序结束时所有的数据空间都会被释放回系统，但是精确的申请内存，释放内存匹配是良好程序的基本要素。</p>
+<h4 id="全局区-静态区-static"><a href="#全局区-静态区-static" class="headerlink" title="全局区(静态区) (static)"></a>全局区(静态区) (static)</h4><p>全局变量和静态变量的存储是放在一起的，初始化的全局变量和静态变量存放在一块区域，未初始化的全局变量和静态变量在相邻的另一块区域，程序结束后由系统释放。</p>
+<h4 id="文字常量区"><a href="#文字常量区" class="headerlink" title="文字常量区"></a>文字常量区</h4><p>存放常量字符串，程序结束后由系统释放；</p>
+<h4 id="代码区"><a href="#代码区" class="headerlink" title="代码区"></a>代码区</h4><p>存放函数的二进制代码</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1829339-c1783643e7c18ce7?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp" alt=""></p>
+<h3 id="CGRectInset-与-CGRectOffset"><a href="#CGRectInset-与-CGRectOffset" class="headerlink" title="CGRectInset 与 CGRectOffset"></a>CGRectInset 与 CGRectOffset</h3><p>CGRectInset 与 CGRectOffset 都是通过参数改变 CGRect 并返回一个 CGRect 类型的数据。总结出两者的区别在于：CGRectInset 会进行平移和缩放两个操作。CGRectOffset 做的只是平移。</p>
+<ol>
+<li><p><code>CGRect CGRectInset(CGRect rect, CGFloat dx, CGFloat dy)</code><br>通过第二个参数 dx 和第三个参数 dy 重置第一个参数 rect 作为结果返回。重置的方式为，首先将 rect 的坐标（origin）按照(dx,dy) 进行平移，然后将 rect 的大小（size） 宽度缩小2倍的 dx，高度缩小2倍的 dy。<br><strong>注意</strong>: dx dy 正数 左右两边缩小，负数则是放大</p>
+</li>
+<li><p><code>CGRect CGRectOffset(CGRect rect, CGFloat dx, CGFloat dy)</code><br>rect 按照（dx,dy）进行平移。</p>
+</li>
+</ol>
+<h3 id="断言-NSAssert-和-NSParameterAssert-区别和用处"><a href="#断言-NSAssert-和-NSParameterAssert-区别和用处" class="headerlink" title="断言 NSAssert() 和 NSParameterAssert 区别和用处"></a>断言 NSAssert() 和 NSParameterAssert 区别和用处</h3><p>NSAssert 和 assert 是断言,主要的差别是 assert 在断言失败的时候只是简单的终止程序, 而 NSAssert 会报告出错误信息并且打印出来. 所以尽管的使用 NSAssert,可以不去使用 assert.</p>
+<p>NSAssert/NSCAssert 两者的差别, 前者是适合于Objective-C的方法, 后者是适用于 C 的函数.<br>NSParameterAssert/NSCparameterAssert 两者的区别也是前者适用于 Objective-C 的方法, 后者适用于 C 的函数.<br>NSAssert/NSCAssert 和 NSParameterAssert/NSCparameterAssert 的区别是前者是所有断言, 后者只是针对参数是否存在的断言, 所以可以先进行参数的断言,确认参数是正确的,再进行所有的断言,确认其他原因.<br>NSAssert的用法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int a = 4;</span><br><span class="line">NSAssert(a == 5, @&quot;a must equal to 5&quot;); //第一个参数是条件,如果第一个参数不满足条件,就会记录和打印第二个参数</span><br></pre></td></tr></table></figure></p>
+<p>NSParameterAssert的用法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSParameterAssert(str); //只需要一个参数,如果参数存在程序继续运行,如果参数为空,则程序停止打印日志</span><br></pre></td></tr></table></figure></p>
+<p><strong>注</strong>: Xcode 已经默认将release环境下的断言取消了, 免除了忘记关闭断言造成的程序不稳定.</p>
+<h3 id="iOS模拟器的Debug菜单"><a href="#iOS模拟器的Debug菜单" class="headerlink" title="iOS模拟器的Debug菜单"></a>iOS模拟器的Debug菜单</h3><p>iOS模拟器的Debug菜单中提供了几个菜单项来检测影响帧率的一些因素：</p>
+<ol>
+<li><code>Color Blended Layers</code>: 高亮显示有混合操作的区域；</li>
+<li><code>Color Copied Images</code>: 高亮显示被拷贝的图片。拷贝图片意味着Core Animation需要拷贝一份图片并发送给render server，这对内存和CPU的使用都是昂贵的；</li>
+<li><code>Color Misaligned Images</code>: 高亮显示缩放或拉伸过的图片，或者没有正确对齐对到像素边界的图片；</li>
+<li><code>Color Offscreen-Rendered</code>: 高亮显示离屏渲染的层对象。</li>
+</ol>
+<h3 id="nil、NIL、NULL、-NSNull-的区别"><a href="#nil、NIL、NULL、-NSNull-的区别" class="headerlink" title="nil、NIL、NULL、 NSNull 的区别"></a>nil、NIL、NULL、 NSNull 的区别</h3><ul>
+<li><p>nil: 指向一个对象的空指针, 对 Objective-C id 对象赋空值.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSString *str = nil;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Nil: 指向一个类的空指针, 表示对类进行赋空值.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class Class1 = Nil;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>NULL: 指向其他类型（如：基本类型、C类型）的空指针, 用于对非对象指针赋空值.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int   *intA    = NULL;</span><br><span class="line">char *charC     = NULL;</span><br><span class="line">struct structStr = NULL;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>NSNull: 在集合对象中，表示空值的对象.<br>NSNull在Objective-C中是一个类. NSNull有 <code>+ (NSNull *)null;</code> 单例方法. 多用于集合(NSArray,NSDictionary)中值为空的对象.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">NSArray *array = [NSArray arrayWithObjects:</span><br><span class="line">                      [[NSObject alloc] init],</span><br><span class="line">                      [NSNull null],</span><br><span class="line">                      nil];</span><br><span class="line"></span><br><span class="line">NSMutableDictionary *mutableDictionary = [[NSMutableDictionary alloc] init];</span><br><span class="line">[mutableDictionary setObject:nil forKey:@&quot;Key-nil&quot;]; // 会引起Crash</span><br><span class="line">[mutableDictionary setObject:[NSNull null] forKey:@&quot;Key-nil&quot;]; // 不会引起Crash</span><br><span class="line">//所以在使用时，如下方法是比较安全的</span><br><span class="line">[mutableDictionary setObject:(nil == value ? [NSNull null] : value)</span><br><span class="line">                      forKey:@&quot;Key&quot;];</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="property-属性的关键字"><a href="#property-属性的关键字" class="headerlink" title="property 属性的关键字"></a>property 属性的关键字</h3><ol>
+<li>表示原子性</li>
+</ol>
+<ul>
+<li><code>atomic</code>（默认）: 线程安全，但是线程开销大，影响性能<br><em>注</em>: atomic不一定是线程安全，因为其只保证 setter&amp;getter 是线程安全，但是如果 threadA 进行写，这时其他现线程的读或者写会因为该操作而等待。但是当 threadA 写操作完成后，threadB 进行写操作，threadA 需要读操作的时候，可能会获得 threadB 线程的值，这就破坏了线程安全。而且如果 threadC 在 threadA 线程读操作之前 release 了， 会导致崩溃。<br>所以 atomic 所说的线程安全只是保证了 getter和setter 存取方法的线程安全，并不能保证整个对象是线程安全的。</li>
+<li><code>nonatomic</code>: 非线程安全</li>
+</ul>
+<ol start="2">
+<li>表示引用计数</li>
+</ol>
+<ul>
+<li><code>assign</code>: assign 用于非指针变量，一般用于基础类型和C数据类型，这些类型不是对象，统一由系统栈进行内存管理。</li>
+<li><code>weak</code>: 对对象的弱引用，不增加对象的引用计数，也不持有对象，当对象消失后指针自动指向nil，所以这里也就防止了野指针的存在。</li>
+<li><code>strong</code>: 对对象的强引用，会增加对象的引用计数，如果指向了一个空对象，会造成野指针，平常我们用得最多的应该也是strong了。</li>
+<li><code>copy</code>: 建立一个引用计数为1的新对象，赋值时对传入值进行一份拷贝，所以使用 copy 关键字的时候，你将一个对象复制给该属性，该属性并不会持有那个对象，而是会创建一个新对象，并将那个对象的值拷贝给它。而使用 copy 关键字的对象必须要实现 NSCopying 协议。</li>
+<li><code>unsafe_unretained</code>: 跟 weak 类似，声明一个弱引用，但是当引用计数为 0 时，变量不会自动设置为 nil，现在基本都用 weak 了。</li>
+</ul>
+<ol start="3">
+<li>表示权限</li>
+</ol>
+<ul>
+<li><code>readwrite</code>: 可读可写</li>
+<li><code>readonly</code>: 只读，当你希望暴露出来的属性不能被外界修改时就需要申明为 readonly 。</li>
+</ul>
+<h3 id="id-和-instanceType"><a href="#id-和-instanceType" class="headerlink" title="id 和 instanceType"></a>id 和 instanceType</h3><ul>
+<li>instancetype 和 id 都是万能指针，指向对象。</li>
+<li>id 在编译的适合不能判断对象的真实类型，instancetype 在编译的时候可以判断对象的真实类型</li>
+<li>id 可以用来定义变量，可以作为返回值类型，可以作为形参类型；instancetype 只能作为返回值类型</li>
+<li>instancetype 只适用于初始化方法和便利构造器的返回值类型</li>
+</ul>
+<h3 id="synthesize-和-dynamic"><a href="#synthesize-和-dynamic" class="headerlink" title="@synthesize 和 @dynamic"></a>@synthesize 和 @dynamic</h3><ol>
+<li>@property 有两个对应的词，一个是 @synthesize，一个是 @dynamic。如果 @synthesize 和 @dynamic 都没写，那么<strong>默认的就是 @syntheszie var = _var;</strong></li>
+<li>@synthesize 的语义是如果你没有手动实现 setter方法和 getter方法，那么编译器会自动为你加上这两个方法。</li>
+<li>@dynamic 告诉编译器,属性的 setter与getter 方法由用户自己实现，不自动生成。（当然对于readonly的属性只需提供getter即可）。假如一个属性被声明为 @dynamic var，然后你没有提供 @setter方法和@getter 方法，编译的时候没问题，但是当程序运行到instance.var = someVar，由于缺setter方法会导致程序崩溃；或者当运行到 someVar = var时，由于缺getter方法同样会导致崩溃。编译时没问题，运行时才执行相应的方法，这就是所谓的动态绑定。</li>
+</ol>
+<h3 id="UIView-和-CALayer"><a href="#UIView-和-CALayer" class="headerlink" title="UIView 和 CALayer"></a>UIView 和 CALayer</h3><ul>
+<li>UIView 和 CALayer 算是相互补充的关系。</li>
+<li>UIView = CALayer.delegate</li>
+<li>UIView : 负责用户的交互事件。</li>
+<li>CALayer: 负责图像和动画的渲染。</li>
+</ul>
+<h3 id="Bounds-和-Frame"><a href="#Bounds-和-Frame" class="headerlink" title="Bounds 和 Frame"></a>Bounds 和 Frame</h3><ul>
+<li>Bounds: 一般是相对于自身来说的，是控件的内部尺寸。如果你修改了 Bounds，那么子控件的相对位置也会发生改变。</li>
+<li>Frame: 是相对于父控件来说的，是控件的外部尺寸。</li>
+</ul>
+<h3 id="UIViewController-生命周期"><a href="#UIViewController-生命周期" class="headerlink" title="UIViewController 生命周期"></a>UIViewController 生命周期</h3><p><img src="https://camo.githubusercontent.com/6ea2fb065c49dd902e98207429e65f7a28ea6997/687474703a2f2f6f6b68716d746438712e626b742e636c6f7564646e2e636f6d2f696d6167652f6a70672f566965772545372539342539462545352539312542442545352539312541382545362539432539462e706e67" alt=""></p>
+<h3 id="深拷贝与浅拷贝"><a href="#深拷贝与浅拷贝" class="headerlink" title="深拷贝与浅拷贝"></a>深拷贝与浅拷贝</h3><h4 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h4><p>指只是将对象内存地址多了一个引用，也就是说，拷贝结束之后，两个对象的值不仅相同，而且对象所指的内存地址都是一样的。</p>
+<h4 id="单层深拷贝"><a href="#单层深拷贝" class="headerlink" title="单层深拷贝"></a>单层深拷贝</h4><ol>
+<li>对于不可变的容器类对象(如 <code>NSArray</code>、<code>NSSet</code>、<code>NSDictionary</code>)进行 <code>mutableCopy</code> 操作，内存地址发生了变化，但是其中的元素内存地址并没有发生变化，属于单层深拷贝。</li>
+<li>对于可变集合类对象(如 <code>NSMutableArray</code>、<code>NSMutableSet</code>、<code>NSMutableDictionary</code>)，不管是进行 <code>copy</code> 操作还是 <code>mutableCopy</code>操作，其内存地址都发生了变化，但是其中的元素内存地址都没有发生变化，属于单层深拷贝。</li>
+</ol>
+<h4 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h4><p>指拷贝一个对象的具体内容，拷贝结束之后，两个对象的值虽然是相同的，但是指向的内存地址是不同的。两个对象之间也互不影响，互不干扰。</p>
+<ol>
+<li><p>非集合类型的 <code>copy</code> 与 <code>mutableCopy</code></p>
+<ul>
+<li><code>NSString</code><ul>
+<li><code>copy</code> 内存地址不变，浅拷贝</li>
+<li><code>mutableCopy</code> 内存地址改变，深拷贝</li>
+</ul>
+</li>
+<li><code>NSMutableString</code><ul>
+<li><code>copy</code> 内存地址改变，深拷贝</li>
+<li><code>mutableCopy</code> 内存地址改变，深拷贝</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>集合类型的 <code>copy</code> 与 <code>mutableCopy</code></p>
+<ul>
+<li><code>NSArray</code><ul>
+<li><code>copy</code> 内存地址不变，内部元素地址不变，浅拷贝</li>
+<li><code>mutableCopy</code> 内存地址改变，但是内部元素地址不变，单层深拷贝</li>
+</ul>
+</li>
+<li><code>NSMutableArray</code><ul>
+<li><code>copy</code> 内存地址改变，但是内部元素地址不变，单层深拷贝</li>
+<li><code>mutableCopy</code> 内存地址改变，但是内部元素地址不变，单层深拷贝</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>实现集合类型的深拷贝</li>
+</ol>
+<ul>
+<li><p>通过归解档生成两份完全独立的对象，但是前提是<code>对象</code>(<code>子对象</code>)<strong>必须全部支持 <code>NSCoding</code> 协议</strong>。<strong>推荐使用 <code>YYModel + NSCopying</code> 这样就不用自己写逻辑代码了 😁</strong></p>
+</li>
+<li><p>自己实现一个深拷贝协议</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@protocol YSDeepCopy &lt;NSObject&gt;</span><br><span class="line">- (id)ys_deepCopy;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>@interface NSArray (YSDeepCopy) <ysdeepcopy><br>@end<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- (instancetype)ys_deepCopy &#123;</span><br><span class="line">    NSMutableArray *mArray = [NSMutableArray arrayWithCapacity:self.count];</span><br><span class="line"></span><br><span class="line">    for (id subObject in self) &#123;</span><br><span class="line">        id deepCopySubObject = nil;</span><br><span class="line">        if ([subObject respondsToSelector:@selector(ys_deepCopy)]) &#123;</span><br><span class="line">            deepCopySubObject = [subObject ys_deepCopy];</span><br><span class="line">        &#125; else if ([subObject conformsToProtocol:@protocol(NSCopying)]) &#123;</span><br><span class="line">            deepCopySubObject = [subObject copy];</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            NSAssert1(NO, @&quot;Class \&quot;%s\&quot; not support YSDeepCopy&quot;, object_getClassName(subObject));</span><br><span class="line">            deepCopySubObject = subObject;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        [mArray addObject:deepCopySubObject ?: subObject];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if ([self isKindOfClass:[NSMutableArray class]]) &#123;</span><br><span class="line">        return mArray;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return [NSArray arrayWithArray:mArray];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></ysdeepcopy></p>
+<p>但是如果 数组里面 添加的是自己定义的Model， 则应该实现 <code>Model</code> 的 <code>NSCopying</code> 协议， 或者 <code>YSDeepCopy</code> 协议<br><strong>推荐使用 <code>YYModel + NSCopying</code> 这样就不用自己写逻辑代码了 😁</strong></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <br/>
+        <br/>
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+      
+    </div>
+
+    <div>
+          
+            
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/default/iOS基础知识/">iOS基础知识</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 kysonyangs 的个人博客">kysonyangs</a></p>
+  <p><span>发布时间:</span>2016年02月05日 - 19:02</p>
+  <p><span>最后更新:</span>2018年11月05日 - 15:11</p>
+  <p><span>原始链接:</span><a href="/default/iOS基础知识/" title="iOS基础知识">https://kysonyangs.github.io/default/iOS基础知识/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://kysonyangs.github.io/default/iOS基础知识/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+          
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"><i class="fa fa-tag"></i> iOS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/default/发布pods到CocoaPods/" rel="next" title="发布pods到CocoaPods">
+                <i class="fa fa-chevron-left"></i> 发布pods到CocoaPods
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/default/条形码和二维码生成/" rel="prev" title="条形码和二维码生成">
+                条形码和二维码生成 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzQ0NC8xMzk3Ng=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">kysonyangs</p>
+              <p class="site-description motion-element" itemprop="description">kysonyangs个人站，备忘</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/kysonyangs" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#应用沙盒"><span class="nav-number">1.</span> <span class="nav-text">应用沙盒</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#content-Hugging-／-content-Compression-Resistance"><span class="nav-number">2.</span> <span class="nav-text">content Hugging ／ content Compression Resistance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#layoutSubviews方法调用"><span class="nav-number">3.</span> <span class="nav-text">layoutSubviews方法调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存的几大区域"><span class="nav-number">4.</span> <span class="nav-text">内存的几大区域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#栈区（Stack）"><span class="nav-number">4.1.</span> <span class="nav-text">栈区（Stack）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#堆区（heap）"><span class="nav-number">4.2.</span> <span class="nav-text">堆区（heap）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全局区-静态区-static"><span class="nav-number">4.3.</span> <span class="nav-text">全局区(静态区) (static)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文字常量区"><span class="nav-number">4.4.</span> <span class="nav-text">文字常量区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码区"><span class="nav-number">4.5.</span> <span class="nav-text">代码区</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CGRectInset-与-CGRectOffset"><span class="nav-number">5.</span> <span class="nav-text">CGRectInset 与 CGRectOffset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#断言-NSAssert-和-NSParameterAssert-区别和用处"><span class="nav-number">6.</span> <span class="nav-text">断言 NSAssert() 和 NSParameterAssert 区别和用处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iOS模拟器的Debug菜单"><span class="nav-number">7.</span> <span class="nav-text">iOS模拟器的Debug菜单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nil、NIL、NULL、-NSNull-的区别"><span class="nav-number">8.</span> <span class="nav-text">nil、NIL、NULL、 NSNull 的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#property-属性的关键字"><span class="nav-number">9.</span> <span class="nav-text">property 属性的关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#id-和-instanceType"><span class="nav-number">10.</span> <span class="nav-text">id 和 instanceType</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#synthesize-和-dynamic"><span class="nav-number">11.</span> <span class="nav-text">@synthesize 和 @dynamic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UIView-和-CALayer"><span class="nav-number">12.</span> <span class="nav-text">UIView 和 CALayer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bounds-和-Frame"><span class="nav-number">13.</span> <span class="nav-text">Bounds 和 Frame</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UIViewController-生命周期"><span class="nav-number">14.</span> <span class="nav-text">UIViewController 生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深拷贝与浅拷贝"><span class="nav-number">15.</span> <span class="nav-text">深拷贝与浅拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#浅拷贝"><span class="nav-number">15.1.</span> <span class="nav-text">浅拷贝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单层深拷贝"><span class="nav-number">15.2.</span> <span class="nav-text">单层深拷贝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#深拷贝"><span class="nav-number">15.3.</span> <span class="nav-text">深拷贝</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kysonyangs</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("98nkii2hdktsmUfe1Og3R4V3-gzGzoHsz", "1zGSD9yxI1uo7HIj7IVa8CHx");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

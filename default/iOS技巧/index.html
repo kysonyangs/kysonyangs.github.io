@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Monaco:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'YRSQCB2W7K',
+      apiKey: '02bdd077b8d372a10bf55e8a6fdd31d4',
+      indexName: 'hexoindex',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="判断iPhoneX++123456789101112131415static inline BOOL isIPhoneXSeries() &amp;#123;    BOOL iPhoneXSeries = NO;    if (UIDevice.currentDevice.userInterfaceIdiom != UIUserInterfaceIdiomPhone) &amp;#123;        ret">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS技巧">
+<meta property="og:url" content="https://kysonyangs.github.io/default/iOS技巧/index.html">
+<meta property="og:site_name" content="kysonyangs">
+<meta property="og:description" content="判断iPhoneX++123456789101112131415static inline BOOL isIPhoneXSeries() &amp;#123;    BOOL iPhoneXSeries = NO;    if (UIDevice.currentDevice.userInterfaceIdiom != UIUserInterfaceIdiomPhone) &amp;#123;        ret">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://7xsuaf.com1.z0.glb.clouddn.com/blogdemo/image.png">
+<meta property="og:updated_time" content="2018-11-05T07:43:17.533Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS技巧">
+<meta name="twitter:description" content="判断iPhoneX++123456789101112131415static inline BOOL isIPhoneXSeries() &amp;#123;    BOOL iPhoneXSeries = NO;    if (UIDevice.currentDevice.userInterfaceIdiom != UIUserInterfaceIdiomPhone) &amp;#123;        ret">
+<meta name="twitter:image" content="http://7xsuaf.com1.z0.glb.clouddn.com/blogdemo/image.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://kysonyangs.github.io/iOS技巧/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>iOS技巧 | kysonyangs</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f00e2272f3df937b3553d379c23ceb2f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">kysonyangs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Stay Hungry, Stay Foolish</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/iOS技巧/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kysonyangs">
+      <meta itemprop="description" content="kysonyangs个人站，备忘">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kysonyangs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS技巧
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2015-10-06 20:00:23" itemprop="dateCreated datePublished" datetime="2015-10-06T20:00:23+08:00">2015-10-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-11-05 15:43:17" itemprop="dateModified" datetime="2018-11-05T15:43:17+08:00">2018-11-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/default/iOS技巧/" class="leancloud_visitors" data-flag-title="iOS技巧">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="判断iPhoneX"><a href="#判断iPhoneX" class="headerlink" title="判断iPhoneX++"></a>判断iPhoneX++</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">static inline BOOL isIPhoneXSeries() &#123;</span><br><span class="line">    BOOL iPhoneXSeries = NO;</span><br><span class="line">    if (UIDevice.currentDevice.userInterfaceIdiom != UIUserInterfaceIdiomPhone) &#123;</span><br><span class="line">        return iPhoneXSeries;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (@available(iOS 11.0, *)) &#123;</span><br><span class="line">        UIWindow *mainWindow = [[[UIApplication sharedApplication] delegate] window];</span><br><span class="line">        if (mainWindow.safeAreaInsets.bottom &gt; 0.0) &#123;</span><br><span class="line">            iPhoneXSeries = YES;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return iPhoneXSeries;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="Button-大小"><a href="#Button-大小" class="headerlink" title="Button 大小"></a>Button 大小</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (CGSize)intrinsicContentSize &#123;</span><br><span class="line">    CGSize originalSize = [super intrinsicContentSize];</span><br><span class="line">    CGSize size = CGSizeMake(originalSize.width+10, originalSize.height);</span><br><span class="line">    return size;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="截屏"><a href="#截屏" class="headerlink" title="截屏"></a>截屏</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- (UIImage *)screenshot &#123;</span><br><span class="line">    UIWindow *window = [UIApplication sharedApplication].keyWindow;</span><br><span class="line">    UIGraphicsBeginImageContextWithOptions(window.bounds.size, YES, [UIScreen mainScreen].scale);</span><br><span class="line">    [window.layer renderInContext:UIGraphicsGetCurrentContext()];</span><br><span class="line">    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();</span><br><span class="line">    UIGraphicsEndImageContext();</span><br><span class="line">    return image;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="设置pageControl单页不显示"><a href="#设置pageControl单页不显示" class="headerlink" title="设置pageControl单页不显示"></a>设置pageControl单页不显示</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.pageControl.hidesForSinglePage = YES;</span><br></pre></td></tr></table></figure>
+<h3 id="让数组中的所有对象都执行一下方法"><a href="#让数组中的所有对象都执行一下方法" class="headerlink" title="让数组中的所有对象都执行一下方法"></a>让数组中的所有对象都执行一下方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[self.view.subViews makeObjectsPerformSelector:@selecter(removeFromSuperView)];</span><br></pre></td></tr></table></figure>
+<h3 id="scrollsToTop"><a href="#scrollsToTop" class="headerlink" title="scrollsToTop"></a>scrollsToTop</h3><p>scrollsToTop是UIScrollView的一个属性，主要用于点击设备的状态栏时，是scrollsToTop == YES的控件滚动返回至顶部。每一个默认的UIScrollView的实例，他的scrollsToTop属性默认为YES，所以要实现某一UIScrollView的实例点击设备状态栏返回顶部，则需要关闭其他的UIScrollView的实例的scrollsToTop属性为NO。</p>
+<h3 id="SB跳转"><a href="#SB跳转" class="headerlink" title="SB跳转"></a>SB跳转</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 跳转</span><br><span class="line">[self performSegueWithIdentifier:@&quot;login2Contact&quot; sender:nil];</span><br><span class="line">// 在执行跳转之前的时候调用</span><br><span class="line">- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    UIViewController *vc = segue.destinationViewController;</span><br><span class="line">    vc.title = [NSString stringWithFormat:@&quot;%@的联系人列表&quot;, _accountField.text];</span><br><span class="line">    NSLog(@&quot;%@--%@&quot;,segue.sourceViewController,segue.destinationViewController);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="iOS-10拨打系统电话发现弹出框会延迟2s左右"><a href="#iOS-10拨打系统电话发现弹出框会延迟2s左右" class="headerlink" title="iOS 10拨打系统电话发现弹出框会延迟2s左右"></a>iOS 10拨打系统电话发现弹出框会延迟2s左右</h3><p>解决方案一：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">+ (void)callPhone:(NSString *)phoneNum &#123;</span><br><span class="line">    if (phoneNum.length == 0) &#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    NSString *callPhone = [NSString stringWithFormat:@&quot;telprompt://%@&quot;, phoneNum];</span><br><span class="line">    NSComparisonResult compare = [[UIDevice currentDevice].systemVersion compare:@&quot;10.0&quot;];</span><br><span class="line">    if (compare == NSOrderedDescending || compare == NSOrderedSame) &#123;</span><br><span class="line">        /// 大于等于10.0系统使用此openURL方法</span><br><span class="line">        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone] options:@&#123;&#125; completionHandler:nil];</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone]];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>解决方案二：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">+ (void)callPhone:(NSString *)phoneNum &#123;</span><br><span class="line">    if (phoneNum.length == 0) &#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    NSString *callPhone = [NSString stringWithFormat:@&quot;telprompt://%@&quot;, phoneNum];</span><br><span class="line">    dispatch_async(dispatch_get_global_queue(0, 0), ^&#123;</span><br><span class="line">        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone]];</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="修改TableViewHeaderView字体大小"><a href="#修改TableViewHeaderView字体大小" class="headerlink" title="修改TableViewHeaderView字体大小"></a>修改TableViewHeaderView字体大小</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section &#123;</span><br><span class="line">    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;</span><br><span class="line">    header.textLabel.textColor = [UIColor grayColor];</span><br><span class="line">    header.textLabel.font = [UIFont systemFontOfSize:15];</span><br><span class="line">    header.contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="heightForHeaderInSection设置高度无效"><a href="#heightForHeaderInSection设置高度无效" class="headerlink" title="heightForHeaderInSection设置高度无效"></a>heightForHeaderInSection设置高度无效</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">iOS11默认开启Self-Sizing，关闭Self-Sizing即可。</span><br><span class="line">self.tableView.estimatedRowHeight = 0;</span><br><span class="line">self.tableView.estimatedSectionHeaderHeight = 0;</span><br><span class="line">self.tableView.estimatedSectionFooterHeight = 0;</span><br></pre></td></tr></table></figure>
+<h3 id="屏蔽一些无知的警告"><a href="#屏蔽一些无知的警告" class="headerlink" title="屏蔽一些无知的警告"></a>屏蔽一些无知的警告</h3><p>Xcode8里边 Edit Scheme-&gt; Run -&gt; Arguments, 在Environment Variables里边添加 OS_ACTIVITY_MODE ＝ Disable · 如果写了之后还是打印log,请重新勾选对勾，就可以解决了。</p>
+<h3 id="UITableView收起键盘"><a href="#UITableView收起键盘" class="headerlink" title="UITableView收起键盘"></a>UITableView收起键盘</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;</span><br></pre></td></tr></table></figure>
+<h3 id="长按复制功能"><a href="#长按复制功能" class="headerlink" title="长按复制功能"></a>长按复制功能</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [self.view addGestureRecognizer:[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(pasteBoard:)]];</span><br><span class="line">&#125;</span><br><span class="line">- (void)pasteBoard:(UILongPressGestureRecognizer *)longPress &#123;</span><br><span class="line">    if (longPress.state == UIGestureRecognizerStateBegan) &#123;</span><br><span class="line">        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];</span><br><span class="line">        pasteboard.string = @&quot;需要复制的文本&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="禁止手机睡眠"><a href="#禁止手机睡眠" class="headerlink" title="禁止手机睡眠"></a>禁止手机睡眠</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[UIApplication sharedApplication].idleTimerDisabled = YES;</span><br></pre></td></tr></table></figure>
+<h3 id="禁用button高亮"><a href="#禁用button高亮" class="headerlink" title="禁用button高亮"></a>禁用button高亮</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">button.adjustsImageWhenHighlighted = NO;</span><br><span class="line">或者在创建的时候</span><br><span class="line">UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];</span><br></pre></td></tr></table></figure>
+<h3 id="控制屏幕旋转，在控制器中写"><a href="#控制屏幕旋转，在控制器中写" class="headerlink" title="控制屏幕旋转，在控制器中写"></a>控制屏幕旋转，在控制器中写</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/** 是否支持自动转屏 */</span><br><span class="line">- (BOOL)shouldAutorotate &#123;</span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/** 支持哪些屏幕方向 */</span><br><span class="line">- (UIInterfaceOrientationMask)supportedInterfaceOrientations &#123;</span><br><span class="line">    return UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/** 默认的屏幕方向（当前ViewController必须是通过模态出来的UIViewController（模态带导航的无效）方式展现出来的，才会调用这个方法） */</span><br><span class="line">- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation &#123;</span><br><span class="line">    return UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="获取app缓存大小"><a href="#获取app缓存大小" class="headerlink" title="获取app缓存大小"></a>获取app缓存大小</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">- (CGFloat)getCachSize &#123;</span><br><span class="line">    NSUInteger imageCacheSize = [[SDImageCache sharedImageCache] getSize];</span><br><span class="line">    //获取自定义缓存大小</span><br><span class="line">    //用枚举器遍历 一个文件夹的内容</span><br><span class="line">    //1.获取 文件夹枚举器</span><br><span class="line">    NSString *myCachePath = [NSHomeDirectory() stringByAppendingPathComponent:@&quot;Library/Caches&quot;];</span><br><span class="line">    NSDirectoryEnumerator *enumerator = [[NSFileManager defaultManager] enumeratorAtPath:myCachePath];</span><br><span class="line">    __block NSUInteger count = 0;</span><br><span class="line">    //2.遍历</span><br><span class="line">    for (NSString *fileName in enumerator) &#123;</span><br><span class="line">        NSString *path = [myCachePath stringByAppendingPathComponent:fileName];</span><br><span class="line">        NSDictionary *fileDict = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:nil];</span><br><span class="line">        count += fileDict.fileSize;//自定义所有缓存大小</span><br><span class="line">    &#125;</span><br><span class="line">    // 得到是字节  转化为M</span><br><span class="line">    CGFloat totalSize = ((CGFloat)imageCacheSize+count)/1024/1024;</span><br><span class="line">    return totalSize;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="UITextView中打开或禁用复制，剪切，选择，全选等功能"><a href="#UITextView中打开或禁用复制，剪切，选择，全选等功能" class="headerlink" title="UITextView中打开或禁用复制，剪切，选择，全选等功能"></a>UITextView中打开或禁用复制，剪切，选择，全选等功能</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// 继承UITextView重写这个方法</span><br><span class="line">- (BOOL)canPerformAction:(SEL)action withSender:(id)sender &#123;</span><br><span class="line">    // 返回NO为禁用，YES为开启</span><br><span class="line">    // 粘贴</span><br><span class="line">    if (action == @selector(paste:)) return NO;</span><br><span class="line">    // 剪切</span><br><span class="line">    if (action == @selector(cut:)) return NO;</span><br><span class="line">    // 复制</span><br><span class="line">    if (action == @selector(copy:)) return NO;</span><br><span class="line">    // 选择</span><br><span class="line">    if (action == @selector(select:)) return NO;</span><br><span class="line">    // 选中全部</span><br><span class="line">    if (action == @selector(selectAll:)) return NO;</span><br><span class="line">    // 删除</span><br><span class="line">    if (action == @selector(delete:)) return NO;</span><br><span class="line">    // 分享</span><br><span class="line">    if (action == @selector(share)) return NO;</span><br><span class="line">    return [super canPerformAction:action withSender:sender];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="禁止textField和textView的复制粘贴菜单"><a href="#禁止textField和textView的复制粘贴菜单" class="headerlink" title="禁止textField和textView的复制粘贴菜单"></a>禁止textField和textView的复制粘贴菜单</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)canPerformAction:(SEL)action withSender:(id)sender&#123;</span><br><span class="line">    if ([UIMenuController sharedMenuController]) &#123;</span><br><span class="line">        [UIMenuController sharedMenuController].menuVisible = NO;</span><br><span class="line">    &#125;</span><br><span class="line">    return NO;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="为一个view添加虚线边框"><a href="#为一个view添加虚线边框" class="headerlink" title="为一个view添加虚线边框"></a>为一个view添加虚线边框</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> CAShapeLayer *border = [CAShapeLayer layer];</span><br><span class="line">border.strokeColor = [UIColor colorWithRed:67/255.0f green:37/255.0f blue:83/255.0f alpha:1].CGColor;</span><br><span class="line">border.fillColor = nil;</span><br><span class="line">border.lineDashPattern = @[@4, @2];</span><br><span class="line">border.path = [UIBezierPath bezierPathWithRect:view.bounds].CGPath;</span><br><span class="line">border.frame = view.bounds;</span><br><span class="line">[view.layer addSublayer:border];</span><br></pre></td></tr></table></figure>
+<h3 id="设置tableView分割线颜色"><a href="#设置tableView分割线颜色" class="headerlink" title="设置tableView分割线颜色"></a>设置tableView分割线颜色</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[self.tableView setSeparatorColor:[UIColor myColor]];</span><br></pre></td></tr></table></figure>
+<h3 id="UIImage和base64互转"><a href="#UIImage和base64互转" class="headerlink" title="UIImage和base64互转"></a>UIImage和base64互转</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- (NSString *)encodeToBase64String:(UIImage *)image &#123;</span><br><span class="line"> return [UIImagePNGRepresentation(image) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (UIImage *)decodeBase64ToImage:(NSString *)strEncodeData &#123;</span><br><span class="line">  NSData *data = [[NSData alloc]initWithBase64EncodedString:strEncodeData options:NSDataBase64DecodingIgnoreUnknownCharacters];</span><br><span class="line">  return [UIImage imageWithData:data];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="摇一摇功能"><a href="#摇一摇功能" class="headerlink" title="摇一摇功能"></a>摇一摇功能</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1、打开摇一摇功能</span><br><span class="line">[UIApplication sharedApplication].applicationSupportsShakeToEdit = YES;</span><br><span class="line">2、让需要摇动的控制器成为第一响应者</span><br><span class="line">[self becomeFirstResponder];</span><br><span class="line">3、实现以下方法</span><br><span class="line">// 开始摇动</span><br><span class="line">- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event</span><br><span class="line">// 取消摇动</span><br><span class="line">- (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event</span><br><span class="line">// 摇动结束</span><br><span class="line">- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event</span><br></pre></td></tr></table></figure>
+<h3 id="发起QQ聊天"><a href="#发起QQ聊天" class="headerlink" title="发起QQ聊天"></a>发起QQ聊天</h3><p>QQ开通推广服务以接收陌生消息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//是否安装QQ</span><br><span class="line">if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@&quot;mqq://&quot;]]) &#123;</span><br><span class="line">    //用来接收临时消息的客服QQ号码(注意此QQ号需开通QQ推广功能,否则陌生人向他发送消息会失败)         </span><br><span class="line">    NSString *QQ = @&quot;1099779883&quot;;         </span><br><span class="line">    //调用QQ客户端,发起QQ临时会话         </span><br><span class="line">    NSString *url = [NSString stringWithFormat:@&quot;mqq://im/chat?chat_type=wpa&amp;uin=%@&amp;version=1&amp;src_type=web&quot;,QQ];         </span><br><span class="line">    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="MJRefresh"><a href="#MJRefresh" class="headerlink" title="MJRefresh"></a>MJRefresh</h3><p><img src="http://7xsuaf.com1.z0.glb.clouddn.com/blogdemo/image.png" alt=""></p>
+<h3 id="webview去掉长按后的选择和复制菜单"><a href="#webview去掉长按后的选择和复制菜单" class="headerlink" title="webview去掉长按后的选择和复制菜单"></a>webview去掉长按后的选择和复制菜单</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">1. webview 执行 js</span><br><span class="line">- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation &#123;</span><br><span class="line"></span><br><span class="line">    NSLog(@&quot;%s&quot;, __FUNCTION__);</span><br><span class="line">    // 禁用选中效果</span><br><span class="line">    [self.webView evaluateJavaScript:@&quot;document.documentElement.style.webkitUserSelect=&apos;none&apos;&quot; completionHandler:nil];</span><br><span class="line">    [self.webView evaluateJavaScript:@&quot;document.documentElement.style.webkitTouchCallout=&apos;none&apos;&quot; completionHandler:nil];</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func webViewDidFinishLoad(webView: UIWebView) &#123;</span><br><span class="line">    //禁用webview长按后文字选择框和放大框</span><br><span class="line">    webView.stringByEvaluatingJavaScriptFromString(&quot;document.documentElement.style.webkitUserSelect=&apos;none&apos;&quot;)</span><br><span class="line">    webView.stringByEvaluatingJavaScriptFromString(&quot;document.documentElement.style.webkitTouchCallout=&apos;none&apos;&quot;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">2. 或者前端写css</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">*:not(input,textarea) &#123;</span><br><span class="line">    -webkit-touch-callout: none;</span><br><span class="line">    -webkit-user-select: none; /* Disable selection/Copy of UIWebView */</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="XIB-可见属性设置（eg-圆角）"><a href="#XIB-可见属性设置（eg-圆角）" class="headerlink" title="XIB 可见属性设置（eg: 圆角）"></a>XIB 可见属性设置（eg: 圆角）</h3><ol>
+<li><p><code>OC</code>: <code>IB_DESIGNABLE</code>  和 <code>IBInspectable</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// .h</span><br><span class="line">@property (nonatomic, assign) IBInspectable CGFloat cornerRadius;</span><br><span class="line"></span><br><span class="line">// .m</span><br><span class="line">IB_DESIGNABLE @implementation KLButton</span><br><span class="line">- (void)setCornerRadius:(CGFloat)cornerRadius &#123;</span><br><span class="line">    self.layer.cornerRadius = cornerRadius;</span><br><span class="line">    self.layer.masksToBounds = (cornerRadius &gt; 0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (CGFloat)cornerRadius &#123;</span><br><span class="line">    return self.layer.cornerRadius;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>Swift</code>: <code>IBInspectable</code> 和 <code>IBDesignable</code></p>
+</li>
+</ol>
+<h3 id="方法不确定的参数-va-arg-宏的使用"><a href="#方法不确定的参数-va-arg-宏的使用" class="headerlink" title="方法不确定的参数 va_arg 宏的使用"></a>方法不确定的参数 va_arg 宏的使用</h3><p>当我们方法需要传入多个不确定的参数时(如：[NSArray arrayWithObjects]), 我们可以使用 ,… 的形式表示,当要取传入的参数的值时就需要用到 va_arg 宏去取。<br>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    [self testMethod:@&quot;123&quot;,@&quot;456&quot;,@&quot;789&quot;，nil];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (void)testMethod:(NSString *)test,.. NS_REQUIRES_NIL_TERMINATION &#123;</span><br><span class="line">    va_list argList;</span><br><span class="line">    va_start(argList, test);</span><br><span class="line">    &#123;</span><br><span class="line">        for (id params = test; params != nil; params = va_arg(argList, id))&#123;</span><br><span class="line"></span><br><span class="line">            NSLog(@&quot;id = %@---class = %@&quot;,params,NSStringFromClass([params class]));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    va_end(argList);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="去除数组中重复的对象"><a href="#去除数组中重复的对象" class="headerlink" title="去除数组中重复的对象"></a>去除数组中重复的对象</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSArray *newArr = [oldArr valueForKeyPath:@&quot;@distinctUnionOfObjects.self&quot;];</span><br></pre></td></tr></table></figure>
+<!-- more -->
+<h3 id="删除NSUserDefaults所有记录"><a href="#删除NSUserDefaults所有记录" class="headerlink" title="删除NSUserDefaults所有记录"></a>删除NSUserDefaults所有记录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//方法一</span><br><span class="line">NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];</span><br><span class="line">[[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];</span><br><span class="line">//方法二</span><br><span class="line">- (void)resetDefaults &#123;</span><br><span class="line">  NSUserDefaults * defs = [NSUserDefaults standardUserDefaults];</span><br><span class="line">    NSDictionary * dict = [defs dictionaryRepresentation];</span><br><span class="line">    for (id key in dict) &#123;</span><br><span class="line">        [defs removeObjectForKey:key];</span><br><span class="line">    &#125;</span><br><span class="line">    [defs synchronize];</span><br><span class="line"> &#125;</span><br><span class="line">// 方法三</span><br><span class="line">[[NSUserDefaults standardUserDefaults] setPersistentDomain:[NSDictionary dictionary] forName:[[NSBundle mainBundle] bundleIdentifier]];</span><br></pre></td></tr></table></figure>
+<h3 id="UITableViewCell-分割线置顶"><a href="#UITableViewCell-分割线置顶" class="headerlink" title="UITableViewCell 分割线置顶"></a>UITableViewCell 分割线置顶</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) &#123;</span><br><span class="line">    [self.tableView setSeparatorInset:UIEdgeInsetsMake(0, 10, 0, 0)];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) &#123;</span><br><span class="line">    [self.tableView setLayoutMargins:UIEdgeInsetsMake(0, 10, 0, 0)];</span><br><span class="line">&#125;</span><br><span class="line">// 3. cell 下</span><br><span class="line">if ([cell respondsToSelector:@selector(setSeparatorInset:)]) &#123;</span><br><span class="line">    [cell setSeparatorInset:UIEdgeInsetsZero];</span><br><span class="line">&#125;</span><br><span class="line">if ([cell respondsToSelector:@selector(setLayoutMargins:)]) &#123;</span><br><span class="line">    [cell setLayoutMargins:UIEdgeInsetsZero];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="设置UIViewController的view的top在navigationBar下面-amp-bottom位置在Tabbar的上面"><a href="#设置UIViewController的view的top在navigationBar下面-amp-bottom位置在Tabbar的上面" class="headerlink" title="设置UIViewController的view的top在navigationBar下面 &amp; bottom位置在Tabbar的上面"></a>设置UIViewController的view的top在navigationBar下面 &amp; bottom位置在Tabbar的上面</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tabBarController.tabBar.translucent = NO;</span><br><span class="line">uiviewController.navigationController.navigationBar.translucent = NO;</span><br></pre></td></tr></table></figure>
+<h3 id="禁用button高亮-点击变灰的效果"><a href="#禁用button高亮-点击变灰的效果" class="headerlink" title="禁用button高亮,点击变灰的效果"></a>禁用button高亮,点击变灰的效果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">button.adjustsImageWhenHighlighted = NO;</span><br><span class="line">或者在创建的时候</span><br><span class="line">UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];</span><br></pre></td></tr></table></figure>
+<h3 id="自定义cell选中背景颜色"><a href="#自定义cell选中背景颜色" class="headerlink" title="自定义cell选中背景颜色"></a>自定义cell选中背景颜色</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UIView *bgColorView = [[UIView alloc] init];</span><br><span class="line">bgColorView.backgroundColor = [UIColor redColor];</span><br><span class="line">[cell setSelectedBackgroundView:bgColorView];</span><br></pre></td></tr></table></figure>
+<h3 id="UILabel设置内边距"><a href="#UILabel设置内边距" class="headerlink" title="UILabel设置内边距"></a>UILabel设置内边距</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">子类化UILabel，重写drawTextInRect方法</span><br><span class="line">- (void)drawTextInRect:(CGRect)rect &#123;</span><br><span class="line">    // 边距，上左下右</span><br><span class="line">    UIEdgeInsets insets = &#123;0, 5, 0, 5&#125;;</span><br><span class="line">    [super drawTextInRect:UIEdgeInsetsInsetRect(rect, insets)];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="UILabel设置文字描边"><a href="#UILabel设置文字描边" class="headerlink" title="UILabel设置文字描边"></a>UILabel设置文字描边</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">子类化UILabel，重写drawTextInRect方法</span><br><span class="line">- (void)drawTextInRect:(CGRect)rect</span><br><span class="line">&#123;</span><br><span class="line">    CGContextRef c = UIGraphicsGetCurrentContext();</span><br><span class="line">    // 设置描边宽度</span><br><span class="line">    CGContextSetLineWidth(c, 1);</span><br><span class="line">    CGContextSetLineJoin(c, kCGLineJoinRound);</span><br><span class="line">    CGContextSetTextDrawingMode(c, kCGTextStroke);</span><br><span class="line">    // 描边颜色</span><br><span class="line">    self.textColor = [UIColor redColor];</span><br><span class="line">    [super drawTextInRect:rect];</span><br><span class="line">    // 文本颜色</span><br><span class="line">    self.textColor = [UIColor yellowColor];</span><br><span class="line">    CGContextSetTextDrawingMode(c, kCGTextFill);</span><br><span class="line">    [super drawTextInRect:rect];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="改变UISlider的进度条高度"><a href="#改变UISlider的进度条高度" class="headerlink" title="改变UISlider的进度条高度"></a>改变UISlider的进度条高度</h3><p>需要继承UISlider并t重载trackRectForBounds方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (CGRect)trackRectForBounds:(CGRect)bounds &#123;</span><br><span class="line">    return CGRectMake(0, 0, CGRectGetWidth(self.frame), 5.0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="iOS-11中隐藏section头尾的实现"><a href="#iOS-11中隐藏section头尾的实现" class="headerlink" title="iOS 11中隐藏section头尾的实现"></a>iOS 11中隐藏section头尾的实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section &#123;</span><br><span class="line">    return 0.1f;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section &#123;</span><br><span class="line">    return 0.1f;</span><br><span class="line">&#125;</span><br><span class="line">- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section &#123;</span><br><span class="line">    return nil;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section &#123;</span><br><span class="line">    return nil;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="更改UITabBar-amp-amp-UINavigationBar背景颜色"><a href="#更改UITabBar-amp-amp-UINavigationBar背景颜色" class="headerlink" title="更改UITabBar &amp;&amp; UINavigationBar背景颜色"></a>更改UITabBar &amp;&amp; UINavigationBar背景颜色</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[[UITabBar appearance] setBarTintColor:[UIColor redColor]];</span><br><span class="line">[[UINavigationBar appearance] setBarTintColor:[UIColor redColor]];</span><br></pre></td></tr></table></figure>
+<h3 id="更改UITabBar-amp-amp-UINavigationBar字体颜色"><a href="#更改UITabBar-amp-amp-UINavigationBar字体颜色" class="headerlink" title="更改UITabBar &amp;&amp; UINavigationBar字体颜色"></a>更改UITabBar &amp;&amp; UINavigationBar字体颜色</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//改变按钮navigationBar tintColor颜色</span><br><span class="line">self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1.0];</span><br><span class="line">//改变tabbar 正常颜色，选中色</span><br><span class="line">NSDictionary *attributeNormal = @&#123;NSForegroundColorAttributeName:[UIColor grayColor]&#125;;</span><br><span class="line">[subVC.tabBarItem setTitleTextAttributes:attributeNormal forState:(UIControlStateNormal)];</span><br><span class="line">NSDictionary *attributeSelected = @&#123;NSForegroundColorAttributeName:[UIColor redColor]&#125;;</span><br><span class="line">[subVC.tabBarItem setTitleTextAttributes:attributeSelected forState: (UIControlStateSelected)];</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <br/>
+        <br/>
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+      
+    </div>
+
+    <div>
+          
+            
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/default/iOS技巧/">iOS技巧</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 kysonyangs 的个人博客">kysonyangs</a></p>
+  <p><span>发布时间:</span>2015年10月06日 - 20:10</p>
+  <p><span>最后更新:</span>2018年11月05日 - 15:11</p>
+  <p><span>原始链接:</span><a href="/default/iOS技巧/" title="iOS技巧">https://kysonyangs.github.io/default/iOS技巧/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://kysonyangs.github.io/default/iOS技巧/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+          
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/default/Bug收集/" rel="next" title="Bug收集">
+                <i class="fa fa-chevron-left"></i> Bug收集
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/default/iOS数组排序/" rel="prev" title="iOS数组排序">
+                iOS数组排序 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzQ0NC8xMzk3Ng=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">kysonyangs</p>
+              <p class="site-description motion-element" itemprop="description">kysonyangs个人站，备忘</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/kysonyangs" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#判断iPhoneX"><span class="nav-number">1.</span> <span class="nav-text">判断iPhoneX++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Button-大小"><span class="nav-number">2.</span> <span class="nav-text">Button 大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#截屏"><span class="nav-number">3.</span> <span class="nav-text">截屏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置pageControl单页不显示"><span class="nav-number">4.</span> <span class="nav-text">设置pageControl单页不显示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#让数组中的所有对象都执行一下方法"><span class="nav-number">5.</span> <span class="nav-text">让数组中的所有对象都执行一下方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#scrollsToTop"><span class="nav-number">6.</span> <span class="nav-text">scrollsToTop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SB跳转"><span class="nav-number">7.</span> <span class="nav-text">SB跳转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iOS-10拨打系统电话发现弹出框会延迟2s左右"><span class="nav-number">8.</span> <span class="nav-text">iOS 10拨打系统电话发现弹出框会延迟2s左右</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改TableViewHeaderView字体大小"><span class="nav-number">9.</span> <span class="nav-text">修改TableViewHeaderView字体大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#heightForHeaderInSection设置高度无效"><span class="nav-number">10.</span> <span class="nav-text">heightForHeaderInSection设置高度无效</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#屏蔽一些无知的警告"><span class="nav-number">11.</span> <span class="nav-text">屏蔽一些无知的警告</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UITableView收起键盘"><span class="nav-number">12.</span> <span class="nav-text">UITableView收起键盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#长按复制功能"><span class="nav-number">13.</span> <span class="nav-text">长按复制功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#禁止手机睡眠"><span class="nav-number">14.</span> <span class="nav-text">禁止手机睡眠</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#禁用button高亮"><span class="nav-number">15.</span> <span class="nav-text">禁用button高亮</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制屏幕旋转，在控制器中写"><span class="nav-number">16.</span> <span class="nav-text">控制屏幕旋转，在控制器中写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取app缓存大小"><span class="nav-number">17.</span> <span class="nav-text">获取app缓存大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UITextView中打开或禁用复制，剪切，选择，全选等功能"><span class="nav-number">18.</span> <span class="nav-text">UITextView中打开或禁用复制，剪切，选择，全选等功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#禁止textField和textView的复制粘贴菜单"><span class="nav-number">19.</span> <span class="nav-text">禁止textField和textView的复制粘贴菜单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为一个view添加虚线边框"><span class="nav-number">20.</span> <span class="nav-text">为一个view添加虚线边框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置tableView分割线颜色"><span class="nav-number">21.</span> <span class="nav-text">设置tableView分割线颜色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UIImage和base64互转"><span class="nav-number">22.</span> <span class="nav-text">UIImage和base64互转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#摇一摇功能"><span class="nav-number">23.</span> <span class="nav-text">摇一摇功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发起QQ聊天"><span class="nav-number">24.</span> <span class="nav-text">发起QQ聊天</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MJRefresh"><span class="nav-number">25.</span> <span class="nav-text">MJRefresh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webview去掉长按后的选择和复制菜单"><span class="nav-number">26.</span> <span class="nav-text">webview去掉长按后的选择和复制菜单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XIB-可见属性设置（eg-圆角）"><span class="nav-number">27.</span> <span class="nav-text">XIB 可见属性设置（eg: 圆角）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法不确定的参数-va-arg-宏的使用"><span class="nav-number">28.</span> <span class="nav-text">方法不确定的参数 va_arg 宏的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#去除数组中重复的对象"><span class="nav-number">29.</span> <span class="nav-text">去除数组中重复的对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除NSUserDefaults所有记录"><span class="nav-number">30.</span> <span class="nav-text">删除NSUserDefaults所有记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UITableViewCell-分割线置顶"><span class="nav-number">31.</span> <span class="nav-text">UITableViewCell 分割线置顶</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置UIViewController的view的top在navigationBar下面-amp-bottom位置在Tabbar的上面"><span class="nav-number">32.</span> <span class="nav-text">设置UIViewController的view的top在navigationBar下面 &amp; bottom位置在Tabbar的上面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#禁用button高亮-点击变灰的效果"><span class="nav-number">33.</span> <span class="nav-text">禁用button高亮,点击变灰的效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义cell选中背景颜色"><span class="nav-number">34.</span> <span class="nav-text">自定义cell选中背景颜色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UILabel设置内边距"><span class="nav-number">35.</span> <span class="nav-text">UILabel设置内边距</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UILabel设置文字描边"><span class="nav-number">36.</span> <span class="nav-text">UILabel设置文字描边</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改变UISlider的进度条高度"><span class="nav-number">37.</span> <span class="nav-text">改变UISlider的进度条高度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iOS-11中隐藏section头尾的实现"><span class="nav-number">38.</span> <span class="nav-text">iOS 11中隐藏section头尾的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改UITabBar-amp-amp-UINavigationBar背景颜色"><span class="nav-number">39.</span> <span class="nav-text">更改UITabBar &amp;&amp; UINavigationBar背景颜色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改UITabBar-amp-amp-UINavigationBar字体颜色"><span class="nav-number">40.</span> <span class="nav-text">更改UITabBar &amp;&amp; UINavigationBar字体颜色</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kysonyangs</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("98nkii2hdktsmUfe1Og3R4V3-gzGzoHsz", "1zGSD9yxI1uo7HIj7IVa8CHx");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

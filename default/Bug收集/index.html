@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Monaco:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'YRSQCB2W7K',
+      apiKey: '02bdd077b8d372a10bf55e8a6fdd31d4',
+      indexName: 'hexoindex',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="CocoaPods BugUse the $(inherited) flag1234567[!] The `MBPeopleBaseApp [Debug]` target overrides the `OTHER_LDFLAGS` build setting defined in `Pods/Target Support Files/Pods-MBPeopleBaseApp/Pods-MBPeop">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bug收集">
+<meta property="og:url" content="https://kysonyangs.github.io/default/Bug收集/index.html">
+<meta property="og:site_name" content="kysonyangs">
+<meta property="og:description" content="CocoaPods BugUse the $(inherited) flag1234567[!] The `MBPeopleBaseApp [Debug]` target overrides the `OTHER_LDFLAGS` build setting defined in `Pods/Target Support Files/Pods-MBPeopleBaseApp/Pods-MBPeop">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-11-05T07:31:00.117Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Bug收集">
+<meta name="twitter:description" content="CocoaPods BugUse the $(inherited) flag1234567[!] The `MBPeopleBaseApp [Debug]` target overrides the `OTHER_LDFLAGS` build setting defined in `Pods/Target Support Files/Pods-MBPeopleBaseApp/Pods-MBPeop">
+
+
+
+
+
+
+  <link rel="canonical" href="https://kysonyangs.github.io/Bug收集/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Bug收集 | kysonyangs</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f00e2272f3df937b3553d379c23ceb2f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">kysonyangs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Stay Hungry, Stay Foolish</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/Bug收集/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kysonyangs">
+      <meta itemprop="description" content="kysonyangs个人站，备忘">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kysonyangs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Bug收集
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2015-10-01 15:29:21" itemprop="dateCreated datePublished" datetime="2015-10-01T15:29:21+08:00">2015-10-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-11-05 15:31:00" itemprop="dateModified" datetime="2018-11-05T15:31:00+08:00">2018-11-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/default/Bug收集/" class="leancloud_visitors" data-flag-title="Bug收集">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="CocoaPods-Bug"><a href="#CocoaPods-Bug" class="headerlink" title="CocoaPods Bug"></a>CocoaPods Bug</h1><h3 id="Use-the-inherited-flag"><a href="#Use-the-inherited-flag" class="headerlink" title="Use the $(inherited) flag"></a>Use the <code>$(inherited)</code> flag</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[!] The `MBPeopleBaseApp [Debug]` target overrides the `OTHER_LDFLAGS` build setting defined in `Pods/Target Support Files/Pods-MBPeopleBaseApp/Pods-MBPeopleBaseApp.debug.xcconfig&apos;. This can lead to problems with the CocoaPods installation</span><br><span class="line">    - Use the `$(inherited)` flag, or</span><br><span class="line">    - Remove the build settings from the target.</span><br><span class="line"></span><br><span class="line">[!] The `MBPeopleBaseApp [Release]` target overrides the `OTHER_LDFLAGS` build setting defined in `Pods/Target Support Files/Pods-MBPeopleBaseApp/Pods-MBPeopleBaseApp.release.xcconfig&apos;. This can lead to problems with the CocoaPods installation</span><br><span class="line">    - Use the `$(inherited)` flag, or</span><br><span class="line">    - Remove the build settings from the target.</span><br></pre></td></tr></table></figure>
+<p>解决方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Other link flag 添加 $(inherited)</span><br></pre></td></tr></table></figure></p>
+<h1 id="Xcode-Bug"><a href="#Xcode-Bug" class="headerlink" title="Xcode Bug"></a>Xcode Bug</h1><h3 id="自定义的代码片段存放位置"><a href="#自定义的代码片段存放位置" class="headerlink" title="自定义的代码片段存放位置"></a>自定义的代码片段存放位置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/Library/Developer/Xcode/UserData/CodeSnippets</span><br></pre></td></tr></table></figure>
+<h3 id="Xcode-10-Multiple-commands-produce-报错解决"><a href="#Xcode-10-Multiple-commands-produce-报错解决" class="headerlink" title="Xcode 10 Multiple commands produce 报错解决"></a>Xcode 10 Multiple commands produce 报错解决</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">target &gt; Build phase &gt; Copy Bundle Resource/Compile Sources，删掉第三方库中重复的 README.txt，LICENSE，Info.plist 文件</span><br></pre></td></tr></table></figure>
+<h3 id="工程文件乱序"><a href="#工程文件乱序" class="headerlink" title="工程文件乱序"></a>工程文件乱序</h3><p>选中要整理的文件夹右键，点一下“Sort by Name”或者“Sort by Type”即可排序。</p>
+<h3 id="项目打不开-Failed-to-load-project-at-‘’-“-incompatible-project-version"><a href="#项目打不开-Failed-to-load-project-at-‘’-“-incompatible-project-version" class="headerlink" title="项目打不开 Failed to load project at ‘’ “,incompatible project version"></a>项目打不开 Failed to load project at ‘’ “,incompatible project version</h3><p>打开 <code>project.pbxproj</code> 文件，修改 <code>objectVersion = 48;</code> 不知道填什么往低了填，或者在自己想买找</p>
+<h3 id="Xcode-不高亮"><a href="#Xcode-不高亮" class="headerlink" title="Xcode 不高亮"></a>Xcode 不高亮</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd Library/Developer/Xcode/DerivedData</span><br><span class="line">rm -rf ./*</span><br><span class="line">重新打开XCODE</span><br></pre></td></tr></table></figure>
+<h3 id="打开Playground提示打开失败，找不到合适的devices"><a href="#打开Playground提示打开失败，找不到合适的devices" class="headerlink" title="打开Playground提示打开失败，找不到合适的devices"></a>打开Playground提示打开失败，找不到合适的devices</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. Quit Xcode</span><br><span class="line">2. Delete the folder /Users/&lt;username&gt;/Library/Developer/CoreSimulator/Devices. For example, in Terminal: rm -rf ~/Library/Developer/CoreSimulator/Devices</span><br><span class="line">3. In Terminal: killall -9 com.apple.CoreSimulator.CoreSimulatorService (or just reboot). OR Add a iOS8.0Device</span><br></pre></td></tr></table></figure>
+<h3 id="碰到Xib加载不出来，什么什么工程文件找不到，请看看引用有没有，没有的话加上就好了！"><a href="#碰到Xib加载不出来，什么什么工程文件找不到，请看看引用有没有，没有的话加上就好了！" class="headerlink" title="碰到Xib加载不出来，什么什么工程文件找不到，请看看引用有没有，没有的话加上就好了！"></a>碰到Xib加载不出来，什么什么工程文件找不到，请看看引用有没有，没有的话加上就好了！</h3><h3 id="用Xcode-7-3打开一个Xcode-8创建的工程，编译时报错：xxx-storyboard-或者xxx-xib-The-document-“null”-required-Xcode-8-0-or-later-点击xxx-storyboard-或者xxx-xib-时，弹出如图所示提示框。"><a href="#用Xcode-7-3打开一个Xcode-8创建的工程，编译时报错：xxx-storyboard-或者xxx-xib-The-document-“null”-required-Xcode-8-0-or-later-点击xxx-storyboard-或者xxx-xib-时，弹出如图所示提示框。" class="headerlink" title="用Xcode 7.3打开一个Xcode 8创建的工程，编译时报错：xxx.storyboard(或者xxx.xib) The document “null” required Xcode 8.0 or later.点击xxx.storyboard(或者xxx.xib)时，弹出如图所示提示框。"></a>用Xcode 7.3打开一个Xcode 8创建的工程，编译时报错：xxx.storyboard(或者xxx.xib) The document “null” required Xcode 8.0 or later.点击xxx.storyboard(或者xxx.xib)时，弹出如图所示提示框。</h3><p>解决方法是以源码的方式打开xxx.storyboard(或者xxx.xib)，然后删除<code>&lt;capability name=&quot;documents saved in the Xcode 8 format&quot; minToolsVersion=&quot;8.0&quot;/&gt;</code>这一行代码，就OK了。</p>
+<h1 id="程序报错"><a href="#程序报错" class="headerlink" title="程序报错"></a>程序报错</h1><h3 id="pathForResource-nil的情况，而项目命名有该资源"><a href="#pathForResource-nil的情况，而项目命名有该资源" class="headerlink" title="pathForResource nil的情况，而项目命名有该资源"></a>pathForResource nil的情况，而项目命名有该资源</h3><p>可能没拷贝进bundle<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Xcode -&gt; TARAGETS -&gt; Build Phases -&gt; Copy Bundle Resources -&gt; 添加</span><br></pre></td></tr></table></figure></p>
+<h3 id="‘Could-not-instantiate-class-named-xxx’"><a href="#‘Could-not-instantiate-class-named-xxx’" class="headerlink" title="‘Could not instantiate class named xxx’"></a>‘Could not instantiate class named xxx’</h3><p>比如 ‘Could not instantiate class named WKWebView’</p>
+<p>解决方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Xcode -&gt; TARAGETS -&gt; General -&gt; Linked Frameworks and Librarier ，点击“+”号添加相应的系统库 webkit.framework</span><br></pre></td></tr></table></figure></p>
+<h3 id="添加新字体，-info-plist也配置好了，就是无效"><a href="#添加新字体，-info-plist也配置好了，就是无效" class="headerlink" title="添加新字体， info.plist也配置好了，就是无效"></a>添加新字体， info.plist也配置好了，就是无效</h3><p>请检查 TARGETS -&gt; Build Phases -&gt; Copy Bundle Resources 中是否添加此资源 其他添加资源后无效也可参考此条解决方案</p>
+<h3 id="ld-library-not-found-for-lxxx"><a href="#ld-library-not-found-for-lxxx" class="headerlink" title="ld: library not found for -lxxx:"></a>ld: library not found for -lxxx:</h3><p>类似出现上面这种问题(我的问题出现在libWeChatSDK这个包) ld:library not found for -lXXX 的问题有可能是你的某个库的连接引用有问题, —–解决的办法就是在项目的target里,选中Link Binary With Libraries 里的.a或framework 取消再加入,就可以了 —–如果是拖拽进入工程的,那就删除,在拖一次.</p>
+<h3 id="ld-symbol-s-not-found-for-architecture-x86-64"><a href="#ld-symbol-s-not-found-for-architecture-x86-64" class="headerlink" title="ld: symbol(s) not found for architecture x86_64"></a>ld: symbol(s) not found for architecture x86_64</h3><p>依赖库未导入</p>
+<h3 id="tableview遇到这种报错failed-to-obtain-a-cell-from-its-dataSource"><a href="#tableview遇到这种报错failed-to-obtain-a-cell-from-its-dataSource" class="headerlink" title="tableview遇到这种报错failed to obtain a cell from its dataSource"></a>tableview遇到这种报错failed to obtain a cell from its dataSource</h3><p>是因为你的cell被调用的早了。先循环使用了cell，后又创建cell。顺序错了 可能原因：</p>
+<ol>
+<li>xib的cell没有注册</li>
+<li>内存中已经有这个cell的缓存了(也就是说通过你的cellId找到的cell并不是你想要的类型)，这时候需要改下cell的标识</li>
+</ol>
+<h3 id="UIView-Encapsulated-Layout-Width-错误"><a href="#UIView-Encapsulated-Layout-Width-错误" class="headerlink" title="UIView-Encapsulated-Layout-Width 错误"></a><code>UIView-Encapsulated-Layout-Width 错误</code></h3><p>修改约束优先级即可解决</p>
+<h3 id="Swift-创建控制器时自带xib加载在iOS8崩溃的问题"><a href="#Swift-创建控制器时自带xib加载在iOS8崩溃的问题" class="headerlink" title="Swift 创建控制器时自带xib加载在iOS8崩溃的问题"></a>Swift 创建控制器时自带xib加载在iOS8崩溃的问题</h3><p>项目中有部分跟随控制器一起创建出来的xib，在iOS8之外的系统运行正常，在iOS8下崩溃，找不到对应关系，一番网上搜索，终于找到解决办法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) &#123;</span><br><span class="line">    super.init(nibName: &quot;AddressViewController&quot;, bundle: nil)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">required init?(coder aDecoder: NSCoder) &#123;</span><br><span class="line">    fatalError(&quot;init(coder:) has not been implemented&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>原来在iOS8下，也需要给控制器的xib重写一下init 方法，只记得在自定义view的是时候用过，没想到这里也需要，特意加上，算是兼容手机系统</p>
+<h3 id="ios开发中，xib加载view，loadNibNamed方法奔溃原因之一"><a href="#ios开发中，xib加载view，loadNibNamed方法奔溃原因之一" class="headerlink" title="ios开发中，xib加载view，loadNibNamed方法奔溃原因之一"></a>ios开发中，xib加载view，loadNibNamed方法奔溃原因之一</h3><p>xib中某一属性在代码中已删除，但在xib中没有解除关联</p>
+<h3 id="NSArray0-addObject-unrecognized-selector-sent-to-instance-0x7f8a40d039a0"><a href="#NSArray0-addObject-unrecognized-selector-sent-to-instance-0x7f8a40d039a0" class="headerlink" title="-[__NSArray0 addObject:]: unrecognized selector sent to instance 0x7f8a40d039a0"></a><code>-[__NSArray0 addObject:]: unrecognized selector sent to instance 0x7f8a40d039a0</code></h3><p>造成原因是你使用<code>[NSArray addObject]</code>,而不是<code>[NSMutabeArray addObject]</code>;</p>
+<a id="more"></a>
+<h3 id="添加了一个All-Exceptions-出现停在线程队列的情况，点继续运行仍然可以运行，将该断点删除或者将里面的All改成Object-C也可以！"><a href="#添加了一个All-Exceptions-出现停在线程队列的情况，点继续运行仍然可以运行，将该断点删除或者将里面的All改成Object-C也可以！" class="headerlink" title="添加了一个All Exceptions 出现停在线程队列的情况，点继续运行仍然可以运行，将该断点删除或者将里面的All改成Object-C也可以！"></a>添加了一个All Exceptions 出现停在线程队列的情况，点继续运行仍然可以运行，将该断点删除或者将里面的All改成Object-C也可以！</h3><h3 id="ios7下面用autolayout报错类似-Assertion-failure-in-XXX-layoutSublayersOfLayer-SourceCache-UIKit-UIKit-2935-138-UIView"><a href="#ios7下面用autolayout报错类似-Assertion-failure-in-XXX-layoutSublayersOfLayer-SourceCache-UIKit-UIKit-2935-138-UIView" class="headerlink" title="ios7下面用autolayout报错类似  *** Assertion failure in -[XXX layoutSublayersOfLayer:], /SourceCache/UIKit/UIKit-2935.138/UIView."></a>ios7下面用autolayout报错类似  *** Assertion failure in -[XXX layoutSublayersOfLayer:], /SourceCache/UIKit/UIKit-2935.138/UIView.</h3><p>解决方案：在布局之后 加上 <code>[super layoutsubviews]</code> <code>[self lauoutifneed]</code> 这两个方法。</p>
+<h3 id="there-was-an-internal-api-error-“—-xcode7，"><a href="#there-was-an-internal-api-error-“—-xcode7，" class="headerlink" title="there was an internal api error “—- xcode7，"></a>there was an internal api error “—- xcode7，</h3><p>解决: <code>bulid settings -&gt; packaging -&gt; product name</code>  不要写中文。。。。</p>
+<h3 id="linker-command-failed-with-exit-code-1-use-v-to-see-invocation"><a href="#linker-command-failed-with-exit-code-1-use-v-to-see-invocation" class="headerlink" title="linker command failed with exit code 1 (use -v to see invocation)"></a>linker command failed with exit code 1 (use -v to see invocation)</h3><ol>
+<li>检查是否重复引用，或者依赖引用.h</li>
+<li>检查某个属性是否重复定义</li>
+<li>检查是否 import 错误，把 <code>.m</code> 引入了  555</li>
+<li>查看报错信息详情，一般都会提示，观察一下重复引用的两个文件名，分析即可</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <br/>
+        <br/>
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+      
+    </div>
+
+    <div>
+          
+            
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/default/Bug收集/">Bug收集</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 kysonyangs 的个人博客">kysonyangs</a></p>
+  <p><span>发布时间:</span>2015年10月01日 - 15:10</p>
+  <p><span>最后更新:</span>2018年11月05日 - 15:11</p>
+  <p><span>原始链接:</span><a href="/default/Bug收集/" title="Bug收集">https://kysonyangs.github.io/default/Bug收集/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://kysonyangs.github.io/default/Bug收集/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+          
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/default/警告收集/" rel="next" title="警告收集">
+                <i class="fa fa-chevron-left"></i> 警告收集
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/default/iOS技巧/" rel="prev" title="iOS技巧">
+                iOS技巧 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzQ0NC8xMzk3Ng=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">kysonyangs</p>
+              <p class="site-description motion-element" itemprop="description">kysonyangs个人站，备忘</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/kysonyangs" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CocoaPods-Bug"><span class="nav-number">1.</span> <span class="nav-text">CocoaPods Bug</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Use-the-inherited-flag"><span class="nav-number">1.0.1.</span> <span class="nav-text">Use the $(inherited) flag</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Xcode-Bug"><span class="nav-number">2.</span> <span class="nav-text">Xcode Bug</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义的代码片段存放位置"><span class="nav-number">2.0.1.</span> <span class="nav-text">自定义的代码片段存放位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xcode-10-Multiple-commands-produce-报错解决"><span class="nav-number">2.0.2.</span> <span class="nav-text">Xcode 10 Multiple commands produce 报错解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工程文件乱序"><span class="nav-number">2.0.3.</span> <span class="nav-text">工程文件乱序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目打不开-Failed-to-load-project-at-‘’-“-incompatible-project-version"><span class="nav-number">2.0.4.</span> <span class="nav-text">项目打不开 Failed to load project at ‘’ “,incompatible project version</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xcode-不高亮"><span class="nav-number">2.0.5.</span> <span class="nav-text">Xcode 不高亮</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打开Playground提示打开失败，找不到合适的devices"><span class="nav-number">2.0.6.</span> <span class="nav-text">打开Playground提示打开失败，找不到合适的devices</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#碰到Xib加载不出来，什么什么工程文件找不到，请看看引用有没有，没有的话加上就好了！"><span class="nav-number">2.0.7.</span> <span class="nav-text">碰到Xib加载不出来，什么什么工程文件找不到，请看看引用有没有，没有的话加上就好了！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用Xcode-7-3打开一个Xcode-8创建的工程，编译时报错：xxx-storyboard-或者xxx-xib-The-document-“null”-required-Xcode-8-0-or-later-点击xxx-storyboard-或者xxx-xib-时，弹出如图所示提示框。"><span class="nav-number">2.0.8.</span> <span class="nav-text">用Xcode 7.3打开一个Xcode 8创建的工程，编译时报错：xxx.storyboard(或者xxx.xib) The document “null” required Xcode 8.0 or later.点击xxx.storyboard(或者xxx.xib)时，弹出如图所示提示框。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#程序报错"><span class="nav-number">3.</span> <span class="nav-text">程序报错</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pathForResource-nil的情况，而项目命名有该资源"><span class="nav-number">3.0.1.</span> <span class="nav-text">pathForResource nil的情况，而项目命名有该资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#‘Could-not-instantiate-class-named-xxx’"><span class="nav-number">3.0.2.</span> <span class="nav-text">‘Could not instantiate class named xxx’</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加新字体，-info-plist也配置好了，就是无效"><span class="nav-number">3.0.3.</span> <span class="nav-text">添加新字体， info.plist也配置好了，就是无效</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ld-library-not-found-for-lxxx"><span class="nav-number">3.0.4.</span> <span class="nav-text">ld: library not found for -lxxx:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ld-symbol-s-not-found-for-architecture-x86-64"><span class="nav-number">3.0.5.</span> <span class="nav-text">ld: symbol(s) not found for architecture x86_64</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tableview遇到这种报错failed-to-obtain-a-cell-from-its-dataSource"><span class="nav-number">3.0.6.</span> <span class="nav-text">tableview遇到这种报错failed to obtain a cell from its dataSource</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UIView-Encapsulated-Layout-Width-错误"><span class="nav-number">3.0.7.</span> <span class="nav-text">UIView-Encapsulated-Layout-Width 错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift-创建控制器时自带xib加载在iOS8崩溃的问题"><span class="nav-number">3.0.8.</span> <span class="nav-text">Swift 创建控制器时自带xib加载在iOS8崩溃的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ios开发中，xib加载view，loadNibNamed方法奔溃原因之一"><span class="nav-number">3.0.9.</span> <span class="nav-text">ios开发中，xib加载view，loadNibNamed方法奔溃原因之一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NSArray0-addObject-unrecognized-selector-sent-to-instance-0x7f8a40d039a0"><span class="nav-number">3.0.10.</span> <span class="nav-text">-[__NSArray0 addObject:]: unrecognized selector sent to instance 0x7f8a40d039a0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加了一个All-Exceptions-出现停在线程队列的情况，点继续运行仍然可以运行，将该断点删除或者将里面的All改成Object-C也可以！"><span class="nav-number">3.0.11.</span> <span class="nav-text">添加了一个All Exceptions 出现停在线程队列的情况，点继续运行仍然可以运行，将该断点删除或者将里面的All改成Object-C也可以！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ios7下面用autolayout报错类似-Assertion-failure-in-XXX-layoutSublayersOfLayer-SourceCache-UIKit-UIKit-2935-138-UIView"><span class="nav-number">3.0.12.</span> <span class="nav-text">ios7下面用autolayout报错类似  *** Assertion failure in -[XXX layoutSublayersOfLayer:], /SourceCache/UIKit/UIKit-2935.138/UIView.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#there-was-an-internal-api-error-“—-xcode7，"><span class="nav-number">3.0.13.</span> <span class="nav-text">there was an internal api error “—- xcode7，</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linker-command-failed-with-exit-code-1-use-v-to-see-invocation"><span class="nav-number">3.0.14.</span> <span class="nav-text">linker command failed with exit code 1 (use -v to see invocation)</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kysonyangs</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("98nkii2hdktsmUfe1Og3R4V3-gzGzoHsz", "1zGSD9yxI1uo7HIj7IVa8CHx");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
