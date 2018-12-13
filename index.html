@@ -1482,6 +1482,180 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/iPhoneX+版本适配/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kysonyangs">
+      <meta itemprop="description" content="kysonyangs个人站，备忘">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kysonyangs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/default/iPhoneX+版本适配/" itemprop="url">
+                  iPhoneX适配
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-01-20 15:12:36" itemprop="dateCreated datePublished" datetime="2018-01-20T15:12:36+08:00">2018-01-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-12 16:50:16" itemprop="dateModified" datetime="2018-12-12T16:50:16+08:00">2018-12-12</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/default/iPhoneX+版本适配/" class="leancloud_visitors" data-flag-title="iPhoneX适配">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="iPhoneX适配"><a href="#iPhoneX适配" class="headerlink" title="iPhoneX适配"></a>iPhoneX适配</h3><h4 id="push-和-pop时，页面偏移"><a href="#push-和-pop时，页面偏移" class="headerlink" title="push 和 pop时，页面偏移"></a>push 和 pop时，页面偏移</h4><p>在有 UIScrollView 或 UIScrollView 子类（如tableView）的控制器中，push 到第二个几面和 pop 回去，scrollView 都会往下偏移。</p>
+<p>在 AppDelegate 中用 UISCrollView 的 UIAppearance 修改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// AppDelegate 进行全局设置 不然iOS 11 push时界面会有个下滑的效果，pop回去会有个上划的效果</span><br><span class="line">if (@available(iOS 11.0, *)) &#123;</span><br><span class="line">    [[UIScrollView appearance] setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="TabBar-在-push-的时候会向上弹，然后还会有黑块"><a href="#TabBar-在-push-的时候会向上弹，然后还会有黑块" class="headerlink" title="TabBar 在 push 的时候会向上弹，然后还会有黑块"></a>TabBar 在 push 的时候会向上弹，然后还会有黑块</h4><p>自定义 navigationController 重写的 push 方法里面修改 tabbar 的 frame<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 修改tabBar的frame 不然iPhone X push的时候tabBar上会向上弹</span><br><span class="line">- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated &#123;</span><br><span class="line">    if (self.viewControllers.count &gt; 0) &#123;</span><br><span class="line">           viewController.hidesBottomBarWhenPushed = YES;</span><br><span class="line">    &#125;</span><br><span class="line">    [super pushViewController:viewController animated:animated];</span><br><span class="line">    CGRect frame = self.tabBarController.tabBar.frame;</span><br><span class="line">    frame.origin.y = [UIScreen mainScreen].bounds.size.height - frame.size.height;</span><br><span class="line">    self.tabBarController.tabBar.frame = frame;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="TableView-添加-MJFooter-时，底部显示-MJFooter"><a href="#TableView-添加-MJFooter-时，底部显示-MJFooter" class="headerlink" title="TableView 添加 MJFooter 时，底部显示 MJFooter"></a>TableView 添加 MJFooter 时，底部显示 MJFooter</h4><p>修改 MJFooter 偏移位置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.tableView.mj_footer.ignoredScrollViewContentInsetBottom = kSalfBottomSpace;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    <div>
+          
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/CocoaPods-Carthage/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1837,7 +2011,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/Swift技巧/">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/iOS 方法替换/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="kysonyangs">
@@ -1856,8 +2030,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/default/Swift技巧/" itemprop="url">
-                  Swift技巧
+                <a class="post-title-link" href="/default/iOS 方法替换/" itemprop="url">
+                  方法替换
                 </a>
               
             
@@ -1883,7 +2057,7 @@
                 
               
 
-              <time title="创建时间：2017-10-03 15:33:46" itemprop="dateCreated datePublished" datetime="2017-10-03T15:33:46+08:00">2017-10-03</time>
+              <time title="创建时间：2017-10-05 15:12:36" itemprop="dateCreated datePublished" datetime="2017-10-05T15:12:36+08:00">2017-10-05</time>
             
 
             
@@ -1900,7 +2074,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-11-05 15:34:21" itemprop="dateModified" datetime="2018-11-05T15:34:21+08:00">2018-11-05</time>
+                <time title="修改时间：2018-12-12 16:50:24" itemprop="dateModified" datetime="2018-12-12T16:50:24+08:00">2018-12-12</time>
               
             
           </span>
@@ -1913,7 +2087,7 @@
 
           
           
-             <span id="/default/Swift技巧/" class="leancloud_visitors" data-flag-title="Swift技巧">
+             <span id="/default/iOS 方法替换/" class="leancloud_visitors" data-flag-title="方法替换">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1945,193 +2119,21 @@
 
       
         
-          <h3 id="cell分割线置顶"><a href="#cell分割线置顶" class="headerlink" title="cell分割线置顶"></a>cell分割线置顶</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tableView.separatorInset = UIEdgeInsets.zero</span><br></pre></td></tr></table></figure>
-<h3 id="Swift中lazy作惰性求值"><a href="#Swift中lazy作惰性求值" class="headerlink" title="Swift中lazy作惰性求值"></a>Swift中lazy作惰性求值</h3><p>函数式编程中有惰性求值的概念，即一次计算在真正需要时才执行，尽可能推迟求解表达式。<br>假如我们有一个数组，我们对每个元素作 <code>element*2</code> 的 map 操作，获取其中某一个元素，我们会如下代码处理:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let array = [1, 2, 4, 5, 3, 7]</span><br><span class="line">let element = array.map&#123; $0 * 2 &#125;[3]</span><br><span class="line">print(element)</span><br></pre></td></tr></table></figure></p>
-<p>这个计算对每个元素都<code>*</code>2，最后我们只取了其中一个值，也就是说在这个场景中另外5次计算是无意义的。</p>
-<p>这时使用惰性求值就可以避免这算浪费。我们知道Swift中有个lazy关键字，如果用来修饰属性之类的，可以实现属性的惰性求值。同样，Swift扩展了LazySequenceProtocol协议，提供了一个lazy属性，用于处理map，filter等操作的惰性求值，定义如下代码所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">extension LazySequenceProtocol &#123;</span><br><span class="line">    /// Identical to `self`.</span><br><span class="line">    public var lazy: Self &#123; get &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>所以，上面这个例子如果要实现惰性求值，则可以如下代码处理：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let array = [1, 2, 4, 5, 3, 7]</span><br><span class="line">let element = array.lazy.map&#123; $0 * 2 &#125;[3]</span><br><span class="line">print(element)</span><br></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/default/Swift技巧/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    <div>
           
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/Mac终端/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="kysonyangs">
-      <meta itemprop="description" content="kysonyangs个人站，备忘">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="kysonyangs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/default/Mac终端/" itemprop="url">
-                  Mac终端
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-02-10 20:37:52" itemprop="dateCreated datePublished" datetime="2017-02-10T20:37:52+08:00">2017-02-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-11-05 17:37:14" itemprop="dateModified" datetime="2018-11-05T17:37:14+08:00">2018-11-05</time>
-              
-            
-          </span>
+            <h4 id="Aspects"><a href="#Aspects" class="headerlink" title="Aspects"></a><a href="https://github.com/steipete/Aspects" target="_blank" rel="noopener">Aspects</a></h4><p><a href="https://github.com/steipete/Aspects" target="_blank" rel="noopener">Aspects</a> 是一个基于 Method Swizzle 的函数替换的第三方库，支持在方法执行前（AspectPositionBefore）/执行后（AspectPositionAfter）或替代原方法执行（AspectPositionInstead）</p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><ol>
+<li><p>HOOK一个类的所有实例的指定方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/// 为一个指定的类的某个方法执行前/替换/后,添加一段代码块.对这个类的所有对象都会起作用.</span><br><span class="line">///</span><br><span class="line">/// @param block  方法被添加钩子时,Aspectes会拷贝方法的签名信息.</span><br><span class="line">/// 第一个参数将会是 `id&lt;AspectInfo&gt;`,余下的参数是此被调用的方法的参数.</span><br><span class="line">/// 这些参数是可选的,并将被用于传递给block代码块对应位置的参数.</span><br><span class="line">/// 你甚至使用一个没有任何参数或只有一个`id&lt;AspectInfo&gt;`参数的block代码块.</span><br><span class="line">///</span><br><span class="line">/// @注意 不支持给静态方法添加钩子.</span><br><span class="line">/// @return 返回一个唯一值,用于取消此钩子.</span><br><span class="line">+ (id&lt;AspectToken&gt;)aspect_hookSelector:(SEL)selector</span><br><span class="line">                      withOptions:(AspectOptions)options</span><br><span class="line">                       usingBlock:(id)block</span><br><span class="line">                            error:(NSError **)error;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>HOOK一个类实例的指定方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/// 为一个指定的对象的某个方法执行前/替换/后,添加一段代码块.只作用于当前对象.</span><br><span class="line">- (id&lt;AspectToken&gt;)aspect_hookSelector:(SEL)selector</span><br><span class="line">                      withOptions:(AspectOptions)options</span><br><span class="line">                       usingBlock:(id)block</span><br><span class="line">                            error:(NSError **)error;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Example</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">+(void)Aspect &#123;</span><br><span class="line">    // 在类UIViewController所有的实例执行viewWillAppear:方法完毕后做一些事情</span><br><span class="line">    [UIViewController aspect_hookSelector:@selector(viewWillAppear:)</span><br><span class="line">                              withOptions:AspectPositionAfter</span><br><span class="line">                               usingBlock:^(id&lt;AspectInfo&gt; info) &#123;</span><br><span class="line">                                   NSString *className = NSStringFromClass([[info instance] class]);</span><br><span class="line">                                   NSLog(@&quot;%@&quot;, className);</span><br><span class="line">                               &#125; error:NULL];</span><br><span class="line"></span><br><span class="line">    // 在实例myVc执行viewWillAppear:方法完毕后做一些事情</span><br><span class="line">    UIViewController* myVc = [[UIViewController alloc] init];</span><br><span class="line">    [myVc aspect_hookSelector:@selector(viewWillAppear:)</span><br><span class="line">                            withOptions:AspectPositionAfter</span><br><span class="line">                             usingBlock:^(id&lt;AspectInfo&gt; info) &#123;</span><br><span class="line">                                 id instance = info.instance;               //调用的实例对象</span><br><span class="line">                                 id invocation = info.originalInvocation;   //原始的方法</span><br><span class="line">                                 id arguments = info.arguments;             //参数</span><br><span class="line">                                 [invocation invoke];                       //原始的方法，再次调用</span><br><span class="line">                             &#125; error:NULL];</span><br><span class="line">    // HOOK类方法</span><br><span class="line">    Class metalClass = objc_getMetaClass(NSStringFromClass(UIViewController.class).UTF8String);</span><br><span class="line">    [metalClass aspect_hookSelector:@selector(ClassMethod)</span><br><span class="line">                        withOptions:AspectPositionAfter</span><br><span class="line">                         usingBlock:^(id&lt;AspectInfo&gt; info) &#123;</span><br><span class="line">                             NSLog(@&quot;%@&quot;, HOOK类方法);</span><br><span class="line">                         &#125; error:NULL];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 
           
-
-          
-            
-          
-
-          
-          
-             <span id="/default/Mac终端/" class="leancloud_visitors" data-flag-title="Mac终端">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="复制粘贴无效解决"><a href="#复制粘贴无效解决" class="headerlink" title="复制粘贴无效解决"></a>复制粘贴无效解决</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">launchctl list | grep com.apple.pboard</span><br><span class="line"></span><br><span class="line">launchctl stop com.apple.pboard</span><br><span class="line">launchctl start com.apple.pboard</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/default/Mac终端/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -2223,7 +2225,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-count">29</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
