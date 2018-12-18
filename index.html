@@ -408,6 +408,183 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/YYCache源码阅读/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kysonyangs">
+      <meta itemprop="description" content="kysonyangs个人站，备忘">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kysonyangs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/default/YYCache源码阅读/" itemprop="url">
+                  YYCache源码阅读
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-16 20:18:20" itemprop="dateCreated datePublished" datetime="2018-12-16T20:18:20+08:00">2018-12-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-18 16:32:44" itemprop="dateModified" datetime="2018-12-18T16:32:44+08:00">2018-12-18</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/default/YYCache源码阅读/" class="leancloud_visitors" data-flag-title="YYCache源码阅读">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>一直想写一写自己读源码的感受与理解，可惜一直未付诸行动。最近闲来无事，索性整理一下，记录于此.</p>
+<h1 id="YYCache"><a href="#YYCache" class="headerlink" title="YYCache"></a>YYCache</h1><p>YYCahce 包括 内存缓存(YYMemoryCache) 与 磁盘缓存(YYDiskCache), 而且都是线程安全的！</p>
+<h2 id="YYMemoryCache-内存缓存"><a href="#YYMemoryCache-内存缓存" class="headerlink" title="YYMemoryCache 内存缓存"></a>YYMemoryCache 内存缓存</h2><p>一般这个缓存需要进行高效查询数据，所以使用字典这种 key-value 模式。那为什么不直接使用字典呢，因为需要保证线程安全。而为什么不直接使用 NSCache 呢，因为 YYMemoryCache 提供一种 LRU(least-recently-used: 最近最久少使用的会先删除) 算法去操作缓存。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/default/YYCache源码阅读/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    <div>
+          
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/Runtime相关/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1996,188 +2173,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/iOS 方法替换/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="kysonyangs">
-      <meta itemprop="description" content="kysonyangs个人站，备忘">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="kysonyangs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/default/iOS 方法替换/" itemprop="url">
-                  方法替换
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-10-05 15:12:36" itemprop="dateCreated datePublished" datetime="2017-10-05T15:12:36+08:00">2017-10-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-12-12 16:50:24" itemprop="dateModified" datetime="2018-12-12T16:50:24+08:00">2018-12-12</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/default/iOS 方法替换/" class="leancloud_visitors" data-flag-title="方法替换">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="Aspects"><a href="#Aspects" class="headerlink" title="Aspects"></a><a href="https://github.com/steipete/Aspects" target="_blank" rel="noopener">Aspects</a></h4><p><a href="https://github.com/steipete/Aspects" target="_blank" rel="noopener">Aspects</a> 是一个基于 Method Swizzle 的函数替换的第三方库，支持在方法执行前（AspectPositionBefore）/执行后（AspectPositionAfter）或替代原方法执行（AspectPositionInstead）</p>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><ol>
-<li><p>HOOK一个类的所有实例的指定方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/// 为一个指定的类的某个方法执行前/替换/后,添加一段代码块.对这个类的所有对象都会起作用.</span><br><span class="line">///</span><br><span class="line">/// @param block  方法被添加钩子时,Aspectes会拷贝方法的签名信息.</span><br><span class="line">/// 第一个参数将会是 `id&lt;AspectInfo&gt;`,余下的参数是此被调用的方法的参数.</span><br><span class="line">/// 这些参数是可选的,并将被用于传递给block代码块对应位置的参数.</span><br><span class="line">/// 你甚至使用一个没有任何参数或只有一个`id&lt;AspectInfo&gt;`参数的block代码块.</span><br><span class="line">///</span><br><span class="line">/// @注意 不支持给静态方法添加钩子.</span><br><span class="line">/// @return 返回一个唯一值,用于取消此钩子.</span><br><span class="line">+ (id&lt;AspectToken&gt;)aspect_hookSelector:(SEL)selector</span><br><span class="line">                      withOptions:(AspectOptions)options</span><br><span class="line">                       usingBlock:(id)block</span><br><span class="line">                            error:(NSError **)error;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>HOOK一个类实例的指定方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/// 为一个指定的对象的某个方法执行前/替换/后,添加一段代码块.只作用于当前对象.</span><br><span class="line">- (id&lt;AspectToken&gt;)aspect_hookSelector:(SEL)selector</span><br><span class="line">                      withOptions:(AspectOptions)options</span><br><span class="line">                       usingBlock:(id)block</span><br><span class="line">                            error:(NSError **)error;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Example</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">+(void)Aspect &#123;</span><br><span class="line">    // 在类UIViewController所有的实例执行viewWillAppear:方法完毕后做一些事情</span><br><span class="line">    [UIViewController aspect_hookSelector:@selector(viewWillAppear:)</span><br><span class="line">                              withOptions:AspectPositionAfter</span><br><span class="line">                               usingBlock:^(id&lt;AspectInfo&gt; info) &#123;</span><br><span class="line">                                   NSString *className = NSStringFromClass([[info instance] class]);</span><br><span class="line">                                   NSLog(@&quot;%@&quot;, className);</span><br><span class="line">                               &#125; error:NULL];</span><br><span class="line"></span><br><span class="line">    // 在实例myVc执行viewWillAppear:方法完毕后做一些事情</span><br><span class="line">    UIViewController* myVc = [[UIViewController alloc] init];</span><br><span class="line">    [myVc aspect_hookSelector:@selector(viewWillAppear:)</span><br><span class="line">                            withOptions:AspectPositionAfter</span><br><span class="line">                             usingBlock:^(id&lt;AspectInfo&gt; info) &#123;</span><br><span class="line">                                 id instance = info.instance;               //调用的实例对象</span><br><span class="line">                                 id invocation = info.originalInvocation;   //原始的方法</span><br><span class="line">                                 id arguments = info.arguments;             //参数</span><br><span class="line">                                 [invocation invoke];                       //原始的方法，再次调用</span><br><span class="line">                             &#125; error:NULL];</span><br><span class="line">    // HOOK类方法</span><br><span class="line">    Class metalClass = objc_getMetaClass(NSStringFromClass(UIViewController.class).UTF8String);</span><br><span class="line">    [metalClass aspect_hookSelector:@selector(ClassMethod)</span><br><span class="line">                        withOptions:AspectPositionAfter</span><br><span class="line">                         usingBlock:^(id&lt;AspectInfo&gt; info) &#123;</span><br><span class="line">                             NSLog(@&quot;%@&quot;, HOOK类方法);</span><br><span class="line">                         &#125; error:NULL];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    <div>
-          
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2225,7 +2220,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-count">30</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2246,7 +2241,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
