@@ -163,23 +163,25 @@
 
 
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="Info.plist属性">
-<meta property="og:url" content="https://kysonyangs.github.io/default/Info-plist属性/index.html">
+  <meta name="description" content="R.Swift 高效引用资源文件   R.swift 介绍 R.swift 安装配置 R.swift 使用   R.swift 介绍 R.Swift 是一款基于 Swift 平台，针对 iOS 以及 tvOS 开发的资源引用框架 避免使用字符串来构造某些资源实例 R.Swift 能够使用类似语法 R.资源类型.资源名称 来对某资源进行引用构建 R.Swift 有着动态生成代码的机制, 它具有以下优">
+<meta name="keywords" content="工具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R.Swift使用">
+<meta property="og:url" content="https://kysonyangs.github.io/default/R.Swift使用/index.html">
 <meta property="og:site_name" content="kysonyangs">
+<meta property="og:description" content="R.Swift 高效引用资源文件   R.swift 介绍 R.swift 安装配置 R.swift 使用   R.swift 介绍 R.Swift 是一款基于 Swift 平台，针对 iOS 以及 tvOS 开发的资源引用框架 避免使用字符串来构造某些资源实例 R.Swift 能够使用类似语法 R.资源类型.资源名称 来对某资源进行引用构建 R.Swift 有着动态生成代码的机制, 它具有以下优">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://ozhr26838.bkt.clouddn.com/hexo/info-plist.png">
-<meta property="og:updated_time" content="2018-11-05T07:04:25.573Z">
+<meta property="og:updated_time" content="2020-05-16T05:40:34.454Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Info.plist属性">
-<meta name="twitter:image" content="http://ozhr26838.bkt.clouddn.com/hexo/info-plist.png">
+<meta name="twitter:title" content="R.Swift使用">
+<meta name="twitter:description" content="R.Swift 高效引用资源文件   R.swift 介绍 R.swift 安装配置 R.swift 使用   R.swift 介绍 R.Swift 是一款基于 Swift 平台，针对 iOS 以及 tvOS 开发的资源引用框架 避免使用字符串来构造某些资源实例 R.Swift 能够使用类似语法 R.资源类型.资源名称 来对某资源进行引用构建 R.Swift 有着动态生成代码的机制, 它具有以下优">
 
 
 
 
 
 
-  <link rel="canonical" href="https://kysonyangs.github.io/Info-plist属性/"/>
+  <link rel="canonical" href="https://kysonyangs.github.io/R.Swift使用/"/>
 
 
 
@@ -189,7 +191,7 @@
   };
 </script>
 
-  <title>Info.plist属性 | kysonyangs</title>
+  <title>R.Swift使用 | kysonyangs</title>
   
 
 
@@ -407,7 +409,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/Info-plist属性/">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/R.Swift使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="kysonyangs">
@@ -424,7 +426,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Info.plist属性
+          <h1 class="post-title" itemprop="name headline">R.Swift使用
               
             
           </h1>
@@ -449,7 +451,7 @@
                 
               
 
-              <time title="Created: 2017-01-05 20:00:03" itemprop="dateCreated datePublished" datetime="2017-01-05T20:00:03+08:00">2017-01-05</time>
+              <time title="Created: 2019-08-12 20:32:33" itemprop="dateCreated datePublished" datetime="2019-08-12T20:32:33+08:00">2019-08-12</time>
             
 
             
@@ -466,7 +468,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-11-05 15:04:25" itemprop="dateModified" datetime="2018-11-05T15:04:25+08:00">2018-11-05</time>
+                <time title="Modified: 2020-05-16 13:40:34" itemprop="dateModified" datetime="2020-05-16T13:40:34+08:00">2020-05-16</time>
               
             
           </span>
@@ -479,7 +481,7 @@
 
           
           
-             <span id="/default/Info-plist属性/" class="leancloud_visitors" data-flag-title="Info.plist属性">
+             <span id="/default/R.Swift使用/" class="leancloud_visitors" data-flag-title="R.Swift使用">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -510,44 +512,74 @@
       
 
       
-        <p><img src="http://ozhr26838.bkt.clouddn.com/hexo/info-plist.png" alt=""></p>
-<a id="more"></a>
+        <p><a href="https://github.com/mac-cain13/R.swift" target="_blank" rel="noopener">R.Swift</a> 高效引用资源文件</p>
+<!-- TOC -->
 <ul>
-<li><code>Application does not run in background</code>: 默认 <code>NO</code>， 自从iOS4.0之后，当你在应用程序执行的时候按下Home键，应用程序并不会中断目前的应用，而是放到后台去了。因此希望使用者在按下Home键之后就要退出当前应用的请勾选这个选项。</li>
-<li><code>Localization native development region</code>: 本地化相关</li>
-<li><code>Bundle display name</code>: 应用程序本地化的显示名称，预设值为${PRODUCT_NAME}。</li>
-<li><code>Bundle name</code>: 应用程序的短名称，通常就是你的应用程序名称。</li>
-<li><code>Executable file</code>: 程序安装包的名称, 一般不用改</li>
-<li><code>Bundle identifier</code>: 用来标示应用程序的唯一ID，通常是以反向的DNS方式命名的，例如：com.myCompany.myApp</li>
-<li><code>InfoDictionary version</code>: info.plist格式的版本。一般来说，我们不会变动这个数值。</li>
-<li><code>Bundle versions string, short</code>: 应用程序的版本，通常是以三个数字來表示版本号，例如：1.0.1。</li>
-<li><code>Bundle version</code>: 标识编译版本(Bundle number)，你可以使用任何字串格式来表示这个版本。例如使用一个数字来表示编译次数。</li>
-<li><code>Bundle OS Type code</code>: 用用来标识整个封包的(bundle)的类型。在Mac裡面，一个封包可能是一个档案或目录，其目的在于将软体使用到的资源包在一起。例如应用程序应标识为APPL。</li>
-<li><code>Bundle creator OS Type code</code>: 开发者对应用程序的标识</li>
-<li><code>Application requires iPhone environment</code>: 如果应用程序不能在iPad、Touch上运行，设置此项为true;</li>
-<li><code>Application uses WIFI</code>: 如果应用程序需要WiFi才能工作，应该将此属性设置为true。这么做会提示用户，如果没有代开WiFi的话，打开WiFi，为了节省电力，iPhone会在30分钟后自动关闭程序中的任何WiFi。设置这一属性可以防止这种情况发生，并且保持连接处于活动状态。</li>
-<li><code>Icon already includes gloss and bevel effects</code>:  应用程序设置玻璃效果，设置为true可以阻止这么做。</li>
-<li><code>Main nib file base name</code>: 应用程序首次启动载入的xib文件</li>
-<li><code>Laumch image</code>: 用以指定应用程序启动时的图片文件。</li>
-<li><code>Initial interface orientation</code>: 指定应用程序打开时的方向。</li>
-<li><code>Localizations</code>: 用以指定应用程序所支持的语言。</li>
-<li><code>Localization native development region</code>: 应用程序原始的语言版本。</li>
-<li><code>Status bar is initially hidden</code>: 设置是否隐藏状态栏</li>
-<li><code>Status bar style</code>: 选择三种不同格式中的一种</li>
-<li><code>URL types</code>: 应用程序支持的URL标识符的一个数组（用于程序回调）</li>
-<li><code>supported interface orientation</code>: 程序的默认支持方向</li>
-<li><p><code>View controller-based status bar appearance</code>: YES/NO</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 设为 `YES`, 这时 view controller中对status bar的设置优先级高于application的设置，用下面的方式隐藏status bar:</span><br><span class="line">- (BOOL)prefersStatusBarHidden &#123;</span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br><span class="line">// 设为 `NO`, 这时application的设置优先级最高，用下面的方式隐藏status bar:</span><br><span class="line">[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>Required background modes</code>: 设定当应用程序进入后台执行后，哪些动作要继续在背景执行。这个键值是一个阵列类型的设定，可设定动作包括：audio，locateon，voip。</p>
-</li>
-<li><code>App Transport Security Settings</code>: https网络，这是个字典，如果需要请求 http 需要设置下列字典项<ul>
-<li><code>Allow Arbitrary Loads</code>: YES</li>
+<li><a href="#rswift-%e4%bb%8b%e7%bb%8d">R.swift 介绍</a></li>
+<li><a href="#rswift-%e5%ae%89%e8%a3%85%e9%85%8d%e7%bd%ae">R.swift 安装配置</a></li>
+<li><a href="#rswift-%e4%bd%bf%e7%94%a8">R.swift 使用</a></li>
+</ul>
+<!-- /TOC -->
+<h2 id="R-swift-介绍"><a href="#R-swift-介绍" class="headerlink" title="R.swift 介绍"></a>R.swift 介绍</h2><ul>
+<li><code>R.Swift</code> 是一款基于 Swift 平台，针对 iOS 以及 tvOS 开发的资源引用框架</li>
+<li>避免使用字符串来构造某些资源实例</li>
+<li><code>R.Swift</code> 能够使用类似语法 <code>R.资源类型.资源名称</code> 来对某资源进行引用构建</li>
+<li><code>R.Swift</code> 有着动态生成代码的机制, 它具有以下优点：<ul>
+<li>代码自动补全：就像输入其他的代码一样，<code>R.Swift</code> 支持 IDE 的代码自动补全</li>
+<li>自动检测: 可以自动检测代码是否存在问题, 当我们的资源文件名修改的时候, 这是就会提示资源引用错误</li>
 </ul>
 </li>
-<li><code>Privacy ...</code>: 一些权限<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Privacy - Media Library Usage Description               // 获取用户媒体库说明</span><br><span class="line">Privacy - Bluetooth Peripheral Usage Description        // 蓝牙外设使用描述</span><br><span class="line">Privacy - Calendars Usage Description                   // 日历的使用说明</span><br><span class="line">Privacy - Camera Usage Description                      // 相机使用叙述说明</span><br><span class="line">Privacy - Contacts Usage Description                    // 联系人使用说明</span><br><span class="line">Privacy - Health Share Usage Description                // 健康分享使用描述</span><br><span class="line">Privacy - Location Always Usage Description             // 后台定位(在iOS设置中为&apos;永久&apos;)</span><br><span class="line">Privacy - Location Usage Description                    // 需要定位</span><br><span class="line">Privacy - Location When In Use Usage Description        // 前台定位(在iOS设置中为&apos;使用期间&apos;)</span><br><span class="line">Privacy - Health Update Usage Description               // 健康更新使用描述</span><br><span class="line">Privacy - HomeKit Usage Description                     // HomeKit使用描述</span><br><span class="line">Privacy - Microphone Usage Description                  // 麦克风的使用说明</span><br><span class="line">Privacy - Motion Usage Description                      // 运动使用的描述</span><br><span class="line">Privacy - Photo Library Usage Description               // 照片库使用说明</span><br><span class="line">Privacy - Reminders Usage Description                   // 提醒使用描述</span><br><span class="line">Privacy - TV Provider Usage Description                 // 电视提供商使用的描述 (貌似国内用不到)</span><br><span class="line">Privacy - Speech Recognition Usage Description          // 语音识别权限</span><br><span class="line">Privacy - Reminders Usage DescriptionPrivacy - Reminders Usage Description  // 提醒事项权限</span><br><span class="line">Privacy - Motion Usage Description                      // 运动与健身</span><br><span class="line"></span><br><span class="line">// iOS11新增</span><br><span class="line">Privacy - NFC Reader Usage Description         //NFC使用描述</span><br><span class="line">Privacy - Face ID Usage Descriptio                   //使用Face ID</span><br><span class="line">Privacy - Photo Library Additions Usage Description     //  保存图片到图库中 （重要）</span><br></pre></td></tr></table></figure>
-</li>
 </ul>
+<a id="more"></a>
+<h2 id="R-swift-安装配置"><a href="#R-swift-安装配置" class="headerlink" title="R.swift 安装配置"></a>R.swift 安装配置</h2><ol>
+<li>安装<ul>
+<li>CocoaPods <code>pod &#39;R.swift&#39;</code> 安装</li>
+</ul>
+</li>
+<li>配置<ol>
+<li><code>Build Phases</code> -&gt; <code>New Run Script Phase</code> (-&gt; 重命名为 R.swift)</li>
+<li>将 👆 添加的 Run Script 拖动到 <code>Check Pods Manifest.lock</code> 下面</li>
+<li>添加脚本<br><code>&quot;$PODS_ROOT/R.swift/rswift&quot; generate &quot;$SRCROOT/R.generated.swift&quot;</code></li>
+<li>在 <code>Input Files</code> 下面添加 <code>$TEMP_DIR/rswift-lastrun</code></li>
+<li>在 <code>Output Files</code> 下面添加 <code>$SRCROOT/R.generated.swift</code></li>
+<li><code>Command+B</code> 编译项目，在项目代码目录下，会生成一个 <code>R.generated.swift</code> 的文件，将它拖如项目中</li>
+</ol>
+</li>
+<li>注意事项<ul>
+<li>不要勾选 <code>Copy items if needed</code> 选项，因为每次编译都会生成新的 <code>R.generated.swift</code> 文件，copy 的话，旧的 <code>R.generated.swift</code> 将不会被覆盖</li>
+<li>每当我们修改了资源，我们需要 <code>Command + B</code> 来编译一下项目从而让 <code>R.Swift</code> 自动进行配置更新</li>
+<li>在 <code>.gitignore</code> 添加 <code>*.generated.swift</code> 避免不必要的麻烦</li>
+</ul>
+</li>
+<li>如果想自定义位置存放 <code>R.generated.swift</code><ul>
+<li>当按照上面配置安装 Build 后成功生成 <code>R.generated.swift</code> 文件后</li>
+<li>拖动 <code>R.generated.swift</code> 到逆向存放的位置</li>
+<li>修改脚本<br><code>&quot;$PODS_ROOT/R.swift/rswift&quot; generate &quot;$SRCROOT/(路径)/R.generated.swift&quot;</code></li>
+<li>修改 <code>Output Files</code> <code>$SRCROOT/(路径)/R.generated.swift</code></li>
+<li>删除项目 <code>R.generated.swift</code>,重新添加</li>
+<li>在此 Build 即可</li>
+</ul>
+</li>
+</ol>
+<h2 id="R-swift-使用"><a href="#R-swift-使用" class="headerlink" title="R.swift 使用"></a>R.swift 使用</h2><ol>
+<li><p>图片</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//传统方式</span><br><span class="line">let oldImage = UIImage(named: &quot;yellow-image&quot;)</span><br><span class="line">//R.Swift方式</span><br><span class="line">let newImage = R.image.yellowImage()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>字体</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//传统方式</span><br><span class="line">let lightFontTitle = UIFont(name: &quot;Acme-Light&quot;, size: 22)</span><br><span class="line">//R.Swift方式</span><br><span class="line">let lightFontTitle = R.font.acmeLight(size: 22)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数据文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//传统方式</span><br><span class="line">let jsonData = Bundle.main.path(forResource: &quot;menuList&quot;, ofType: &quot;json&quot;)</span><br><span class="line">let jsonUrl1 = Bundle.main.url(forResource: &quot;menuList&quot;, withExtension: &quot;json&quot;)</span><br><span class="line"></span><br><span class="line">//R.Swift方式</span><br><span class="line">let jsonData2 = R.file.menuListJson.path()</span><br><span class="line">let newUrl = R.file.menuListJson()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Storyboards</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//传统方式</span><br><span class="line">let nibVC1 = UIStoryboard(name: &quot;NibHome&quot;, bundle: nil).instantiateInitialViewController() ?? UIViewController()</span><br><span class="line"></span><br><span class="line">let storyboard = UIStoryboard(name: &quot;Main&quot;, bundle: nil)</span><br><span class="line">let initialTabBarController = storyboard.instantiateInitialViewController() as? UITabBarController</span><br><span class="line">let settingsController = storyboard.instantiateViewController(withIdentifier: &quot;settingsController&quot;) as? SettingsControllerSettingsController</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//R.Swift方式</span><br><span class="line">let nibVC = R.storyboard.nibHome().instantiateInitialViewController() ?? UIViewController()</span><br><span class="line"></span><br><span class="line">let storyboard = R.storyboard.main()</span><br><span class="line">let initialTabBarController = R.storyboard.main.initialViewController()</span><br><span class="line">let settingsController = R.storyboard.main.settingsController()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Nibs</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//传统方式</span><br><span class="line">let nameOfNib = &quot;CustomView&quot;</span><br><span class="line">let customViewNib = UINib(nibName: &quot;CustomView&quot;, bundle: nil)</span><br><span class="line">let rootViews = customViewNib.instantiate(withOwner: nil, options: nil)</span><br><span class="line">let customView = rootViews[0] as? CustomView</span><br><span class="line"></span><br><span class="line">let viewControllerWithNib = CustomViewController(nibName: &quot;CustomView&quot;, bundle: nil)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//R.Swift方式</span><br><span class="line">let nameOfNib = R.nib.customView.name</span><br><span class="line">let customViewNib = R.nib.customView()</span><br><span class="line">let rootViews = R.nib.customView.instantiate(withOwner: nil)</span><br><span class="line">let customView = R.nib.customView.firstView(owner: nil)</span><br><span class="line"></span><br><span class="line">let viewControllerWithNib = CustomViewController(nib: R.nib.customView)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>cell复用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//传统方式</span><br><span class="line">let cellNib = UINib(nibName: &quot;NibTableViewCell&quot;, bundle: nil)</span><br><span class="line">tableView.register(cellNib, forCellReuseIdentifier: &quot;NibTableViewCell&quot;)</span><br><span class="line"></span><br><span class="line">func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -&gt; UITableViewCell &#123;</span><br><span class="line">    let cell = tableView.dequeueReusableCell(withIdentifier: &quot;NibTableViewCell&quot;, for: indexPath)</span><br><span class="line">    cell?.leftLabel.text = dataArr[indexPath.row]</span><br><span class="line">    return cell ?? UITableViewCell()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//R.Swift方式</span><br><span class="line">tableView.register(R.nib.nibTableViewCell(), forCellReuseIdentifier: R.nib.nibTableViewCell.name)</span><br><span class="line"></span><br><span class="line">func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -&gt; UITableViewCell &#123;</span><br><span class="line">    let cell = tableView.dequeueReusableCell(withIdentifier: R.nib.nibTableViewCell.name, for: indexPath) as? NibTableViewCell</span><br><span class="line">    cell?.leftLabel.text = dataArr[indexPath.row]</span><br><span class="line">    return cell ?? UITableViewCell()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
 
       
     </div>
@@ -579,12 +611,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/default/Info-plist属性/">Info.plist属性</a></p>
+  <p><span>本文标题:</span><a href="/default/R.Swift使用/">R.Swift使用</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 kysonyangs 的个人博客">kysonyangs</a></p>
-  <p><span>发布时间:</span>2017年01月05日 - 20:01</p>
-  <p><span>最后更新:</span>2018年11月05日 - 15:11</p>
-  <p><span>原始链接:</span><a href="/default/Info-plist属性/" title="Info.plist属性">https://kysonyangs.github.io/default/Info-plist属性/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://kysonyangs.github.io/default/Info-plist属性/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2019年08月12日 - 20:08</p>
+  <p><span>最后更新:</span>2020年05月16日 - 13:05</p>
+  <p><span>原始链接:</span><a href="/default/R.Swift使用/" title="R.Swift使用">https://kysonyangs.github.io/default/R.Swift使用/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://kysonyangs.github.io/default/R.Swift使用/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -613,6 +645,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/工具/" rel="tag"><i class="fa fa-tag"></i> 工具</a>
+          
+        </div>
+      
 
       
       
@@ -622,8 +660,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/default/Git命令/" rel="next" title="Git命令">
-                <i class="fa fa-chevron-left"></i> Git命令
+              <a href="/default/XCGLogger日志框架/" rel="next" title="XCGLogger 使用">
+                <i class="fa fa-chevron-left"></i> XCGLogger 使用
               </a>
             
           </div>
@@ -631,10 +669,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/default/Mac终端/" rel="prev" title="Mac终端">
-                Mac终端 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -688,8 +722,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -766,6 +809,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#R-swift-介绍"><span class="nav-number">1.</span> <span class="nav-text">R.swift 介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R-swift-安装配置"><span class="nav-number">2.</span> <span class="nav-text">R.swift 安装配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R-swift-使用"><span class="nav-number">3.</span> <span class="nav-text">R.swift 使用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

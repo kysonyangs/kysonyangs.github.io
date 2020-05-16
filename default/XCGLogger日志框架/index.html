@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Monaco:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'YRSQCB2W7K',
+      apiKey: '02bdd077b8d372a10bf55e8a6fdd31d4',
+      indexName: 'hexoindex',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="XCGLogger的介绍 XCGLogger的安装与配置 基本用法 XCGLogger初始化 日志输出 运行效果   更高级的初始化方法 过滤日志信息 按文件名过滤 按标签过滤   选择性的执行代码 日期格式化 自动切换配置 在后台进行日志处理 下面两种方法都是实现将日志文件输出放在后台线程中进行： 也可以通过build flags来实现程序在调试、生产自动使用不同线程   实现日志文件的增量">
+<meta name="keywords" content="工具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XCGLogger 使用">
+<meta property="og:url" content="https://kysonyangs.github.io/default/XCGLogger日志框架/index.html">
+<meta property="og:site_name" content="kysonyangs">
+<meta property="og:description" content="XCGLogger的介绍 XCGLogger的安装与配置 基本用法 XCGLogger初始化 日志输出 运行效果   更高级的初始化方法 过滤日志信息 按文件名过滤 按标签过滤   选择性的执行代码 日期格式化 自动切换配置 在后台进行日志处理 下面两种方法都是实现将日志文件输出放在后台线程中进行： 也可以通过build flags来实现程序在调试、生产自动使用不同线程   实现日志文件的增量">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-05-16T05:41:23.421Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="XCGLogger 使用">
+<meta name="twitter:description" content="XCGLogger的介绍 XCGLogger的安装与配置 基本用法 XCGLogger初始化 日志输出 运行效果   更高级的初始化方法 过滤日志信息 按文件名过滤 按标签过滤   选择性的执行代码 日期格式化 自动切换配置 在后台进行日志处理 下面两种方法都是实现将日志文件输出放在后台线程中进行： 也可以通过build flags来实现程序在调试、生产自动使用不同线程   实现日志文件的增量">
+
+
+
+
+
+
+  <link rel="canonical" href="https://kysonyangs.github.io/XCGLogger日志框架/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>XCGLogger 使用 | kysonyangs</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f00e2272f3df937b3553d379c23ceb2f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">kysonyangs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Stay Hungry, Stay Foolish</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/XCGLogger日志框架/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kysonyangs">
+      <meta itemprop="description" content="kysonyangs个人站，备忘">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kysonyangs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">XCGLogger 使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-08-12 16:10:05" itemprop="dateCreated datePublished" datetime="2019-08-12T16:10:05+08:00">2019-08-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-05-16 13:41:23" itemprop="dateModified" datetime="2020-05-16T13:41:23+08:00">2020-05-16</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/default/XCGLogger日志框架/" class="leancloud_visitors" data-flag-title="XCGLogger 使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <!-- TOC -->
+<ul>
+<li><a href="#xcglogger的介绍">XCGLogger的介绍</a></li>
+<li><a href="#xcglogger的安装与配置">XCGLogger的安装与配置</a></li>
+<li><a href="#基本用法">基本用法</a><ul>
+<li><a href="#xcglogger初始化">XCGLogger初始化</a></li>
+<li><a href="#日志输出">日志输出</a></li>
+<li><a href="#运行效果">运行效果</a></li>
+</ul>
+</li>
+<li><a href="#更高级的初始化方法">更高级的初始化方法</a></li>
+<li><a href="#过滤日志信息">过滤日志信息</a><ul>
+<li><a href="#按文件名过滤">按文件名过滤</a></li>
+<li><a href="#按标签过滤">按标签过滤</a></li>
+</ul>
+</li>
+<li><a href="#选择性的执行代码">选择性的执行代码</a></li>
+<li><a href="#日期格式化">日期格式化</a></li>
+<li><a href="#自动切换配置">自动切换配置</a></li>
+<li><a href="#在后台进行日志处理">在后台进行日志处理</a><ul>
+<li><a href="#下面两种方法都是实现将日志文件输出放在后台线程中进行">下面两种方法都是实现将日志文件输出放在后台线程中进行：</a></li>
+<li><a href="#也可以通过build-flags来实现程序在调试生产自动使用不同线程">也可以通过build flags来实现程序在调试、生产自动使用不同线程</a></li>
+</ul>
+</li>
+<li><a href="#实现日志文件的增量记录">实现日志文件的增量记录</a></li>
+<li><a href="#实现日志文件的转储">实现日志文件的转储</a></li>
+</ul>
+<!-- /TOC -->
+<h2 id="XCGLogger的介绍"><a href="#XCGLogger的介绍" class="headerlink" title="XCGLogger的介绍"></a>XCGLogger的介绍</h2><ul>
+<li><code>XCGLogger</code> 是一个 <code>debug</code> 日志框架，可用于 <code>Swift</code> 项目中</li>
+<li>使用 <code>XCGLogger</code> ，除了可以将日志详细信息输出到控制器台外，还可以输出到指定的文件中去</li>
+<li>虽然使用起来同 <code>NSLog()</code> 或 <code>print()</code> 差不多，但 <code>XCGLogger</code> 会附带更多的额外信息，比如：日期、函数名、文件名和行号</li>
+</ul>
+<a id="more"></a>
+<h2 id="XCGLogger的安装与配置"><a href="#XCGLogger的安装与配置" class="headerlink" title="XCGLogger的安装与配置"></a>XCGLogger的安装与配置</h2><ul>
+<li>从 <a href="https://github.com/DaveWoodCom/XCGLogger" target="_blank" rel="noopener"><code>GitHub</code></a> 下载最新的代码, 并拖入项目</li>
+<li>或者使用 <code>CocoaPods</code> 或 <code>Carthage</code></li>
+</ul>
+<h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><h3 id="XCGLogger初始化"><a href="#XCGLogger初始化" class="headerlink" title="XCGLogger初始化"></a>XCGLogger初始化</h3><ol>
+<li><p>定义一个全局的 <code>XCGLogger</code> 日志对象，并进行初始化</p>
+<ul>
+<li>选择打印所有的日志信息（级别、方法名、文件名、行号）</li>
+<li>日志除了会打印在控制台中外，还会同步输出到文件中（Library/Caches/log.txt）</li>
+<li>同时日志在控制台打印和文件输出的消息级别一样，都是 <code>debug</code> 级</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import XCGLogger</span><br><span class="line"></span><br><span class="line">let XCCacheDirectory: URL = &#123;</span><br><span class="line">    let urls = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)</span><br><span class="line">    return urls[urls.endIndex - 1]</span><br><span class="line">&#125;()</span><br><span class="line"></span><br><span class="line">let log: XCGLogger = &#123;</span><br><span class="line">    let log = XCGLogger.default</span><br><span class="line"></span><br><span class="line">    // 日志文件地址</span><br><span class="line">    let logPath: URL = XCCacheDirectory.appendingPathComponent(&quot;XCGLogger_Log.txt&quot;)</span><br><span class="line">    log.setup(level: .debug, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: logPath)</span><br><span class="line"></span><br><span class="line">    return log</span><br><span class="line">&#125;()</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="日志输出"><a href="#日志输出" class="headerlink" title="日志输出"></a>日志输出</h3><p>通过 <code>XCGLogger</code>内置的方法，我们可以输出各种消息级别的日志信息。比如下面样例我们打印从低到高各种级别的日志</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">log.verbose(&quot;一条verbose级别消息：程序执行时最详细的信息。&quot;)</span><br><span class="line">log.debug(&quot;一条debug级别消息：用于代码调试。&quot;)</span><br><span class="line">log.info(&quot;一条info级别消息：常用与用户在console.app中查看。&quot;)</span><br><span class="line">log.warning(&quot;一条warning级别消息：警告消息，表示一个可能的错误。&quot;)</span><br><span class="line">log.error(&quot;一条error级别消息：表示产生了一个可恢复的错误，用于告知发生了什么事情。&quot;)</span><br><span class="line">log.severe(&quot;一条severe error级别消息：表示产生了一个严重错误。程序可能很快会奔溃。&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="运行效果"><a href="#运行效果" class="headerlink" title="运行效果"></a>运行效果</h3><p>由于我们前面将日志显示级别设置成 <code>debug</code>，所以 <code>verbose</code> 级别的日志消息就不会打印</p>
+<h2 id="更高级的初始化方法"><a href="#更高级的初始化方法" class="headerlink" title="更高级的初始化方法"></a>更高级的初始化方法</h2><p>通常情况下我们只需要像上面样例一样，使用 <code>setup</code> 方法初始化 <code>XCGLogger</code>对象相关配置即可。方便简单，代码也少。</p>
+<p>当然 <code>XCGLogger</code> 也支持更加灵活的配置，使得我们日志记录会更加可控。比如：想让控制台显示的信息与日志文件里记录的信息不一样。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">// 创建一个logger对象</span><br><span class="line">let log = XCGLogger(identifier: &quot;advancedLogger&quot;, includeDefaultDestinations: false)</span><br><span class="line"></span><br><span class="line">// 控制台输出</span><br><span class="line">let systemDestination = AppleSystemLogDestination(identifier: &quot;advancedLogger.systemDestination&quot;)</span><br><span class="line"></span><br><span class="line">// 设置控制台输出的各个配置项</span><br><span class="line">systemDestination.outputLevel = .debug</span><br><span class="line">systemDestination.showLogIdentifier = false</span><br><span class="line">systemDestination.showFunctionName = true</span><br><span class="line">systemDestination.showThreadName = true</span><br><span class="line">systemDestination.showLevel = true</span><br><span class="line">systemDestination.showFileName = true</span><br><span class="line">systemDestination.showLineNumber = true</span><br><span class="line">systemDestination.showDate = true</span><br><span class="line"></span><br><span class="line">// logger对象中添加控制台输出</span><br><span class="line">log.add(destination: systemDestination)</span><br><span class="line"></span><br><span class="line">// 日志文件地址</span><br><span class="line">let logPath: URL = XCCacheDirectory.appendingPathComponent(&quot;XCGLogger_Log.txt&quot;)</span><br><span class="line">let fileDestination = FileDestination(writeToFile: logPath, identifier: &quot;advancedLogger.fileDestination&quot;)</span><br><span class="line"></span><br><span class="line">// 设置文件输出的各个配置项</span><br><span class="line">fileDestination.outputLevel = .debug</span><br><span class="line">fileDestination.showLogIdentifier = false</span><br><span class="line">fileDestination.showFunctionName = true</span><br><span class="line">fileDestination.showThreadName = true</span><br><span class="line">fileDestination.showLevel = true</span><br><span class="line">fileDestination.showFileName = true</span><br><span class="line">fileDestination.showLineNumber = true</span><br><span class="line">fileDestination.showDate = true</span><br><span class="line"></span><br><span class="line">// Xcode8以上无效了</span><br><span class="line">// 设置输出语句颜色和样式（搭配XcodeColors使用）</span><br><span class="line">/**</span><br><span class="line">let ansiColorLogFormatter: ANSIColorLogFormatter = ANSIColorLogFormatter()</span><br><span class="line">ansiColorLogFormatter.colorize(level: .verbose, with: .colorIndex(number: 244), options: [.faint])</span><br><span class="line">ansiColorLogFormatter.colorize(level: .debug, with: .black)</span><br><span class="line">ansiColorLogFormatter.colorize(level: .info, with: .blue, options: [.underline])</span><br><span class="line">ansiColorLogFormatter.colorize(level: .warning, with: .red, options: [.faint])</span><br><span class="line">ansiColorLogFormatter.colorize(level: .error, with: .red, options: [.bold])</span><br><span class="line">ansiColorLogFormatter.colorize(level: .severe, with: .white, on: .red)</span><br><span class="line">fileDestination.formatters = [ansiColorLogFormatter]</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">// 文件输出在后台处理</span><br><span class="line">fileDestination.logQueue = XCGLogger.logQueue</span><br><span class="line"></span><br><span class="line">// logger对象中添加控制台输出</span><br><span class="line">log.add(destination: fileDestination)</span><br><span class="line"></span><br><span class="line">// 开始启用</span><br><span class="line">log.logAppDetails()</span><br><span class="line"></span><br><span class="line">// 更改权限提示 eg: [debug]=&gt;&quot;🔹&quot;</span><br><span class="line">let emojiLogFormatter = PrePostFixLogFormatter()</span><br><span class="line">emojiLogFormatter.apply(prefix: &quot;🗯🗯🗯 &quot;, postfix: &quot; 🗯🗯🗯&quot;, to: .verbose)</span><br><span class="line">emojiLogFormatter.apply(prefix: &quot;🔹🔹🔹 &quot;, postfix: &quot; 🔹🔹🔹&quot;, to: .debug)</span><br><span class="line">emojiLogFormatter.apply(prefix: &quot;ℹ️ℹ️ℹ️ &quot;, postfix: &quot; ℹ️ℹ️ℹ️&quot;, to: .info)</span><br><span class="line">emojiLogFormatter.apply(prefix: &quot;⚠️⚠️⚠️ &quot;, postfix: &quot; ⚠️⚠️⚠️&quot;, to: .warning)</span><br><span class="line">emojiLogFormatter.apply(prefix: &quot;‼️‼️‼️ &quot;, postfix: &quot; ‼️‼️‼️&quot;, to: .error)</span><br><span class="line">emojiLogFormatter.apply(prefix: &quot;💣💣💣 &quot;, postfix: &quot; 💣💣💣&quot;, to: .severe)</span><br><span class="line">log.formatters = [emojiLogFormatter]</span><br></pre></td></tr></table></figure>
+<h2 id="过滤日志信息"><a href="#过滤日志信息" class="headerlink" title="过滤日志信息"></a>过滤日志信息</h2><h3 id="按文件名过滤"><a href="#按文件名过滤" class="headerlink" title="按文件名过滤"></a>按文件名过滤</h3><ol>
+<li><p>下面代码不显示 <code>AppDelegate.swift</code> 中输出的日志，其它文件日志都会显示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">log.filters = [FileNameFilter(excludeFrom: [&quot;AppDelegate.swift&quot;],   excludePathWhenMatching: true)]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下面代码只显示 AppDelegate.swift 中输出的日志，其它文件日志都不显示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">log.filters = [FileNameFilter(includeFrom: [&quot;AppDelegate.swift&quot;],   excludePathWhenMatching: true)]</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="按标签过滤"><a href="#按标签过滤" class="headerlink" title="按标签过滤"></a>按标签过滤</h3><ol>
+<li><p>使用自定义的标签字符串</p>
+<p>比如我们在输出一条 debug 消息时，附上一个自定义的标签（sensitive）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let sensitiveTag = XCGLogger.Constants.userInfoKeyTags</span><br><span class="line">log.debug(&quot;这里进行用户身份验证。&quot;, userInfo: [tags: &quot;sensitive&quot;])</span><br></pre></td></tr></table></figure>
+<p>下面设置分别是不显示这个标签的日志，以及只显示这个标签的日志</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 下面代码不显示标签为&quot;sensitive&quot;的日志，其它日志都会显示</span><br><span class="line">log.filters = [TagFilter(excludeFrom: [&quot;sensitive&quot;])]</span><br><span class="line"></span><br><span class="line">// 下面代码只显示标签为&quot;sensitive&quot;的日志，其它日志都不会显示</span><br><span class="line">log.filters = [TagFilter(includeFrom: [&quot;sensitive&quot;])]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过扩展 <code>Tag</code> 和 <code>Dev</code> 这两个标签结构体<br><code>Tag</code> 和 <code>Dev</code> 是 <code>XCGLogger</code> 自带的，我们这里通过扩展，在其上面添加一个些自定义标签。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">extension Tag &#123;</span><br><span class="line">    static let sensitive = Tag(&quot;sensitive&quot;)</span><br><span class="line">    static let ui = Tag(&quot;ui&quot;)</span><br><span class="line">    static let data = Tag(&quot;data&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">extension Dev &#123;</span><br><span class="line">    static let dave = Dev(&quot;dave&quot;)</span><br><span class="line">    static let sabby = Dev(&quot;sabby&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们日志输出时可以混合使用多个标签：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 设置多个标签</span><br><span class="line">log.debug(&quot;A tagged log message&quot;, userInfo: Dev.dave | Tag.sensitive)</span><br><span class="line"></span><br><span class="line">// 设置单个标签</span><br><span class="line">log.debug(&quot;Another tagged log message&quot;, userInfo: Dev.dave.dictionary)</span><br></pre></td></tr></table></figure>
+<p>下面根据便签进行日志过滤：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 下面代码不显示标签只为&quot;dave&quot;或&quot;sensitive&quot;的日志，其它日志都会显示</span><br><span class="line">log.filters = [TagFilter(excludeFrom: [Dev.dave, Tag.sensitive])]</span><br><span class="line"></span><br><span class="line">// 下面代码只显示标签为&quot;dave&quot;或&quot;sensitive&quot;的日志，其它日志都不会显示</span><br><span class="line">log.filters = [TagFilter(includeFrom: [Dev.dave, Tag.sensitive])]</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="选择性的执行代码"><a href="#选择性的执行代码" class="headerlink" title="选择性的执行代码"></a>选择性的执行代码</h2><p>有时我们日志输出前要进行一些计算或操作，再将结果通过日志打印出来。由于这些操作与程序实际运行无关，只是用于日志打印，那么我们可以将其放置在日志方法闭包中。这样既保证代码的干净，同时如果日志不输出的话也不会浪费系统资源。</p>
+<p>比如下面样例，如果我们将日志消息级别调到 <code>debug</code>以上，那么下面日志不会输出，且内部的循环操作自然也不会执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">log.debug &#123;</span><br><span class="line">    var total = 0.0</span><br><span class="line">    for receipt in receipts &#123;</span><br><span class="line">        total += receipt.total</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return &quot;Total of all receipts: \(total)&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="日期格式化"><a href="#日期格式化" class="headerlink" title="日期格式化"></a>日期格式化</h2><p>默认日志输出的格式是 “2000-01-01 00:00:00.000” 这种形式。当然我们也可以改成任意的自定义的格式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let dateFormatter = DateFormatter()</span><br><span class="line">dateFormatter.dateFormat = &quot;MM/dd/yyyy hh:mma&quot;</span><br><span class="line">dateFormatter.locale = Locale.current</span><br><span class="line">log.dateFormatter = dateFormatter</span><br></pre></td></tr></table></figure></p>
+<h2 id="自动切换配置"><a href="#自动切换配置" class="headerlink" title="自动切换配置"></a>自动切换配置</h2><p>通过使用 <code>Swift</code> 的编译标志（<code>build flags</code>）,我们可以在程序调试、生产版本中自动使用不同的日志级别和日志条目。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#if DEBUG</span><br><span class="line">log.setup(level: .debug, showThreadName: true, showLevel: true,</span><br><span class="line">          showFileNames: true, showLineNumbers: true)</span><br><span class="line">#else</span><br><span class="line">log.setup(level: .severe, showThreadName: true, showLevel: true,</span><br><span class="line">          showFileNames: true, showLineNumbers: true)</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure></p>
+<h2 id="在后台进行日志处理"><a href="#在后台进行日志处理" class="headerlink" title="在后台进行日志处理"></a>在后台进行日志处理</h2><p>默认情况下，日志输出是在调用它们的进程里进行的。这样可以确保日志消息可以立刻显示，方便我们使用断点调试时可以立刻看到结果。</p>
+<p>但在发布的生产版本中，如果日志也在当前线程中执行会对性能造成一些影响。我们可以指定日志目标进程使用哪个执行队列中。</p>
+<h3 id="下面两种方法都是实现将日志文件输出放在后台线程中进行："><a href="#下面两种方法都是实现将日志文件输出放在后台线程中进行：" class="headerlink" title="下面两种方法都是实现将日志文件输出放在后台线程中进行："></a>下面两种方法都是实现将日志文件输出放在后台线程中进行：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//方式1</span><br><span class="line">fileDestination.logQueue = XCGLogger.logQueue</span><br><span class="line"></span><br><span class="line">//方式2</span><br><span class="line">fileDestination.logQueue = DispatchQueue.global(qos: .background)</span><br></pre></td></tr></table></figure>
+<h3 id="也可以通过build-flags来实现程序在调试、生产自动使用不同线程"><a href="#也可以通过build-flags来实现程序在调试、生产自动使用不同线程" class="headerlink" title="也可以通过build flags来实现程序在调试、生产自动使用不同线程"></a>也可以通过build flags来实现程序在调试、生产自动使用不同线程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#if DEBUG</span><br><span class="line">    log.setup(level: .debug, showThreadName: true, showLevel: true,</span><br><span class="line">              showFileNames: true, showLineNumbers: true)</span><br><span class="line">#else</span><br><span class="line">    log.setup(level: .severe, showThreadName: true, showLevel: true,</span><br><span class="line">              showFileNames: true, showLineNumbers: true)</span><br><span class="line">    if let consoleLog = log.logDestination(XCGLogger.Constants.baseConsoleDestinationIdentifier)</span><br><span class="line">        as? ConsoleDestination &#123;</span><br><span class="line">        consoleLog.logQueue = XCGLogger.logQueue</span><br><span class="line">    &#125;</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
+<h2 id="实现日志文件的增量记录"><a href="#实现日志文件的增量记录" class="headerlink" title="实现日志文件的增量记录"></a>实现日志文件的增量记录</h2><p>默认情况下，日志文件的输出的是覆盖模式的。也就是说，我们指定了一个日志文件路径，程序每次重新启动时，如果这个文件原来就存在，其内容也会被覆盖。</p>
+<ul>
+<li>我们可以在日志配置时将 <code>shouldAppend</code> 参数设置为 <code>true</code>，这样如果原来的文件存在，也不会重新覆盖。而是将新日志信息添加到文件尾部。<br>*</li>
+<li>同时 <code>appendMarker</code>可以设置个字符串，其在每次程序启动时会自动添加到日志文件中。方便我们区分开每次程序运行的日志。<br>*<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">//文件出输出</span><br><span class="line">let fileDestination = FileDestination(writeToFile: logURL,</span><br><span class="line">                                      identifier: &quot;advancedLogger.fileDestination&quot;,</span><br><span class="line">                                      shouldAppend: true,</span><br><span class="line">                                      appendMarker: &quot;-- Relauched App --&quot;)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="实现日志文件的转储"><a href="#实现日志文件的转储" class="headerlink" title="实现日志文件的转储"></a>实现日志文件的转储</h2><p>上面的样例中，我们都是将日志记录到 Caches 文件夹下的 log.txt。如果是增量日志的话，那个这个文件就会越来越大。所以我们可以通过 rotateFile(to:) 方法实现日志的转储。比如：每隔一段时间，或每当日志文件到一定大小时调用下该方法，将日志内容转储到另一个文件中。（注意：转储后原来日志文件里的内容会清空。）</p>
+<p>具体转储操作的步骤如下：</p>
+<ul>
+<li>首先通过 <code>XCGLogger</code> 的 <code>destination(withIdentifier:)</code> 方法获取 FileDestination 对象。</li>
+<li>再调用 <code>FileDestination</code> 对象的 <code>rotateFile(to:)</code> 方法将日志文件转储到指定路径。</li>
+<li><code>rotateFile(to:)</code> 方法执行成功后会返回 <code>true</code>。根据结果我们可以进行一些后续操作。比如：压缩、邮件发送日志文件等等。</li>
+</ul>
+<p>下面代码我们将日志文件转储到用户文档目录下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 获取FileDestination</span><br><span class="line">let fileDestination = log.destination(withIdentifier: &quot;advancedLogger.fileDestination&quot;)</span><br><span class="line">    as! FileDestination</span><br><span class="line"></span><br><span class="line">// 获取用户文档目录</span><br><span class="line">let documentPath = FileManager.default.urls(for: .documentDirectory,</span><br><span class="line">                                         in: .userDomainMask)[0]</span><br><span class="line">let logURL = documentPath.appendingPathComponent(&quot;log.txt&quot;)</span><br><span class="line"></span><br><span class="line">// 将当前的日志文件复制到用户文档目录中去</span><br><span class="line">fileDestination.rotateFile(to: logURL)</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <br/>
+        <br/>
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+      
+    </div>
+
+    <div>
+          
+            
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/default/XCGLogger日志框架/">XCGLogger 使用</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 kysonyangs 的个人博客">kysonyangs</a></p>
+  <p><span>发布时间:</span>2019年08月12日 - 16:08</p>
+  <p><span>最后更新:</span>2020年05月16日 - 13:05</p>
+  <p><span>原始链接:</span><a href="/default/XCGLogger日志框架/" title="XCGLogger 使用">https://kysonyangs.github.io/default/XCGLogger日志框架/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://kysonyangs.github.io/default/XCGLogger日志框架/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+          
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/工具/" rel="tag"><i class="fa fa-tag"></i> 工具</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/default/SwiftLint规则/" rel="next" title="SwiftLint 规则收录">
+                <i class="fa fa-chevron-left"></i> SwiftLint 规则收录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/default/R.Swift使用/" rel="prev" title="R.Swift使用">
+                R.Swift使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzQ0NC8xMzk3Ng=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">kysonyangs</p>
+              <p class="site-description motion-element" itemprop="description">kysonyangs个人站，备忘</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/kysonyangs" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#XCGLogger的介绍"><span class="nav-number">1.</span> <span class="nav-text">XCGLogger的介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XCGLogger的安装与配置"><span class="nav-number">2.</span> <span class="nav-text">XCGLogger的安装与配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本用法"><span class="nav-number">3.</span> <span class="nav-text">基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#XCGLogger初始化"><span class="nav-number">3.1.</span> <span class="nav-text">XCGLogger初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日志输出"><span class="nav-number">3.2.</span> <span class="nav-text">日志输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行效果"><span class="nav-number">3.3.</span> <span class="nav-text">运行效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更高级的初始化方法"><span class="nav-number">4.</span> <span class="nav-text">更高级的初始化方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过滤日志信息"><span class="nav-number">5.</span> <span class="nav-text">过滤日志信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#按文件名过滤"><span class="nav-number">5.1.</span> <span class="nav-text">按文件名过滤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按标签过滤"><span class="nav-number">5.2.</span> <span class="nav-text">按标签过滤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择性的执行代码"><span class="nav-number">6.</span> <span class="nav-text">选择性的执行代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日期格式化"><span class="nav-number">7.</span> <span class="nav-text">日期格式化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动切换配置"><span class="nav-number">8.</span> <span class="nav-text">自动切换配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在后台进行日志处理"><span class="nav-number">9.</span> <span class="nav-text">在后台进行日志处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下面两种方法都是实现将日志文件输出放在后台线程中进行："><span class="nav-number">9.1.</span> <span class="nav-text">下面两种方法都是实现将日志文件输出放在后台线程中进行：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#也可以通过build-flags来实现程序在调试、生产自动使用不同线程"><span class="nav-number">9.2.</span> <span class="nav-text">也可以通过build flags来实现程序在调试、生产自动使用不同线程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现日志文件的增量记录"><span class="nav-number">10.</span> <span class="nav-text">实现日志文件的增量记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现日志文件的转储"><span class="nav-number">11.</span> <span class="nav-text">实现日志文件的转储</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kysonyangs</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("98nkii2hdktsmUfe1Og3R4V3-gzGzoHsz", "1zGSD9yxI1uo7HIj7IVa8CHx");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
