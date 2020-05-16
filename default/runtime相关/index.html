@@ -163,19 +163,20 @@
 
 
 
-  <meta name="description" content="Runtime 又叫运行时，是一套底层的 C 语言 API，其为 iOS 内部的核心之一，我们平时编写的 OC 代码，底层都是基于它来实现的。 Objective-C 是一门动态语言，它会将一些工作放在代码运行时才处理而并非编译时。也就是说，有很多类和成员变量在我们编译的时是不知道的，而在运行时，我们所编写的代码会转换成完整的确定的代码运行。 因此，编译器是不够的，我们还需要一个运行时系统(Run">
+  <meta name="description" content="Runtime 是什么？Runtime 又叫运行时，是一套由 C、C++ 会和编写的一套 API，为OC加入了面向对象与运行时机制。 Objective-C 是一门动态语言，它会将一些工作放在代码运行时才处理而并非编译时。也就是说，有很多类和成员变量在我们编译的时是不知道的，而在运行时，我们所编写的代码会转换成完整的确定的代码运行。 KVO 实现原理简单理解 KVO是基于runtime机制实现的">
+<meta name="keywords" content="Runtime">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Runtime相关">
 <meta property="og:url" content="https://kysonyangs.github.io/default/Runtime相关/index.html">
 <meta property="og:site_name" content="kysonyangs">
-<meta property="og:description" content="Runtime 又叫运行时，是一套底层的 C 语言 API，其为 iOS 内部的核心之一，我们平时编写的 OC 代码，底层都是基于它来实现的。 Objective-C 是一门动态语言，它会将一些工作放在代码运行时才处理而并非编译时。也就是说，有很多类和成员变量在我们编译的时是不知道的，而在运行时，我们所编写的代码会转换成完整的确定的代码运行。 因此，编译器是不够的，我们还需要一个运行时系统(Run">
+<meta property="og:description" content="Runtime 是什么？Runtime 又叫运行时，是一套由 C、C++ 会和编写的一套 API，为OC加入了面向对象与运行时机制。 Objective-C 是一门动态语言，它会将一些工作放在代码运行时才处理而并非编译时。也就是说，有很多类和成员变量在我们编译的时是不知道的，而在运行时，我们所编写的代码会转换成完整的确定的代码运行。 KVO 实现原理简单理解 KVO是基于runtime机制实现的">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1829339-77757288cc139f44.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700/format/webp">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1829339-b2ed87dd5cd13ea4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/780/format/webp">
-<meta property="og:updated_time" content="2018-11-05T07:43:40.558Z">
+<meta property="og:updated_time" content="2020-05-13T11:12:38.972Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Runtime相关">
-<meta name="twitter:description" content="Runtime 又叫运行时，是一套底层的 C 语言 API，其为 iOS 内部的核心之一，我们平时编写的 OC 代码，底层都是基于它来实现的。 Objective-C 是一门动态语言，它会将一些工作放在代码运行时才处理而并非编译时。也就是说，有很多类和成员变量在我们编译的时是不知道的，而在运行时，我们所编写的代码会转换成完整的确定的代码运行。 因此，编译器是不够的，我们还需要一个运行时系统(Run">
+<meta name="twitter:description" content="Runtime 是什么？Runtime 又叫运行时，是一套由 C、C++ 会和编写的一套 API，为OC加入了面向对象与运行时机制。 Objective-C 是一门动态语言，它会将一些工作放在代码运行时才处理而并非编译时。也就是说，有很多类和成员变量在我们编译的时是不知道的，而在运行时，我们所编写的代码会转换成完整的确定的代码运行。 KVO 实现原理简单理解 KVO是基于runtime机制实现的">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1829339-77757288cc139f44.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700/format/webp">
 
 
@@ -470,7 +471,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-11-05 15:43:40" itemprop="dateModified" datetime="2018-11-05T15:43:40+08:00">2018-11-05</time>
+                <time title="Modified: 2020-05-13 19:12:38" itemprop="dateModified" datetime="2020-05-13T19:12:38+08:00">2020-05-13</time>
               
             
           </span>
@@ -514,9 +515,8 @@
       
 
       
-        <p>Runtime 又叫运行时，是一套底层的 C 语言 API，其为 iOS 内部的核心之一，我们平时编写的 OC 代码，底层都是基于它来实现的。</p>
+        <h1 id="Runtime-是什么？"><a href="#Runtime-是什么？" class="headerlink" title="Runtime 是什么？"></a>Runtime 是什么？</h1><p><code>Runtime</code> 又叫运行时，是一套由 C、C++ 会和编写的一套 API，为OC加入了面向对象与运行时机制。</p>
 <p>Objective-C 是一门动态语言，它会将一些工作放在代码运行时才处理而并非编译时。也就是说，有很多类和成员变量在我们编译的时是不知道的，而在运行时，我们所编写的代码会转换成完整的确定的代码运行。</p>
-<p>因此，编译器是不够的，我们还需要一个运行时系统(Runtime system)来处理编译后的代码。</p>
 <h2 id="KVO-实现原理"><a href="#KVO-实现原理" class="headerlink" title="KVO 实现原理"></a>KVO 实现原理</h2><h3 id="简单理解"><a href="#简单理解" class="headerlink" title="简单理解"></a>简单理解</h3><ol>
 <li>KVO是基于runtime机制实现的</li>
 <li>当某个类的属性对象第一次被观察时，系统就会在运行期动态地创建该类的一个派生类，在这个派生类中重写基类中任何被观察属性的 setter 方法。派生类在被重写的 setter 方法内实现真正的通知机制</li>
@@ -610,7 +610,7 @@
   <p><span>本文标题:</span><a href="/default/Runtime相关/">Runtime相关</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 kysonyangs 的个人博客">kysonyangs</a></p>
   <p><span>发布时间:</span>2018年06月22日 - 15:06</p>
-  <p><span>最后更新:</span>2018年11月05日 - 15:11</p>
+  <p><span>最后更新:</span>2020年05月13日 - 19:05</p>
   <p><span>原始链接:</span><a href="/default/Runtime相关/" title="Runtime相关">https://kysonyangs.github.io/default/Runtime相关/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://kysonyangs.github.io/default/Runtime相关/"  aria-label="复制成功！"></i></span>
   </p>
@@ -641,6 +641,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Runtime/" rel="tag"><i class="fa fa-tag"></i> Runtime</a>
+          
+        </div>
+      
 
       
       
@@ -660,8 +666,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/default/iOS网络调试/" rel="prev" title="使用 Xcode 工具（Network Link Conditioner）模拟网络状态">
-                使用 Xcode 工具（Network Link Conditioner）模拟网络状态 <i class="fa fa-chevron-right"></i>
+              <a href="/default/Runtime02_NSObject与isa/" rel="prev" title="Runtime02 NSObject与isa">
+                Runtime02 NSObject与isa <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -741,7 +747,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -764,7 +770,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -809,7 +819,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#KVO-实现原理"><span class="nav-number">1.</span> <span class="nav-text">KVO 实现原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单理解"><span class="nav-number">1.1.</span> <span class="nav-text">简单理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入理解"><span class="nav-number">1.2.</span> <span class="nav-text">深入理解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息发送原理"><span class="nav-number">2.</span> <span class="nav-text">消息发送原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息转发机制原理"><span class="nav-number">3.</span> <span class="nav-text">消息转发机制原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#动态方法解析"><span class="nav-number">3.1.</span> <span class="nav-text">动态方法解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#备用接受者"><span class="nav-number">3.2.</span> <span class="nav-text">备用接受者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完整消息转发"><span class="nav-number">3.3.</span> <span class="nav-text">完整消息转发</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#weak实现原理"><span class="nav-number">4.</span> <span class="nav-text">weak实现原理</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Runtime-是什么？"><span class="nav-number">1.</span> <span class="nav-text">Runtime 是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#KVO-实现原理"><span class="nav-number">1.1.</span> <span class="nav-text">KVO 实现原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单理解"><span class="nav-number">1.1.1.</span> <span class="nav-text">简单理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入理解"><span class="nav-number">1.1.2.</span> <span class="nav-text">深入理解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息发送原理"><span class="nav-number">1.2.</span> <span class="nav-text">消息发送原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息转发机制原理"><span class="nav-number">1.3.</span> <span class="nav-text">消息转发机制原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#动态方法解析"><span class="nav-number">1.3.1.</span> <span class="nav-text">动态方法解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#备用接受者"><span class="nav-number">1.3.2.</span> <span class="nav-text">备用接受者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完整消息转发"><span class="nav-number">1.3.3.</span> <span class="nav-text">完整消息转发</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#weak实现原理"><span class="nav-number">1.4.</span> <span class="nav-text">weak实现原理</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -829,7 +839,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
