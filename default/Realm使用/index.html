@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Monaco:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'YRSQCB2W7K',
+      apiKey: '02bdd077b8d372a10bf55e8a6fdd31d4',
+      indexName: 'hexoindex',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Realm Realm 是由美国YCombinator孵化的创业团队历时几年打造，第一个专门针对移动平台设计的数据库 Realm 是一个跨平台的移动数据库引擎，目前支持 iOS、Android平台，同时支持 Objective-C、Swift、Java、React Native、Xamarin 等多种编程语言 Realm 并不是对 SQLite 或者 CoreData 的简单封装, 是由核心数据引">
+<meta name="keywords" content="工具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Realm 使用">
+<meta property="og:url" content="https://kysonyangs.github.io/default/Realm使用/index.html">
+<meta property="og:site_name" content="kysonyangs">
+<meta property="og:description" content="Realm Realm 是由美国YCombinator孵化的创业团队历时几年打造，第一个专门针对移动平台设计的数据库 Realm 是一个跨平台的移动数据库引擎，目前支持 iOS、Android平台，同时支持 Objective-C、Swift、Java、React Native、Xamarin 等多种编程语言 Realm 并不是对 SQLite 或者 CoreData 的简单封装, 是由核心数据引">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-05-17T15:46:12.992Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Realm 使用">
+<meta name="twitter:description" content="Realm Realm 是由美国YCombinator孵化的创业团队历时几年打造，第一个专门针对移动平台设计的数据库 Realm 是一个跨平台的移动数据库引擎，目前支持 iOS、Android平台，同时支持 Objective-C、Swift、Java、React Native、Xamarin 等多种编程语言 Realm 并不是对 SQLite 或者 CoreData 的简单封装, 是由核心数据引">
+
+
+
+
+
+
+  <link rel="canonical" href="https://kysonyangs.github.io/Realm使用/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Realm 使用 | kysonyangs</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f00e2272f3df937b3553d379c23ceb2f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">kysonyangs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Stay Hungry, Stay Foolish</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/Realm使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kysonyangs">
+      <meta itemprop="description" content="kysonyangs个人站，备忘">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kysonyangs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Realm 使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-10-03 16:10:05" itemprop="dateCreated datePublished" datetime="2019-10-03T16:10:05+08:00">2019-10-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-05-17 23:46:12" itemprop="dateModified" datetime="2020-05-17T23:46:12+08:00">2020-05-17</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/default/Realm使用/" class="leancloud_visitors" data-flag-title="Realm 使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Realm"><a href="#Realm" class="headerlink" title="Realm"></a><a href="https://docs.realm.io/platform/" target="_blank" rel="noopener">Realm</a></h1><ul>
+<li>Realm 是由美国YCombinator孵化的创业团队历时几年打造，第一个专门针对移动平台设计的数据库</li>
+<li>Realm 是一个跨平台的移动数据库引擎，目前支持 iOS、Android平台，同时支持 Objective-C、Swift、Java、React Native、Xamarin 等多种编程语言</li>
+<li>Realm 并不是对 SQLite 或者 CoreData 的简单封装, 是由核心数据引擎 C++ 打造，是拥有独立的数据库存储引擎，可以方便、高效的完成数据库的各种操作</li>
+</ul>
+<h2 id="Realm-的类定义说明"><a href="#Realm-的类定义说明" class="headerlink" title="Realm 的类定义说明"></a>Realm 的类定义说明</h2><p>在Realm框架中，定义了二十个核心类、常量、枚举类型、协议等，常用的如：RLMRealm类、RLMObject类、RLMResults类等, 我们可以从<a href="https://realm.io/docs/objc/latest/api/Constants.html" target="_blank" rel="noopener">Realm的官方网站</a>上查看所有的定义以及使用说明</p>
+<h3 id="RLMRealm-类"><a href="#RLMRealm-类" class="headerlink" title="RLMRealm 类"></a>RLMRealm 类</h3><ul>
+<li>一个 RLMRealm 类的对象可以认为是一个 Realm 的数据库。Realm 数据库既可以存储在硬盘上，同时也可以存储在内存中</li>
+<li>Realm 是框架的核心所在，是我们构建数据库的访问点，就如同 Core Data 的管理对象上下文 managed object context 一样</li>
+<li>RLMRealm 类中，常用的属性或方法如下</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">// 获取默认的Realm数据库</span><br><span class="line">+ (instancetype)defaultRealm;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//实例化一个RLMRealm类的对象</span><br><span class="line">//根据配置参数获得RLMRealm</span><br><span class="line">+ (nullable instancetype)realmWithConfiguration:(RLMRealmConfiguration *)configuration error:(NSError **)error;</span><br><span class="line"></span><br><span class="line">//根据指定持久化文件路径获得RLMRealm</span><br><span class="line">+ (instancetype)realmWithPath:(NSString *)path;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//对Realm数据库进行读写操作</span><br><span class="line">//在Realm上开始写入事务, 每个Realm文件一次只能打开一个写事务</span><br><span class="line">- (void)beginWriteTransaction;</span><br><span class="line"></span><br><span class="line">//在当前写入事务中提交所有写入操作，并结束事务</span><br><span class="line">- (void)commitWriteTransaction;</span><br><span class="line">//没有足够的磁盘空间来保存写入或由于意外的I / O错误，此方法可能会失败, 并返回error信息</span><br><span class="line">- (BOOL)commitWriteTransaction:(NSError **)error;</span><br><span class="line">// 在当前写入事务中提交所有写入操作，而不收到此写入事件的特定通知</span><br><span class="line">- (BOOL)commitWriteTransactionWithoutNotifying:(NSArray&lt;RLMNotificationToken *&gt; *)tokens error:(NSError **)error;</span><br><span class="line"></span><br><span class="line">// 回滚在当前写入事务期间进行的所有写入并结束事务</span><br><span class="line">- (void)cancelWriteTransaction;</span><br><span class="line"></span><br><span class="line">//执行写入事务内给定块中包含的操作</span><br><span class="line">- (void)transactionWithBlock:(__attribute__((noescape)) void(^)(void))block;</span><br><span class="line">//执行写入事务内给定块中包含的操作, 如果发生错误，则返回时包含NSError描述问题的对象</span><br><span class="line">- (BOOL)transactionWithBlock:(__attribute__((noescape)) void(^)(void))block error:(NSError **)error;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//添加或更新一个对象</span><br><span class="line">- (void)addObject:(RLMObject *)object;</span><br><span class="line">//将现有对象添加或更新到Realm中, 有则更新没有则插入</span><br><span class="line">- (void)addOrUpdateObject:(RLMObject *)object;</span><br><span class="line">//添加或更新多个对象</span><br><span class="line">- (void)addObjects:(id&lt;NSFastEnumeration&gt;)objects;</span><br><span class="line">- (void)addOrUpdateObjects:(id&lt;NSFastEnumeration&gt;)objects;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//删除对象</span><br><span class="line">- (void)deleteObject:(RLMObject *)object;</span><br><span class="line">- (void)deleteObjects:(id)array;</span><br><span class="line">- (void)deleteAllObjects;</span><br></pre></td></tr></table></figure>
+<h3 id="RLMObject类"><a href="#RLMObject类" class="headerlink" title="RLMObject类"></a>RLMObject类</h3><ul>
+<li>在Realm数据库中存储的都是RMObject对象，RLMObject类是所有可以存储在Realm数据库中的对象的根类</li>
+<li>凡是可以存储在Realm数据库中的对象都是RLMObject类或RLMObject类的子类</li>
+<li>要创建一个数据模型，我们只需要继承RLMObject，然后设计我们想要存储的属性即可</li>
+<li>在RLMObject类中，我们可以添加属性，添加的属性类型可以支持如下类型：<ul>
+<li>NSString：字符串</li>
+<li>NSInteger, int, long, float, double：数字型，注意没有CGFloat</li>
+<li>BOOL/bool：布尔型</li>
+<li>NSDate：日期型</li>
+<li>NSData：二进制字符型</li>
+<li>NSNumber<x>: 其中X必须RLMInt, RLMFloat, RLMDouble或 RLMBool类型</x></li>
+<li>RLMArray<x>: 其中X必须是RLMObject类的子类, 用于建模多对多关系</x></li>
+<li>RLMObject的子类，用于建模多对一关系</li>
+</ul>
+</li>
+<li>RLMObject类中，比较常用如下方法：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//创建Realm对象, 传入一个NSArray或NSDictionary实例来设置对象属性的值</span><br><span class="line">- (nonnull instancetype)initWithValue:(nonnull id)value;</span><br><span class="line"></span><br><span class="line">//在Realm数据库中，获取该RLMObject类的所有对象</span><br><span class="line">+ (RLMResults *)allObjects;</span><br><span class="line"></span><br><span class="line">//根据查询条件返回满足条件的所有RLMObject类的对象</span><br><span class="line">+ (RLMResults *)objectsWhere:(NSString *)predicateFormat, ...;</span><br><span class="line"></span><br><span class="line">//使用默认Realm中的给定主键检索此对象类型的单个实例</span><br><span class="line">+ (nullable instancetype)objectForPrimaryKey:(nullable id)primaryKey;</span><br><span class="line"></span><br><span class="line">//从指定的Realm返回此对象类型的所有对象</span><br><span class="line">+ (nonnull RLMResults *)allObjectsInRealm:(nonnull RLMRealm *)realm;</span><br><span class="line"></span><br><span class="line">//返回与指定Realm中给定谓词匹配的此对象类型的所有对象</span><br><span class="line">+ (nonnull RLMResults *)objectsInRealm:(nonnull RLMRealm *)realm where:(nonnull NSString *)predicateFormat, ...;</span><br></pre></td></tr></table></figure>
+<h3 id="RLMResults-类"><a href="#RLMResults-类" class="headerlink" title="RLMResults 类"></a>RLMResults 类</h3><ul>
+<li>当我们执行一个查询操作后，查询出满足条件的RLMObject对象会存放在一个RLMResults对象中</li>
+<li>RLMResults类是一个数组类型的数据结构，因此在其类定义中，提供了很多与数组类似的属性和方法</li>
+<li>相关属性与方法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">//结果集合中的对象个数</span><br><span class="line">@property (readonly, assign, nonatomic) NSUInteger count;</span><br><span class="line"></span><br><span class="line">//结果集合中对象的类型</span><br><span class="line">@property (readonly, assign, nonatomic) RLMPropertyType type;</span><br><span class="line"></span><br><span class="line">//管理此结果集合的Realm对象</span><br><span class="line">@property (readonly, nonatomic) RLMRealm *_Nonnull realm;</span><br><span class="line"></span><br><span class="line">//结果集合中包含的对象的类名称</span><br><span class="line">@property (readonly, copy, nonatomic, nullable) NSString *objectClassName;</span><br><span class="line"></span><br><span class="line">//返回结果集合中的第一个对象</span><br><span class="line">- (nullable RLMObjectType)firstObject;</span><br><span class="line"></span><br><span class="line">//返回结果集合中的最后一个对象</span><br><span class="line">- (nullable RLMObjectType)lastObject;</span><br><span class="line"></span><br><span class="line">//根据索引index获取其中的某个对象</span><br><span class="line">- (RLMObjectType)objectAtIndex:(NSUInteger)index;</span><br><span class="line"></span><br><span class="line">//根据对象返回其索引</span><br><span class="line">- (NSUInteger)indexOfObject:(RLMObjectArgument)object;</span><br><span class="line"></span><br><span class="line">//返回与谓词匹配的结果集合中第一个对象的索引</span><br><span class="line">- (NSUInteger)indexOfObjectWhere:(nonnull NSString *)predicateFormat, ...;</span><br><span class="line"></span><br><span class="line">//返回与结果集合中给定谓词匹配的所有对象</span><br><span class="line">- (RLMResults&lt;RLMObjectType&gt; *)objectsWhere:(NSString *)predicateFormat, ...;</span><br><span class="line"></span><br><span class="line">//返回RLMResults从现有结果集合中排序的内容</span><br><span class="line">- (RLMResults&lt;RLMObjectType&gt; *)sortedResultsUsingKeyPath:(NSString *)keyPath ascending:(BOOL)ascending;</span><br><span class="line"></span><br><span class="line">//返回RLMResults与现有结果集合不同的内容</span><br><span class="line">- (nonnull RLMResults&lt;RLMObjectType&gt; *)distinctResultsUsingKeyPaths:(nonnull NSArray&lt;NSString *&gt; *)keyPaths;</span><br></pre></td></tr></table></figure>
+<h2 id="Realm-的使用"><a href="#Realm-的使用" class="headerlink" title="Realm 的使用"></a>Realm 的使用</h2><h3 id="创建RLMObject类"><a href="#创建RLMObject类" class="headerlink" title="创建RLMObject类"></a>创建RLMObject类</h3><p>我们首先创建一个Student类，该类是RLMObject类的一个子类, 下图就是按照之前安装的Xcode插件创建的</p>
+<ul>
+<li>在Student添加两个属性, RLMObject官方建议在RLMObject类中添加的属性，是不需要指定属性关键字的，完全交由Realm处理</li>
+<li>假如设置了，这些attributes会一直生效直到RLMObject被写入realm数据库</li>
+<li>RLM_ARRAY_TYPE宏创建了一个协议，从而允许 RLMArray<car>语法的使用</car></li>
+<li>如果RLM_ARRAY_TYPE宏没有放置在模型接口的底部的话，您或许需要提前声明该模型类</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@interface Student : RLMObject</span><br><span class="line"></span><br><span class="line">@property int num;</span><br><span class="line">@property NSString *name;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line">RLM_ARRAY_TYPE(Student)</span><br></pre></td></tr></table></figure>
+<h4 id="存储操作"><a href="#存储操作" class="headerlink" title="存储操作"></a>存储操作</h4><p>对于RLMObject类型的对象，我们可以直接对创建的对象进行存储</p>
+<ol>
+<li>初始化对象</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 方式一: 接受一个数组对象</span><br><span class="line">Student *stu1 = [[Student alloc]initWithValue:@[@1, @&quot;jun&quot;]];</span><br><span class="line"></span><br><span class="line">//方式二: 接受一个字典对象</span><br><span class="line">Student *stu2 = [[Student alloc]initWithValue:@&#123;@&quot;num&quot;: @2, @&quot;name&quot;:@&quot;titan&quot;&#125;];</span><br><span class="line"></span><br><span class="line">//方式三: 属性赋值</span><br><span class="line">Student *stu3 = [[Student alloc]init];</span><br><span class="line">stu3.num = 3;</span><br><span class="line">stu3.name = @&quot;titanjun&quot;;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>把RLMObject对象写入Realm数据库, 同样有三种方式</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//方式一: 提交事务处理</span><br><span class="line">//获取Realm对象</span><br><span class="line">RLMRealm *realm = [RLMRealm defaultRealm];</span><br><span class="line">//开始写入事务</span><br><span class="line">[realm beginWriteTransaction];</span><br><span class="line">//添加模型对象</span><br><span class="line">[realm addObject:stu1];</span><br><span class="line">//提交写入事务</span><br><span class="line">[realm commitWriteTransaction];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//方式二: 在事务中调用addObject:方法</span><br><span class="line">RLMRealm *realm = [RLMRealm defaultRealm];</span><br><span class="line">[realm transactionWithBlock:^&#123;</span><br><span class="line">    [realm addObject:webSite1];</span><br><span class="line">    [realm addObject:webSite2];</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//方式三: 在十五中创建新的对象并添加</span><br><span class="line">[realm transactionWithBlock:^&#123;</span><br><span class="line">    //添加模型</span><br><span class="line">    [Student createInRealm:realm withValue:@&#123;@&quot;num&quot;: @3, @&quot;name&quot;:@&quot;coder&quot;&#125;];</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong></p>
+<ul>
+<li>所有的必需属性都必须在对象添加到Realm前被赋值</li>
+<li><p>如果在进程中存在多个写入操作的话，那么单个写入操作将会阻塞其余的写入操作，并且还会锁定该操作所在的当前线程</p>
+<ul>
+<li>建议常规的最佳做法：将写入操作转移到一个独立的线程中执行</li>
+<li>官方给出的建议：由于Realm采用了MVCC设计架构，读取操作并不会因为写入事务正在进行而受到影响</li>
+<li>除非您需要立即使用多个线程来同时执行写入操作，不然您应当采用批量化的写入事务，而不是采用多次少量的写入事务</li>
+<li><p>下面的代码就是把写事务放到子线程中去处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</span><br><span class="line"></span><br><span class="line">    RLMRealm *realm = [RLMRealm defaultRealm];</span><br><span class="line">    [realm transactionWithBlock:^&#123;</span><br><span class="line">        [realm addObject: stu4];</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="查询操作"><a href="#查询操作" class="headerlink" title="查询操作"></a>查询操作</h4><ul>
+<li>Realm中也提供了功能强大的数据查询能力，如果会使用SQL语言的话，上手的难度更低</li>
+<li>在Realm的查询功能中，也可以像SQL一样使用各种条件查询关键字，查询的结果会保存在一个RLMResults类的数组中</li>
+<li>全量查询, 通过调用allObjects方法, 得到该表中的所有数据</li>
+<li>条件查询，设置一些查询条件，从而查询出符合条件的对象<ul>
+<li>Realm的查询条件可以使用==、&lt;=、&lt;、&gt;=、&gt;、!=、BETWEEN、CONTAINS 以及 ENDSWITH等多种操作符</li>
+</ul>
+</li>
+</ul>
+<p><strong>全量查询</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//1. 获取所有数据</span><br><span class="line">RLMResults *resArr = [Student allObjects];</span><br><span class="line">NSLog(@&quot;%@&quot;, resArr);</span><br><span class="line"></span><br><span class="line">//2. 添加一条数据</span><br><span class="line">RLMRealm *realm = [RLMRealm defaultRealm];</span><br><span class="line">Student *stu = [[Student alloc]initWithValue:@[@10, @&quot;coder&quot;]];</span><br><span class="line">[realm transactionWithBlock:^&#123;</span><br><span class="line">    [realm addObject:stu];</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line">//3. 一旦检索执行之后, RLMResults 将随时保持更新</span><br><span class="line">NSLog(@&quot;%@&quot;, resArr);</span><br></pre></td></tr></table></figure>
+<p><strong>条件查询</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//条件查询</span><br><span class="line">RLMResults *stuArr = [Student objectsWhere:@&quot;num &gt; 7&quot;];</span><br><span class="line">NSLog(@&quot;%@&quot;, stuArr);</span><br><span class="line"></span><br><span class="line">//排序</span><br><span class="line">//排序不会对原数组进行操作, 会返回一个新的数组</span><br><span class="line">RLMResults *stuArr2 = [stuArr sortedResultsUsingKeyPath:@&quot;name&quot; ascending:YES];</span><br><span class="line">NSLog(@&quot;%@&quot;, stuArr2);</span><br><span class="line"></span><br><span class="line">//链式查询</span><br><span class="line">RLMResults *stuArr3 = [stuArr2 objectsWhere:@&quot;num &gt; 8&quot;];</span><br><span class="line">//可以不断的根据上一个查询结果进行查询</span><br><span class="line">RLMResults *stuArr4 = [stuArr3 objectsWhere:@&quot;num &gt; 9&quot;];</span><br><span class="line">NSLog(@&quot;%@&quot;, stuArr4);</span><br></pre></td></tr></table></figure>
+<h4 id="更新操作"><a href="#更新操作" class="headerlink" title="更新操作"></a>更新操作</h4><ul>
+<li>需要修改的模型一定是被Realm所管理的模型, 而且已经和磁盘上的对象进行地址映射</li>
+<li>对新添加的模型进行更新</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//获取Realm对象</span><br><span class="line">RLMRealm *realm = [RLMRealm defaultRealm];</span><br><span class="line">Student *stu4 = [[Student alloc]initWithValue:@&#123;@&quot;num&quot;: @4, @&quot;name&quot;:@&quot;titan4&quot;&#125;];</span><br><span class="line">//添加数据</span><br><span class="line">// 这个模型stu, 已经被realm 所管理, 而且, 已经和磁盘上的对象, 进行的地址映射</span><br><span class="line">[realm transactionWithBlock:^&#123;</span><br><span class="line">    //添加模型</span><br><span class="line">    [realm addObject:stu4];</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line">// 这里修改的模型, 一定是被realm所管理的模型</span><br><span class="line">[realm transactionWithBlock:^&#123;</span><br><span class="line">    stu4.name = @&quot;coder4&quot;;</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<p><strong>根据查询到的数据更新指定属性的数据</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//条件查询</span><br><span class="line">RLMResults *results = [Student objectsWhere:@&quot;num = 4&quot;];</span><br><span class="line">Student *stu = results.firstObject;</span><br><span class="line"></span><br><span class="line">//更新指定属性的数据</span><br><span class="line">[realm transactionWithBlock:^&#123;</span><br><span class="line">    stu.name = @&quot;titanking&quot;;</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>当有主键的情况下, 使用Update方法</li>
+<li>addOrUpdateObject会去先查找有没有传入的Student相同的主键，如果有，就更新该条数据</li>
+<li>这里需要注意，addOrUpdateObject这个方法不是增量更新，所有的值都必须有，如果有哪几个值是null，那么就会覆盖原来已经有的值，这样就会出现数据丢失的问题</li>
+<li>createOrUpdateInRealm:withValue这个方法是增量更新的，后面传一个字典，使用这个方法的前提是有主键</li>
+<li>方法会先去主键里面找有没有字典里面传入的主键的记录，如果有，就只更新字典里面的子集;如果没有，就新建一条记录</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//获取Realm对象</span><br><span class="line">RLMRealm *realm = [RLMRealm defaultRealm];</span><br><span class="line">Student *stu2 = [[Student alloc]initWithValue:@&#123;@&quot;num&quot;: @12, @&quot;name&quot;:@&quot;titan&quot;&#125;];</span><br><span class="line"></span><br><span class="line">//addOrUpdateObject方式</span><br><span class="line">[realm transactionWithBlock:^&#123;</span><br><span class="line">    [realm addOrUpdateObject:stu2];</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line">//createOrUpdateInRealm方式</span><br><span class="line">[realm transactionWithBlock:^&#123;</span><br><span class="line">    [Student createOrUpdateInRealm:realm withValue:@&#123;@&quot;num&quot;: @11, @&quot;name&quot;:@&quot;titan11&quot;&#125;];</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<h4 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作"></a>删除操作</h4><ul>
+<li>删除的模型, 一定要求是被realm所管理的已经存在的模型</li>
+<li>当需要在Realm中删除某些对象时，需要注意的是，该方法的执行需要在一个事务中进行</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">//获取Realm对象</span><br><span class="line">RLMRealm *realm = [RLMRealm defaultRealm];</span><br><span class="line"></span><br><span class="line">//根据条件删除一条数据</span><br><span class="line">RLMResults *results = [Student objectsWhere:@&quot;name = &apos;titanking&apos;&quot;];</span><br><span class="line">Student *titan1 = results.firstObject;</span><br><span class="line"></span><br><span class="line">// 删除单条记录</span><br><span class="line">[realm transactionWithBlock:^&#123;</span><br><span class="line">    [realm deleteObject:titan1];</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line">//删除所有符合条件的数据</span><br><span class="line">RLMResults *results = [Student objectsWhere:@&quot;name = &apos;coder&apos;&quot;];</span><br><span class="line">for (Student *stu in results) &#123;</span><br><span class="line">    [realm transactionWithBlock:^&#123;</span><br><span class="line">        [realm deleteObject:stu];</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//删除表中所有的数据</span><br><span class="line">[realm transactionWithBlock:^&#123;</span><br><span class="line">    [realm deleteAllObjects];</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line">/*场景, 根据主键删除一个模型*/</span><br><span class="line"> // 1. 根据主键, 查询到这个模型(这个模型, 就是被realm数据库管理的模型)</span><br><span class="line">Student *res = [Student objectInRealm:realm forPrimaryKey:@4];</span><br><span class="line"></span><br><span class="line">//2. 删除该模型</span><br><span class="line">[realm transactionWithBlock:^&#123;</span><br><span class="line">    [realm deleteObject:res];</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<h3 id="Realm数据库机制"><a href="#Realm数据库机制" class="headerlink" title="Realm数据库机制"></a>Realm数据库机制</h3><ul>
+<li>上面用到的获取realm对象的方式都是通过defaultRealm来获取默认配置的realm对象</li>
+<li>当我们需要创建不同的realm表格时又该如何操作呢?</li>
+<li>下面我们来看一下</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">- (void)setDefaultRealmForUser:(NSString *)username &#123;</span><br><span class="line">    //先获取默认配置</span><br><span class="line">    RLMRealmConfiguration *config = [RLMRealmConfiguration defaultConfiguration];</span><br><span class="line"></span><br><span class="line">    //设置只读数据库</span><br><span class="line">    //config.readOnly = YES;</span><br><span class="line"></span><br><span class="line">    // 使用默认的目录，但是使用用户名来替换默认的文件名</span><br><span class="line">    config.fileURL = [[[config.fileURL URLByDeletingLastPathComponent]</span><br><span class="line">                       URLByAppendingPathComponent:username]</span><br><span class="line">                      URLByAppendingPathExtension:@&quot;realm&quot;];</span><br><span class="line">    // 将这个配置应用到默认的 Realm 数据库当中</span><br><span class="line">    [RLMRealmConfiguration setDefaultConfiguration:config];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>做好上述配置之后, 便可创建不同的数据库了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 不同的用户, 使用不同的数据库</span><br><span class="line">[self setDefaultRealmForUser:@&quot;zhangsan&quot;];</span><br><span class="line"></span><br><span class="line">//这里也只需要调用默认配置即可</span><br><span class="line">RLMRealm *realm = [RLMRealm defaultRealm];</span><br></pre></td></tr></table></figure>
+<h4 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h4><ul>
+<li>Realm实例将会在每次写入事务提交后，给其他线程上的Realm实例发送通知</li>
+<li>一般控制器如果想一直持有这个通知，就需要申请一个属性, 强引用该属性，strong持有这个通知</li>
+<li>集合通知是异步触发的，首先它会在初始结果出现的时候触发，随后当某个写入事务改变了集合中的所有或者某个对象的时候，通知都会再次触发<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//强引用属性</span><br><span class="line">@property (nonatomic, strong) RLMNotificationToken *token;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (void)setUp &#123;</span><br><span class="line">    [super setUp];</span><br><span class="line"></span><br><span class="line">    RLMRealm *realm = [RLMRealm defaultRealm];</span><br><span class="line">    // 获取 Realm 通知</span><br><span class="line">    self.token = [realm addNotificationBlock:^(RLMNotification  _Nonnull notification, RLMRealm * _Nonnull realm) &#123;</span><br><span class="line">        NSLog(@&quot;接收到变更通知--%@&quot;, notification);</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    //结束该通知</span><br><span class="line">    [self.token stop];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (void)testExample &#123;</span><br><span class="line">    NoticeModel *noticeM = [[NoticeModel alloc] initWithValue:@&#123;@&quot;num&quot;: @1, @&quot;name&quot;: @&quot;sz&quot;&#125;];</span><br><span class="line"></span><br><span class="line">    //添加数据, 数据操作之后便会通知上述通知中心执行相应操作</span><br><span class="line">    RLMRealm *realm = [RLMRealm defaultRealm];</span><br><span class="line">    [realm transactionWithBlock:^&#123;</span><br><span class="line">        [realm addObject:noticeM];</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="数据库迁移"><a href="#数据库迁移" class="headerlink" title="数据库迁移"></a>数据库迁移</h4><ul>
+<li>数据库存储方面的增删改查应该都没有什么大问题，比较蛋疼的应该就是数据迁移了</li>
+<li>在版本迭代过程中，很可能会发生表的新增，删除，或者表结构的变化，如果新版本中不做数据迁移，用户升级到新版，很可能就直接crash了</li>
+<li>数据迁移一直是困扰各类型数据库的一大问题, 但是对于Realm来说, 却方便很多, 这也是Realm的优点之一<ul>
+<li>新增删除表，Realm不需要做迁移</li>
+<li>新增删除字段，Realm不需要做迁移; Realm会自行检测新增和需要移除的属性，然后自动更新硬盘上的数据库架构</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">//需要在以下方法中进行配置</span><br><span class="line">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions &#123;</span><br><span class="line">    // 获取默认配置, 迁移数据结构</span><br><span class="line">    RLMRealmConfiguration *config = [RLMRealmConfiguration defaultConfiguration];</span><br><span class="line"></span><br><span class="line">    // 1. 设置新的架构版本。这个版本号必须高于之前所用的版本号（如果您之前从未设置过架构版本，那么这个版本号设置为 0）</span><br><span class="line">    int newVersion = 4;</span><br><span class="line">    config.schemaVersion = newVersion;</span><br><span class="line"></span><br><span class="line">    // 2. 设置闭包，这个闭包将会在打开低于上面所设置版本号的 Realm 数据库的时候被自动调用</span><br><span class="line">    [config setMigrationBlock:^(RLMMigration *migration, uint64_t oldSchemaVersion)&#123;</span><br><span class="line">        if (oldSchemaVersion &lt; newVersion) &#123;</span><br><span class="line"></span><br><span class="line">            NSLog(@&quot;数据结构会自动迁移&quot;);</span><br><span class="line"></span><br><span class="line">            // enumerateObjects:block: 遍历了存储在 Realm 文件中的每一个“Person”对象</span><br><span class="line">            [migration enumerateObjects:@&quot;DataMigration&quot; block:^(RLMObject * _Nullable oldObject, RLMObject * _Nullable newObject) &#123;</span><br><span class="line">                // 只有当 Realm 数据库的架构版本为 0 的时候，才添加 “fullName” 属性</span><br><span class="line">                if (oldSchemaVersion &lt; 1) &#123;</span><br><span class="line">                    newObject[@&quot;fullName&quot;] = [NSString stringWithFormat:@&quot;%@ %@&quot;, oldObject[@&quot;firstName&quot;], oldObject[@&quot;lastName&quot;]];</span><br><span class="line">                &#125;</span><br><span class="line">                // 只有当 Realm 数据库的架构版本为 0 或者 1 的时候，才添加“email”属性</span><br><span class="line">                if (oldSchemaVersion &lt; 2) &#123;</span><br><span class="line">                    newObject[@&quot;email&quot;] = @&quot;&quot;;</span><br><span class="line">                &#125;</span><br><span class="line">                // 替换属性名(原字段重命名)</span><br><span class="line">                if (oldSchemaVersion &lt; 3) &#123; // 重命名操作应该在调用 `enumerateObjects:` 之外完成</span><br><span class="line">                    [migration renamePropertyForClass:Person.className oldName:@&quot;yearsSinceBirth&quot; newName:@&quot;age&quot;];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    // 3. 告诉 Realm 为默认的 Realm 数据库使用这个新的配置对象</span><br><span class="line">    [RLMRealmConfiguration setDefaultConfiguration:config];</span><br><span class="line"></span><br><span class="line">    // 4. 现在我们已经告诉了 Realm 如何处理架构的变化，打开文件之后将会自动执行迁移</span><br><span class="line">    [RLMRealm defaultRealm];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <br/>
+        <br/>
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+      
+    </div>
+
+    <div>
+          
+            
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/default/Realm使用/">Realm 使用</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 kysonyangs 的个人博客">kysonyangs</a></p>
+  <p><span>发布时间:</span>2019年10月03日 - 16:10</p>
+  <p><span>最后更新:</span>2020年05月17日 - 23:05</p>
+  <p><span>原始链接:</span><a href="/default/Realm使用/" title="Realm 使用">https://kysonyangs.github.io/default/Realm使用/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://kysonyangs.github.io/default/Realm使用/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+          
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/工具/" rel="tag"><i class="fa fa-tag"></i> 工具</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/default/R.Swift使用/" rel="next" title="R.Swift使用">
+                <i class="fa fa-chevron-left"></i> R.Swift使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/default/fastlane/" rel="prev" title="fastlane">
+                fastlane <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzQ0NC8xMzk3Ng=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">kysonyangs</p>
+              <p class="site-description motion-element" itemprop="description">kysonyangs个人站，备忘</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">46</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/kysonyangs" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Realm"><span class="nav-number">1.</span> <span class="nav-text">Realm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Realm-的类定义说明"><span class="nav-number">1.1.</span> <span class="nav-text">Realm 的类定义说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RLMRealm-类"><span class="nav-number">1.1.1.</span> <span class="nav-text">RLMRealm 类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RLMObject类"><span class="nav-number">1.1.2.</span> <span class="nav-text">RLMObject类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RLMResults-类"><span class="nav-number">1.1.3.</span> <span class="nav-text">RLMResults 类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Realm-的使用"><span class="nav-number">1.2.</span> <span class="nav-text">Realm 的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建RLMObject类"><span class="nav-number">1.2.1.</span> <span class="nav-text">创建RLMObject类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#存储操作"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">存储操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询操作"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">查询操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新操作"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">更新操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除操作"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">删除操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Realm数据库机制"><span class="nav-number">1.2.2.</span> <span class="nav-text">Realm数据库机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#通知"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">通知</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库迁移"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">数据库迁移</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kysonyangs</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("98nkii2hdktsmUfe1Og3R4V3-gzGzoHsz", "1zGSD9yxI1uo7HIj7IVa8CHx");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
