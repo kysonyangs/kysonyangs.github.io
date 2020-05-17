@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Monaco:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'YRSQCB2W7K',
+      apiKey: '02bdd077b8d372a10bf55e8a6fdd31d4',
+      indexName: 'hexoindex',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="一直想写一写自己读源码的感受与理解，可惜一直未付诸行动。最近闲来无事，索性整理一下，记录于此.   YYMemoryCache 内存缓存 _YYLinkedMap _YYLinkedMapNode 链表节点数据   YYMemoryCache pthread_mutex_t 互斥锁，保证线程安全 Init YYMemoryCache 边界检测：内存检测   监听内存警告通知/进入后台通知 增删查改">
+<meta name="keywords" content="源码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="YYCache源码阅读：YYMemoryCache">
+<meta property="og:url" content="https://kysonyangs.github.io/default/YYCache源码阅读1/index.html">
+<meta property="og:site_name" content="kysonyangs">
+<meta property="og:description" content="一直想写一写自己读源码的感受与理解，可惜一直未付诸行动。最近闲来无事，索性整理一下，记录于此.   YYMemoryCache 内存缓存 _YYLinkedMap _YYLinkedMapNode 链表节点数据   YYMemoryCache pthread_mutex_t 互斥锁，保证线程安全 Init YYMemoryCache 边界检测：内存检测   监听内存警告通知/进入后台通知 增删查改">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-05-17T10:20:03.255Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="YYCache源码阅读：YYMemoryCache">
+<meta name="twitter:description" content="一直想写一写自己读源码的感受与理解，可惜一直未付诸行动。最近闲来无事，索性整理一下，记录于此.   YYMemoryCache 内存缓存 _YYLinkedMap _YYLinkedMapNode 链表节点数据   YYMemoryCache pthread_mutex_t 互斥锁，保证线程安全 Init YYMemoryCache 边界检测：内存检测   监听内存警告通知/进入后台通知 增删查改">
+
+
+
+
+
+
+  <link rel="canonical" href="https://kysonyangs.github.io/YYCache源码阅读1/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>YYCache源码阅读：YYMemoryCache | kysonyangs</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f00e2272f3df937b3553d379c23ceb2f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">kysonyangs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Stay Hungry, Stay Foolish</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/YYCache源码阅读1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kysonyangs">
+      <meta itemprop="description" content="kysonyangs个人站，备忘">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kysonyangs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">YYCache源码阅读：YYMemoryCache
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-12-16 19:50:20" itemprop="dateCreated datePublished" datetime="2018-12-16T19:50:20+08:00">2018-12-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-05-17 18:20:03" itemprop="dateModified" datetime="2020-05-17T18:20:03+08:00">2020-05-17</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/default/YYCache源码阅读1/" class="leancloud_visitors" data-flag-title="YYCache源码阅读：YYMemoryCache">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一直想写一写自己读源码的感受与理解，可惜一直未付诸行动。最近闲来无事，索性整理一下，记录于此.</p>
+<!-- TOC -->
+<ul>
+<li><a href="#yymemorycache-%e5%86%85%e5%ad%98%e7%bc%93%e5%ad%98">YYMemoryCache 内存缓存</a><ul>
+<li><a href="#yylinkedmap"><code>_YYLinkedMap</code></a><ul>
+<li><a href="#yylinkedmapnode-%e9%93%be%e8%a1%a8%e8%8a%82%e7%82%b9%e6%95%b0%e6%8d%ae"><code>_YYLinkedMapNode</code> 链表节点数据</a></li>
+</ul>
+</li>
+<li><a href="#yymemorycache">YYMemoryCache</a><ul>
+<li><a href="#pthreadmutext-%e4%ba%92%e6%96%a5%e9%94%81%e4%bf%9d%e8%af%81%e7%ba%bf%e7%a8%8b%e5%ae%89%e5%85%a8">pthread_mutex_t 互斥锁，保证线程安全</a></li>
+<li><a href="#init-yymemorycache">Init YYMemoryCache</a></li>
+<li><a href="#%e8%be%b9%e7%95%8c%e6%a3%80%e6%b5%8b%e5%86%85%e5%ad%98%e6%a3%80%e6%b5%8b">边界检测：内存检测</a></li>
+</ul>
+</li>
+<li><a href="#%e7%9b%91%e5%90%ac%e5%86%85%e5%ad%98%e8%ad%a6%e5%91%8a%e9%80%9a%e7%9f%a5%e8%bf%9b%e5%85%a5%e5%90%8e%e5%8f%b0%e9%80%9a%e7%9f%a5">监听内存警告通知/进入后台通知</a></li>
+<li><a href="#%e5%a2%9e%e5%88%a0%e6%9f%a5%e6%94%b9">增删查改</a></li>
+<li><a href="#%e6%80%bb%e7%bb%93">总结</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h1 id="YYCache"><a href="#YYCache" class="headerlink" title="YYCache"></a>YYCache</h1><p>YYCahce 包括 内存缓存(YYMemoryCache) 与 磁盘缓存(YYDiskCache), 而且都是线程安全的！</p>
+<h2 id="YYMemoryCache-内存缓存"><a href="#YYMemoryCache-内存缓存" class="headerlink" title="YYMemoryCache 内存缓存"></a>YYMemoryCache 内存缓存</h2><p>YYMemoryCache用于对内存缓存进行管理，因为需要高效查询数据，所以 key-value 模式储存。为什么不直接使用字典呢，因为需要保证线程安全。而为什么不直接使用 NSCache 呢，因为 YYMemoryCache 基于自定义的双向链表，提供一种 <code>LRU(least-recently-used: 最近最久少使用的会先删除)</code> 淘汰算法去操作缓存，进行性能优化。</p>
+<a id="more"></a>
+<h3 id="YYLinkedMap"><a href="#YYLinkedMap" class="headerlink" title="_YYLinkedMap"></a><code>_YYLinkedMap</code></h3><p>为了实现算法，YYMemoryCache 内部封装了一个 <code>_YYLinkedMap</code> 的双向链表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@interface _YYLinkedMap : NSObject &#123;</span><br><span class="line">    @package</span><br><span class="line">    CFMutableDictionaryRef _dic; // 哈希字典，存放 (key : _YYLinkedMapNode)</span><br><span class="line">    NSUInteger _totalCost;       // 缓存占用内存总大小</span><br><span class="line">    NSUInteger _totalCount;      // 缓存节点个数</span><br><span class="line">    _YYLinkedMapNode *_head;     // 头结点，最近使用最多的节点 MRU</span><br><span class="line">    _YYLinkedMapNode *_tail;     // 尾节点，最近使用最少的节点 LRU</span><br><span class="line">    BOOL _releaseOnMainThread;   // 在主线程释放_dic</span><br><span class="line">    BOOL _releaseAsynchronously; // 在异步线程释放_dic</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="YYLinkedMapNode-链表节点数据"><a href="#YYLinkedMapNode-链表节点数据" class="headerlink" title="_YYLinkedMapNode 链表节点数据"></a><code>_YYLinkedMapNode</code> 链表节点数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@interface _YYLinkedMapNode : NSObject &#123;</span><br><span class="line">    @package</span><br><span class="line">    __unsafe_unretained _YYLinkedMapNode *_prev; // 指向前一个节点的指针</span><br><span class="line">    __unsafe_unretained _YYLinkedMapNode *_next; // 指向后一个节点的指针</span><br><span class="line">    id _key;                // 缓存数据的key</span><br><span class="line">    id _value;              // 缓存的数据</span><br><span class="line">    NSUInteger _cost;       // 节点内存占用大小</span><br><span class="line">    NSTimeInterval _time;   // 节点操作时间</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>CFMutableDictionaryRef 操作: CoreFoundation 的字典，其性能更好</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/// 初始化</span><br><span class="line">_dic = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 0, &amp;kCFTypeDictionaryKeyCallBacks, &amp;kCFTypeDictionaryValueCallBacks);</span><br><span class="line">/// 存储数据</span><br><span class="line">CFDictionarySetValue(_dic, (__bridge const void *)(node-&gt;_key), (__bridge const void *)(node));</span><br><span class="line">/// 根据key删除数据</span><br><span class="line">CFDictionaryRemoveValue(_dic, (__bridge const void *)(node-&gt;_key));</span><br><span class="line">/// 获取字典元素个数</span><br><span class="line">CFDictionaryGetCount(_dic);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>2.<code>_YYLinkedMap</code> 方法列表：</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/// 插入头节点</span><br><span class="line">- (void)insertNodeAtHead:(_YYLinkedMapNode *)node;</span><br><span class="line">/// 将节点设为头结点</span><br><span class="line">- (void)bringNodeToHead:(_YYLinkedMapNode *)node;</span><br><span class="line">/// 删除节点</span><br><span class="line">- (void)removeNode:(_YYLinkedMapNode *)node;</span><br><span class="line">/// 删除尾节点</span><br><span class="line">- (_YYLinkedMapNode *)removeTailNode;</span><br><span class="line">/// 删除所有数据</span><br><span class="line">- (void)removeAll;</span><br></pre></td></tr></table></figure>
+</code></pre><h3 id="YYMemoryCache"><a href="#YYMemoryCache" class="headerlink" title="YYMemoryCache"></a>YYMemoryCache</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pthread_mutex_t _lock;</span><br><span class="line">_YYLinkedMap *_lru;</span><br><span class="line">dispatch_queue_t _queue;</span><br></pre></td></tr></table></figure>
+<h4 id="pthread-mutex-t-互斥锁，保证线程安全"><a href="#pthread-mutex-t-互斥锁，保证线程安全" class="headerlink" title="pthread_mutex_t 互斥锁，保证线程安全"></a>pthread_mutex_t 互斥锁，保证线程安全</h4><p>操作方法:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pthread_mutex_init(&amp;_lock, NULL);   // 初始化</span><br><span class="line">pthread_mutex_lock(&amp;_lock);         // 加锁</span><br><span class="line">pthread_mutex_unlock(&amp;_lock);       // 解锁</span><br><span class="line">pthread_mutex_trylock(&amp;_lock) == 0  // 是否加锁，0:未锁住，其他值：锁住</span><br></pre></td></tr></table></figure>
+<h4 id="Init-YYMemoryCache"><a href="#Init-YYMemoryCache" class="headerlink" title="Init YYMemoryCache"></a>Init YYMemoryCache</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">- (instancetype)init &#123;</span><br><span class="line">    self = super.init;</span><br><span class="line">    // 1. 初始化锁</span><br><span class="line">    pthread_mutex_init(&amp;_lock, NULL);</span><br><span class="line">    // 2. 初始化lru链表</span><br><span class="line">    _lru = [_YYLinkedMap new];</span><br><span class="line">    // 3. 创建串行队列</span><br><span class="line">    _queue = dispatch_queue_create(&quot;com.ibireme.cache.memory&quot;, DISPATCH_QUEUE_SERIAL);</span><br><span class="line"></span><br><span class="line">    // 4. 初始化默认值</span><br><span class="line">    _countLimit = NSUIntegerMax;</span><br><span class="line">    _costLimit = NSUIntegerMax;</span><br><span class="line">    _ageLimit = DBL_MAX;</span><br><span class="line">    _autoTrimInterval = 5.0; // 5s 执行一次边界检测</span><br><span class="line">    _shouldRemoveAllObjectsOnMemoryWarning = YES; // 内存警告删除所有元素</span><br><span class="line">    _shouldRemoveAllObjectsWhenEnteringBackground = YES; // 进入后台是删除所有元素</span><br><span class="line"></span><br><span class="line">    // 5. 监听内存警告和进入后台的通知</span><br><span class="line">    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_appDidReceiveMemoryWarningNotification) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];</span><br><span class="line">    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_appDidEnterBackgroundNotification) name:UIApplicationDidEnterBackgroundNotification object:nil];</span><br><span class="line"></span><br><span class="line">    [self _trimRecursively]; // 递归调用便捷检测</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="边界检测：内存检测"><a href="#边界检测：内存检测" class="headerlink" title="边界检测：内存检测"></a>边界检测：内存检测</h4><p>YYMemoryCache 有一个边界检测机制，从 YYMemoryCache 初始化就开始工作(类似于定时器，隔一段时间就执行一次操作，但不是使用定时器)，使用递归调用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">- (void)_trimRecursively &#123;</span><br><span class="line">    __weak typeof(self) _self = self;</span><br><span class="line">    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(_autoTrimInterval * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^&#123;</span><br><span class="line">        __strong typeof(_self) self = _self;</span><br><span class="line">        if (!self) return;</span><br><span class="line">        [self _trimInBackground]; // 边界检测</span><br><span class="line">        [self _trimRecursively];  // 递归调用自己，实现定时器的效果</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)_trimInBackground &#123;</span><br><span class="line">    dispatch_async(_queue, ^&#123;</span><br><span class="line">        [self _trimToCost:self-&gt;_costLimit];  // 缓存大小是否超过预定值，超过则从尾节点开始删除</span><br><span class="line">        [self _trimToCount:self-&gt;_countLimit];// 缓存个数是否超过预定值，超过则从尾节点开始删除</span><br><span class="line">        [self _trimToAge:self-&gt;_ageLimit];    // 遍历节点，删除和now相差 _ageLimit 的节点</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong><code>_trimToCost</code> <code>_trimToCount</code></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">- (void)_trimToCost:(NSUInteger)costLimit &#123;</span><br><span class="line">    BOOL finish = NO;</span><br><span class="line">    pthread_mutex_lock(&amp;_lock);</span><br><span class="line">    if (costLimit == 0) &#123;</span><br><span class="line">        [_lru removeAll];</span><br><span class="line">        finish = YES;</span><br><span class="line">    &#125; else if (_lru-&gt;_totalCost &lt;= costLimit) &#123;</span><br><span class="line">        finish = YES;</span><br><span class="line">    &#125;</span><br><span class="line">    pthread_mutex_unlock(&amp;_lock);</span><br><span class="line">    if (finish) return;</span><br><span class="line"></span><br><span class="line">    // 临时变量，超出作用域就删除</span><br><span class="line">    NSMutableArray *holder = [NSMutableArray new];</span><br><span class="line">    while (!finish) &#123;</span><br><span class="line">        if (pthread_mutex_trylock(&amp;_lock) == 0) &#123;</span><br><span class="line">            if (_lru-&gt;_totalCost &gt; costLimit) &#123;</span><br><span class="line">                _YYLinkedMapNode *node = [_lru removeTailNode];</span><br><span class="line">                if (node) [holder addObject:node];</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                finish = YES;</span><br><span class="line">            &#125;</span><br><span class="line">            pthread_mutex_unlock(&amp;_lock);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            usleep(10 * 1000); //休息10s，在进行检测是否可以获得锁</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (holder.count) &#123;</span><br><span class="line">        dispatch_queue_t queue = _lru-&gt;_releaseOnMainThread ? dispatch_get_main_queue() : YYMemoryCacheGetReleaseQueue();</span><br><span class="line">        dispatch_async(queue, ^&#123;</span><br><span class="line">            [holder count]; // 在这里 释放 node，防止分散控制</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 与 `_trimToCost` 差不多的逻辑</span><br><span class="line">- (void)_trimToCount:(NSUInteger)countLimit &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>这里有个tip，就是让block捕获一个局部变量，然后扔到后台队列去随便发送个消息以避免编译器警告，这样就可以让对象在后台线程销毁：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">NSMutableArray *holder = [NSMutableArray new];</span><br><span class="line"></span><br><span class="line">if (holder.count) &#123;</span><br><span class="line">    dispatch_queue_t queue = _lru-&gt;_releaseOnMainThread ? dispatch_get_main_queue() : YYMemoryCacheGetReleaseQueue();</span><br><span class="line">    dispatch_async(queue, ^&#123;</span><br><span class="line">         [holder count]; // release in queue</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 另外一个简单点的方式</span><br><span class="line">NSArray *tmp = self.array;</span><br><span class="line">self.array = nil;</span><br><span class="line">dispatch_async(queue, ^&#123;</span><br><span class="line">    [tmp class];</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><strong><code>_trimToAge</code></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">- (void)_trimToAge:(NSTimeInterval)ageLimit &#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    NSMutableArray *holder = [NSMutableArray new];</span><br><span class="line">    while (!finish) &#123;</span><br><span class="line">        if (pthread_mutex_trylock(&amp;_lock) == 0) &#123;</span><br><span class="line">            if (_lru-&gt;_tail &amp;&amp; (now - _lru-&gt;_tail-&gt;_time) &gt; ageLimit) &#123;</span><br><span class="line">                _YYLinkedMapNode *node = [_lru removeTailNode]; // 删除时间过时的数据</span><br><span class="line">                if (node) [holder addObject:node];</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                finish = YES;</span><br><span class="line">            &#125;</span><br><span class="line">            pthread_mutex_unlock(&amp;_lock);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            usleep(10 * 1000); //10 ms</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="监听内存警告通知-进入后台通知"><a href="#监听内存警告通知-进入后台通知" class="headerlink" title="监听内存警告通知/进入后台通知"></a>监听内存警告通知/进入后台通知</h3><p>自动清空内存缓存，调用 <code>removeAllObjects</code> 方法</p>
+<h3 id="增删查改"><a href="#增删查改" class="headerlink" title="增删查改"></a>增删查改</h3><p>所有操作都需要进行线程安全控制：加锁</p>
+<ul>
+<li><p>增/改</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">- (void)setObject:(id)object forKey:(id)key withCost:(NSUInteger)cost &#123;</span><br><span class="line">    if (!key) return;</span><br><span class="line">    if (!object) &#123;</span><br><span class="line">        [self removeObjectForKey:key];</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    pthread_mutex_lock(&amp;_lock);</span><br><span class="line">    _YYLinkedMapNode *node = CFDictionaryGetValue(_lru-&gt;_dic, (__bridge const void *)(key));</span><br><span class="line">    NSTimeInterval now = CACurrentMediaTime();</span><br><span class="line">    if (node) &#123; // 数据存在: 更新，并移动到头结点</span><br><span class="line">        _lru-&gt;_totalCost -= node-&gt;_cost;</span><br><span class="line">        _lru-&gt;_totalCost += cost;</span><br><span class="line">        node-&gt;_cost = cost;</span><br><span class="line">        node-&gt;_time = now;</span><br><span class="line">        node-&gt;_value = object;</span><br><span class="line">        [_lru bringNodeToHead:node];</span><br><span class="line">    &#125; else &#123; // 数据不存在：直接添加到头结点</span><br><span class="line">        node = [_YYLinkedMapNode new];</span><br><span class="line">        node-&gt;_cost = cost;</span><br><span class="line">        node-&gt;_time = now;</span><br><span class="line">        node-&gt;_key = key;</span><br><span class="line">        node-&gt;_value = object;</span><br><span class="line">        [_lru insertNodeAtHead:node];</span><br><span class="line">    &#125;</span><br><span class="line">    // 计算缓存大小是否大于预定值，大于则进行删缓存操作</span><br><span class="line">    if (_lru-&gt;_totalCost &gt; _costLimit) &#123;</span><br><span class="line">        dispatch_async(_queue, ^&#123;</span><br><span class="line">            [self trimToCost:_costLimit];</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 缓存个数大于预定值，直接删除尾节点</span><br><span class="line">    if (_lru-&gt;_totalCount &gt; _countLimit) &#123;</span><br><span class="line">        _YYLinkedMapNode *node = [_lru removeTailNode];</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    pthread_mutex_unlock(&amp;_lock);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/// 根据key进行删除</span><br><span class="line">- (void)removeObjectForKey:(id)key &#123;</span><br><span class="line">    ...</span><br><span class="line">    pthread_mutex_lock(&amp;_lock);</span><br><span class="line">    _YYLinkedMapNode *node = CFDictionaryGetValue(_lru-&gt;_dic, (__bridge const void *)(key));</span><br><span class="line">    if (node) &#123;</span><br><span class="line">        [_lru removeNode:node];</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    pthread_mutex_unlock(&amp;_lock);</span><br><span class="line">&#125;</span><br><span class="line">/// 删除所有</span><br><span class="line">- (void)removeAllObjects;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/// 是否包含某个数据</span><br><span class="line">- (BOOL)containsObjectForKey:(id)key;</span><br><span class="line">/// 获取缓存数据: 1.更新节点的时间戳，2.并将节点移到头结点</span><br><span class="line">- (id)objectForKey:(id)key;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>YYMemoryCache 操作了内存缓存, 相较于磁盘缓存需要进行I/O操作, 在性能上快很多, 因此YYCache访问缓存时, 优先用的是YYMemoryCache。</li>
+<li>YYMemoryCache 就是操作双向链表和哈希字典，使用 LRU 算法操作数据</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <br/>
+        <br/>
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+      
+    </div>
+
+    <div>
+          
+            
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/default/YYCache源码阅读1/">YYCache源码阅读：YYMemoryCache</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 kysonyangs 的个人博客">kysonyangs</a></p>
+  <p><span>发布时间:</span>2018年12月16日 - 19:12</p>
+  <p><span>最后更新:</span>2020年05月17日 - 18:05</p>
+  <p><span>原始链接:</span><a href="/default/YYCache源码阅读1/" title="YYCache源码阅读：YYMemoryCache">https://kysonyangs.github.io/default/YYCache源码阅读1/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://kysonyangs.github.io/default/YYCache源码阅读1/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+          
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/源码/" rel="tag"><i class="fa fa-tag"></i> 源码</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/default/iOS网络调试/" rel="next" title="使用 Xcode 工具（Network Link Conditioner）模拟网络状态">
+                <i class="fa fa-chevron-left"></i> 使用 Xcode 工具（Network Link Conditioner）模拟网络状态
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/default/YYCache源码阅读2/" rel="prev" title="YYCache源码阅读：YYKVStorage">
+                YYCache源码阅读：YYKVStorage <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzQ0NC8xMzk3Ng=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">kysonyangs</p>
+              <p class="site-description motion-element" itemprop="description">kysonyangs个人站，备忘</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/kysonyangs" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#YYCache"><span class="nav-number">1.</span> <span class="nav-text">YYCache</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#YYMemoryCache-内存缓存"><span class="nav-number">1.1.</span> <span class="nav-text">YYMemoryCache 内存缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#YYLinkedMap"><span class="nav-number">1.1.1.</span> <span class="nav-text">_YYLinkedMap</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#YYLinkedMapNode-链表节点数据"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">_YYLinkedMapNode 链表节点数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#YYMemoryCache"><span class="nav-number">1.1.2.</span> <span class="nav-text">YYMemoryCache</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#pthread-mutex-t-互斥锁，保证线程安全"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">pthread_mutex_t 互斥锁，保证线程安全</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Init-YYMemoryCache"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">Init YYMemoryCache</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#边界检测：内存检测"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">边界检测：内存检测</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监听内存警告通知-进入后台通知"><span class="nav-number">1.1.3.</span> <span class="nav-text">监听内存警告通知/进入后台通知</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增删查改"><span class="nav-number">1.1.4.</span> <span class="nav-text">增删查改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.1.5.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kysonyangs</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("98nkii2hdktsmUfe1Og3R4V3-gzGzoHsz", "1zGSD9yxI1uo7HIj7IVa8CHx");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
