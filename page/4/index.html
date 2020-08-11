@@ -408,6 +408,1434 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/iPhoneX+版本适配/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kysonyangs">
+      <meta itemprop="description" content="kysonyangs个人站，备忘">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kysonyangs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/default/iPhoneX+版本适配/" itemprop="url">
+                  iPhoneX适配
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-01-20 15:12:36" itemprop="dateCreated datePublished" datetime="2018-01-20T15:12:36+08:00">2018-01-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-05-17 16:14:27" itemprop="dateModified" datetime="2020-05-17T16:14:27+08:00">2020-05-17</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/default/iPhoneX+版本适配/" class="leancloud_visitors" data-flag-title="iPhoneX适配">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="iPhoneX适配"><a href="#iPhoneX适配" class="headerlink" title="iPhoneX适配"></a>iPhoneX适配</h3><h4 id="push-和-pop时，页面偏移"><a href="#push-和-pop时，页面偏移" class="headerlink" title="push 和 pop时，页面偏移"></a>push 和 pop时，页面偏移</h4><p>在有 UIScrollView 或 UIScrollView 子类（如tableView）的控制器中，push 到第二个几面和 pop 回去，scrollView 都会往下偏移。</p>
+<p>在 AppDelegate 中用 UISCrollView 的 UIAppearance 修改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// AppDelegate 进行全局设置 不然iOS 11 push时界面会有个下滑的效果，pop回去会有个上划的效果</span><br><span class="line">if (@available(iOS 11.0, *)) &#123;</span><br><span class="line">    [[UIScrollView appearance] setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="TabBar-在-push-的时候会向上弹，然后还会有黑块"><a href="#TabBar-在-push-的时候会向上弹，然后还会有黑块" class="headerlink" title="TabBar 在 push 的时候会向上弹，然后还会有黑块"></a>TabBar 在 push 的时候会向上弹，然后还会有黑块</h4><p>自定义 navigationController 重写的 push 方法里面修改 tabbar 的 frame<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 修改tabBar的frame 不然iPhone X push的时候tabBar上会向上弹</span><br><span class="line">- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated &#123;</span><br><span class="line">    if (self.viewControllers.count &gt; 0) &#123;</span><br><span class="line">           viewController.hidesBottomBarWhenPushed = YES;</span><br><span class="line">    &#125;</span><br><span class="line">    [super pushViewController:viewController animated:animated];</span><br><span class="line">    CGRect frame = self.tabBarController.tabBar.frame;</span><br><span class="line">    frame.origin.y = [UIScreen mainScreen].bounds.size.height - frame.size.height;</span><br><span class="line">    self.tabBarController.tabBar.frame = frame;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="TableView-添加-MJFooter-时，底部显示-MJFooter"><a href="#TableView-添加-MJFooter-时，底部显示-MJFooter" class="headerlink" title="TableView 添加 MJFooter 时，底部显示 MJFooter"></a>TableView 添加 MJFooter 时，底部显示 MJFooter</h4><p>修改 MJFooter 偏移位置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.tableView.mj_footer.ignoredScrollViewContentInsetBottom = kSalfBottomSpace;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    <div>
+          
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/CocoaPods-Carthage/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kysonyangs">
+      <meta itemprop="description" content="kysonyangs个人站，备忘">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kysonyangs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/default/CocoaPods-Carthage/" itemprop="url">
+                  CocoaPods/Carthage
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-12-05 15:21:48" itemprop="dateCreated datePublished" datetime="2017-12-05T15:21:48+08:00">2017-12-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-05-17 16:15:33" itemprop="dateModified" datetime="2020-05-17T16:15:33+08:00">2020-05-17</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/default/CocoaPods-Carthage/" class="leancloud_visitors" data-flag-title="CocoaPods/Carthage">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <ul>
+<li><code>CocoaPods</code> (默认)自动建立和更新一个 <code>Xcode workspace</code>，用来管理你的项目和所有依赖。<code>Carthage</code> 使用 <code>xcodebuild</code> 来编译出二进制库，剩下的集成工作完全交给开发人员。</li>
+<li><code>CocoaPods</code> 使用起来方便， <code>Carthage</code> 更加灵活并且对现有项目没有太多的侵略性。</li>
+<li><code>CocoaPods</code> 希望建立一个生态系统，可以更加方便的发现和集成第三方代码库。 <code>Carthage</code> 希望变成一个去中心化的依赖管理系统，不提供中心化的项目列表，减少维护成本和单点失败的概率。不过这样给开发人员寻找项目带来不便。</li>
+<li><code>CocoaPods</code> 的项目需要配置 <code>podspec</code> 文件，包含了项目和第三方库的信息。 <code>Carthage</code> 并不使用类似的配置文件，第三方库的依赖关系是通过 Xcode 项目来配置的。</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/default/CocoaPods-Carthage/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    <div>
+          
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/Alfred使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kysonyangs">
+      <meta itemprop="description" content="kysonyangs个人站，备忘">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kysonyangs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/default/Alfred使用/" itemprop="url">
+                  Alfred使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-10-16 15:22:32" itemprop="dateCreated datePublished" datetime="2017-10-16T15:22:32+08:00">2017-10-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-05-17 16:15:56" itemprop="dateModified" datetime="2020-05-17T16:15:56+08:00">2020-05-17</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/default/Alfred使用/" class="leancloud_visitors" data-flag-title="Alfred使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h3><p>Alfred 启动后，点击帽子图标，选择 <code>Preferences...</code> 打开设置面板</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/default/Alfred使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    <div>
+          
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/iOS设计模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kysonyangs">
+      <meta itemprop="description" content="kysonyangs个人站，备忘">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kysonyangs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/default/iOS设计模式/" itemprop="url">
+                  iOS MVC、MVP、MVVM
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-10-16 15:22:32" itemprop="dateCreated datePublished" datetime="2017-10-16T15:22:32+08:00">2017-10-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-05-16 13:34:17" itemprop="dateModified" datetime="2020-05-16T13:34:17+08:00">2020-05-16</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/default/iOS设计模式/" class="leancloud_visitors" data-flag-title="iOS MVC、MVP、MVVM">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><ul>
+<li>Model：负责封装数据，存储和处理数据运算等工作</li>
+<li>View：负责数据展示、监听用户触摸等操作</li>
+<li>Controller：负责业务逻辑、事件响应、数据加工等工作</li>
+</ul>
+<p>用户操作View，在Controller层完成业务逻辑处理，更新Model层，将数据显示在View层。</p>
+<p>View把控制权交给Controller层，自己不执行业务逻辑；Controller层执行业务逻辑并且操作Model层，但不会直接操作View层；View和Model层的同步消息是通过观察者模式进行，而同步操作是由View层自己请求Model层的数据，然后对视图进行更新，观察者模式可以做到多视图同时更新。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18810478-0d03795bd0f3a953.png" alt=""></p>
+<ul>
+<li>优点：View、Model可以重复利用</li>
+<li>缺点：导致Controller臃肿，代码特别多，视图一复杂起来，代码量过长，不好维护；写在Controller里View的代码无法复用；</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/default/iOS设计模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    <div>
+          
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/iOS 方法替换/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kysonyangs">
+      <meta itemprop="description" content="kysonyangs个人站，备忘">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kysonyangs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/default/iOS 方法替换/" itemprop="url">
+                  方法替换
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-10-05 15:12:36" itemprop="dateCreated datePublished" datetime="2017-10-05T15:12:36+08:00">2017-10-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-05-17 16:15:03" itemprop="dateModified" datetime="2020-05-17T16:15:03+08:00">2020-05-17</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/default/iOS 方法替换/" class="leancloud_visitors" data-flag-title="方法替换">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="Aspects"><a href="#Aspects" class="headerlink" title="Aspects"></a><a href="https://github.com/steipete/Aspects" target="_blank" rel="noopener">Aspects</a></h4><p><a href="https://github.com/steipete/Aspects" target="_blank" rel="noopener">Aspects</a> 是一个基于 Method Swizzle 的函数替换的第三方库，支持在方法执行前（AspectPositionBefore）/执行后（AspectPositionAfter）或替代原方法执行（AspectPositionInstead）</p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><ol>
+<li><p>HOOK一个类的所有实例的指定方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/// 为一个指定的类的某个方法执行前/替换/后,添加一段代码块.对这个类的所有对象都会起作用.</span><br><span class="line">///</span><br><span class="line">/// @param block  方法被添加钩子时,Aspectes会拷贝方法的签名信息.</span><br><span class="line">/// 第一个参数将会是 `id&lt;AspectInfo&gt;`,余下的参数是此被调用的方法的参数.</span><br><span class="line">/// 这些参数是可选的,并将被用于传递给block代码块对应位置的参数.</span><br><span class="line">/// 你甚至使用一个没有任何参数或只有一个`id&lt;AspectInfo&gt;`参数的block代码块.</span><br><span class="line">///</span><br><span class="line">/// @注意 不支持给静态方法添加钩子.</span><br><span class="line">/// @return 返回一个唯一值,用于取消此钩子.</span><br><span class="line">+ (id&lt;AspectToken&gt;)aspect_hookSelector:(SEL)selector</span><br><span class="line">                      withOptions:(AspectOptions)options</span><br><span class="line">                       usingBlock:(id)block</span><br><span class="line">                            error:(NSError **)error;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>HOOK一个类实例的指定方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/// 为一个指定的对象的某个方法执行前/替换/后,添加一段代码块.只作用于当前对象.</span><br><span class="line">- (id&lt;AspectToken&gt;)aspect_hookSelector:(SEL)selector</span><br><span class="line">                      withOptions:(AspectOptions)options</span><br><span class="line">                       usingBlock:(id)block</span><br><span class="line">                            error:(NSError **)error;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Example</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">+(void)Aspect &#123;</span><br><span class="line">    // 在类UIViewController所有的实例执行viewWillAppear:方法完毕后做一些事情</span><br><span class="line">    [UIViewController aspect_hookSelector:@selector(viewWillAppear:)</span><br><span class="line">                              withOptions:AspectPositionAfter</span><br><span class="line">                               usingBlock:^(id&lt;AspectInfo&gt; info) &#123;</span><br><span class="line">                                   NSString *className = NSStringFromClass([[info instance] class]);</span><br><span class="line">                                   NSLog(@&quot;%@&quot;, className);</span><br><span class="line">                               &#125; error:NULL];</span><br><span class="line"></span><br><span class="line">    // 在实例myVc执行viewWillAppear:方法完毕后做一些事情</span><br><span class="line">    UIViewController* myVc = [[UIViewController alloc] init];</span><br><span class="line">    [myVc aspect_hookSelector:@selector(viewWillAppear:)</span><br><span class="line">                            withOptions:AspectPositionAfter</span><br><span class="line">                             usingBlock:^(id&lt;AspectInfo&gt; info) &#123;</span><br><span class="line">                                 id instance = info.instance;               //调用的实例对象</span><br><span class="line">                                 id invocation = info.originalInvocation;   //原始的方法</span><br><span class="line">                                 id arguments = info.arguments;             //参数</span><br><span class="line">                                 [invocation invoke];                       //原始的方法，再次调用</span><br><span class="line">                             &#125; error:NULL];</span><br><span class="line">    // HOOK类方法</span><br><span class="line">    Class metalClass = objc_getMetaClass(NSStringFromClass(UIViewController.class).UTF8String);</span><br><span class="line">    [metalClass aspect_hookSelector:@selector(ClassMethod)</span><br><span class="line">                        withOptions:AspectPositionAfter</span><br><span class="line">                         usingBlock:^(id&lt;AspectInfo&gt; info) &#123;</span><br><span class="line">                             NSLog(@&quot;%@&quot;, HOOK类方法);</span><br><span class="line">                         &#125; error:NULL];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    <div>
+          
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/Swift技巧/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kysonyangs">
+      <meta itemprop="description" content="kysonyangs个人站，备忘">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kysonyangs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/default/Swift技巧/" itemprop="url">
+                  Swift技巧
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-10-03 15:33:46" itemprop="dateCreated datePublished" datetime="2017-10-03T15:33:46+08:00">2017-10-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-05-17 16:12:07" itemprop="dateModified" datetime="2020-05-17T16:12:07+08:00">2020-05-17</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/default/Swift技巧/" class="leancloud_visitors" data-flag-title="Swift技巧">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="cell分割线置顶"><a href="#cell分割线置顶" class="headerlink" title="cell分割线置顶"></a>cell分割线置顶</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tableView.separatorInset = UIEdgeInsets.zero</span><br></pre></td></tr></table></figure>
+<h3 id="Swift中lazy作惰性求值"><a href="#Swift中lazy作惰性求值" class="headerlink" title="Swift中lazy作惰性求值"></a>Swift中lazy作惰性求值</h3><p>函数式编程中有惰性求值的概念，即一次计算在真正需要时才执行，尽可能推迟求解表达式。<br>假如我们有一个数组，我们对每个元素作 <code>element*2</code> 的 map 操作，获取其中某一个元素，我们会如下代码处理:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let array = [1, 2, 4, 5, 3, 7]</span><br><span class="line">let element = array.map&#123; $0 * 2 &#125;[3]</span><br><span class="line">print(element)</span><br></pre></td></tr></table></figure></p>
+<p>这个计算对每个元素都<code>*</code>2，最后我们只取了其中一个值，也就是说在这个场景中另外5次计算是无意义的。</p>
+<p>这时使用惰性求值就可以避免这算浪费。我们知道Swift中有个lazy关键字，如果用来修饰属性之类的，可以实现属性的惰性求值。同样，Swift扩展了LazySequenceProtocol协议，提供了一个lazy属性，用于处理map，filter等操作的惰性求值，定义如下代码所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">extension LazySequenceProtocol &#123;</span><br><span class="line">    /// Identical to `self`.</span><br><span class="line">    public var lazy: Self &#123; get &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>所以，上面这个例子如果要实现惰性求值，则可以如下代码处理：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let array = [1, 2, 4, 5, 3, 7]</span><br><span class="line">let element = array.lazy.map&#123; $0 * 2 &#125;[3]</span><br><span class="line">print(element)</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/default/Swift技巧/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    <div>
+          
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/导出p12文件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kysonyangs">
+      <meta itemprop="description" content="kysonyangs个人站，备忘">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kysonyangs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/default/导出p12文件/" itemprop="url">
+                  导出p12文件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-06-20 15:12:36" itemprop="dateCreated datePublished" datetime="2017-06-20T15:12:36+08:00">2017-06-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-05-17 16:16:24" itemprop="dateModified" datetime="2020-05-17T16:16:24+08:00">2020-05-17</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/default/导出p12文件/" class="leancloud_visitors" data-flag-title="导出p12文件">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="为什么要导出-p12文件？"><a href="#为什么要导出-p12文件？" class="headerlink" title="为什么要导出.p12文件？"></a>为什么要导出.p12文件？</h2><p>当我们用大于等于三个MAC设备开发应用时，想要申请新的证书，如果在我们的证书里，包含了2个发布证书，2个开发证书，可以发现再也申请不了开发证书和发布证书了（一般在我们的证书界面中应该只有一个开发证书，一个发布证书，没必要生成那么多的证书，证书一般在过期之后才会重新添加。）</p>
+<h3 id="导出-p12文件"><a href="#导出-p12文件" class="headerlink" title="导出.p12文件"></a>导出.p12文件</h3><p>我们的每一个证书都可以生成一个.p12文件，这个文件是一个加密的文件，只要知道其密码，就可以供给所有的mac设备使用，使设备不需要在苹果开发者网站重新申请开发和发布证书，就能使用。​​</p>
+<p>注意：一般.p12文件是给与别人使用的，本机必须已经有一个带秘钥的证书才可以生成.p12文件</p>
+<p>如果你发现该证书没有秘钥，则删除钥匙串中的该证书，重新下载并双击打开加入到钥匙串即可！​</p>
+<p>打开钥匙串,先选择左侧钥匙串中的登录（不是系统！！！），再点击种类中的证书，选择我们需要的证书，右击，选择“导出“iPhone Distribition/Developer:<br><img src="http://photo.blog.sina.com.cn/showpic.html#blogid=&amp;url=http://album.sina.com.cn/pic/005E0OpBgy6Y7OvROzG34" alt=""><br>为.p12文件填一个名字，设置密码</p>
+<h3 id="使用描述文件"><a href="#使用描述文件" class="headerlink" title="使用描述文件"></a>使用描述文件</h3><p><img src="http://photo.blog.sina.com.cn/showpic.html#blogid=&amp;url=http://album.sina.com.cn/pic/005E0OpBgy6Y7OP5bQm62" alt=""></p>
+<p>拿到这两个文件后，依次双击“证书”，“.p12“文件（需要输入密码，密码就是当时生成.p12时设定的密码，），作用是加入钥匙串中，使我们的电脑具备开发的证明，”描述文件“（作用是置于Xcode中，让Xcode知道我们开发的合法性），添加完后就可以使用了。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    <div>
+          
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/Mac终端/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kysonyangs">
+      <meta itemprop="description" content="kysonyangs个人站，备忘">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kysonyangs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/default/Mac终端/" itemprop="url">
+                  Mac终端
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-02-10 20:37:52" itemprop="dateCreated datePublished" datetime="2017-02-10T20:37:52+08:00">2017-02-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-05-17 16:13:51" itemprop="dateModified" datetime="2020-05-17T16:13:51+08:00">2020-05-17</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/default/Mac终端/" class="leancloud_visitors" data-flag-title="Mac终端">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="复制粘贴无效解决"><a href="#复制粘贴无效解决" class="headerlink" title="复制粘贴无效解决"></a>复制粘贴无效解决</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">launchctl list | grep com.apple.pboard</span><br><span class="line"></span><br><span class="line">launchctl stop com.apple.pboard</span><br><span class="line">launchctl start com.apple.pboard</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/default/Mac终端/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    <div>
+          
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/Info-plist属性/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -646,7 +2074,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-05-17 16:15:15" itemprop="dateModified" datetime="2020-05-17T16:15:15+08:00">2020-05-17</time>
+                <time title="修改时间：2020-08-11 10:53:03" itemprop="dateModified" datetime="2020-08-11T10:53:03+08:00">2020-08-11</time>
               
             
           </span>
@@ -691,9 +2119,11 @@
 
       
         
-          <h3 id="从O开始"><a href="#从O开始" class="headerlink" title="从O开始"></a>从O开始</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git remote add origin xxx.git</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;xxx&quot;</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+          <h3 id="放弃修改，强制覆盖本地代码"><a href="#放弃修改，强制覆盖本地代码" class="headerlink" title="放弃修改，强制覆盖本地代码"></a>放弃修改，强制覆盖本地代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git fetch --all</span><br><span class="line">git reset --hard origin/master</span><br><span class="line">git pull</span><br></pre></td></tr></table></figure>
+<h3 id="合并单个commit到指定的分支上"><a href="#合并单个commit到指定的分支上" class="headerlink" title="合并单个commit到指定的分支上"></a>合并单个commit到指定的分支上</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git log  //查看提交的日志，复制要合并的那个分支的commit id&lt;/span&gt;</span><br><span class="line">git checkout 要合并的分支  // 切换到要合并的分支上</span><br><span class="line">git cherry-pick 上面复制的那个要合并的commit id  // 提交该commit到当前分支</span><br></pre></td></tr></table></figure>
+<h3 id="合并多个commit到指定的分支上"><a href="#合并多个commit到指定的分支上" class="headerlink" title="合并多个commit到指定的分支上"></a>合并多个commit到指定的分支上</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. 基于逆向改变的分支拉出一个分支</span><br><span class="line">2. rebase这个新分支的commit到master</span><br><span class="line"># 代表从7dcada开始到该分支结束</span><br><span class="line">git rebase --onto master 76cada^</span><br></pre></td></tr></table></figure>
+<h3 id="从O开始"><a href="#从O开始" class="headerlink" title="从O开始"></a>从O开始</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git remote add origin xxx.git</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;xxx&quot;</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
 <h3 id="查看远程仓库地址"><a href="#查看远程仓库地址" class="headerlink" title="查看远程仓库地址"></a>查看远程仓库地址</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
-<h3 id="放弃修改，强制覆盖本地代码"><a href="#放弃修改，强制覆盖本地代码" class="headerlink" title="放弃修改，强制覆盖本地代码"></a>放弃修改，强制覆盖本地代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git fetch --all</span><br><span class="line">git reset --hard origin/master</span><br><span class="line">git pull</span><br></pre></td></tr></table></figure>
 <h3 id="打标签"><a href="#打标签" class="headerlink" title="打标签"></a>打标签</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git tag -a &apos;0.0.1&apos; -m &quot;xxx&quot;</span><br><span class="line">git tag #查看</span><br><span class="line">git push --tags #提交本地所有标签</span><br><span class="line">git push origin 0.0.1 #提交某个标签</span><br></pre></td></tr></table></figure>
 <h3 id="删除标签"><a href="#删除标签" class="headerlink" title="删除标签"></a>删除标签</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git tag -d 0.0.1</span><br><span class="line">git push origin :0.0.1 #删除远程标签</span><br></pre></td></tr></table></figure>
 <h3 id="git-push-403-错误"><a href="#git-push-403-错误" class="headerlink" title="git push 403 错误"></a>git push 403 错误</h3><p>原因： 本地储存了用户名和密码，重新设置就好了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote set-url origin 用户名@git.coding.xxx.git</span><br></pre></td></tr></table></figure></p>
@@ -799,1433 +2229,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/CoreData使用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="kysonyangs">
-      <meta itemprop="description" content="kysonyangs个人站，备忘">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="kysonyangs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/default/CoreData使用/" itemprop="url">
-                  CoreData使用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2016-08-02 15:28:11" itemprop="dateCreated datePublished" datetime="2016-08-02T15:28:11+08:00">2016-08-02</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-05-17 16:15:24" itemprop="dateModified" datetime="2020-05-17T16:15:24+08:00">2020-05-17</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/default/CoreData使用/" class="leancloud_visitors" data-flag-title="CoreData使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>由于最近写了个 <code>gank.io</code> 客户端，鬼使神差的想添加一个收藏功能，并且秉着努力学习新知识的原则，所以我在该项目中试了一下水，感觉还不错，在此，分享出来，供新手参考参考。<br>特别声明: 感谢<a href="http://gank.io/" target="_blank" rel="noopener">干货集中营</a>开源的接口。 <a href="http://gank.io/" target="_blank" rel="noopener">干货集中营</a>是一个不错的网站，希望越来越好。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/default/CoreData使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    <div>
-          
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/Charles使用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="kysonyangs">
-      <meta itemprop="description" content="kysonyangs个人站，备忘">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="kysonyangs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/default/Charles使用/" itemprop="url">
-                  Charles使用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2016-06-10 18:15:17" itemprop="dateCreated datePublished" datetime="2016-06-10T18:15:17+08:00">2016-06-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-05-17 16:15:40" itemprop="dateModified" datetime="2020-05-17T16:15:40+08:00">2020-05-17</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/default/Charles使用/" class="leancloud_visitors" data-flag-title="Charles使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="Charles-主要的功能"><a href="#Charles-主要的功能" class="headerlink" title="Charles 主要的功能"></a>Charles 主要的功能</h3><ol>
-<li>截取 Http 和 Https 网络封包。</li>
-<li>支持重发网络请求，方便后端调试。</li>
-<li>支持修改网络请求参数。</li>
-<li>支持网络请求的截获并动态修改。</li>
-<li>支持模拟慢速网络。</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/default/Charles使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    <div>
-          
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/GCD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="kysonyangs">
-      <meta itemprop="description" content="kysonyangs个人站，备忘">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="kysonyangs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/default/GCD/" itemprop="url">
-                  GCD
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2016-06-10 15:38:34" itemprop="dateCreated datePublished" datetime="2016-06-10T15:38:34+08:00">2016-06-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-05-17 16:15:20" itemprop="dateModified" datetime="2020-05-17T16:15:20+08:00">2020-05-17</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/default/GCD/" class="leancloud_visitors" data-flag-title="GCD">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h3><ul>
-<li><strong>main queue</strong>: 主线程队列，串行队列。一般用于刷新UI。</li>
-<li><strong>global queue</strong>: 全局队列，并行队列。</li>
-<li><strong>custom queue</strong>: 自定义队列。<br>*
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/default/GCD/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    <div>
-          
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/CoreAniamtion/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="kysonyangs">
-      <meta itemprop="description" content="kysonyangs个人站，备忘">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="kysonyangs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/default/CoreAniamtion/" itemprop="url">
-                  CoreAniamtion
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2016-05-25 15:34:51" itemprop="dateCreated datePublished" datetime="2016-05-25T15:34:51+08:00">2016-05-25</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-05-17 16:15:27" itemprop="dateModified" datetime="2020-05-17T16:15:27+08:00">2020-05-17</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/default/CoreAniamtion/" class="leancloud_visitors" data-flag-title="CoreAniamtion">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="UIView-vs-CALayer"><a href="#UIView-vs-CALayer" class="headerlink" title="UIView vs CALayer"></a>UIView vs CALayer</h2><ol>
-<li>每个 UIView 内部都有一个 CALayer 在背后提供内容的绘制和显示，两者都有树状层级结构，layer 内部有 SubLayers，View 内部有 SubViews;</li>
-<li>在 View显示的时候，UIView 做为 Layer 的 CALayerDelegate,View 的显示内容由内部的 CALayer 的 display;</li>
-<li>View 可以接受事件，而 Layer 不行</li>
-</ol>
-<h3 id="属性说明"><a href="#属性说明" class="headerlink" title="属性说明"></a>属性说明</h3><ul>
-<li>@property(nullable, strong) id contents; : 可以将CGImage赋值给他，显示成为一张图片<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">layerView.layer.contents = (__bridge id _Nullable)(image.CGImage);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/default/CoreAniamtion/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    <div>
-          
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/js交互/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="kysonyangs">
-      <meta itemprop="description" content="kysonyangs个人站，备忘">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="kysonyangs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/default/js交互/" itemprop="url">
-                  js交互
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2016-05-12 20:19:29" itemprop="dateCreated datePublished" datetime="2016-05-12T20:19:29+08:00">2016-05-12</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-11-05 15:20:20" itemprop="dateModified" datetime="2018-11-05T15:20:20+08:00">2018-11-05</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/default/js交互/" class="leancloud_visitors" data-flag-title="js交互">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>现在貌似很多APP都有需求利用HTML5,所以我们需要了解iOS中JavaScript和OC交互的实现。<br>新建一个工程，添加一个空文件index.html<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;!-- 网页的描述信息 --&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">        &lt;title&gt;Hello World&lt;/title&gt;</span><br><span class="line">        &lt;script&gt;</span><br><span class="line">            function event()</span><br><span class="line">            &#123;</span><br><span class="line">                alert(&quot;调用JS方法成功哦~&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &lt;/script&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;!-- 网页的具体内容 --&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        JS调用OC哦~~</span><br><span class="line">        &lt;button style=&quot;background: blue; width:100px; height:30px;&quot; onclick=&quot;event();&quot;&gt;JS调用OC&lt;/button&gt;</span><br><span class="line">        &lt;br&gt;</span><br><span class="line">        &lt;a href=&quot;http://www.baidu.com&quot;&gt;百度&lt;/a&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/default/js交互/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    <div>
-          
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/iOS国际化/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="kysonyangs">
-      <meta itemprop="description" content="kysonyangs个人站，备忘">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="kysonyangs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/default/iOS国际化/" itemprop="url">
-                  iOS国际化
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2016-05-09 11:16:08" itemprop="dateCreated datePublished" datetime="2016-05-09T11:16:08+08:00">2016-05-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-11-05 15:17:21" itemprop="dateModified" datetime="2018-11-05T15:17:21+08:00">2018-11-05</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/default/iOS国际化/" class="leancloud_visitors" data-flag-title="iOS国际化">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="应用名称国际化"><a href="#应用名称国际化" class="headerlink" title="应用名称国际化"></a>应用名称国际化</h3><ul>
-<li>1.ctrl+n 创建一个.strings文件，如图<br><img src="http://7xsuaf.com1.z0.glb.clouddn.com/2016-04-11/inter1.jpg" alt=""></li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/default/iOS国际化/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    <div>
-          
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/Xcode插件/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="kysonyangs">
-      <meta itemprop="description" content="kysonyangs个人站，备忘">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="kysonyangs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/default/Xcode插件/" itemprop="url">
-                  Xcode插件
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2016-04-12 15:18:20" itemprop="dateCreated datePublished" datetime="2016-04-12T15:18:20+08:00">2016-04-12</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-05-17 16:12:19" itemprop="dateModified" datetime="2020-05-17T16:12:19+08:00">2020-05-17</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/default/Xcode插件/" class="leancloud_visitors" data-flag-title="Xcode插件">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>哎，插件久了没用都忘了快捷键是啥了，特写此文，以备忘…</p>
-<h3 id="先上几个快捷键常用图案："><a href="#先上几个快捷键常用图案：" class="headerlink" title="先上几个快捷键常用图案："></a>先上几个快捷键常用图案：</h3><blockquote>
-<p>快捷键中常用符号⌘（command）、⌥（option）、⇧（shift）、⇪（caps lock）、⌃（control）、↩（return）、⌅（enter）</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/default/Xcode插件/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    <div>
-          
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kysonyangs.github.io/default/条形码和二维码生成/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="kysonyangs">
-      <meta itemprop="description" content="kysonyangs个人站，备忘">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="kysonyangs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/default/条形码和二维码生成/" itemprop="url">
-                  条形码和二维码生成
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2016-04-11 17:56:06" itemprop="dateCreated datePublished" datetime="2016-04-11T17:56:06+08:00">2016-04-11</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-05-17 16:16:05" itemprop="dateModified" datetime="2020-05-17T16:16:05+08:00">2020-05-17</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/default/条形码和二维码生成/" class="leancloud_visitors" data-flag-title="条形码和二维码生成">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="生成条形码"><a href="#生成条形码" class="headerlink" title="生成条形码"></a>生成条形码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">- (UIImage *)generateBarCode:(NSString *)code width:(CGFloat)width height:(CGFloat)height &#123;</span><br><span class="line">    // 生成条形码图片</span><br><span class="line">    CIImage *barcodeImage;</span><br><span class="line">    NSData *data = [code dataUsingEncoding:NSISOLatin1StringEncoding allowLossyConversion:false];</span><br><span class="line">    CIFilter *filter = [CIFilter filterWithName:@&quot;CICode128BarcodeGenerator&quot;];</span><br><span class="line"></span><br><span class="line">    [filter setValue:data forKey:@&quot;inputMessage&quot;];</span><br><span class="line">    barcodeImage = [filter outputImage];</span><br><span class="line"></span><br><span class="line">    // 消除模糊</span><br><span class="line">    CGFloat scaleX = width / barcodeImage.extent.size.width; // extent 返回图片的frame</span><br><span class="line">    CGFloat scaleY = height / barcodeImage.extent.size.height;</span><br><span class="line">    CIImage *transformedImage = [barcodeImage imageByApplyingTransform:CGAffineTransformScale(CGAffineTransformIdentity, scaleX, scaleY)];</span><br><span class="line"></span><br><span class="line">    return [UIImage imageWithCIImage:transformedImage];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/default/条形码和二维码生成/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    <div>
-          
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2268,7 +2276,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">46</span>
+                    <span class="site-state-item-count">54</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2307,7 +2315,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

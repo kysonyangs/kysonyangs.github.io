@@ -163,12 +163,12 @@
 
 
 
-  <meta name="description" content="现在貌似很多APP都有需求利用HTML5,所以我们需要了解iOS中JavaScript和OC交互的实现。新建一个工程，添加一个空文件index.html1234567891011121314151617181920&amp;lt;html&amp;gt;    &amp;lt;!-- 网页的描述信息 --&amp;gt;    &amp;lt;head&amp;gt;        &amp;lt;meta charset=&amp;quot;UTF-8&amp;qu">
+  <meta name="description" content="2020-05-02 更新 iOS与JS交互的方法：  拦截url（适用于UIWebView和WKWebView） JavaScriptCore（只适用于UIWebView，iOS7+）苹果将要放弃UIWebView了 WKScriptMessageHandler（只适用于WKWebView，iOS8+） WebViewJavascriptBridge（适用于UIWebView和WKWebView">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js交互">
 <meta property="og:url" content="https://kysonyangs.github.io/default/js交互/index.html">
 <meta property="og:site_name" content="kysonyangs">
-<meta property="og:description" content="现在貌似很多APP都有需求利用HTML5,所以我们需要了解iOS中JavaScript和OC交互的实现。新建一个工程，添加一个空文件index.html1234567891011121314151617181920&amp;lt;html&amp;gt;    &amp;lt;!-- 网页的描述信息 --&amp;gt;    &amp;lt;head&amp;gt;        &amp;lt;meta charset=&amp;quot;UTF-8&amp;qu">
+<meta property="og:description" content="2020-05-02 更新 iOS与JS交互的方法：  拦截url（适用于UIWebView和WKWebView） JavaScriptCore（只适用于UIWebView，iOS7+）苹果将要放弃UIWebView了 WKScriptMessageHandler（只适用于WKWebView，iOS8+） WebViewJavascriptBridge（适用于UIWebView和WKWebView">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://7xsuaf.com1.z0.glb.clouddn.com/2016-05-05/js-oc1.png">
 <meta property="og:image" content="http://7xsuaf.com1.z0.glb.clouddn.com/2016-05-05/js-oc2.png">
@@ -176,10 +176,10 @@
 <meta property="og:image" content="http://7xsuaf.com1.z0.glb.clouddn.com/2016-05-05/js-oc4.png">
 <meta property="og:image" content="https://github.com/marcuswestin/WebViewJavascriptBridge">
 <meta property="og:image" content="https://github.com/KellenYangs/KLTests_03_17/tree/master/JS%E4%B8%8EOC%E7%9A%84%E4%BD%BF%E7%94%A8">
-<meta property="og:updated_time" content="2018-11-05T07:20:20.979Z">
+<meta property="og:updated_time" content="2020-06-04T09:21:25.038Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js交互">
-<meta name="twitter:description" content="现在貌似很多APP都有需求利用HTML5,所以我们需要了解iOS中JavaScript和OC交互的实现。新建一个工程，添加一个空文件index.html1234567891011121314151617181920&amp;lt;html&amp;gt;    &amp;lt;!-- 网页的描述信息 --&amp;gt;    &amp;lt;head&amp;gt;        &amp;lt;meta charset=&amp;quot;UTF-8&amp;qu">
+<meta name="twitter:description" content="2020-05-02 更新 iOS与JS交互的方法：  拦截url（适用于UIWebView和WKWebView） JavaScriptCore（只适用于UIWebView，iOS7+）苹果将要放弃UIWebView了 WKScriptMessageHandler（只适用于WKWebView，iOS8+） WebViewJavascriptBridge（适用于UIWebView和WKWebView">
 <meta name="twitter:image" content="http://7xsuaf.com1.z0.glb.clouddn.com/2016-05-05/js-oc1.png">
 
 
@@ -474,7 +474,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-11-05 15:20:20" itemprop="dateModified" datetime="2018-11-05T15:20:20+08:00">2018-11-05</time>
+                <time title="Modified: 2020-06-04 17:21:25" itemprop="dateModified" datetime="2020-06-04T17:21:25+08:00">2020-06-04</time>
               
             
           </span>
@@ -518,7 +518,16 @@
       
 
       
-        <p>现在貌似很多APP都有需求利用HTML5,所以我们需要了解iOS中JavaScript和OC交互的实现。<br>新建一个工程，添加一个空文件index.html<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;!-- 网页的描述信息 --&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">        &lt;title&gt;Hello World&lt;/title&gt;</span><br><span class="line">        &lt;script&gt;</span><br><span class="line">            function event()</span><br><span class="line">            &#123;</span><br><span class="line">                alert(&quot;调用JS方法成功哦~&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &lt;/script&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;!-- 网页的具体内容 --&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        JS调用OC哦~~</span><br><span class="line">        &lt;button style=&quot;background: blue; width:100px; height:30px;&quot; onclick=&quot;event();&quot;&gt;JS调用OC&lt;/button&gt;</span><br><span class="line">        &lt;br&gt;</span><br><span class="line">        &lt;a href=&quot;http://www.baidu.com&quot;&gt;百度&lt;/a&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+        <p>2020-05-02 更新</p>
+<p>iOS与JS交互的方法：</p>
+<ol>
+<li>拦截url（适用于UIWebView和WKWebView）</li>
+<li><em>JavaScriptCore（只适用于UIWebView，iOS7+）苹果将要放弃UIWebView了</em></li>
+<li>WKScriptMessageHandler（只适用于WKWebView，iOS8+）</li>
+<li>WebViewJavascriptBridge（适用于UIWebView和WKWebView，属于第三方框架）</li>
+</ol>
+<hr>
+<p>现在貌似很多APP都有需求利用HTML5,所以我们需要了解iOS中JavaScript和OC交互的实现。<br>新建一个工程，添加一个空文件index.html<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;!-- 网页的描述信息 --&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">        &lt;title&gt;Hello World&lt;/title&gt;</span><br><span class="line">        &lt;script&gt;</span><br><span class="line">            function event()</span><br><span class="line">            &#123;</span><br><span class="line">                alert(&quot;调用JS方法成功哦~&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &lt;/script&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;!-- 网页的具体内容 --&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        JS调用OC哦~~</span><br><span class="line">        &lt;button style=&quot;background: blue; width:100px; height:30px;&quot; onclick=&quot;event();&quot;&gt;JS调用OC&lt;/button&gt;</span><br><span class="line">        &lt;br&gt;</span><br><span class="line">        &lt;a href=&quot;http://www.baidu.com&quot;&gt;百度&lt;/a&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
 <ol>
 <li>Objective-C语言调用JavaScript语言</li>
@@ -596,7 +605,7 @@
   <p><span>本文标题:</span><a href="/default/js交互/">js交互</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 kysonyangs 的个人博客">kysonyangs</a></p>
   <p><span>发布时间:</span>2016年05月12日 - 20:05</p>
-  <p><span>最后更新:</span>2018年11月05日 - 15:11</p>
+  <p><span>最后更新:</span>2020年06月04日 - 17:06</p>
   <p><span>原始链接:</span><a href="/default/js交互/" title="js交互">https://kysonyangs.github.io/default/js交互/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://kysonyangs.github.io/default/js交互/"  aria-label="复制成功！"></i></span>
   </p>
@@ -718,7 +727,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">46</span>
+                    <span class="site-state-item-count">54</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -757,7 +766,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
