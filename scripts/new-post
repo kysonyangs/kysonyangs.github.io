@@ -1,0 +1,91 @@
+#!/usr/bin/env ruby
+# Create a Jekyll post with the front matter expected by this Chirpy site.
+
+require "date"
+require "fileutils"
+require "optparse"
+require "time"
+
+options = {
+  tags: [],
+  categories: [],
+  dry_run: false
+}
+
+parser = OptionParser.new do |opts|
+  opts.banner = "Usage: scripts/new-post TITLE [options]"
+
+  opts.on("--slug SLUG", "Use a custom URL/file slug") { |value| options[:slug] = value }
+  opts.on("--date DATE", "Use a custom date/time") { |value| options[:date] = value }
+  opts.on("--tags TAGS", "Comma-separated tags, e.g. iOS,Swift") { |value| options[:tags] = value.split(",").map(&:strip).reject(&:empty?) }
+  opts.on("--categories CATEGORIES", "Comma-separated categories") { |value| options[:categories] = value.split(",").map(&:strip).reject(&:empty?) }
+  opts.on("--dry-run", "Print the generated post without writing") { options[:dry_run] = true }
+  opts.on("-h", "--help", "Show help") do
+    puts opts
+    exit
+  end
+end
+
+parser.parse!
+
+title = ARGV.join(" ").strip
+abort parser.to_s if title.empty?
+
+def yaml_string(value)
+  value.to_s.inspect
+end
+
+def yaml_array(values)
+  "[#{values.map { |value| yaml_string(value) }.join(", ")}]"
+end
+
+def slug_from(title)
+  slug = title.strip
+              .gsub(/[\/\\:*?"<>|#%{}^\[\]`]/, "")
+              .gsub(/\s+/, "-")
+              .gsub(/-+/, "-")
+              .sub(/\A-/, "")
+              .sub(/-\z/, "")
+
+  slug.empty? ? "untitled" : slug
+end
+
+time = options[:date] ? Time.parse(options[:date]) : Time.now
+slug = slug_from(options[:slug] || title)
+post_path = File.join("_posts", "#{time.strftime("%Y-%m-%d")}-#{slug}.md")
+
+front_matter = [
+  "---",
+  "layout: post",
+  "title: #{yaml_string(title)}",
+  "date: #{time.strftime("%Y-%m-%d %H:%M:%S %z")}",
+  ("categories: #{yaml_array(options[:categories])}" unless options[:categories].empty?),
+  "tags: #{yaml_array(options[:tags])}",
+  "---"
+].compact.join("\n")
+
+content = <<~MARKDOWN
+  #{front_matter}
+
+  ## #{title}
+
+  在这里写摘要。
+
+  <!-- more -->
+
+  在这里继续正文。
+MARKDOWN
+
+if options[:dry_run]
+  puts "Target: #{post_path}"
+  puts
+  puts content
+  exit
+end
+
+abort "File already exists: #{post_path}" if File.exist?(post_path)
+
+FileUtils.mkdir_p("_posts")
+File.write(post_path, content)
+
+puts "Created #{post_path}"

@@ -1,0 +1,23 @@
+---
+---
+
+@import 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
+/* Hide the author row in Chirpy post headers. */
+main article > header .post-meta > .d-flex.justify-content-between > span:first-child {
+  display: none;
+}
+
+/* Keep the read-time text aligned to the right after hiding the author row. */
+main article > header .post-meta > .d-flex.justify-content-between > div:last-child {
+  margin-left: auto;
+}
+
+/* Hide the sharing actions at the bottom of post pages. */
+.post-tail-wrapper .share-wrapper {
+  display: none !important;
+}
